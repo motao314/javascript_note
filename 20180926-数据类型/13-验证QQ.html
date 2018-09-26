@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" /> 
+<input type="button" value="验证" />  
+<script>
+var input = document.querySelectorAll("input");
+input[1].onclick = function(){
+    var val = input[0].value;
+    if(val == ""){
+        alert("请输入内容");
+    } else if(isNaN(val)){
+        alert("请输入数字");
+    } else if(val.length < 5 || val.length > 10){
+        alert("请输入5-10位数字");
+    } else if(val[0] === "0") {
+        alert("首字母不能是0");
+    } else if(String(parseInt(val)) != val) {
+        alert("请不要输入小数");
+    } else {
+        alert("验证通过");
+    }
+};
+</script>  
+</body>
+</html>

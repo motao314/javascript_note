@@ -7,19 +7,57 @@
     <title>Document</title>
 </head>
 <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
 <script>
 var arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90 ];
+console.log(arr);
 
 // 找到所有的数字：-98765  34 -2 0 5
-
+// 可以转成数字的：100px -98765  34 -2 0 5 300 23.45元
+var nub = [];
+var nub2 = [];
+var maxNum = -Infinity;
+var nub3 = [];
 for(var i = 0; i < arr.length; i++){
+    /* 所有的数字 */
     // if(typeof arr[i] === "number"&&!isNaN(arr[i])){
     //     console.log(arr[i]);
     // }
     if(typeof arr[i] === "number"&&arr[i] == arr[i]){
-        console.log(arr[i]);
+        //console.log(arr[i]);
+        nub.push(arr[i]);
+    }
+    /* 可以转成数字的 */
+    if(!isNaN(parseFloat(arr[i]))){
+        nub2.push(arr[i]);
+    }
+    /* 获取最大值 */
+    // if(maxNum < Number(arr[i])){
+    //     maxNum = Number(arr[i]);
+    //     console.log(maxNum);
+    // }
+    !isNaN(arr[i])&&(maxNum = Math.max(maxNum,Number(arr[i])));
+
+    if(typeof arr[i] === "number"&&isNaN(arr[i])){
+        nub3.push(i);
     }
 }
+p1.innerHTML = "所有的数字:" + String(nub);
+p2.innerHTML = "可以转成数字的:" + String(nub2);
+p3.innerHTML = "最大值为:" + maxNum;
+p4.innerHTML = "NaN所在的位置是：" +  String(nub3);
+/*
+    array.push()
+    从数组尾部进行添加
+*/
+
+
+//  -10, -200, -12, -134, -10, -1500
+                                     
+
 </script>
 </body>
 </html>
