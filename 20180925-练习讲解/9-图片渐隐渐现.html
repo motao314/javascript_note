@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrap {
+            position: relative;
+            margin: 30px auto;
+            width: 640px;
+        }
+        .picList {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 640px;
+            height: 368px;
+        }
+        .picList li {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: 1s;
+            z-index: 1;
+        }
+        .picList .show {
+            opacity: 1;
+            z-index: 2;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+        }
+        .nav a {
+            position: relative;
+            z-index: 4;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background: #000;
+            border-radius: 6px;
+        }
+        .nav span {
+            display: none;
+            position: absolute;
+            left: -27px;
+            top: -50px;
+        }
+        .nav a:hover span {
+            display: block;
+        }
+        .nav img {
+            display: block;
+            width: 64px;
+            height: 36.8px;
+            border: 1px solid #000;
+        }
+        .nav span:after {
+            content: "";
+            position: absolute;
+            left: 25px;
+            bottom: -16px;
+            width: 0;
+            height: 0;
+            border: 8px solid #000;
+            border-color: #000 transparent transparent;
+        }
+        .nav .active {
+            background: #f60;
+        }
+        .btn {
+            position: absolute;
+            top: 120px;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            color: #000;
+            font: 14px/40px "宋体";
+            text-align: center;
+            text-decoration: none;
+            z-index: 3;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="picList">
+        <li class="show">
+            <a href="#1">
+                <img src="img/img1.jpg" />
+            </a>
+        </li>
+        <li>
+            <a href="#2">
+                <img src="img/img2.jpg" />
+            </a>
+        </li>
+        <li>
+            <a href="#3">
+                <img src="img/img3.jpg" />
+            </a>
+        </li>
+        <li>
+            <a href="#4">
+                <img src="img/img4.jpg" />
+            </a>
+        </li>
+    </ul>   
+    <nav class="nav">
+        <a href="javascript:;" class="active">
+            <span><img src="img/img1.jpg" /></span>
+        </a>
+        <a href="javascript:;">
+            <span><img src="img/img2.jpg" /></span>
+        </a>
+        <a href="javascript:;">
+            <span><img src="img/img3.jpg" /></span>
+        </a>
+        <a href="javascript:;">
+            <span><img src="img/img4.jpg" /></span>
+        </a>
+    </nav> 
+    <a href="javascript:;" class="btn prev">prev</a>
+    <a href="javascript:;" class="btn next">next</a>
+</div>
+<script>
+var pics = document.querySelectorAll(".picList li");
+var navs = document.querySelectorAll(".nav a");
+var prev = document.querySelector(".prev");
+var next = document.querySelector(".next");
+var now = 0;
+for(var i = 0; i < navs.length; i++){
+    navs[i].index = i;
+    navs[i].onclick = function(){
+        now = this.index;
+        tab()
+    };
+}
+prev.onclick = function(){
+    now--;
+    if(now < 0){
+        now = pics.length - 1;
+    }
+    tab();
+};
+next.onclick = function(){
+    now++;
+    if(now > pics.length - 1){
+        now = 0;
+    }
+    tab();
+};
+function tab(){
+    for(var i = 0; i < pics.length; i++){
+        pics[i].className = "";
+        navs[i].className = "";
+    }
+    pics[now].className = "show";
+    navs[now].className = "active";
+}
+</script>
+</body>
+</html>

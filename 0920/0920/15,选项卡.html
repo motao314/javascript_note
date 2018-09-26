@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .name{
+            overflow: hidden;
+        }
+        .name span{
+            float: left;
+            padding:10px 30px;
+            border:1px solid #0c5460;
+            margin-right:-1px;
+        }
+        .name span.active{
+            background: #f1b0b7;
+        }
+        .content{
+            width:500px;
+            height: 300px;
+            border:1px solid #0c5460;
+            margin-top:-1px;
+        }
+        .item{
+            width:100%;
+            height:100%;
+            font:50px/300px '微软雅黑';
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="name">
+    <span class="active">first</span>
+    <span>second</span>
+    <span>third</span>
+</div>
+<div class="content">
+    <div class="item" style="display: block;">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+</div>
+
+<!--
+    1,点击三个标题的时候，被点击的那个元素要加上背景颜色，其他的标题去掉背景颜色
+-->
+
+<script>
+    var title = document.querySelectorAll('span');
+    var item = document.querySelectorAll('.item');
+
+    for(var i=0;i<title.length;i++){
+        title[i].index = i;
+        title[i].onclick = function(){
+            for(var a = 0;a<title.length;a++){
+                title[a].classList.remove('active');
+                item[a].style.display = 'none';
+            }
+            this.classList.add('active');
+            item[this.index].style.display = 'block';
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

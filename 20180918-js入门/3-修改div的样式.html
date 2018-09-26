@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #000;
+}
+</style>
+</head>
+<body>
+<input type="button" value="宽200" id="w200" />
+<input type="button" value="宽300" id="w300" />
+<input type="button" value="高200" id="h200" />
+<input type="button" value="高300" id="h300" />
+<input type="button" value="红" id="red"/>
+<input type="button" value="黄" id="yellow" />
+<input type="button" value="重置" id="reset" />
+<div id="box" class="div" ></div>
+<script>
+document.getElementById("w200").onclick = function(){
+    document.getElementById("box").style.width = "200px";
+};
+document.getElementById("w300").onclick = function(){
+    document.getElementById("box").style.width = "300px";
+};
+document.getElementById("h200").onclick = function(){
+    document.getElementById("box").style.height = "200px";
+};
+</script>
+</body>
+</html>

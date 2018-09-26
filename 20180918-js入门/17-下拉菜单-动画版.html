@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box {
+    margin: 30px auto;
+    width: 120px;
+    border: 1px solid #000;
+}
+#title {
+    margin: 0;
+    font: 14px/36px "宋体";
+    text-align: center;
+}
+#menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 0;
+    overflow: hidden;
+    transition: .5s;
+}
+#menu li:first-child {
+    border-top: 1px solid #000;
+}
+#menu li {
+    font: 12px/30px "宋体";
+    border-bottom: 1px solid #000;
+}
+#menu li:last-child {
+    border:none;
+}
+</style>
+</head>
+<body>
+<div id="box">
+    <h2 id="title">一级菜单</h2>
+    <ul id="menu">
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+        <li>二级菜单</li>
+    </ul>
+</div>
+<script>
+var box = document.getElementById("box");
+var menu = document.getElementById("menu");
+box.onmouseover = function(){
+    menu.style.height = "93px";
+};
+box.onmouseout = function(){
+    menu.style.height = "0";
+};
+</script>
+</body>
+</html>

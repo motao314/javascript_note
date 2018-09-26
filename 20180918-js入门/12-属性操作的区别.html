@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var box = document.getElementById("box");
+            var ih = "innerHTML";
+            box.onclick = function(){
+                //box[ih] = "天气不错";
+                box.style.cssText += "width:200px";
+            };    
+        }
+    </script>   
+</head>
+<body>
+    <div id="box" style="width:300px;background:blue;"></div> 
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:50px;
+            height:50px;
+            background: #8dd5f4;
+            margin:5px;
+            float: left;
+        }
+        .red{
+            background: red;
+        }
+        em{
+            color: red;
+            font-size:24px;
+            font-style: normal;
+            padding:0 10px;
+        }
+    </style>
+</head>
+<body>
+
+<p>当前一共有<em>0</em>个元素加上了红色背景</p>
+
+<script>
+
+    var num = document.querySelector('p em');
+    for(var i=0;i<100;i++){
+        document.write('<div class="box">'+ (i+1) +'</div>');
+    }
+    var box = document.querySelectorAll('.box');
+    var count = 0;
+    for(var a = 0;a<box.length;a++){
+//        console.log(a);
+        box[a].onclick = function(){
+            /*console.log(this.className);
+            if(this.className == 'box'){
+                this.className = 'box red';
+            }else{
+                this.className = 'box';
+            }*/
+            this.classList.toggle('red');
+            if(this.className == 'box red'){
+                count ++;
+            }else{
+                count --;
+            }
+
+            console.log(count);
+            num.innerText = count;
+
+//            num.innerText = document.querySelectorAll('.red').length;
+        }
+    }
+</script>
+
+</body>
+</html>

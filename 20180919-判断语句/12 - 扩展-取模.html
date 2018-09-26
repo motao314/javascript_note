@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img src="img/75.png" />
+<script>
+var img = document.querySelector("img");
+var src = ["img/75.png","img/81.png"];
+var now = 0;
+img.onclick = function(){    
+    now++;
+    img.src = src[now%2]; // 0 ,1 ,0 ,1, 0, 1
+};
+</script>
+</body>
+</html>

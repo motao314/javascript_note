@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#list {
+    position: relative;
+    margin: 30px auto;
+    padding: 0;
+    list-style: none;
+    width: 900px;
+    height: 270px;
+}
+#list li {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    font: 14px/30px "宋体";
+    text-indent: 10px;
+}
+</style>
+</head>
+<body>
+<ul id="list">
+
+</ul>
+<script>
+var list = document.querySelector("#list");
+var inner = "";
+var h = 30;
+var w = 100;
+for(var r = 1; r <= 9; r++){
+    for(var c = 1; c <= r; c++  ){
+        inner += '<li style="left:'+(c-1)*w+'px;top:'+(r-1)*h+'px">'+c+' * '+r+' = '+(c*r)+'</li>';
+    }
+}
+list.innerHTML = inner;
+</script>
+</body>
+</html>

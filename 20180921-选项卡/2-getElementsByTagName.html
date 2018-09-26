@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul id="list">
+    <li class="li">列表1-1</li>
+    <li>列表2-2</li>
+    <li>列表3-3</li>
+</ul>
+<ul id="list2">
+    <li>列表1</li>
+    <li>列表2</li>
+    <li>列表3</li>
+</ul>    
+<script>
+var list = document.getElementById("list");
+var lis = list.getElementsByTagName("li");
+lis[1].style.border = "1px solid #000";
+
+var li = list.getElementsByClassName("li");
+//console.log(li);
+var list2 = document.querySelectorAll("#list2");
+//list2.style.background = "red";
+</script>
+</body>
+</html>

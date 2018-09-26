@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="button" value="上一张" id="prev" />
+<span>0</span>
+<input type="button" value="下一张" id="next" />
+<script>
+// number 的范围 是 0 - 5
+var prev = document.querySelector("#prev");
+var next = document.querySelector("#next");
+var span = document.querySelector("span");
+var nub = 0;
+next.onclick = function(){
+    nub++;
+    if(nub > 5){
+        nub = 0;
+    }
+    span.innerHTML = nub;
+};
+prev.onclick = function(){
+    nub--;
+    if(nub < 0){
+        nub = 5;
+    }
+    span.innerHTML = nub;
+};
+</script>
+</body>
+</html>

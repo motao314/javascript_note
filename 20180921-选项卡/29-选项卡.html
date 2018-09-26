@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.wrap {
+    position: relative;
+    margin: 30px auto;
+    width: 300px;
+}
+.nav {
+    display: flex;
+}
+.nav a {
+    flex: 1;
+    font: 14px/30px "宋体";
+    border: 1px solid #000;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+}
+.nav .active {
+    background: #000;
+    color:#fff;
+}
+.cons div {
+    display: none;
+    font: 30px/140px "宋体";
+    text-align: center;
+    background: #000;
+    color: #fff;
+}
+.cons .show {
+    display: block;
+}
+.btn {
+    position: absolute;
+    top: 70px;
+    width: 30px;
+    height: 30px;
+    font: 20px/30px "宋体";
+    background: #fff;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+}
+.prev {
+    left: 0;
+}
+.next {
+    right: 0;
+} 
+</style>
+</head>
+<body>
+<div class="wrap">
+    <nav class="nav">
+        <a href="javascript:;" class="active">选项一</a>
+        <a href="javascript:;">选项二</a>
+        <a href="javascript:;">选项三</a>
+    </nav>
+    <div class="cons">
+        <div class="show">选项一</div>
+        <div>选项二</div>
+        <div>选项三</div>
+    </div>
+    <a href="javascript:;" class="btn prev"><</a>
+    <a href="javascript:;" class="btn next">></a>
+</div>
+<script>
+var navs = document.querySelectorAll(".nav a");
+var cons = document.querySelectorAll(".cons div");
+var prev = document.querySelector(".prev");
+var next = document.querySelector(".next");
+var now = 0;//当前选中的第几张
+
+for(var i = 0; i < navs.length; i++){
+    navs[i].index = i;
+    navs[i].onmouseover = function(){
+        //清除所有的选中状态
+        for(var i = 0; i < navs.length; i++){
+            navs[i].className = "";
+            cons[i].className = "";
+        }
+        //给当前鼠标移入的加上选中
+        this.className = "active";
+        cons[this.index].className = "show";
+    };
+}
+
+prev.onclick = function(){
+    now--;
+    // 过界处理
+    if(now < 0){
+        now = navs.length-1;
+    }
+    tab();
+};
+
+next.onclick = function(){
+    now++;
+    // 过界处理
+    if(now > navs.length-1){
+        now = 0;
+    }
+    tab();
+};
+
+//切换显示到第now张
+function tab(){
+    //清除所有的选中状态
+    for(var i = 0; i < navs.length; i++){
+        navs[i].className = "";
+        cons[i].className = "";
+    }
+    //给当前选中的加上选中状态
+    navs[now].className = "active";
+    cons[now].className = "show";
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#list {
+    display: none;
+}    
+</style>
+</head>
+<body>
+<input type="button" value="展开/收缩" id="btn" />
+<ul id="list">
+    <li>妙味课堂</li>
+    <li>妙味食堂</li>
+    <li>妙味澡堂</li>
+</ul>
+<script>
+var btn = document.querySelector("#btn");
+var list = document.querySelector("#list");
+btn.onclick = function(){
+    /*
+        注意 行间样式
+        1. 第一次点击的时候，行间是没有样式的，
+        所以第一次点击结果肯定是 false
+        2. 所以 第一次 点击的时候，程序一定会执行 else 
+        3. 第一次点击的时候，我们希望 list 是显示出来的,所以要在 else 中写 list.style.display = "none";
+        个人不建议，用 style 中的内容 来做判断条件
+    */
+    if(list.style.display == "none"){
+        list.style.display = "block";
+    } else {
+        list.style.display = "none";
+    }
+};
+</script>
+</body>
+</html>

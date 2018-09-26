@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    body,
+    p {
+        margin: 0;
+    } 
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .wrap {
+        margin: 30px auto;
+        width: 300px;
+    }
+    #infos {
+        height: 260px;
+        border: 1px solid #000;
+        overflow: auto;
+    }
+    #infos li {
+        padding: 5px 0;
+        overflow: hidden;
+    }
+    #infos img {
+        width: 30px;
+        height: 30px;
+        margin: 5px 10px;
+    }
+    #infos .left img {
+        float: left;
+    }
+    #infos .right img {
+        float: right;
+    }
+    #infos p {
+        max-width: 200px;
+        font: 12px/30px "宋体";
+        padding: 5px;
+        border-radius: 10px;
+        word-break: break-all;
+    }
+    #infos .left p {
+        float: left;
+        background: #ddd;
+    }
+    #infos .right p {
+        float: right;
+        background: #0f6;
+        color: #fff;
+    }
+    
+    .aside {
+        padding: 5px 0;
+    }
+    .aside * {
+        vertical-align: middle;
+    }
+    #avt {
+        width: 40px;
+        height: 40px;
+    }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul id="infos">
+        <li class="left">
+            <img src="img/75.png" />
+            <p>11111111111111</p>
+        </li>
+        <li class="right">
+            <img src="img/81.png" />
+            <p>好的没有问题</p>
+        </li>
+        <li class="right">
+            <img src="img/81.png" />
+            <p>好的没有问题</p>
+        </li>   
+    </ul>
+    <div class="aside">
+        <img src="img/75.png" id="avt" />
+        <input type="text" id="message" />
+        <button type="button" id="send">发送</button> 
+    </div>    
+</div>
+</body>
+</html>
+<script>
+var avt = document.querySelector("#avt");
+var isChengLong = true;// true 代表现在显示的是承龙, false 代表现在显示的是小乐
+var message = document.querySelector("#message");
+var send = document.querySelector("#send");
+var infos = document.querySelector("#infos");
+
+// 头像切换
+avt.onclick = function(){
+    if(isChengLong){
+        avt.src = "img/81.png";
+    } else {
+        avt.src = "img/75.png";
+    }
+    isChengLong = !isChengLong;
+};   
+// 消息发送
+send.onclick = function(){
+    if(message.value == ""){ //没有填写内容
+        alert("请输入内容");
+    } else {
+        var avtClass;
+        if(isChengLong){ 
+            avtClass = "left";
+        } else {
+            avtClass = "right";
+        }
+        infos.innerHTML = '<li class="'+avtClass+'"><img src="'+avt.src+'" /><p>'+message.value+'</p></li>' + infos.innerHTML;
+        message.value = "";
+    }
+};
+</script>

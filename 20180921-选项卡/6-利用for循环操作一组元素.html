@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<label><input type="checkbox" id="checkedBtn"/> 全选/全不选</label>   
+<div id="checks">
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" /> <br/>
+    <input type="checkbox" />
+</div>
+<script>
+var checkedBtn = document.querySelector("#checkedBtn");
+var checkeds = document.querySelectorAll("#checks input");
+// console.log(checkedBtn.checked);
+//checkedBtn.checked = true;
+checkedBtn.onchange = function(){
+   // 当 checkedBtn 的 checked为true，就把 checkeds中的元素的checked都改成true，否则 都为false
+//    if(checkedBtn.checked == true){
+//         checkeds[0].checked = true;
+//    } else {
+//         checkeds[0].checked = false;
+//    }
+    // checkeds[0].checked = checkedBtn.checked;
+    // checkeds[1].checked = checkedBtn.checked;
+    // checkeds[2].checked = checkedBtn.checked;
+    // checkeds[3].checked = checkedBtn.checked;
+    // checkeds[4].checked = checkedBtn.checked;
+    // checkeds[5].checked = checkedBtn.checked;
+    // checkeds[6].checked = checkedBtn.checked;
+    // for(var i = 0; i < 7; i++){
+    //     checkeds[i].checked = checkedBtn.checked;
+    // }
+    for(var i = 0; i < checkeds.length; i++){
+        checkeds[i].checked = checkedBtn.checked;
+    }
+};
+</script>
+</body>
+</html>

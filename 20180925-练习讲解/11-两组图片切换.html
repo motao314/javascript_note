@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="button" value="上一组" />
+<input type="button" value="下一组" />
+<br />
+<img src="img/1.jpg" />
+<img src="img/img1.jpg" />
+<script>
+var img = document.querySelectorAll("img"); 
+var btn = document.querySelectorAll("input");   
+var img1 = [
+    "img/1.jpg",
+    "img/2.jpg",
+    "img/3.jpg"
+];
+var img2 = [
+    "img/img1.jpg",
+    "img/img2.jpg",
+    "img/img3.jpg",
+    "img/img4.jpg"
+];
+
+var now = 0; //第一组图片当前显示的是第几张
+var now2 = 0; // 第二组图片当前显示的是第几张
+
+img[0].onclick = function(){
+    img1Next();
+};
+img[1].onclick = function(){
+    img2Next();
+};
+
+btn[0].onclick = function(){
+    //  第一组切换
+    img1Prev();
+    // 第二组
+    img2Prev();
+};
+btn[1].onclick = function(){
+    //  第一组切换
+    img1Next();
+    // 第二组
+    img2Prev();
+};
+function img1Prev(){
+    now--;
+    if(now < 0){
+        now = img1.length -1;
+    }
+    img[0].src = img1[now];
+}
+function img1Next(){
+    now++;
+    if(now > img1.length -1){
+        now = 0;
+    }
+    img[0].src = img1[now];
+}
+function img2Prev(){
+    now2--;
+    if(now2 < 0){
+        now2 = img2.length -1;
+    }
+    img[1].src = img2[now2];
+}
+function img2Next(){
+    now2++;
+    if(now2 > img2.length -1){
+        now2 = 0;
+    }
+    img[1].src = img2[now2];
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img src="img/75.png" />
+<script>
+var img = document.querySelector("img");
+var is75 = true;//当前显示的是 75 还是 81 true 代表 75，false 代表 81
+/*
+    使用一个变量，记录一下 图片当前的 显示状态:
+       var  is75 = true;
+*/
+img.onclick = function(){
+    if(is75){//如果显示的是 75
+        img.src = "img/81.png"; //就切换到 81
+        is75 = false; // 记录现在显示的是 81
+    } else { // 否则
+        img.src = "img/75.png"; // 切换到 75
+        is75 = true; // 记录 现在显示的 75
+    }     
+};
+</script>
+</body>
+</html>

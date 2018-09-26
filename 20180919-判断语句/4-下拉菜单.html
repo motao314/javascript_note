@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#list {
+    display: none;
+}    
+</style>
+</head>
+<body>
+<input type="button" value="展开/收缩" id="btn" />
+<ul id="list">
+    <li>妙味课堂</li>
+    <li>妙味食堂</li>
+    <li>妙味澡堂</li>
+</ul>
+<script>
+var btn = document.querySelector("#btn");
+var list = document.querySelector("#list");
+/*
+    点击 btn 时：
+        1. 如果 list 是显示的，就让 list 隐藏了
+        2. 否则,就让 list 显示出来 
+*/
+btn.onclick = function(){
+    // if(list是显示的){
+    //     list 隐藏
+    // } else {
+    //     list 显示
+    // }
+    if(list.style.display == "block"){
+        list.style.display = "none";
+    } else {
+        list.style.display = "block";
+    }
+};
+</script>
+</body>
+</html>

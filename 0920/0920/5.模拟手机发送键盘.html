@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        img{
+            vertical-align: middle;
+        }
+
+        .phone{
+            margin:100px;
+            width:340px;
+            height: 650px;
+            background: #e5e3ec url("img/miaov.png") no-repeat center 594px;
+            border-radius: 16px;
+            box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.8);
+            position: relative;
+        }
+        .phone .audo{
+            width:60px;
+            height:4px;
+            position: absolute;
+            top:20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #999;
+            border-radius: 2px;
+            box-shadow:inset 1px 1px 1px rgba(0,0,0,0.2);
+        }
+        .screen{
+            width:304px;
+            height:535px;
+            border:2px solid #999;
+            background: #fff;
+            position: absolute;
+            top:43px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .screen .message{
+            width:100%;
+            height:475px;
+        }
+        .screen .function{
+            width:100%;
+            height:57px;
+            background: #e3e3e3;
+            position: absolute;
+            bottom:0;
+        }
+        .screen .function .red{
+            width: 40px;
+            height:40px;
+            float: left;
+            line-height:40px;
+            text-align: center;
+            padding:8px 5px 9px 5px;
+            background: url("img/red.png") no-repeat center;
+        }
+        .screen .function .blue{
+            width: 40px;
+            height:40px;
+            float: left;
+            line-height:40px;
+            text-align: center;
+            padding:8px 5px 9px 5px;
+            background: url("img/blue.png") no-repeat center;
+        }
+        .screen .function .input{
+            width:180px;
+            height:42px;
+            background: #fff;
+            border-radius: 4px;
+            float: left;
+            margin: 8px 2px;
+            overflow: hidden;
+            padding:0 5px;
+        }
+        .input input{
+            width:100%;
+            height:42px;
+            line-height:42px;
+            border:0;
+            outline:none;
+        }
+        .screen .function .send{
+            float: right;
+            width:58px;
+            font:16px/57px '微软雅黑';
+            color: #e15671;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .message .left{
+            width: 100%;
+            float: left;
+        }
+        .message .left .head_r{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            float: left;
+            padding-left:4px;
+        }
+        .message .left .msg{
+            float: left;
+            background: #d97389;
+            border-radius: 4px;
+            margin-top: 4px;
+            font:12px/24px '微软雅黑';
+            max-width:200px;
+            word-break: break-all;
+            padding:5px 10px;
+            position: relative;
+        }
+        .left .msg .arrow{
+            width:6px;
+            height: 6px;
+            background: #d97389;
+            transform: rotate(45deg);
+            position: absolute;
+            left: -3px;
+            top:10px;
+        }
+
+        .message .right{
+            width: 100%;
+            float: left;
+        }
+        .message .right .head_b{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            float: right;
+            padding-left:4px;
+        }
+        .message .right .msg{
+            float: right;
+            background: #968eb7;
+            border-radius: 4px;
+            margin-top: 4px;
+            font:12px/24px '微软雅黑';
+            max-width:200px;
+            word-break: break-all;
+            padding:5px 10px;
+            position: relative;
+        }
+        .right .msg .arrow{
+            width:6px;
+            height: 6px;
+            background: #968eb7;
+            transform: rotate(45deg);
+            position: absolute;
+            right: -3px;
+            top:10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone">
+    <div class="audo"></div>
+    <div class="screen">
+        <div class="message">
+
+        </div>
+        <div class="function">
+            <div class="red active"></div>
+            <div class="input">
+                <input type="text">
+            </div>
+            <div class="send">发送</div>
+        </div>
+    </div>
+</div>
+
+
+<!--
+    <div class="left">
+        <div class="head_r"><img src="img/red.png"></div>
+        <div class="msg">
+            <em class="arrow"></em>
+            aasidhiuasidhiuassidhiu
+        </div>
+    </div>
+    <div class="right">
+        <div class="head_b"><img src="img/blue.png"></div>
+        <div class="msg">
+            <em class="arrow"></em>
+            asidhhiuasidhiuasidhiuasidhiuasidhhiuasidhiuasidhiuasidhiuasidhhiuasidhiuasidhiuasidhiuasidhhiuasidhiuasidhiuasidhiuasidhhiuasidhiuasidhiuasidhiu
+        </div>
+    </div>
+-->
+
+<script>
+
+/*
+    1,点击头像的时候，可以切换头像
+    2，点击发送按钮的时候，提交消息
+        判断输入框里面是否有内容
+            如果没有内容，则直接提示用户输入内容
+        判断：头像是哪个
+            如果是红色头像，消息应该在左边
+            如果是蓝色头像，消息应该在右边
+*/
+
+var head = document.querySelector('.red');//这里是头像
+var initialColor = true;
+    //  true  代表红色头像
+    //  false 代表蓝色头像
+var send = document.querySelector('.send');//这里是发送按钮
+var input = document.querySelector('.input input');//这里是输入框
+var message = document.querySelector('.message');//这里是消息框
+
+head.onclick = changeHead;
+
+function changeHead(){
+    if(initialColor){
+        head.className = 'blue';
+        initialColor = false;
+    }else{
+        head.className = 'red';
+        initialColor = true;
+    }
+}
+
+document.onkeyup = function(event){
+    console.log(this);
+    if(event.keyCode == 13){
+        sendMsg();
+    }else if(event.keyCode == 16){
+        changeHead();
+    }
+}
+
+send.onclick = sendMsg;
+
+
+function sendMsg(){
+    if(input.value == ''){
+        alert('请输入内容！');
+    }else if(initialColor){
+        message.innerHTML += '<div class="left">\
+            <div class="head_r">\
+            <img src="img/red.png">\
+            </div><div class="msg">\
+            <em class="arrow"></em>'+ input.value +'</div>\
+            </div>';
+    }else if(!initialColor){
+        message.innerHTML += '<div class="right">\
+            <div class="head_b">\
+            <img src="img/blue.png">\
+            </div><div class="msg">\
+            <em class="arrow"></em>'+ input.value +'</div>\
+            </div>';
+    }
+    input.value = '';
+}
+
+//  判断里面   == 判断两边的值是否相等
+//           === 首先判断两边的数据类型是否相等  然后再判断值是否相等
+
+/*
+    具名函数：调用方式  函数名称加括号sendMsg()
+    在事件里面调用具名函数的时候，一定不要给函数加括号
+    一旦代码读到函数名称加括号，那么这个函数就会被立即执行
+
+    this关键字：
+        this只存在于函数里面
+        this只想谁，取决于是谁调用了这个函数
+        如果是事件调用的函数，那么这个函数里面的this指向的就是触发这个事件的对象
+*/
+
+</script>
+
+</body>
+</html>

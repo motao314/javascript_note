@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 100px;
+            height:100px;
+            background: #0c5460;
+            margin:10px;
+            float: left;
+        }
+        input{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+<div class="box"></div>
+<input type="radio">
+
+<script>
+
+
+
+    var box = document.querySelectorAll('.box');
+    var input = document.querySelectorAll('input');
+//    box.onclick
+
+    /*box[0].onclick = function(){
+        this.style.backgroundColor = 'yellow';
+        input[0].checked = 'checked';
+    }
+    box[1].onclick = function(){
+        this.style.backgroundColor = 'yellow';
+        input[1].checked = 'checked';
+    }*/
+
+    for(var i=0;i<10;i++){
+        box[i].id = i;
+        box[i].onclick = function(){
+            console.log(i);
+            this.style.backgroundColor = 'yellow';
+            console.log(this.id);
+            input[this.id].checked = 'checked';
+        }
+    }
+
+    1*1 = 1
+    1*2 = 2  2*2 = 4
+    1*3 = 3  2*3 = 6 3*3 = 9
+    1*4
+    1*5
+    1*6
+    1*7
+    1*8
+    1*9
+
+    //如果用for循环去给一堆元素绑定事件，那么for循环并不会关心事件里面到底发生了什么，它只管绑定事件
+
+
+
+</script>
+
+</body>
+</html>

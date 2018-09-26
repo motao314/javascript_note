@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box {
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+宽度为: 
+<input type="button" value="200px" />    
+<input type="button" value="300px" />
+<input type="button" value="400px" />
+<div class="box"></div>    
+<script>
+var box = document.querySelector(".box");
+var btns = document.querySelectorAll("input");
+// btns[0].onclick = function(){
+//     box.style.width = btns[0].value;    
+// };
+// btns[1].onclick = function(){
+//     box.style.width = btns[1].value;    
+// };
+// btns[2].onclick = function(){
+//     box.style.width = btns[2].value;    
+// };
+/*
+    for 循环在 页面加载的时候执行
+    事件中的代码： 用户触发事件之后才执行
+*/
+// for(var i = 0; i < btns.length; i++){
+   
+//     btns[i].onclick = function(){
+//        //在这获取 i 只能获取到循环之后的结果
+//        console.log(i);
+//     };
+// }
+
+// for(var i = 0; i < btns.length; i++){
+//    btns[i].onclick = fn;
+// }
+// function fn(){
+//     console.log(i);
+// }
+
+
+for(var i = 0; i < btns.length; i++){
+   btns[i].onclick = fn;
+}
+function fn(){
+   // console.log(this);
+   box.style.width =this.value;   
+}
+</script>
+</body>
+</html>

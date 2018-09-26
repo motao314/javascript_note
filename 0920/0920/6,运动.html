@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:100px;
+            height:100px;
+            background: #0c5460;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box"></div>
+
+<script>
+    var box = document.querySelector('.box');
+    document.onkeydown = function(ev){
+        console.log(parseInt(window.getComputedStyle(box).left));
+        if(ev.keyCode == 68){
+            box.style.left = parseInt(window.getComputedStyle(box).left) + 10 + 'px';
+        }
+    }
+</script>
+
+</body>
+</html>

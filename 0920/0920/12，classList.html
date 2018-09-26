@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:100px;
+            height: 100px;
+            background: #0c5460;
+        }
+        .out{
+            display: none;
+        }
+        .abc{
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box active"></div>
+
+<script>
+    var box = document.querySelector('.box');
+
+    box.onclick = function(){
+        console.log(this.classList);
+//        this.classList.remove('active');
+//        this.classList.add('out');
+        this.classList.toggle('abc');
+    }
+</script>
+
+</body>
+</html>

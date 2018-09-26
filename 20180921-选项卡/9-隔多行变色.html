@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        li {
+            width: 300px;
+            margin: 2px ;
+            font: 14px/30px "宋体";
+            border: 1px solid #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<ul id="list"></ul>
+<script>
+/* 利用for循环生成元素 */
+var list = document.querySelector("#list");
+/*
+    操作 DOM 是性能最差的一种操作
+    for(var i = 0; i < 10; i++){
+        list.innerHTML += '<li>这是第'+i+'个li</li>';
+    }
+*/
+var inner = "";
+for(var i = 0; i < 10; i++){
+    inner += '<li>这是第'+i+'个li</li>';
+}
+list.innerHTML = inner;
+
+// 操作 li 隔行变色
+var lis = list.querySelectorAll("li");
+// red blue green
+for(var i = 0; i < lis.length; i++){
+    if(i%3 == 0){
+        lis[i].style.background = "red";
+    } else if(i%3 == 1) {
+        lis[i].style.background = "blue";
+    } else {
+        lis[i].style.background = "green";
+    }
+}
+
+
+</script>   
+</body>
+</html>

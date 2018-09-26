@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.wrap {
+    margin: 30px auto;
+    width: 300px;
+}
+.nav {
+    display: flex;
+}
+.nav a {
+    flex: 1;
+    font: 14px/30px "宋体";
+    border: 1px solid #000;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+}
+.nav .active {
+    background: #000;
+    color:#fff;
+}
+.cons div {
+    display: none;
+    font: 30px/140px "宋体";
+    text-align: center;
+    background: #000;
+    color: #fff;
+}
+.cons .show {
+    display: block;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <nav class="nav">
+        <a href="javascript:;" class="active">选项一</a>
+        <a href="javascript:;">选项二</a>
+        <a href="javascript:;">选项三</a>
+    </nav>
+    <div class="cons">
+        <div class="show">选项一</div>
+        <div>选项二</div>
+        <div>选项三</div>
+    </div>
+</div>
+<script>
+var navs = document.querySelectorAll(".nav a");
+var cons = document.querySelectorAll(".cons div");
+for(var i = 0; i < navs.length; i++){
+    navs[i].index = i;
+    navs[i].onmouseover = function(){
+        for(var i = 0; i < navs.length; i++){
+            navs[i].className = "";
+            cons[i].className = "";
+        }
+        this.className = "active";
+        //console.log(this.index);
+        cons[this.index].className = "show";
+    };
+}   
+
+</script>
+</body>
+</html>

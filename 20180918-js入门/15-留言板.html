@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.box {
+    margin: 30px auto;
+    width: 300px;    
+}
+#message {
+    box-sizing: border-box;
+    width: 300px;
+    border: 1px solid #000;
+    padding: 10px;
+    height: 100px;
+    resize: none;
+    display: block;
+}
+#btn {
+    display: block;
+    margin: 10px auto;
+    width: 60%;
+    height: 40px;
+}
+#list {
+    border-top: 1px solid #000;
+    padding: 10px 10px 0;
+    margin: 0;
+    list-style: none;
+}
+#list li {
+    font: 14px/30px "宋体";
+}
+#list li:nth-of-type(2n) {
+    background: #f1f1f1;
+}
+</style>
+</head>
+<body>
+<div class="box">
+    <textarea id="message"></textarea>
+    <button id="btn">提交留言</button>
+    <ul id="list"></ul>
+</div>
+<script>
+/*
+  1. 获取相关元素
+  2. 给 btn 添加点击事件
+    1) 获取 message 的 value
+    2) 在 list 的 innerHTML 中 添加 '<li></li>'
+    3) 把  value 放入 li 
+*/
+var message = document.getElementById("message");
+var list = document.getElementById("list");
+var btn = document.getElementById("btn");
+btn.onclick = function(){
+    list.innerHTML = '<li>' + message.value + '</li>' + list.innerHTML;
+    message.value = '';
+};
+</script>
+</body>
+</html>

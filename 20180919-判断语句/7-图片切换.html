@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img src="img/75.png" />
+<script>
+var img = document.querySelector("img");
+img.onclick = function(){
+    /*
+        如果是 75的这张图，
+            就显示 81 
+        否则
+            显示 75    
+    */
+    console.log(img.src);
+    // 由于路径获取到的是 绝对路径 所以不能直接 使用 src 作为判断条件
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrap {
+            margin: 30px auto;
+            width: 300px;
+            text-align: center;
+        }
+        .wrap img {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <input type="button" value="上一张" id="prev" />
+    <input type="button" value="下一张" id="next" />
+    <img src="img/img3.jpg" />
+    <p class="page">1/4</p>
+    <p class="des">第一张图片</p>
+</div>        
+<script>
+// number 的范围 是 0 - 5
+var prev = document.querySelector("#prev");
+var next = document.querySelector("#next");
+var img = document.querySelector("img");
+var page = document.querySelector(".page");
+var des = document.querySelector(".des");
+var url = [
+    "img/img1.jpg",
+    "img/img2.jpg",
+    "img/img3.jpg",
+    "img/img4.jpg"
+];
+var txt = [
+    "第一张图片",
+    "第二张图片",
+    "第三张图片",
+    "第四张图片"
+];
+var nub = 0;
+prev.onclick = function(){
+    nub--;
+    if(nub < 0){
+        nub = url.length - 1;
+    }
+    img.src = url[nub];
+    page.innerHTML = (nub+1)+"/"+url.length;
+    des.innerHTML = txt[nub];
+};
+next.onclick = function(){
+    nub++;
+    if(nub > url.length - 1){
+        nub = 0;
+    }
+    img.src = url[nub];
+    page.innerHTML = (nub+1)+"/"+url.length;
+    des.innerHTML = txt[nub];
+};
+</script>
+</body>
+</html>

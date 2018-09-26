@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.active {
+    color: red;
+}
+</style>
+</head>
+<body>
+<!-- <a href="javascript:alert(1);">点击</a>
+<a href="javascript:;">点击</a> -->
+<nav id="navs">
+    <a href="javascript:;" class="active">选项一</a>
+    <a href="javascript:;">选项二</a>
+    <a href="javascript:;">选项三</a>
+</nav>
+<script>
+var navs = document.querySelectorAll("#navs a");
+for(var i = 0; i < navs.length; i++){
+    navs[i].onclick = fn;
+}
+function fn(){
+    // 先清空其他的
+    for(var i = 0; i < navs.length; i++){
+        navs[i].className = "";
+    }
+    //再给当前项加上
+    this.className = "active";
+
+    // classList
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#list {
+    position: relative;
+    margin: 30px auto;
+    padding: 0;
+    list-style: none;
+    width: 320px;
+    height: 480px;
+}
+#list li {
+    box-sizing: border-box;
+    position: absolute;
+    width: 32px;
+    height: 48px;
+    border: 1px solid #000;
+    background: url("img.jpeg") no-repeat;
+}
+</style>
+</head>
+<body>
+<ul id="list">
+
+</ul>
+<script>
+/*
+0 0
+1 48
+2 96
+3 144
+top: n*height
+
+0 0
+1 32
+2 64
+
+left: n*width
+
+*/
+
+// 10行 10列
+var list = document.querySelector("#list");
+var inner = "";
+var h = 48;
+var w = 32;
+var c = 0;
+var r = -1;
+// 0  1 2 3 4 5
+for(var i = 0; i < 100; i++){
+    c++; 
+    if(i%10 == 0){
+        c = 0;
+        r++;
+    }
+    inner += '<li style="top:'+r*h+'px;left:'+c*w+'px;background-position:-'+c*w+'px -'+r*h+'px;"></li>';
+}
+list.innerHTML = inner;
+</script>
+</body>
+</html>

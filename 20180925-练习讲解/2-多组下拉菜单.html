@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        h2 {
+            margin: 0;
+        }
+        .wrap {
+            width: 120px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        .wrap h2 {
+            font: 14px/36px "宋体";
+            text-align: center;
+            background: #ddd;
+        }
+        .wrap ul {
+            font: 12px/30px "宋体";
+            text-indent: 10px;
+            display: none;
+        }
+        .wrap li {
+            border-top: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h2>好友</h2>
+    <ul>
+        <li>宋承龙</li>
+        <li>宋承虎</li>
+        <li>宋承豹</li>
+    </ul>
+    <h2>企业好友</h2>
+    <ul>
+        <li>妙味课堂</li>
+        <li>妙味云视频</li>
+        <li>妙味茶馆</li>
+    </ul>
+    <h2>黑名单</h2>
+    <ul>
+        <li>LEO</li>
+        <li>小美</li>
+        <li>小乐</li>
+    </ul>    
+</div>  
+<script>
+ var titles = document.querySelectorAll(".wrap h2");
+ var lists = document.querySelectorAll(".wrap ul");
+for(var i = 0; i < titles.length; i++){
+    titles[i].index = i;
+    titles[i].onclick = function(){
+        if(lists[this.index].style.display == ""
+        || lists[this.index].style.display == "none"){
+            lists[this.index].style.display = "block";
+        } else {
+            lists[this.index].style.display = "none";
+        }
+    };
+}    
+</script>
+</body>
+</html>

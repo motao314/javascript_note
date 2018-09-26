@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#list {
+    position: relative;
+    margin: 30px auto;
+    padding: 0;
+    list-style: none;
+    width: 900px;
+}
+#list span {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    font: 14px/30px "宋体";
+    text-indent: 10px;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+<div id="list">
+
+</div>
+<script>
+var list = document.querySelector("#list");
+var inner = "";
+var h = 30;
+var w = 100;
+for(var r = 1; r <= 9; r++){
+    for(var c = 1; c <= r; c++  ){
+        inner += '<span style="background:rgb('+c*r*3+','+r*20+','+c*10+')">'+c+' * '+r+' = '+(c*r)+'</span>';
+    }
+    inner += "<br/>"
+}
+list.innerHTML = inner;
+</script>
+</body>
+</html>

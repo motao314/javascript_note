@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width:50px;
+            height:50px;
+            background: #8dd5f4;
+            margin:5px;
+            float: left;
+        }
+        .red{
+            background: #ff967e;
+        }
+        .orange{
+            background: #ffcd7e;
+        }
+        .yellow{
+            background: #fdff7e;
+        }
+        .green{
+            background: #c1ff7e;
+        }
+        .bigred{
+            background: #ff3000;
+        }
+        button{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    var arr = ['red','orange','yellow','green'];
+    for(var i=0;i<100;i++){
+        document.write('<div class="box '+ arr[i%arr.length] +'">'+ (i+1) +'</div>');
+    }
+    var box = document.querySelectorAll('.box');
+    for(var i=0;i<box.length;i++){
+        if(i%4==0){
+            box[i].style.background = 'red';
+        }
+    }
+
+    //classList
+
+
+    //生成100个元素
+    /*
+        1, 5, 9 红
+        2，6橙
+        3，7黄
+        4，8绿
+
+
+        1/4  1
+        2/4  2
+        3
+        4/4 0
+        5/4  1
+        6/4  2
+        7
+        8/4 0
+        9/4  1
+        10/4 2
+
+        0   0
+        1   1
+        2%4   2
+        3%4   3
+        4%4   0
+        5%4   1
+        6
+        7
+        8
+        9
+        10
+    */
+</script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        h2 {
+            margin: 0;
+        }
+        .wrap {
+            width: 120px;
+            border: 1px solid #000;
+        }
+        .wrap h2 {
+            font: 14px/36px "宋体";
+            text-align: center;
+        }
+        .wrap ul {
+            font: 12px/30px "宋体";
+            text-indent: 10px;
+            /* 隐藏元素 */
+            height: 0;
+            overflow: hidden;
+            transition: .5s;
+        }
+        .wrap li {
+            border-top: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h2>妙味课堂</h2>
+    <ul>
+        <li>妙味课堂</li>
+        <li>妙味云视频</li>
+        <li>妙味茶馆</li>
+    </ul>    
+</div>  
+<script>
+var title = document.querySelector(".wrap h2");
+var list = document.querySelector(".wrap ul");
+var option = list.querySelectorAll("li");
+var isHide = true;
+title.onclick = function(){
+    if(isHide){
+        list.style.height = "93px"; 
+    } else {
+        list.style.height = "0px";
+    }
+    isHide = !isHide;
+};
+for(var i = 0; i < option.length; i++){
+    option[i].onclick = function(){
+        title.innerHTML = this.innerHTML;
+        list.style.height = "0px";
+        isHide = true;
+    }
+}
+</script>
+</body>
+</html>
