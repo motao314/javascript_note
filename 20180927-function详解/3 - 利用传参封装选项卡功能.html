@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #tab {
+            width: 200px;
+            border: 2px solid #000;
+        }
+        #tab2 {
+            width: 240px;
+            border: 2px solid red;
+        }
+        .navs .active {
+           color: red;     
+        }
+        .cons div {
+            font-size: 30px;
+            display: none;
+        }
+        .cons .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <nav class="navs">
+        <a class="active">选项一</a>
+        <a>选项二</a>
+        <a>选项三</a>
+    </nav>
+    <div class="cons">
+        <div class="show">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+</div>
+
+<div id="tab2">
+    <nav class="navs">
+        <a class="active">选项一</a>
+        <a>选项二</a>
+        <a>选项三</a>
+        <a>选项四</a>
+    </nav>
+    <div class="cons">
+        <div class="show">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+        <div>内容4</div>
+    </div>
+</div>
+<script>
+// function tab(navsSelector,consSelector,event){
+//     var navs = document.querySelectorAll(navsSelector);
+//     var cons = document.querySelectorAll(consSelector);
+//     for(var i = 0; i < navs.length; i++){
+//         navs[i].index = i;
+//         navs[i][event] = function(){
+//             for(var i = 0; i < navs.length; i++){
+//                 navs[i].className = "";
+//                 cons[i].className = "";
+//             }
+//             this.className = "active";
+//             cons[this.index].className = "show";
+//         };
+//     }    
+// } 
+
+function tab(){
+    var navs = document.querySelectorAll(arguments[0]);
+    var cons = document.querySelectorAll(arguments[1]);
+    for(var i = 0; i < navs.length; i++){
+        navs[i].index = i;
+        navs[i][arguments[2]] = function(){
+            for(var i = 0; i < navs.length; i++){
+                navs[i].className = "";
+                cons[i].className = "";
+            }
+            this.className = "active";
+            cons[this.index].className = "show";
+        };
+    }    
+} 
+
+
+tab("#tab .navs a","#tab .cons div","onmouseover");
+tab("#tab2 .navs a","#tab2 .cons div","onclick");
+</script>
+</body>
+</html>

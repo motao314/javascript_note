@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #tab {
+            width: 200px;
+            border: 2px solid #000;
+        }
+        #tab2 {
+            width: 240px;
+            border: 2px solid red;
+        }
+        .navs .active {
+           color: red;     
+        }
+        .cons div {
+            font-size: 30px;
+            display: none;
+        }
+        .cons .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <nav class="navs">
+        <a class="active">选项一</a>
+        <a>选项二</a>
+        <a>选项三</a>
+    </nav>
+    <div class="cons">
+        <div class="show">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+</div>
+
+<div id="tab2">
+    <nav class="navs">
+        <a class="active">选项一</a>
+        <a>选项二</a>
+        <a>选项三</a>
+        <a>选项四</a>
+    </nav>
+    <div class="cons">
+        <div class="show">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+        <div>内容4</div>
+    </div>
+</div>
+<script>
+var navs = document.querySelectorAll("#tab .navs a");
+var cons = document.querySelectorAll("#tab .cons div");
+for(var i = 0; i < navs.length; i++){
+    navs[i].index = i;
+    navs[i]["onmouseover"] = function(){
+        for(var i = 0; i < navs.length; i++){
+            navs[i].className = "";
+            cons[i].className = "";
+        }
+        this.className = "active";
+        cons[this.index].className = "show";
+    };
+}
+
+var navs2 = document.querySelectorAll("#tab2 .navs a");
+var cons2 = document.querySelectorAll("#tab2 .cons div");
+for(var i = 0; i < navs2.length; i++){
+    navs2[i].index = i;
+    navs2[i]["onclick"] = function(){
+        for(var i = 0; i < navs2.length; i++){
+            navs2[i].className = "";
+            cons2[i].className = "";
+        }
+        this.className = "active";
+        cons2[this.index].className = "show";
+    };
+}
+
+
+</script>
+</body>
+</html>

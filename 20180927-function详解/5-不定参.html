@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>    
+<script>
+function sum(){
+    var nubs = [];
+    var nub = 0;
+    for(var i = 1; i < arguments.length; i++){
+        nub += arguments[i];
+        nubs.push(arguments[i]);
+    }
+    console.log(nub);
+    arguments[0].innerHTML = nubs + "的和为:"+nub;
+}
+sum(p1,12,15,18);
+sum(p2,20,3000);
+sum(p3,20,3000,123,213,123,123,124);
+</script>    
+</body>
+</html>
