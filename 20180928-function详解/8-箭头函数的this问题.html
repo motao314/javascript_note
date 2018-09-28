@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+function 的 this指向：谁调用了这个函数 this 就指向谁 
+
+var fn = function(){
+    console.log(this);
+};
+document.fn = fn;
+document.fn();
+document.body.f = fn;
+document.body.f();
+fn();
+*/
+
+document.onclick = function(){
+    var fn = ()=>{
+        console.log(this);
+    };
+    fn();
+};
+</script>        
+</body>
+</html>

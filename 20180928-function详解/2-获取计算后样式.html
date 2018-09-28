@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        div {
+            width: 400px !important;
+        }
+    </style>
+</head>
+<body>
+<div id="box" style="width:300px;"></div>    
+<script>
+var box = document.querySelector("#box");
+console.log(window.getComputedStyle(box)['width']);
+/*
+    方法名称
+    作用：
+        这个方法是用来干啥的
+    语法:
+        返回值的数据类型 方法(参数1[,可选参数2])
+    参数：
+        参数1 
+            参数1的作用
+        可选参数2
+            可选参数2的作用
+    返回值:
+        具体返回的是什么样的东西        
+
+*/
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="按钮" />
+    <input type="button" value="按钮" />
+    <input type="button" value="按钮" />
+<script>
+/*
+    let a = 10;
+    console.log(a);
+*/
+{
+    let btns = document.querySelectorAll("input");
+    for(let i = 0; i < btns.length; i++){
+        btns[i].onclick = function(){
+            console.log(i);   
+        }
+    }
+}
+</script>    
+</body>
+</html>
