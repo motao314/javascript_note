@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    键值对 key 键: value 值
+    {
+        key:value
+    }
+*/
+let parson = {
+    name: "承龙",
+    age: 28,
+    gender: "male",
+    job: "lecturer"
+};
+console.log(Object.keys(parson));
+console.log(Object.values(parson));
+let parsonKey = Object.keys(parson);
+parsonKey.forEach((key)=>{
+    console.log(key,parson[key]);
+});
+/*
+  Object.keys(obj)  获取对象的所有 key 
+
+  语法： Array Object.keys(obj)
+  参数： obj 要获取 key 的对象
+  返回值: [key1,key2]
+
+  Object.values(obj)  获取对象的所有 value 
+
+  语法： Array Object.keys(obj)
+  参数： obj 要获取 value 的对象
+  返回值: [value,value2]  
+
+*/
+</script>    
+</body>
+</html>

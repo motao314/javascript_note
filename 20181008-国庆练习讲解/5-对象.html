@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul id="list">
+</ul>
+<script>
+let data = [
+    {
+        img: "img/img1.png",
+        txt: "这是第一张图"
+    },{
+        img: "img/img2.png",
+        txt: "这是第二张图"
+    },{
+        img: "img/img3.png",
+        txt: "这是第三张图"
+    },{
+        img: "img/img4.png",
+        txt: "这是第四张图"
+    }
+];    
+
+(function(){
+    let list = document.querySelector("#list");
+    data.forEach((item)=>{
+        list.innerHTML += `
+            <li>
+                <img src="${item["img"]}" />
+                <p>${item["txt"]}</p>
+            </li>
+        `;
+    });
+
+    
+
+    /*list.innerHTML = `
+        <li>
+            <img src="${data[0]["img"]}" />
+            <p>${data[0]["txt"]}</p>
+        </li>
+    `;
+    list.innerHTML += `
+        <li>
+            <img src="${data[1]["img"]}" />
+            <p>${data[1]["txt"]}</p>
+        </li>
+    `;*/
+})();
+</script>        
+</body>
+</html>

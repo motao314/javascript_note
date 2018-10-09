@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    对象标准写法: {
+        "属性名": 属性值
+    }
+    对象写法二: {
+        属性名: 属性值
+    }
+*/    
+let obj = {
+    "name": "承龙",
+    "age": 18
+};   
+// 在对象中存储的每一位数据，都可以看出是对象的属性 
+// 数据获取
+console.log(obj.name);
+console.log(obj["age"]);
+// 修改数据
+obj["age"]++;
+console.log(obj["age"]);
+// 添加数据
+obj["child"] = {
+    "龙大": "小乐龙"
+}
+console.log(obj);
+obj["child"]["龙二"] = "小龙乐";
+console.log(obj["child"]);
+</script>    
+</body>
+</html>

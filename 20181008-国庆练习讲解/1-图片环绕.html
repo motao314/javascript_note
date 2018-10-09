@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #wrap {
+            margin: 30px auto;
+            width: 204px;
+        }
+        #bigImg {
+            float: left;
+            width: 150px;
+            height: 150px;
+            border: 1px solid #000;
+            margin-bottom: 1px;
+        }
+        #list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li {
+            position: relative;
+            border-bottom: none;
+            float: right;
+            margin: 0 1px 1px 0;
+        }
+        #list li:after {
+            content: "";
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 48px;
+            height: 48px;
+            border: 1px solid #f60;
+        }
+        #list img {
+            display: block;
+        }
+        #list .active::after {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <img src="img/img1.png" id="bigImg"/>
+    <ul id="list">
+        <li class="active">
+            <img src="img/img1.png" />
+        </li>
+        <li>
+            <img src="img/img2.png" />
+        </li>
+        <li>
+            <img src="img/img3.png" />
+        </li>
+        <li>
+            <img src="img/img4.png" />
+        </li>
+        <li>
+            <img src="img/img5.png" />
+        </li>
+        <li>
+            <img src="img/img6.png" />
+        </li>
+        <li>
+            <img src="img/img7.png" />
+        </li> 
+    </ul>
+</div> 
+<script>
+(function(){
+    let bigImg = document.querySelector("#bigImg");
+    let list = document.querySelectorAll("#list li");
+    list.forEach((li,index)=>{
+        let img = li.querySelector("img");
+        li.onmouseover = ()=>{
+            list.forEach((li)=>{
+                li.className = "";
+            });
+            li.className = "active";
+            bigImg.src = img.src;
+        };
+    });
+})();
+</script>   
+</body>
+</html>

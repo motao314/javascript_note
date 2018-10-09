@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        h3,
+        h4 {
+            margin: 0;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .list {
+            margin: 50px auto;
+            width: 360px;
+            padding: 5px 10px;
+            border: 2px solid #000;
+            height: 36px;
+        }
+        .list>li {
+            position: relative;
+            float: left;
+            width: 120px;
+        }
+        .list h3 {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            font: 16px/34px "宋体";
+            border: 1px solid transparent;
+            border-bottom: none;
+            height: 35px;
+        }
+        .list>.active h3 {
+            border-color: #000;
+            background: #ddd;
+        }
+        .list2 {
+            position: absolute;
+            left: 0;
+            top: 35px;
+            border: 1px solid #000; 
+            z-index: 1;
+            background: #ddd;
+            width: 140px;
+            display: none;
+            padding: 3px 5px;
+        }
+        .list>.active .list2 {
+            display: block;
+        }
+        .list2>li {
+            position: relative;
+            border-bottom: 1px solid #000;
+        }
+        .list2 h4 {
+            position: relative;
+            z-index: 2;
+            width: 130px;
+            font: 14px/28px "宋体";
+            border: 2px solid transparent;
+            border-right: none;
+            text-indent: 10px;
+        }
+        .list2>.active h4{
+            border-color: #999;
+            background: #fff;
+        }
+        .list3 {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            left: 130px;
+            top: 0;
+            border: 2px solid #999;
+            background: #fff;
+            width: 130px; 
+            padding: 3px 5px;
+        }
+        .list2>.active .list3 {
+            display: block;
+        }
+        .list3 li {
+            font: 12px/28px "宋体";
+            border-bottom: 1px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+ <ul class="list">
+    <li>
+        <h3>所有分类</h3>
+        <ul class="list2">
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h3>所有分类</h3>
+        <ul class="list2">
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h3>所有分类</h3>
+        <ul class="list2">
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+            <li>
+                <h4>一级分类</h4>
+                <ul class="list3">
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                    <li>二级分类</li>
+                </ul>
+            </li>
+        </ul>
+    </li>         
+ </ul>  
+<script>
+(function(){
+    let list = document.querySelectorAll(".list li");
+    list.forEach((li)=>{
+        li.onmouseover = ()=>{
+            li.className = "active";
+        }
+        li.onmouseout = ()=>{
+            li.className = "";
+        }
+    });
+})();
+</script>  
+</body>
+</html>

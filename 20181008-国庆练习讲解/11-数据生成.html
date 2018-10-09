@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+body,
+p,
+h3 {
+    margin: 0;
+} 
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+mark {
+    vertical-align: text-top;
+    background: none;
+}
+img {
+    vertical-align: top;
+}
+html {
+    font-size: 13.3333vw;
+}
+body {
+    font-size: .36rem;
+}
+#list li {
+    padding: .27rem .39rem;
+    border-bottom: .06rem solid #f0f0f0;
+    overflow: hidden;
+} 
+#list img {
+    float: left;
+    box-sizing: border-box;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 3px solid #f0f0f0;
+}
+#list div {
+    width: 5rem;
+    float: right;
+}
+#list h3 {
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#list p {
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
+<script src="data.js"></script>
+</head>
+<body>
+<ul id="list"></ul>  
+<script>
+(function(){
+    let list = document.querySelector("#list");
+    let inner = "";
+    // for(let i = 0; i < data.length; i++){
+    //     console.log(data[i].title);
+    // }
+    data.forEach((info)=>{
+        //console.log(info);
+        inner += `
+            <li>
+                <img src="https://data.miaov.com${info.image_path}" />
+                <div>
+                    <h3>${info.title}<mark>${info.classify}</mark></h3>
+                    <p>${info.label}</p>
+                    <p>${info.specific}</p>
+                    <p>${info.shopHours}</p>
+                </div>    
+            </li>
+        `;
+    });
+    list.innerHTML = inner;
+})();    
+</script>  
+</body>
+</html>
