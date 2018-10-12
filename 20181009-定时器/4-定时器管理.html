@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+<button>跑</button>
+<button>停</button>
+<div id="box"></div>   
+<script>
+let btn = document.querySelectorAll("button") 
+let box = document.querySelector("#box");
+let timer = 0;
+
+function run(){
+    clearInterval(timer);
+    timer = setInterval(function(){
+        let l = parseInt(getComputedStyle(box)["left"]);
+        l += 1;
+        box.style.left = l + "px";
+    },16);
+    console.log(timer);
+}
+btn[0].onclick = function(){
+    run();
+};
+btn[1].onclick = function(){
+    console.log(timer);
+    clearInterval(timer);
+};
+</script> 
+</body>
+</html>

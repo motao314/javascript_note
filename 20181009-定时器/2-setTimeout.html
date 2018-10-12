@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #banner {
+            display: none;
+            height: 100px;
+            background: red;
+            color: #fff;
+            text-align: center;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="banner">广告</div>    
+<script>
+let banner = document.querySelector("#banner");    
+setTimeout(open,5000);
+console.log(1);
+function open(){
+    banner.style.display = "block";
+    setTimeout(()=>{
+        banner.style.display = "none";
+    },5000);
+}
+// setTimeout(function(){
+//     banner.style.display = "none";
+// },10000);
+// console.log(2);
+</script>    
+</body>
+</html>

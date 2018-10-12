@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #box {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+</style>
+<script src="miaov.js"></script>
+</head>
+<body>
+<div id="box"></div>  
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    box.onclick = function(){
+        moveW();
+    }
+    /*box.onclick = function(){
+        mTween({
+            el: box,
+            attr:{
+                width: 300
+            },
+            cb: function(){
+               mTween({
+                   el: box,
+                   attr: {
+                       height: 400
+                   }
+               });
+            }
+        });
+    };*/
+    function moveW(){
+        let w = css(box,"width");
+        mTween({
+            el: box,
+            attr:{
+                width: w+200
+            },
+            cb: moveH
+        });
+    }
+    function moveH(){
+        let h = css(box,"height");
+        mTween({
+            el: box,
+            attr:{
+                height: h+200
+            },
+            cb: moveW
+        });
+    }
+})();
+</script>      
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+作用域:
+    全局作用域: 在全局任意地方，都可以修改和调用
+        声明在全局的变量，作用域都是全局作用域
+
+    函数作用域: 
+        声明在函数内的变量或者函数的参数，只能在该函数内部进行修改和设置
+
+    块级作用域
+        通过 let 或者 const 声明的变量(常量)，只能在这个代码块中使用 { } 
+-->
+<script>
+var a = 10;
+let b = 20;
+function fn(){
+    a += b;
+    b = 5;
+}
+fn();
+function fn2(){
+    console.log(a + b);
+}
+fn2();
+</script>
+</body>
+</html>

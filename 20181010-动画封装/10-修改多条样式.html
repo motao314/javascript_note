@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+function css(el,attr,val){
+    if(val === undefined){
+        return parseFloat(getComputedStyle(el)[attr]);
+    }
+    switch(attr){
+        case "zIndex":
+        case "opacity":
+            el.style[attr] = val;
+            break;
+        default:
+            el.style[attr] = val + "px";    
+    }
+}    
+box.onclick = function(){
+    let attr = {
+        width: 400,
+        height: 400
+    };
+    //css(this,"width",attr["width"]);
+    //css(this,"height",attr["height"]);
+    for(let s in attr){
+        //console.log(s,attr[s]);
+        css(this,s,attr[s]);
+    }
+}
+</script>    
+</body>
+</html>

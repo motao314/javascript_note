@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+(function(){    
+    let box = document.querySelector("#box");
+    css(box,"width",400);
+    console.log(css(box,"opacity"));
+    
+})();
+// css方法 用来获取 或者 设置样式
+/*
+    el, 获取样式的元素
+    attr, 对应的样式
+    value 对应的值
+*/
+function css(el,attr,val){
+    if(val === undefined){//如果val没有传，说明想要获取样式
+        return parseFloat(getComputedStyle(el)[attr]);
+    }    
+    // 没有走就说明想要设置样式
+    switch(attr){
+        case "opacity":
+        case "zIndex":
+            el.style[attr] = val;
+            
+            break;
+        default:
+            el.style[attr] = val + "px";
+    }
+}
+</script>        
+</body>
+</html>

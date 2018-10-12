@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let obj = {
+    name: "承龙",
+    age: 30,
+    gender: "mela"
+};
+
+//console.log(obj.name);
+obj.child = "小乐龙";
+//console.log(obj);
+// console.log(Object.keys(obj));
+// console.log(Object.values(obj));
+for(let s in obj){
+    console.log(s);//对应obj的每一个key
+    console.log(obj[s]);//对应obj的每一个value
+}
+</script>    
+</body>
+</html>

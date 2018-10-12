@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            vertical-align: top;
+        }
+        #list {
+            margin: 30px auto;
+            width: 660px;
+            height: 254px;
+            border: 5px solid #000;
+        } 
+        #list li {
+            position: relative;
+            float: left;
+            padding-right: 22px;
+            width: 0;
+            overflow: hidden;
+        }
+        #list span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 224px;
+            cursor: pointer;
+            border-right: 2px solid #fff;
+            font: 16px/20px "宋体";
+            color: #fff;
+            text-align: center;
+            padding-top: 30px;
+        }
+        #list img {
+            width: 528px;
+            height: 254px;
+        }
+        #list li:nth-of-type(2n) span{
+            background: #f90;
+        }
+        #list li:nth-of-type(2n+1) span{
+            background: #9f0;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+     <li style="width:528px;">
+         <span>第一张图</span>
+         <img src="img/t103_26.jpg" />
+     </li>
+     <li>
+        <span>第二张图</span>
+        <img src="img/t103_27.jpg" />
+     </li>
+     <li>
+        <span>第三张图</span>
+        <img src="img/t103_28.jpg" />
+     </li>
+     <li>
+        <span>第四张图</span>
+        <img src="img/t103_29.jpg" />
+     </li>   
+     <li>
+        <span>第五张图</span>
+        <img src="img/tlh_06.jpg" />
+     </li>
+     <li>
+        <span>第六张图</span>
+        <img src="img/tlh_29.jpg" />
+     </li>
+</ul>
+<script>
+{
+    let li = document.querySelectorAll("#list li");   
+    function fn(item,index,lis){
+        console.log(item,index,lis);
+    }
+    forEach(li,fn);
+    function forEach(els,cb){
+        for(let i = 0; i < els.length; i++){
+            cb(els[i],i,els);
+        }
+    }
+
+    
+    /*
+        forEach() // 遍历(循环)数组(和通过querySelectorAll获取到的一组元素)的每一项
+        forEach(回调函数[,this]);
+
+        参数: 
+             回调函数:
+                function (item,index,array){} 在forEach 中，会循环调用这个函数,并且会给这个函数传递三个参数
+                    item: 数组的每一项
+                    index: 当前项的下标
+                    array: 完整数组
+             this指向：回调函数里的this指向睡       
+
+    */
+}
+</script>
+</body>
+</html>

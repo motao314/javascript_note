@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+<script src="js/miaov.js"></script>
+</head>
+<body>
+<div id="box"></div>
+<script>
+let timer = 0;
+(function(){    
+    let box = document.querySelector("#box");
+    // 绝对值 Math.abs() 取绝对值
+    box.onmouseover = function(){
+        move(box,"width",317,1000);
+    };
+    box.onmouseout = function(){
+        move(box,"width",100,1000);
+    };
+})();
+function move(el,attr,target,time){
+    let now = css(el,attr);//获取当前值
+    let dis = target - now//求出移动差值
+    let delay = 20; // 定时器的时间间隔
+    let speed = dis/time*delay; // 求速度
+    clearInterval(timer);
+    timer = setInterval(()=>{
+        let val = css(el,attr);//获取元素的当前位置
+        // 如果目标值 和 当前位置的差值 小于等于 速度时,已经是走最后一次了
+        if(Math.abs(target - val) <= Math.abs(speed)){ // 如果当前位置已经走到目标点停止定时器
+            clearInterval(timer);
+            css(el,attr,target);
+        } else {
+            //继续走
+            val += speed;
+            css(el,attr,val);
+        }
+    },delay);
+}
+
+//  100 98  3
+/*
+    2 < 3
+    -2 > -3
+*/
+</script>        
+</body>
+</html>

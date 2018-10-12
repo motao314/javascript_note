@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let arr = [1,2,3,4,5];
+
+// 求和
+let fn = (nub1,nub2)=>{
+      //console.log(nub1,nub2);
+      return nub1 + nub2;  
+}
+//console.log(arr.reduce(fn));
+console.log(arr.reduce((n1,n2)=>n1+n2));
+// 求最大值
+let fn2 = (nub1,nub2,index)=>{
+      //console.log(nub1,nub2);
+      //console.log(index);
+      return Math.max(nub1,nub2);  
+}
+console.log(arr.reduce(fn2));
+//console.log(arr.reduce((n1,n2)=>Math.max(n1,n2)));
+</script>   
+</body>
+</html>

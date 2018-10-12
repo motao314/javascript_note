@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            vertical-align: top;
+        }
+        .wrap {
+            margin: 30px auto;
+            width: 600px;
+            overflow: hidden;   
+        }
+        .pics {
+            transition: .5s;
+            width: 6000px;
+        }
+        .pics li {
+            float: left;
+        }
+        .pics img {
+            width: 600px;
+        }
+        .navs {
+            height: 67px;
+        }
+        .subPic {
+            float: left;
+            position: relative;
+            width: 500px;
+            height: 67px;
+            overflow: hidden;
+        }
+
+        .btn {
+            box-sizing: border-box;
+            float: left;
+            width: 50px;
+            height: 67px;
+        }
+        .navs img {
+            width: 94px;
+        }
+        .subpics {
+            transition: .5s;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1000px;
+            background: #000;
+        }
+        .subpics li {
+            box-sizing: border-box;
+            float: left;
+            border: 3px solid #000;
+            opacity: .3;
+            transition: .5s;
+        }
+        .subpics .active {
+            opacity: 1;
+            border-color: #f60;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="pics">
+        <li>
+            <img src="img2/img (1).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (2).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (3).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (4).jpg" />
+        </li> 
+        <li>
+            <img src="img2/img (5).jpg" />
+        </li> 
+        <li>
+            <img src="img2/img (6).jpg" />
+        </li> 
+        <li>
+            <img src="img2/img (7).jpg" />
+        </li> 
+        <li>
+            <img src="img2/img (8).jpg" />
+        </li> 
+        <li>
+            <img src="img2/img (9).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (10).jpg" />
+        </li>    
+    </ul>
+    <nav class="navs">
+        <button class="btn"><</button>
+        <div class="subPic">
+            <ul class="subpics">
+                <li class="active">
+                    <img src="img2/img (1).jpg" />
+                </li>
+                <li>
+                    <img src="img2/img (2).jpg" />
+                </li>
+                <li>
+                    <img src="img2/img (3).jpg" />
+                </li>
+                <li>
+                    <img src="img2/img (4).jpg" />
+                </li> 
+                <li>
+                    <img src="img2/img (5).jpg" />
+                </li> 
+                <li>
+                    <img src="img2/img (6).jpg" />
+                </li> 
+                <li>
+                    <img src="img2/img (7).jpg" />
+                </li> 
+                <li>
+                    <img src="img2/img (8).jpg" />
+                </li> 
+                <li>
+                    <img src="img2/img (9).jpg" />
+                </li>
+                <li>
+                    <img src="img2/img (10).jpg" />
+                </li>    
+            </ul>
+        </div>
+        <button class="btn">></button>
+    </nav>
+</div>   
+<script>
+function getStyle(el,attr){
+    return getComputedStyle(el)[attr];
+}    
+(function(){
+    let wrap = document.querySelector(".wrap");
+    let pics = document.querySelector(".pics");
+    let picsOption = pics.querySelector("li");
+    let navWrap = document.querySelector(".subPic");
+    let nav = document.querySelector(".subpics");
+    let navs = nav.querySelectorAll("li");
+    let now = 0;
+    let imgW = parseInt(getStyle(picsOption,"width"));
+    let btns = document.querySelectorAll(".btn");
+    let subImgW = parseInt(getStyle(navs[0],"width"));;
+    let minSubLeft = parseInt(getStyle(navWrap,"width")) - parseInt(getStyle(nav,"width"));
+    let timer = 0;
+    // 给每个导航加上点击事件
+    navs.forEach((option,index)=>{
+        option.onclick = ()=>{
+            now = index;
+            tab();
+        };
+    });
+
+    // 查看上一张
+    btns[0].onclick = ()=>{
+        now--;
+        if(now < 0){
+            now = navs.length-1;
+        }
+        tab();
+    };
+
+    // 查看下一张
+    let toNext = ()=>{
+        now++;
+        if(now > navs.length-1){
+            now = 0;
+        }
+        tab();
+    };
+    btns[1].onclick = toNext;
+    // 根据 now 值切换到对应张
+    function tab(){
+        //当前需要显示第几张 pics 就移动 - n * imgW
+        pics.style.transform = "translate3d(-"+(now*imgW)+"px,0,0)";
+
+        // navs 选中第now张
+        navs.forEach((option)=>{
+            option.className = "";
+        });
+        navs[now].className = "active";
+
+        // 选中的小图保持在中间; 当前需要显示第几张 nav 就移动 - (n-2) * subImgW
+       let subImgL = -(now-2)*subImgW;
+       subImgL = subImgL>0?0:subImgL;
+       subImgL = subImgL < minSubLeft?minSubLeft:subImgL;
+       nav.style.left = subImgL + "px";
+        
+    }
+    // 自动播放
+    auto();
+    function auto(){
+        timer = setInterval(()=>{
+            toNext();
+        },2000);
+    }
+    wrap.onmouseover = ()=>{
+        clearInterval(timer);
+    };
+    wrap.onmouseout = auto;
+})();
+</script>
+</body>
+</html>

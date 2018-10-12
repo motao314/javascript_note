@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+img {
+    vertical-align: top;
+}
+body {
+    margin: 0;
+}
+#box {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    /* 模拟我和景物的距离 */
+    perspective: 400px;
+}
+.pics {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* 元素进行3d变换时保留子元素的3d变换 */
+    transform-style: preserve-3d;
+}
+.pics img {
+    position: absolute;
+    left: -50px;
+    top: -33.5px;
+    width: 100px;
+    height: 67px;
+}
+/*
+    正n形外角和 = 360;
+    正n形外角 = 360/n;
+*/
+</style>
+<script src="miaov.js"></script>
+</head>
+<body>
+<div id="box">
+    <div class="pics">
+        <img src="img2/img (1).jpg" />
+        <img src="img2/img (2).jpg" />
+        <img src="img2/img (3).jpg" />
+        <img src="img2/img (4).jpg" />
+        <img src="img2/img (5).jpg" />
+        <img src="img2/img (6).jpg" />
+        <img src="img2/img (7).jpg" />
+        <img src="img2/img (8).jpg" />
+        <img src="img2/img (9).jpg" />
+        <img src="img2/img (10).jpg" />
+    </div>
+</div>      
+<script>
+//rad = deg*Math.PI/180;
+(function(){
+    let pics = document.querySelector(".pics");
+    let imgs = document.querySelectorAll(".pics img");
+    let outDeg = 360/imgs.length;
+    let instDeg = (180 - outDeg)/2;
+    let R = Math.tan(instDeg*Math.PI/180)*(css(imgs[0],"width")/2);
+    imgs.forEach((img,index)=>{
+        css(img,"rotateY",index*outDeg);
+        css(img,"translateZ",R);
+    });
+    let deg = 0;
+    setInterval(()=>{
+        deg++;
+        css(pics,"rotateY",deg);
+    },20);
+})();
+</script>
+</body>
+</html>

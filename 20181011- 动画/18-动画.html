@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            perspective: 500px;
+            margin: 50px auto;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+        }
+        #div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <script src="miaov.js"></script>
+</head>
+<body>
+<div id="box">
+    <div id="div"></div>
+</div>    
+<script>
+(function(){
+    let div = document.querySelector("#div");
+    css(div,"translateX",0);
+    css(div,"translateY",0);
+    css(div,"rotateX",0);
+    css(div,"rotateY",0);
+    toRight();
+    function toRight(){
+        mTween({
+            el:div,
+            attr: {
+                rotateY: 720,
+                translateX: 300
+            },
+            type: "linear",
+            time: 1000,
+            cb: toBottom
+        });
+    }
+    function toBottom(){
+        mTween({
+            el:div,
+            attr: {
+                rotateX: -720,
+                translateY: 300
+            },
+            type: "linear",
+            time: 1000,
+            cb: toLeft
+        });
+    }
+    function toLeft(){
+        mTween({
+            el:div,
+            attr: {
+                rotateY: 0,
+                translateX: 0
+            },
+            type: "linear",
+            time: 1000,
+            cb: toTop
+        });
+    }
+    function toTop(){
+        mTween({
+            el:div,
+            attr: {
+                rotateX: 0,
+                translateY: 0
+            },
+            type: "linear",
+            time: 1000,
+            cb: toRight
+        });
+    }
+})();    
+</script>
+</body>
+</html>

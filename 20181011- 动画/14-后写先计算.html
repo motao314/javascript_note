@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            margin: 30px auto;
+            padding: 100px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;    
+        }  
+        #div {
+            width: 200px;
+            height: 200px;
+            background: red;
+            transition: 5s;
+            transform:  translateX(0) rotate(0);
+        }
+        #box:hover #div {
+            transform: translateX(100px) rotate(180deg) ;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="div"></div>
+</div>
+<!-- 
+    transform:
+        rotate 旋转 围绕 transform-origin 进行旋转
+            rotateX
+            rotateY
+            rotateZ
+        scale 缩放 围绕 transform-origin 进行旋转
+            scaleX
+            scaleY    
+        skew 斜切 围绕 transform-origin 进行旋转
+           skewX
+           skewY
+        translate 位移 (位移不受 origin 影响，同样 不改变 origin)
+           translateX
+           translateY
+           translateZ         
+ -->
+</body>
+</html>

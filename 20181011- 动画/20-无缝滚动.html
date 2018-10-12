@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+} 
+img {
+    vertical-align: top;
+}
+#wrap {
+    margin: 40px auto;
+    position: relative;
+    width: 600px;
+    height: 400px;
+    border: 2px solid #000;
+    overflow: hidden;
+}    
+#pics {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    height: 400px;
+    z-index: 1;
+}
+#pics li{
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+}
+#pics img {
+    width: 600px;
+    height: 400px;
+}
+.btn {
+    position: absolute;
+    top: 170px;
+    z-index: 2;
+    width: 60px;
+    font: 40px/60px "宋体";
+    text-align: center;
+    background: rgba(255, 255, 255, .6);
+    text-decoration: none;
+    color: #000;
+}
+.btn:hover {
+    background: #fff;
+}
+.prev {
+    left: 0;
+}
+.next {
+    right: 0;
+}
+#navs {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    z-index: 3;
+    width: 100%;
+    text-align: center;
+}
+#navs a {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+}
+#navs .active {
+    background: #f60;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+    <ul id="pics">
+        <li>
+            <img src="img2/img (1).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (2).jpg" />
+        </li>
+    </ul>
+    <a href="javascript:;" class="btn prev"><</a>
+    <a href="javascript:;" class="btn next">></a>
+    <nav id="navs">
+        <a class="active"></a>
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </nav>
+</div>
+<script src="miaov.js"></script>
+<script>  
+/*
+    从左往右：-600 --> 0
+    从右往左：0 --> 600
+*/
+(function(){
+    let wrap = document.querySelector("#wrap");
+    let pics = document.querySelector("#pics");
+    let btn = document.querySelectorAll(".btn");
+    let imgs = pics.querySelectorAll("img"); 
+    let nav = document.querySelector("#navs"); 
+    let navs = document.querySelectorAll("#navs a"); 
+    let now = 0;//当前显示的是第几张图
+    let next = 0;//动画结束之后，要显示的图
+    let imgW = css(wrap,"width");
+    let isMove = false;//当前是否正在动画
+    let data = [
+        "img2/img (1).jpg",
+        "img2/img (2).jpg",
+        "img2/img (3).jpg",
+        "img2/img (4).jpg",
+        "img2/img (5).jpg"
+    ];  
+    
+    //从右向左移动
+    btn[0].onclick = function(){
+        if(isMove){
+            return;
+        }
+        next = now - 1;
+        next = next<0?data.length-1:next;
+        prevMove();
+    };
+    function prevMove(){
+        imgs[0].src = data[next];
+        imgs[1].src = data[now];
+        css(pics,"left",-imgW);
+        isMove = true;
+        //auto();
+        mTween({
+            el: pics,
+            attr: {
+                left: 0
+            },
+            time: 1000,
+            cb:function(){
+                isMove = false;
+               // back();
+            }
+        });
+        now = next;
+        navs.forEach((item)=>{
+            item.className = "";
+        });
+        navs[now].className = "active";
+    }
+    function nextMove(){
+        imgs[1].src = data[next];
+        imgs[0].src = data[now];
+       // auto();
+        css(pics,"left",0);
+        isMove = true;
+        mTween({
+            el: pics,
+            attr: {
+                left: -imgW
+            },
+            cb:function(){
+                isMove = false;
+                //back();
+            }
+        });
+        now = next;
+        navs.forEach((item)=>{
+            item.className = "";
+        });
+        navs[now].className = "active";
+    }
+    //从左向右移动
+    btn[1].onclick = function(){
+        // 归0  
+        if(isMove){
+            return;
+        }
+        next = now + 1;
+        next = next>data.length-1?0:next;
+        nextMove();
+    };
+    // now 3  0
+    navs.forEach((item,index)=>{
+        item.onclick = function(){
+            if(isMove){
+                return;
+            }
+            if(index == now){
+                return ;
+            }
+            next = index;
+            if(next > now){
+                nextMove();
+            } else {
+                prevMove();
+            }
+        };
+    });
+    function auto(){
+        mTween({
+            el: btn[0],
+            attr: {
+                opacity: 0
+            }
+        });
+        mTween({
+            el: btn[1],
+            attr: {
+                opacity: 0
+            }
+        });
+        mTween({
+            el: nav,
+            attr: {
+                opacity: 0
+            }
+        });
+    }
+    function back(){
+        mTween({
+            el: btn[0],
+            attr: {
+                opacity: 1
+            }
+        });
+        mTween({
+            el: btn[1],
+            attr: {
+                opacity: 1
+            }
+        });
+        mTween({
+            el: nav,
+            attr: {
+                opacity: 1
+            }
+        });
+    }
+})();
+</script>
+</body>
+</html>

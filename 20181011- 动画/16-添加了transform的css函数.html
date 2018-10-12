@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box {
+    width: 200px;
+    height: 200px;
+    background: red;
+    transform: scale(.1); 
+}
+</style>
+</head>
+<body>
+<div id="box"></div>  
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    css(box,"scale",.5);
+    css(box,"rotate",30);
+    //console.log(box.style.transform);
+})();    
+function cssTransform(el,attr,val){
+    // el.transform = {} 把 transform相关的操作都记录在元素下的transform自定义属性中
+    if(!el.transform){
+        el.transform = {};
+    }
+
+    if(val === undefined){
+        return el.transform[attr];  
+    }
+    el.transform[attr] = val;
+    let transformVal = "";
+    for(let s in el.transform){
+        switch(s){
+            case "scale":
+            case "scaleX":
+            case "scaleY":
+                transformVal += s+"("+el.transform[s]+") ";
+                break;
+            case "translateX":
+            case "translateY":
+            case "translateZ":
+                transformVal += s+"("+el.transform[s]+"px) ";
+                break;    
+            default:
+                transformVal += s+"("+el.transform[s]+"deg) ";    
+        }
+    }
+    el.style.transform = el.style.webkitTransform = transformVal;
+}
+function css(el,attr,val){
+    const TRANSFORM = ["scale","scaleX","scaleY","rotate","rotateX","rotateY","rotateZ","skewX","skewY","translateX","translateY","translateZ"];
+    for(let i = 0; i < TRANSFORM.length; i++){
+        if(attr == TRANSFORM[i]){
+            return cssTransform(el,attr,val);
+        } 
+    }
+    if(val === undefined){
+        return parseFloat(getComputedStyle(el)[attr]);
+    }
+    switch(attr){
+        case "zIndex":
+        case "opacity":
+            el.style[attr] = val;
+            break;
+        default:
+            el.style[attr] = val + "px";    
+    }
+}
+</script>    
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li>
+        <input type="number" step="1" min="0"/>
+        <span>14.5</span>元
+    </li>
+    <li>
+        <input type="number" step="1" min="0"/>
+        <span>12.5</span>元
+    </li>
+    <li>
+        <input type="number" step="1" min="0"/>
+        <span>11</span>元
+    </li>
+    <li>
+        <input type="number" step="1" min="0"/>
+        <span>9</span>元
+    </li> 
+</ul>    
+<script>
+/* 获取一组数据中的最大数 */
+var arr = [10,23,12,21,43];
+var max = 0;
+/*
+    声明一个数字，一位一位的和这组数字比较
+*/
+for(let i = 0; i < arr.length; i++){
+    // if(arr[i] > max){
+    //     max = arr[i];
+    // }
+    max = Math.max(max,arr[i]);
+}
+console.log(max);
+</script>     
+</body>
+</html>

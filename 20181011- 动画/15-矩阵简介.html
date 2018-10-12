@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            margin: 30px auto;
+            padding: 100px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;    
+        }  
+        #div {
+            width: 200px;
+            height: 200px;
+            background: red;
+            transform: rotate(0);
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="div"></div>
+</div>
+<script>
+/*
+    matrix(1, 0, 0, 1, 0, 0);
+           a,b,c,d,e,f 
+*/
+div.onclick = function(){
+    translateX(this,100);
+    scale(this,.5,1, 0, 0, 1, 100, 0);
+    console.log(getComputedStyle(this)["transform"]);
+
+    // matrix(0.5, 0, 0, 0.5, 50, 0)
+};
+
+// 矩阵不能逆推
+function rotate(el,deg,a=1,b=0,c=0,d=1,e=0,f=0){
+    a=Math.cos(deg/180*Math.PI); 
+    b=Math.sin(deg/180*Math.PI);
+    c=-Math.sin(deg/180*Math.PI);
+    d=Math.cos(deg/180*Math.PI);
+    el.style.transform = `matrix(${a}, ${b}, ${c}, ${d},${e}, ${f})`;
+}
+function skewX(el,x,a=1,b=0,c=0,d=1,e=0,f=0){
+    // x*180/Math.PI
+    c = Math.tan(x*180/Math.PI);//正切
+    el.style.transform = `matrix(${a}, ${b}, ${c}, ${d},${e}, ${f})`;
+}
+function skewY(el,x,a=1,b=0,c=0,d=1,e=0,f=0){
+    // x*180/Math.PI
+    b = Math.tan(x*180/Math.PI);//正切
+    el.style.transform = `matrix(${a}, ${b}, ${c}, ${d},${e}, ${f})`;
+}
+function translateX(el,x,a=1,b=0,c=0,d=1,e=0,f=0){
+    e += x;
+    el.style.transform = `matrix(${a}, ${b}, ${c}, ${d},${e}, ${f})`;
+}
+function translateY(el,y,a=1,b=0,c=0,d=1,e=0,f=0){
+    f += x;
+    el.style.transform = `matrix(${a}, ${b}, ${c}, ${d},${e}, ${f})`;
+}
+function scale(el,scale,a=1,b=0,c=0,d=1,e=0,f=0){
+    a *= scale;
+    c *= scale;
+    e *= scale;
+    b *= scale;
+    d *= scale;
+    f *= scale;
+    el.style.transform = `matrix(${a}, ${b}, ${c}, ${d},${e}, ${f})`;
+}
+function scaleX(el,scale,a=1,b=0,c=0,d=1,e=0,f=0){
+    a *= scale;
+    c *= scale;
+    e *= scale;
+    el.style.transform = `matrix(${a}, ${b}, ${c}, ${d},${e}, ${f})`;
+}
+function scaleY(el,scale,a=1,b=0,c=0,d=1,e=0,f=0){
+    b *= scale;
+    d *= scale;
+    f *= scale;
+    el.style.transform = `matrix(${a}, ${b}, ${c}, ${d},${e}, ${f})`;
+}
+</script>
+</body>
+</html>

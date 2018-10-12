@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li>
+        <input type="number"  step="1" value="0" min="0"/>
+        <span>14.5</span>元
+    </li>
+    <li>
+        <input type="number" step="1" value="0" min="0"/>
+        <span>12.5</span>元
+    </li>
+    <li>
+        <input type="number" step="1" value="0" min="0"/>
+        <span>11</span>元
+    </li>
+    <li>
+        <input type="number" step="1" value="0" min="0"/>
+        <span>9</span>元
+    </li> 
+</ul>    
+<script>
+{
+    let price = document.querySelectorAll("span");
+    let input = document.querySelectorAll("input");
+    for(let i = 0; i < input.length; i++){
+        input[i].onchange = function(){
+            var max = 0;
+            for(let i = 0; i < price.length; i++){
+                if(input[i].value > 0){
+                    max = Math.max(price[i].innerHTML,max);
+                }
+            } 
+            console.log(max);
+        };
+    }
+}
+</script>     
+</body>
+</html>

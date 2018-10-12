@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.stars {
+    margin: 50px auto;
+    padding: 0;
+    list-style: none;
+    width: 100px;
+} 
+.stars li {
+    float: left;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #fff;
+    background: #ddd;
+}
+.stars .active {
+    background: yellow;
+}
+</style>
+</head>
+<body>
+<ul class="stars">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+{
+    let stars = document.querySelectorAll(".stars li");
+    let isClick = false;// 有没有发生过点击
+    let clickIndex = -1;//记录当前点击的是第几个, -1 代表没有点击过
+    for(let i = 0; i < stars.length; i++){
+        /*
+            鼠标移入后，给当前及当前之前加上颜色,后边清掉颜色
+        */
+        stars[i].index = i;
+        stars[i].onmouseover = function(){
+            for(let i = 0; i < stars.length; i++){
+                if(i <= this.index){
+                    stars[i].className = "active";
+                } else {
+                    stars[i].className = "";
+                }         
+            }
+        };
+        stars[i].onclick = function(){
+            isClick = true;
+            clickIndex = this.index; //记录点击了第几个
+        };
+        
+        /*
+            鼠标移出
+                1. 没有点击过，清掉所有的
+                2. 发生过点击, 给点击及点击之前加上颜色,后边清掉颜色
+        */
+        stars[i].onmouseout = function(){
+            if(isClick){ //没有点击过
+                for(let i = 0; i < stars.length; i++){
+                    if(i <= clickIndex){
+                        stars[i].className = "active";
+                    } else {
+                        stars[i].className = "";
+                    }          
+                }
+            } else { 
+                for(let i = 0; i < stars.length; i++){
+                    stars[i].className = "";         
+                }   
+            }
+            
+        };
+
+    }
+}
+</script>
+</body>
+</html>

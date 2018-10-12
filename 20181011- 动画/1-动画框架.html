@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/* 回调函数 */
+let timer = 0;
+function fn(){
+    console.log("动画执行完了");
+    move(function(){
+        console.log("动画又执行完了");
+    });
+}
+move(fn);
+function move(callback){
+    let nub = 0;
+    timer = setInterval(function(){
+        if(nub >= 5){
+            clearInterval(timer);
+            callback();
+        } else {
+            nub++;
+            console.log(nub);
+        }
+    },100);
+}
+</script>    
+</body>
+</html>

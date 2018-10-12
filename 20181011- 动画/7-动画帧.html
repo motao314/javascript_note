@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#div div{
+    width: 100px;
+    height: 100px;
+    background: red;
+    border: 1px solid #000;
+}
+</style>
+<script src="miaov.js"></script>
+</head>
+<body>
+<div id="div">
+    <div class="box"></div>
+    <div class="box"></div>
+</div>
+<script>
+var box = document.querySelectorAll(".box");
+var timer = 0;
+div.onclick = function(){
+    cancelAnimationFrame(timer);
+    timer = requestAnimationFrame(move);
+};
+function move(){
+    var w = css(box[0],"width");
+    if(w >= 600){
+        cancelAnimationFrame(timer);
+    } else {
+        w += 2;
+        css(box[0],"width",w);
+        timer = requestAnimationFrame(move);
+    }
+   
+} 
+</script>    
+</body>
+</html>

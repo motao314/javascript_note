@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            vertical-align: top;
+        }
+        #list {
+            position: relative;
+            margin: 30px auto;
+            width: 660px;
+            height: 254px;
+            border: 5px solid #000;
+            overflow: hidden;
+        } 
+        #list li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 528px;
+            padding-right: 22px;
+            transition: .5s;
+        }
+        #list span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 224px;
+            cursor: pointer;
+            border-right: 2px solid #fff;
+            font: 16px/20px "宋体";
+            color: #fff;
+            text-align: center;
+            padding-top: 30px;
+        }
+        #list img {
+            width: 528px;
+            height: 254px;
+        }
+        #list li:nth-of-type(2n) span{
+            background: #f90;
+        }
+        #list li:nth-of-type(2n+1) span{
+            background: #9f0;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+     <li>
+         <span>第一张图</span>
+         <img src="img/t103_26.jpg" />
+     </li>
+     <li>
+        <span>第二张图</span>
+        <img src="img/t103_27.jpg" />
+     </li>
+     <li>
+        <span>第三张图</span>
+        <img src="img/t103_28.jpg" />
+     </li>
+     <li>
+        <span>第四张图</span>
+        <img src="img/t103_29.jpg" />
+     </li>   
+     <li>
+        <span>第五张图</span>
+        <img src="img/tlh_06.jpg" />
+     </li>
+     <li>
+        <span>第六张图</span>
+        <img src="img/tlh_29.jpg" />
+     </li>
+</ul>
+<script>
+{
+    let li = document.querySelectorAll("#list li");   
+    /*
+        每个元素的默认坐标计算: 0 22px 44px 66px 88px 110px;
+        鼠标移入之后：
+            1. 当前元素之前： 用元素的默认坐标 - 528
+            2. 当前元素之后及当前元素: 回到默认坐标
+    */
+    li.forEach((item,index,li)=>{
+        item.style.zIndex = li.length - index;
+        item.style.transform = "translate3d("+(index*22)+"px,0,0)";
+        item.onmouseover = ()=>{
+            li.forEach((item,i)=>{
+                if(i < index){
+                    item.style.transform = "translate3d("+(i*22 - 528)+"px,0,0)";
+                } else {
+                    item.style.transform = "translate3d("+(i*22)+"px,0,0)";
+                }
+            });
+        }
+    });
+}
+</script>
+</body>
+</html>

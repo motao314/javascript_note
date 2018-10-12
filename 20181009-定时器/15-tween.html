@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+<script src="js/miaov.js"></script>
+</head>
+<body>
+<div id="box"></div>
+<script>
+let timer = 0;
+(function(){    
+    let box = document.querySelector("#box");
+    // 绝对值 Math.abs() 取绝对值
+    box.onmouseover = function(){
+        move(box,"width",317,1000);
+    };
+    box.onmouseout = function(){
+        move(box,"width",100,1000);
+    };
+})();
+function move(el,attr,target,time){
+    let delay = 20; //定时器的执行间隔
+    let t = 0;//当前次
+    let b = css(el,attr);//初始值
+    let c = target - b; // 动画运动的距离 初始值 和 目标的差值
+    let d = Math.ceil(time/delay);//动画总次数
+    clearInterval(timer);
+    timer = setInterval(()=>{
+        t++;
+        if(t > d){
+            clearInterval(timer);
+        } else {
+            let val = Tween["backOut"](t, b, c, d);
+            css(el,attr,val);
+        }
+    },delay);
+};
+</script>        
+</body>
+</html>

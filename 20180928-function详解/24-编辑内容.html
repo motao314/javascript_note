@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .edit {
+            display: none;
+        }
+        li {
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+<ul class="list">
+    <li>
+        <div class="inner">
+            <span>妙味课堂</span>
+            <button>编辑</button>
+        </div>
+        <div class="edit">
+            <input type="text" />
+            <button>确定</button>
+            <button>取消</button>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <span>哈哈哈</span>
+            <button>编辑</button>
+        </div>
+        <div class="edit">
+            <input type="text" />
+            <button>确定</button>
+            <button>取消</button>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <span>天不错</span>
+            <button>编辑</button>
+        </div>
+        <div class="edit">
+            <input type="text" />
+            <button>确定</button>
+            <button>取消</button>
+        </div>
+    </li>        
+</ul> 
+<script>
+/*
+   1. 点击编辑按钮:
+        1. inner 隐藏
+        2. edit 显示
+        3. editTxt的内容 显示 innerTxt 的内容
+
+   2. 点击取消按钮     
+        1. inner 显示
+        2. edit 隐藏
+
+   3. 点击确定按钮
+        1. 判断输入内容是否为空
+        2. inner 显示
+        3. edit 隐藏
+        4.  innerTxt 的内容 显示 editTxt的内容 
+*/    
+{
+    let lists = document.querySelectorAll(".list li");
+    for(let i = 0; i < lists.length; i++){
+        fn(lists[i]);
+    }
+    function fn(parent){
+        let inner = parent.querySelector(".inner");
+        let editBtn = inner.querySelector("button");
+        let innerTxt = inner.querySelector("span");
+        let edit = parent.querySelector(".edit");
+        let editTxt = edit.querySelector("input"); 
+        let sureBtn = edit.querySelector("button:nth-of-type(1)");
+        let calBtn = edit.querySelector("button:nth-of-type(2)");
+        editBtn.onclick = function(){
+            inner.style.display = "none";
+            edit.style.display = "block";
+            editTxt.value = innerTxt.innerHTML;
+        };
+        calBtn.onclick = function(){
+            inner.style.display = "block";
+            edit.style.display = "none";
+        };
+        sureBtn.onclick = function(){
+            if(editTxt.value == ""){
+                alert("请输入内容");
+                return ;
+            }
+            inner.style.display = "block";
+            edit.style.display = "none";
+            innerTxt.innerHTML = editTxt.value;
+        }
+    }
+}
+</script>    
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.wrap {
+    margin: 50px auto;
+    width: 150px;
+    position: relative;
+}
+.stars {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100px;
+} 
+.stars li {
+    float: left;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #fff;
+    background: #ddd;
+}
+.stars .active1 {
+    background: #fefdae;
+}
+.stars .active {
+    background: yellow;
+}
+.tag {
+    display: none;
+    float: right;
+    width: 40px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="stars">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <span class="tag">极差</span>
+</div>
+<script>
+{
+    let stars = document.querySelectorAll(".stars li");
+    let tag = document.querySelector(".tag");
+    let tags = ["极差","差","一般","不错","极好"];
+    let clickIndex = -1; //当前点击的是第几颗星
+    stars.forEach((star,index)=>{
+        star.onmouseover = ()=>{
+            changeStar(index);
+        }
+        star.onclick = ()=>{
+            clickIndex = index;
+        };
+        star.onmouseout = ()=>{
+            changeStar(clickIndex);
+        }
+    });
+    function changeStar(now){
+        if(now >= 0){
+            tag.innerHTML = tags[now]; 
+            tag.style.display = "block";
+        } else {
+            tag.style.display = "none";
+        }
+        stars.forEach((star,i)=>{
+            if(i <= now){
+                star.className = now > 1 ? "active" : "active1";
+            } else {
+                star.className = "";
+            }
+        });
+    }
+}
+</script>
+</body>
+</html>

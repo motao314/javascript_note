@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#box {
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+(function(){
+/*
+    1. 动画时间
+    2. 动画的目标点
+    3. *当前位置
+    4. 动画过程 = 动画的目标点 - 当前位置;
+    5. 速度 = 动画过程/动画时间;
+*/     
+let box = document.querySelector("#box"); //动画的元素
+let target = 500; //目标值
+let now = parseFloat(getComputedStyle(box)["width"]); //当前值 要改变的样式
+let speed = (target-now)/500*20;// 每毫秒的变换速度
+let timer = 0;
+timer = setInterval(()=>{
+    let now = parseFloat(getComputedStyle(box)["width"]);
+    now += speed;
+    if(now == target){ //走到目标值停止
+        clearInterval(timer);
+    }
+    box.style["width"] = now + "px";
+},20);
+
+})();
+</script>        
+</body>
+</html>

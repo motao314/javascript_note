@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+img {
+    vertical-align: top;
+}
+body {
+    margin: 0;
+}
+#box {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    /* 模拟我和景物的距离 */
+    perspective: 400px;
+}
+.pics {
+    position: absolute;
+    left: calc(50% - 153.884px);
+    top: 50%;
+    width: calc(153.884px + 153.884px); 
+    transform-style: preserve-3d;
+    transform-origin: center center -153.884px;
+}
+.pics span {
+    position: absolute;
+    left: 200px;
+    top: 0;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transform: rotateY(60deg);
+}
+.pics>span {
+    left: calc(50% - 100px);
+    top: -67px;
+    transform: rotateY(0deg);
+}
+.pics img {
+    width: 200px;
+    height: 134px;
+}
+</style>
+<script src="miaov.js"></script>
+</head>
+<body>
+<div id="box">
+    <div class="pics">
+        <span>
+            <img src="img2/img (1).jpg" />
+            <span>
+                <img src="img2/img (2).jpg" />
+                <span>
+                    <img src="img2/img (3).jpg" />
+                    <span>
+                        <img src="img2/img (4).jpg" />
+                        <span>
+                            <img src="img2/img (5).jpg" />
+                            <span>
+                                <img src="img2/img (6).jpg" />
+                            </span>
+                        </span>
+                    </span>
+                </span>
+            </span>
+        </span>
+    </div>
+</div>      
+<script>
+(function(){
+    let pics = document.querySelector(".pics");
+    let deg = 0;
+    setInterval(()=>{
+        deg++;
+        css(pics,"rotateX",deg);
+    },20);
+})();    
+</script>
+</body>
+</html>

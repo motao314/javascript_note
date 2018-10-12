@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <ul id="list">
+        <li>
+            <button>-</button><input type="text" value="0" /><button>+</button>
+            单价:<span class="price">8</span>元, 小计:<span class="sum">0</span>元
+        </li>
+        <li>
+            <button>-</button><input type="text" value="0" /><button>+</button>
+            单价:<span class="price">10</span>元, 小计:<span class="sum">0</span>元
+        </li>
+        <li>
+            <button>-</button><input type="text" value="0" /><button>+</button>
+            单价:<span class="price">6</span>元, 小计:<span class="sum">0</span>元
+        </li>
+        <li>
+            <button>-</button><input type="text" value="0" /><button>+</button>
+            单价:<span class="price">14.5</span>元, 小计:<span class="sum">0</span>元
+        </li>
+    </ul>
+    <p>总计:<span class="total">0</span>件</p>
+    <p>总价格:<span class="totalPrice">0</span>元</p>
+    <p>最高单价:<span class="maxPrice">0</span>元</p>
+</div>
+<script>
+{
+    let lists = document.querySelectorAll("#list li");
+    for(let i = 0; i < lists.length; i++){
+        fn(i);
+    }
+    function fn(index){
+        let btns = lists[index].querySelectorAll("button");
+        let nub = lists[index].querySelector("input");
+        let price = lists[index].querySelector(".price");
+        let sum = lists[index].querySelector(".sum");
+        btns[0].onclick = function(){
+            let nubVal = nub.value - 1;
+            if(nubVal < 0 
+            || isNaN(nubVal)){
+                nubVal = 0;
+            }
+            // 先处理好数据，再修改页面
+            nub.value = nubVal;
+            sum.innerHTML = nubVal * price.innerHTML;
+        }; 
+        btns[1].onclick = function(){
+            let nubVal = Number(nub.value);
+            nubVal = isNaN(nubVal)?0:nubVal; 
+            nubVal++;
+            // 先处理好数据，再修改页面
+            nub.value = nubVal;
+            sum.innerHTML = nubVal * price.innerHTML;
+        };
+        function compute(step){
+            
+        }
+    }   
+}    
+</script>
+</body>
+</html>
