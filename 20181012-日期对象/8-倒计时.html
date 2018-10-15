@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" value="2018">年
+<input type="text" value="10">月
+<input type="text" value="12">日 <br/>
+<input type="text" value="16">时
+<input type="text" value="0">分
+<input type="text" value="0">秒<br/>
+<button>开始计时</button>
+<p>距离0000年00月00日00时00分00秒还有0天0小时0分0秒000</p>
+<script>
+(function(){
+    let p = document.querySelector("p");
+    let btn = document.querySelector("button");
+    let input = document.querySelectorAll("input");
+    let timer = 0;
+    btn.onclick = function(){
+        let nowYear = input[0].value;
+        let nowMonth = input[1].value;
+        let nowDate = input[2].value;
+        let nowHours = input[3].value;
+        let nowMinutes = input[4].value;
+        let nowSeconds = input[5].value;
+        p.innerHTML = `距离${nowYear}年${toDB(nowMonth)}月${toDB(nowDate)}日${toDB(nowHours)}时${toDB(nowMinutes)}分${toDB(nowSeconds)}秒还有0天0小时0分0秒000`;
+        clearInterval(timer);
+        timer = setInterval(toTime,20);
+        toTime();
+        function toTime(){
+            let targetTime = new Date(nowYear,nowMonth-1,nowDate,nowHours,nowMinutes,nowSeconds,0).getTime();
+            let nowTime = new Date().getTime();
+            let disTime = (targetTime - nowTime)/1000;
+            //console.log(disTime);
+            if(disTime <= 0){
+                console.log(disTime);
+                p.innerHTML = `距离${nowYear}年${toDB(nowMonth)}月${toDB(nowDate)}日${toDB(nowHours)}时${toDB(nowMinutes)}分${toDB(nowSeconds)}秒还有0天0小时0分0秒000`;
+                alert("时间已到,该结束了");
+                clearInterval(timer);
+            } else {
+
+                let day = parseInt(disTime/86400).toFixed(0);
+                let hours = parseInt((disTime%86400)/3600).toFixed(0);
+                let minutes = parseInt((disTime%3600)/60).toFixed(0);
+                let seconds = parseInt(disTime).toFixed(0);
+                let milliseconds = parseInt((disTime-seconds)*1000).toFixed(0);
+                
+                p.innerHTML = `距离${nowYear}年${toDB(nowMonth)}月${toDB(nowDate)}日${toDB(nowHours)}时${toDB(nowMinutes)}分${toDB(nowSeconds)}秒还有${day}天${hours}小时${minutes}分${seconds}秒${milliseconds}`;
+            }
+        }
+    };
+})();
+ // console.log(1000*60*60*24); 86400000 一天毫秒数
+ // console.log(1000*60*60); 3600000 一小时毫秒数
+ // console.log(1000*60); 60000 一分钟毫秒数
+function toDB(nub){
+    return nub < 10?"0"+nub:""+nub;
+}
+</script>
+</body>
+</html>

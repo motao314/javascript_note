@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+} 
+#wrap {
+    position: relative;
+    margin: 20px auto;
+    width: 400px;
+    height: 400px;
+    border: 1px solid #000;   
+    border-radius: 50%;
+}
+.list li{
+    position: absolute;
+    width: 4px;
+    height: 15px;
+    background: #999;
+    left: 198px;
+    top: 0;
+    transform-origin: center 200px;
+}
+.list li:nth-child(5n+1) {
+    height: 25px;
+    background: #000;
+}
+.list2 li {
+    position: absolute;
+    left: 180px;
+    top: 30px;
+    width: 40px;
+    height: 40px;
+    font: 40px/40px "宋体";
+    text-align: center;
+    transform-origin: center 170px;
+}
+.list2 span {
+    display: block;
+}
+#h {
+    position: absolute;
+    left: 195px;
+    top: 100px;
+    width: 10px;
+    height: 100px;
+    background: #000;
+    transform-origin: bottom;
+}
+#m {
+    position: absolute;
+    left: 197px;
+    top: 60px;
+    width: 6px;
+    height: 140px;
+    background: #ccc;
+    transform-origin: bottom;
+}
+#s {
+    position: absolute;
+    left: 199px;
+    top: 20px;
+    width: 2px;
+    height: 180px;
+    background: red; 
+    transform-origin: bottom;
+}
+.dot {
+    position: absolute;
+    left: 190px;
+    top: 190px;
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 50%;
+}
+</style>
+<script src="miaov.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <ul class="list">
+    </ul>
+    <ul class="list2">
+        <li>
+            <span>12</span>
+        </li>
+        <li>
+            <span>1</span>
+        </li>
+        <li>
+            <span>2</span>
+        </li>
+    </ul>
+    <div id="h"></div>
+    <div id="m"></div>
+    <div id="s"></div>
+    <div class="dot"></div>
+</div>
+<script>
+// 刻度生成
+(function(){
+    let list = document.querySelector(".list");
+    let inner = "";
+    for(let i = 0; i<60; i++){
+        inner += `<li style="transform:rotate(${i*6}deg)"></li>`;
+    }
+    list.innerHTML = inner;
+})();
+// 生成 数字
+(function(){
+    let list = document.querySelector(".list2");
+    let inner = "";
+    for(let i = 0; i<12; i++){
+        inner += `<li style="transform:rotate(${i*30}deg)"><span style="transform:rotate(${-i*30}deg)">${i?i:12}</span></li>`;
+    }
+    list.innerHTML = inner;
+})();
+// 时间走动
+(function(){
+    let h = document.querySelector("#h");
+    let m = document.querySelector("#m");
+    let s = document.querySelector("#s");
+    toTime();
+    setInterval(toTime,1000);
+    function toTime(){
+        let date = new Date();
+        let second = date.getSeconds();
+        let minutes = date.getMinutes()+second/60;
+        let hours = date.getHours() + minutes/60;
+        
+        css(s,"rotate",second*6);
+        css(m,"rotate",minutes*6);
+        css(h,"rotate",hours*30);
+    }
+})();
+</script>
+</body>
+</html>

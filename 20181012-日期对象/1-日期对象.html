@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let date = new Date();
+let year = date.getFullYear();
+let month = date.getMonth() + 1;//月份的获取从0月开始，0月代表1月，正常使用时+1
+let date2 = date.getDate();
+let day = date.getDay(); // 0 - 6  0代表周日
+let hours = date.getHours();
+let minutes = date.getMinutes();
+let seconds = date.getSeconds();
+let milliseconds = date.getMilliseconds();
+let time = date.getTime();
+console.log(minutes,seconds,milliseconds);
+</script>    
+</body>
+</html>

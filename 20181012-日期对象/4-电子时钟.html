@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrap {
+            display: flex;
+            margin: 50px auto;
+            width: 700px;
+            height: 100px;
+            padding: 5px;
+            background: #ccc;
+            border: 2px solid #000;
+        }
+        .nubWrap {
+            margin: 0 10px;
+            width: 80px;
+            height: 100px;
+            overflow: hidden;
+        }
+        .dot {
+            width: 50px;
+            font: bold 50px/100px "微软雅黑";
+            text-align: center;
+            color: #fff;
+        }
+        .nub span {
+            display: block;
+            width: 80px;
+            height: 100px;
+            background: #000;
+            color: #fff;
+            font: 60px/100px "宋体";
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
+    <script src="miaov.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div class="nubWrap">
+        <div class="nub">
+            <span>0</span>
+            <span>0</span>
+        </div>    
+    </div>
+    <div class="nubWrap">
+        <div class="nub">
+            <span>0</span>
+            <span>0</span>
+        </div>    
+    </div>
+    <div class="dot">:</div>
+    <div class="nubWrap">
+        <div class="nub">
+            <span>0</span>
+            <span>0</span>
+        </div>    
+    </div>
+    <div class="nubWrap">
+        <div class="nub">
+            <span>0</span>
+            <span>0</span>
+        </div>    
+    </div>
+    <div class="dot">:</div>
+    <div class="nubWrap">
+        <div class="nub">
+            <span>0</span>
+            <span>0</span>
+        </div>    
+    </div>
+    <div class="nubWrap">
+        <div class="nub">
+            <span>0</span>
+            <span>0</span>
+        </div>    
+    </div>
+</div>
+<script>
+(function(){
+    let dot = document.querySelectorAll(".dot");
+    let nub = document.querySelectorAll(".nub");
+    toTab();
+    setInterval(toTab,1000);
+    function toTab(){
+        // 点闪烁
+        dot.forEach((item)=>{
+            mTween({
+                el: item,
+                attr: {
+                    opacity: 0
+                },
+                time: 200,
+                type: "linear",
+                cb: function(){
+                    mTween({
+                        el: item,
+                        attr: {
+                            opacity:1
+                        },
+                        time: 200,
+                        type: "linear"
+                    });
+                }
+            });
+        });
+    
+        //时间切换
+        let date = new Date();
+        let time = toDB(date.getHours())+toDB(date.getMinutes())+toDB(date.getSeconds());
+        nub.forEach((item,index)=>{
+            let span = item.querySelectorAll("span");
+            span[0].innerHTML = span[1].innerHTML;
+            span[1].innerHTML = time[index];
+            css(item,"translateY",0);
+            mTween({
+                el: item,
+                attr: {
+                    translateY: -100
+                }
+            });
+        });
+    }
+})();
+function toDB(nub){
+    return nub < 10?"0"+nub:""+nub;
+}
+</script>
+</body>
+</html>
