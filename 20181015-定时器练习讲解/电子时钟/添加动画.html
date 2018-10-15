@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//h2D XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/h2D/xhtml1-transitional.h2d">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>超酷数码钟表 - 妙味课堂 - www.miaov.com</title>
+<link href="miaov_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div id="clock" class="date">
+    <h2><img src="images/title.png" /></h2>
+    <div class="year">
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img src="images/year.png" alt="year" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img src="images/month.png" alt="month" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img src="images/seven.png" alt="seven" longdesc="http://www.miaov.com" />
+    </div>
+    <div class="time">
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img src="images/sign.png" alt="sign" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img src="images/sign.png" alt="sign" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="num" src="images/0.png" alt="0" longdesc="http://www.miaov.com" />
+        <img class="pos2" src="images/week.png" alt="week" longdesc="http://www.miaov.com" />
+        <img class="num2" src="images/one.png" alt="1" longdesc="http://www.miaov.com" />
+    </div>
+    <div class="url" title="妙味课堂-超酷时钟"><a href="http://www.miaov.com/"><img src="images/miaov.png" alt="妙味课堂" longdesc="http://www.miaov.com" /></a></div>
+</div>
+<script src="../miaov.js"></script>
+<script>
+(function(){
+    let clock = document.querySelector("#clock");
+    let num = clock.querySelectorAll(".num"); 
+    let num2 = clock.querySelector(".num2");
+    num.forEach((item)=>{
+        css(item,"scaleY",1);
+    });
+    let dateImg = [
+        "images/0.png",
+        "images/1.png",
+        "images/2.png",
+        "images/3.png",
+        "images/4.png",
+        "images/5.png",
+        "images/6.png",
+        "images/7.png",
+        "images/8.png",
+        "images/9.png"
+    ]; 
+    let dayImg = [
+        "images/seven.png",
+        "images/one.png",
+        "images/two.png",
+        "images/three.png",
+        "images/four.png",
+        "images/five.png",
+        "images/six.png"
+    ];
+    toTime();
+    setInterval(toTime,1000);
+    function toTime(){
+        let dateTime = new Date();
+        let year = dateTime.getFullYear();
+        let month = toDB(dateTime.getMonth() + 1);
+        let date = toDB(dateTime.getDate());
+        let hours = toDB(dateTime.getHours());
+        let minutes = toDB(dateTime.getMinutes());
+        let seconds = toDB(dateTime.getSeconds());
+        let time = year+month+date+hours+minutes+seconds; //20181015143320
+        let day = dateTime.getDay();
+        num.forEach((item,index)=>{
+            //item.src = dateImg[time[index]];
+            mTween({
+                el:item,
+                attr: {
+                    scaleY: 0
+                },
+                type: "linear",
+                time: 250,
+                cb:()=>{
+                    item.src = dateImg[time[index]];
+                    mTween({
+                        el: item,
+                        attr: {
+                            scaleY:1
+                        },
+                        type: "linear",
+                        time: 250
+                    });
+                } 
+            });
+        });
+        //num2.src = dayImg[day];
+    }
+})();
+function toDB(nub){
+    return nub < 10?"0"+nub:""+nub;
+}
+</script>
+</body>
+</html>

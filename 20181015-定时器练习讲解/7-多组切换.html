@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #lists ul {
+            display: none;
+        }
+        .active {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<div id="lists">
+    <ul style="display: block">
+        <li class="active">第一组1</li>
+        <li>第一组2</li>
+        <li>第一组3</li>
+        <li>第一组4</li>
+    </ul>
+    <ul>
+        <li class="active">第二组1</li>
+        <li>第二组2</li>
+        <li>第二组3</li>
+    </ul>
+    <ul>
+        <li class="active">第三组1</li>
+        <li>第三组2</li>
+        <li>第三组3</li>
+    </ul>
+</div> 
+<script>
+(function(){
+    let lists = document.querySelector("#lists");
+    let list = lists.querySelectorAll("ul");
+    let btn = document.querySelector("button");
+    let now = 0;//记录显示的是第几组
+    let subNow = 0; //记录显示的第几个
+
+    btn.onclick = function(){
+        let li = list[now].querySelectorAll("li");
+        subNow++;
+        if(subNow > li.length-1){
+            now++;
+            if(now > list.length-1){
+                now = 0;
+            }
+            //切换下一组显示
+            list.forEach((item)=>{
+                item.style.display = "none";
+            })
+            list[now].style.display = "block";
+            subNow = 0;
+            li = list[now].querySelectorAll("li");
+        }
+        li.forEach((item)=>{
+            item.className = "";
+        });
+        li[subNow].className = "active";
+        
+    };
+
+})();
+</script>      
+</body>
+</html>

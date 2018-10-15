@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            margin: 50px auto;
+            width: 808px;
+            height: 303px;
+            perspective: 500px;
+        }
+        img {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="img/img1.gif" />
+</div>
+<script src="miaov.js"></script>  
+<script>
+(function(){
+    let img = document.querySelector("img");
+    css(img,"scaleY",1);
+    img.onclick = ()=>{
+        mTween({
+            el: img,
+            attr: {
+                scaleY:0 
+            },
+            time: 200,
+            type: "linear",
+            cb: function(){
+                img.src = "img/img2.gif"
+                mTween({
+                    el: img,
+                    attr: {
+                        scaleY:1
+                    },
+                    time: 200,
+                    type: "linear"
+                });
+            }
+        });
+    };
+})();
+</script>  
+</body>
+</html>

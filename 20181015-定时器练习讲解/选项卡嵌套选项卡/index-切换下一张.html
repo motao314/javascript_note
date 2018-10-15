@@ -1,0 +1,190 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+li{
+	list-style: none;
+	cursor: pointer;	
+}
+ul{
+	margin: 0;
+	padding: 0;
+}
+#box{
+	border: 5px solid #E7E7E7;
+	height:400px;
+	width: 800px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#box>ul{
+	width:100px;
+	height: 100%;
+	float: left;
+}
+#box>ul li{
+	line-height: 99px;
+	text-align: center;
+	background-color: #000;
+	border-bottom: 1px solid #E7E7E7;
+	color:white;
+}
+#box>ul .active{
+	background-color: red;
+	color:black;
+}
+#box div{
+	float: left;
+	width: 700px;
+	height: 100%;
+	position: relative;
+	display: none;
+}
+#box img{
+	width: 100%;
+	height: 100%;
+}
+#box div ul{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+#box div li{
+	float: left;
+	border-right: 1px solid white;
+	background-color: black;
+	opacity: .7;
+	line-height: 30px;
+	margin-right: -1px;
+	color:white;
+	text-align: center;
+}
+#box div .active{
+	background-color: #EF3163;
+}
+#box img {
+	display:  none;
+}
+</style>
+</head>
+<body>
+<button>下一张</button>    
+<div id="box">
+  <ul class="navs">
+    <li class="active">暖色调</li>
+    <li>金色夕阳</li>
+    <li>灰色格调</li>
+    <li>baby</li>
+  </ul>
+  <div style="display: block;">
+    <img src="images/img1.gif" style="display: block">
+    <img src="images/img2.gif">
+    <img src="images/img3.gif">
+    <img src="images/img4.gif">
+    <ul>
+      <li style="width:175px;" class="active">暖色键盘</li>
+      <li style="width:175px;">惬意时光</li>
+      <li style="width:175px;">午后</li>
+      <li style="width:175px;">一杯苦咖啡</li>
+    </ul>
+  </div>
+  <div>
+    <img src="images/img5.gif" style="display: block">
+    <img src="images/img6.gif">
+    <ul>
+      <li style="width:350px;" class="active">街边夕阳</li>
+      <li style="width:350px;">金色稻草</li></ul>
+  </div>
+  <div>
+    <img src="images/img7.gif" style="display: block">
+    <img src="images/img8.gif">
+    <img src="images/img9.gif">
+    <img src="images/img10.gif">
+    <ul>
+      <li style="width:175px;" class="active">灰色通讯</li>
+      <li style="width:175px;">咖啡'配'饼干</li>
+      <li style="width:175px;">孤单键盘</li>
+      <li style="width:175px;">枯树</li></ul>
+  </div>
+  <div>
+    <img src="images/img11.gif" style="display: block">
+    <img src="images/img12.gif">
+    <ul>
+      <li style="width:350px;" class="active">baby素材一</li>
+      <li style="width:350px;">baby素材二</li></ul>
+  </div>
+</div>	
+<script>
+(function(){
+	// 大选项卡切换
+	let box = document.querySelector("#box");
+	let navs = box.querySelectorAll(".navs li");
+	let cons = box.querySelectorAll("div");
+    let btn = document.querySelector("button");
+    let now = 0;//当前显示的是第几组
+    let subNow = 0;//当前显示的是这组的第几张
+    /*
+        点击时：小选项卡每次往下切换一张，小选项卡切换到这组最后，切换到下一组
+    */
+
+	//console.log(navs,cons);
+	navs.forEach((item,index)=>{
+		subTab(cons[index]);
+		item.onmouseover = ()=>{
+			navs.forEach((item,index)=>{
+				item.className = "";
+				cons[index].style.display = "none";
+			});
+			item.className = "active";
+			cons[index].style.display = "block";
+		};
+	});
+	
+	// 小选项卡切换
+	function subTab(cons){
+		let subNav = cons.querySelectorAll("ul li");
+		let subCons = cons.querySelectorAll("img");
+		subNav.forEach((item,index)=>{
+			item.onmouseover = ()=>{
+				subNav.forEach((item,index)=>{
+					item.className = "";
+					subCons[index].style.display = "none";
+				});
+				item.className = "active";
+				subCons[index].style.display = "block";
+			};
+		});
+	}
+    btn.onclick = next;
+    function next(){
+        let subNav = cons[now].querySelectorAll("ul li");// 获取到当前组的导航
+        subNow++;// 切换下一张
+        if(subNow >= subNav.length){
+            now++;
+            if(now >= navs.length){
+                now = 0;    
+            }
+            subNow=0;
+            navs.forEach((item,index)=>{
+				item.className = "";
+				cons[index].style.display = "none";
+			});
+			navs[now].className = "active";
+			cons[now].style.display = "block";
+            subNav = cons[now].querySelectorAll("ul li");
+        }
+        let subCons = cons[now].querySelectorAll("img");
+        console.log(subNav);
+        subNav.forEach((item,index)=>{
+            item.className = "";
+            subCons[index].style.display = "none";
+        });
+        subNav[subNow].className = "active";
+        subCons[subNow].style.display = "block";
+    }
+})();
+</script>
+</body>
+</html>

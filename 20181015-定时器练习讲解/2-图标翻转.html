@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: 
+            repeating-linear-gradient(45deg,#ccc 0,#ccc 20px,rgba(0,0,0,0) 20px,rgba(0,0,0,0) 40px),
+            repeating-linear-gradient(135deg,#ccc 0,#ccc 20px,rgba(0,0,0,0) 20px,rgba(0,0,0,0) 40px);
+
+    }
+    #box {
+        margin: 50px auto;
+        width: 808px;
+        height: 303px;
+        perspective: 500px;
+    }
+    #img {
+        transform-style: preserve-3d;
+        position: relative;
+        width: 808px;
+        height: 303px; 
+    }
+    #img img {
+        /* 隐藏背面 */
+        backface-visibility: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: .8;
+    }
+</style>
+</head>
+<body>
+<div id="box">
+    <div id="img">
+        <img src="img/img1.gif" />
+        <img src="img/img2.gif" />
+    </div>
+</div>
+<script src="miaov.js"></script>  
+<script>
+(function(){
+    let img = document.querySelector("#img");
+    let imgs = img.querySelectorAll("img");
+    css(imgs[0],"rotateX",0);
+    css(imgs[1],"rotateX",180);
+    css(img,"rotateX",0);
+    img.onclick = ()=>{
+         mTween({
+             el: img,
+             attr: {
+                 rotateX: 180
+             },
+             time: 1000
+         });   
+    };
+})();
+</script>  
+</body>
+</html>

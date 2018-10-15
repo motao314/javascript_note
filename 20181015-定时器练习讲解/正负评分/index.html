@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.wrap {
+    margin: 50px auto;
+    width: 180px;
+    position: relative;
+}
+.stars {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 270px;
+} 
+.stars li {
+    float: left;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #fff;
+    background: #ddd;
+    font: 12px/28px "宋体";
+    text-align: center;
+}
+.stars .active {
+    background: yellow;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="stars">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script>
+{
+    /*
+        0   1   2   3  4  5  6  7  8
+        -4 -3  -2  -1  0  1  2  3  4
+    */
+    let stars = document.querySelectorAll(".stars li");
+    stars.forEach((star,index)=>{
+        let nowIndex = index - 4;
+        star.innerHTML = nowIndex;
+        star.onmouseover = ()=>{
+            let start = 0;
+            let end = 0;
+            if(nowIndex > 0){
+                /*
+                    let start = 0 + 4;
+                    let end  = nowIndex + 4;
+                */   
+               start = 4;
+               end =  index;
+            } else {
+                /*
+                    let start = nowIndex + 4;
+                    let end  = 0 + 4;
+                */ 
+                start = index;
+                end = 4;
+            }
+            stars.forEach((item,index)=>{
+                 if(index >= start && index<= end){
+                    item.className = "active";
+                 } else {
+                    item.className = "";
+                 }    
+            });
+            
+        }
+    });
+}
+</script>
+</body>
+</html>
