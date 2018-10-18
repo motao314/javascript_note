@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}    
+.wrap {
+    margin: 50px auto;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border: 2px solid #000;
+}
+#list li {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #fff;
+    background: #333;
+    font: 12px/48px "宋体";
+    text-align: center;
+    color: #fff;
+} 
+#list .active {
+    background: #f60;
+}  
+#btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+}    
+</style>
+</head>
+<body>
+<div class="wrap">    
+    <ul id="list">
+        
+    </ul>
+    <button id="btn">决定命运的时候</button>
+</div>
+<script>
+var arr = ["孔繁磊","王江波","闫慧玲","白姣姣","常杨杨","高军权","杨深","姜润丰","常唱","马华","银宏","胡林","曹秀媛","刘明轩","张明","李钦举","刘一帆","戈磊","李义","张晟","王寒颖","田文文","王红妹","刘慧","孔云云","白雪","卜若琪","再来一次"];
+(function(){
+    let list = document.querySelector("#list");
+    let inner = "";
+    let l = 0;
+    let t = 0;
+    let stepX = 50;
+    let stepY = 50;
+    arr.sort(()=>Math.random()-.5);
+    arr.forEach((item,index)=>{
+        switch(index){
+            case 0:
+                stepX = 50;
+                stepY = 0;
+                break;
+            case 7:
+                stepX = 0;
+                stepY = 50;
+                break; 
+            case 14:
+                stepX = -50;
+                stepY = 0;
+                break;
+            case 21:
+                stepX = 0;
+                stepY = -50;
+                break;            
+        }
+        inner += `<li style="left:${l}px;top:${t}px;">${item}</li>`;
+        l += stepX;
+        t += stepY;
+    });    
+    list.innerHTML = inner;
+})();
+/*
+    抽奖
+*/
+(function(){
+    let lists = document.querySelectorAll("#list li");
+    let btn = document.querySelector("button");
+    let timer = 0;
+    let isMove = false;
+    btn.onclick = function(){
+        if(isMove){
+            return ;
+        }
+        isMove = true;
+        let delay = 16;
+        let target = Math.floor(Math.random()*arr.length);
+        let now = -1;
+        target += (Math.round(Math.random()*5)+2)*arr.length;
+        timer = setTimeout(lucky,delay);
+        function lucky(){
+            now++;
+            lists.forEach((item)=>{
+                item.className = "";
+            });
+            lists[now%lists.length].className = "active";
+            if(now == target){
+                setTimeout(function(){
+                    alert(`锦鲤：${lists[now%lists.length].innerHTML}`);
+                });
+                isMove = false;
+            } else {
+                delay += 2;
+                timer = setTimeout(lucky,delay);
+            }
+        }   
+    };
+})();
+</script>    
+</body>
+</html>

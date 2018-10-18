@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+(function(){
+    let arr = ["a","b","c"];
+    let arr2 = arr.map(function(item,index,array){
+        //console.log(item,index,array,this);
+        return item.charCodeAt();
+    },1); 
+    console.log(arr2);   
+})();
+</script>        
+</body>
+</html>

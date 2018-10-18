@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button>从高到低</button>
+<button>从低到高</button>    
+<ul id="list">
+
+</ul>
+<script>
+let data = [
+    {
+        title: "iphoneX",
+        price: "7999元"
+    },{
+        title: "iphoneX Max",
+        price: "12999元"
+    },{
+        title: "iphone 8",
+        price: "4999元"
+    },{
+        title: "iphone 6",
+        price: "999元"
+    },{
+        title: "iphone 7",
+        price: "3999元"
+    }
+];  
+
+(function(){
+    let list = document.querySelector("#list");
+    let btns = document.querySelectorAll("button");
+    btns[0].onclick = function(){
+        data.sort((n1,n2)=>{
+            return parseFloat(n2.price) - parseFloat(n1.price);
+        });
+        //console.log(data);
+        createInner();
+    };
+    btns[1].onclick = function(){
+        data.sort((n1,n2)=>{
+            return parseFloat(n1.price) - parseFloat(n2.price);
+        });
+        //console.log(data);
+        createInner();
+    };
+    createInner();
+    function createInner(){
+        let inner = "";
+        data.forEach((item)=>{
+            inner += `<li>
+                ${item.title}
+                <mark>${item.price}</mark>        
+            </li>`;
+        });
+        list.innerHTML =  inner;
+    }
+})();
+</script>    
+</body>
+</html>

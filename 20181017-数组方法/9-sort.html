@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+ let arr = [5,2,1,27,3,16,4];
+ // arr.sort() 默认按照字典序进行排序
+
+arr.sort(function(n1,n2){
+    //console.log(n1,n2);
+    //return true; //返回 true 时，把n1 和 n2 的顺序进行了交互
+    //return false;// 返回 false 时,保持两位顺序不变
+    //return 0;// >0 交互位置，否则位置不变
+});
+console.log(arr);
+</script>      
+</body>
+</html>

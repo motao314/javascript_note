@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrap {
+            width: 700px;
+        }
+
+        #wrap button {
+            float: left;
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+        }
+
+        #list {
+            position: relative;
+            float: left;
+            width: 500px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            height: 67px;
+        }
+
+        #list li {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: 1s;
+        }
+        #list img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <button>上一张</button>
+        <ul id="list">
+            <li>
+                <img src="img2/img (1).jpg" />
+            </li>
+            <li>
+                <img src="img2/img (2).jpg" />
+            </li>
+            <li>
+                <img src="img2/img (3).jpg" />
+            </li>
+            <li>
+                <img src="img2/img (4).jpg" />
+            </li>
+            <li>
+                <img src="img2/img (5).jpg" />
+            </li>
+        </ul>
+        <button>下一张</button>
+    </div>
+<script src="miaov.js"></script>    
+<script>
+(function(){
+    let btns = document.querySelectorAll("button");
+    let lists = document.querySelectorAll("#list li");
+    let imgW = css(lists[0],"width");
+    let positionL = [];
+    lists.forEach((item,index)=>{
+        positionL.push(index*imgW);
+        css(item,"left",index*imgW);
+    }); 
+    console.log(positionL);
+    btns[0].onclick = function(){
+        positionL.push(positionL.shift());
+        //console.log(positionL);
+        positionL.forEach((l,index)=>{
+            css(lists[index],"left",l);
+        });
+    };
+    btns[1].onclick = function(){
+        positionL.unshift(positionL.pop());
+        //console.log(positionL);
+        positionL.forEach((l,index)=>{
+            css(lists[index],"left",l);
+        });
+    };
+})();
+</script>    
+</body>
+</html>

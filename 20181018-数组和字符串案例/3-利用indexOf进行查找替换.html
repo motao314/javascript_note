@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrap {
+            margin: 50px auto;
+            width:  400px;
+        }
+        .inner {
+            font: 14px/30px "宋体";
+            height: 200px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="inner">极光大数据发布《2018年果粉调查报告》，基于iPhone手机用户群体进行精准调研，从果粉换机意向洞察、果粉对iPhone新机评价、果粉换机关注点等三个维度洞察果粉对于iPhone新机型的购买意愿。</div>    
+    <input type="text" /> <button>查找</button>
+</div> 
+<script>
+(function(){
+    let inner = document.querySelector(".inner");
+    let startInner = inner.innerHTML;
+    let txt = document.querySelectorAll("input");
+    let btns = document.querySelectorAll("button");
+    btns[0].onclick = function(){
+        if(txt[0].value.trim() == ""){
+            alert("请输入内容");
+            return ;
+        }
+        let searchVal = txt[0].value;
+        let nowInner = startInner;
+        //let re = new RegExp(searchVal,"g");
+        //console.log(re.test(nowInner));
+        //console.log(nowInner.replace(re,`<mark>${searchVal}</mark>`));
+        if(nowInner.indexOf(searchVal) < 0){
+            alert("查找的内容不存在");
+        }
+        let index = 0;
+        while(nowInner.indexOf(searchVal,index) > -1){
+            index = nowInner.indexOf(searchVal,index);
+            let start = nowInner.substr(0,index);
+            index = index+searchVal.length;
+            let end = nowInner.substr(index);
+            nowInner = start+`<mark>${searchVal}</mark>`+end;
+            index += 13;
+        }
+        inner.innerHTML = nowInner;
+    };
+})();
+</script>           
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+(function(){
+    let str = " abcdefgabcdefg ";
+    console.log(str.length);
+    // str[4] = "哈"; 不能通过下标直接修改某一位
+    console.log(str[4]);
+    console.log(str.charAt(4));
+    console.log(str.charCodeAt(4));
+    console.log(String.fromCharCode(101));
+    console.log(str.toLowerCase());
+    console.log(str.toUpperCase());
+    console.log(str.split("f"));
+    console.log(str.trim());
+    console.log(str.slice(3,10));
+    console.log(str.substr(3,4));
+    console.log(str.substring(3,4));
+    console.log(str.indexOf("e",6));
+    console.log(str.lastIndexOf("e",6));
+    console.log(str.repeat(2));
+})();
+</script>    
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+ let arr = [5,2,1,27,3,16,4]; 
+// 从大到小
+/*
+arr.sort(function(n1,n2){
+   if(n1 > n2){
+       return false;
+   } else {
+       return true;
+   }
+});
+*/
+// 从小到大
+arr.sort(function(n1,n2){
+//    if(n1 > n2){
+//        return 1;
+//    } else {
+//        return -1;
+//    }
+    return n1 - n2;// 从小到大  n2 - n1 从大到小
+});
+console.log(arr);
+</script>      
+</body>
+</html>

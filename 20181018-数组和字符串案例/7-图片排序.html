@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    #wrap {
+        margin: 50px auto;
+        width: 800px;
+    }
+
+    #wrap ul {
+        position: relative;
+    }
+    #wrap li {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+    }
+    img {
+        width: 200px;
+    }
+</style>
+</head>
+
+<body>
+<div id="wrap">
+    <div>
+        <button>从小到大</button>
+        <button>随机排序</button>
+    </div>
+    <ul id="list">
+    </ul>
+</div>
+<script src="miaov.js"></script>
+<script>
+(function () {
+    let data = [
+        {
+            img: "img/img (1).jpg",
+            txt: "1-图片"
+        }, {
+            img: "img/img (2).jpg",
+            txt: "2-图片"
+        }, {
+            img: "img/img (3).jpg",
+            txt: "3-图片"
+        }, {
+            img: "img/img (4).jpg",
+            txt: "4-图片"
+        }, {
+            img: "img/img (5).jpg",
+            txt: "5-图片"
+        }, {
+            img: "img/img (6).jpg",
+            txt: "6-图片"
+        }, {
+            img: "img/img (7).jpg",
+            txt: "7-图片"
+        }, {
+            img: "img/img (8).jpg",
+            txt: "8-图片"
+        }
+    ];
+    let list = document.querySelector("#list");
+    let btns = document.querySelectorAll("button");
+    let inner = "";
+    let rows = 4;
+    let w = 200;
+    let h = 200;
+    let position = [];
+    data.forEach((item,index)=>{
+        let x = (index%rows)*w;
+        let y = parseInt(index/rows)*h;
+        // position.push({
+        //     index:index,
+        //     x:x,
+        //     y:y
+        // })
+        position.push({index, x, y});
+        inner += `<li style="left:${x}px;top:${y}px;">
+            <img src="${item.img}"/>
+            <p>${item.txt}</p>
+        </li>`;
+    });
+    list.innerHTML = inner;
+    let lis = list.querySelectorAll("li");
+    console.log(position);
+    btns[0].onclick = function(){
+        position.sort((n1,n2)=>n1.index - n2.index);
+        lis.forEach((item,index)=>{
+            mTween({
+                el: item,
+                attr: {
+                    left: position[index].x,
+                    top: position[index].y
+                },
+                type: "backOut",
+                time: 800
+            });
+        });
+    };
+    btns[1].onclick = function(){
+        position.sort(()=>Math.random()-.5);
+        lis.forEach((item,index)=>{
+            mTween({
+                el: item,
+                attr: {
+                    left: position[index].x,
+                    top: position[index].y
+                },
+                type: "backOut",
+                time: 800
+            });
+        });
+    };
+})();
+</script>
+</body>
+</html>

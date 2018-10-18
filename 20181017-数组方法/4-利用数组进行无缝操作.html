@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button>上</button>
+<button>下</button>
+<script>
+(function(){
+    let btn = document.querySelectorAll("button");
+    let arr = ["a","b","c","d","e"];
+    btn[0].onclick = function(){
+        arr.unshift(arr.pop());
+        console.log(arr);
+    };
+    btn[1].onclick = function(){
+        arr.push(arr.shift());
+        console.log(arr);
+    };
+})();
+</script>
+</body>
+</html>
