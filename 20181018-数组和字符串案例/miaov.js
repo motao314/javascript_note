@@ -218,6 +218,16 @@ op:{
 	]
 }	
 */
+var data = [
+	{
+		title: "一级数据",
+		child:[
+			{
+				title: "二级数据"
+			}
+		]
+	}
+];
 function mTween(op){
     let init = {
         time: 400,
