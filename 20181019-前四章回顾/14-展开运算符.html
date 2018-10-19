@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let arr = ["a","b","c"];
+let arr2 = [0,1,...arr,5];
+let obj = {
+    name: "承龙",
+    age: 19,
+    ...arr2
+};
+let obj2 = {
+    a: "哈哈",
+    ...obj,
+    b: "嘿嘿",
+}
+console.log(arr2);
+console.log(obj2);
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let obj = {
+    a: 0,
+    b: 1,
+    c: 2
+};
+
+/*let a = obj.a;
+let c = obj.c;
+let b = obj.b;*/
+
+let {a,c} = obj;
+console.log(a,c);
+/* 对象的解构赋值时，一定注意变量的名称 和 对象的属性名称是一致的 */
+</script>    
+</body>
+</html>

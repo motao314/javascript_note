@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function say(){
+    console.log(this);
+}
+let say2 = say.bind(1);
+
+say2();
+
+document.onclick = say2;
+
+/*
+    fn.bind(thisObj) 绑定函数的this指向
+    语法: function  fn.bind(thisObj)
+    参数:  thisObj 函数中的 this 指向谁
+    返回值：绑定了this的新函数
+*/
+</script>    
+</body>
+</html>

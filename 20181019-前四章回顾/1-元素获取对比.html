@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul id="box"></ul>    
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    let lis = box.getElementsByTagName("li");
+    let last = document.getElementById("last");
+    console.log(lis);
+    box.innerHTML = `
+        <li class="li">哈哈1</li>
+        <li class="li">哈哈2</li>
+        <li id="last">哈哈2</li>
+    `;
+    console.log(lis);
+    for(let i = 0; i < lis.length; i++){
+        lis[i].onclick = function(){
+            alert(this.innerHTML);
+        };
+    }
+    console.log(last);
+})();
+</script>
+</body>
+</html>

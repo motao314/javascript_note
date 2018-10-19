@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="name1 name2 name3"></div>  
+<script>
+(function(){
+    let div = document.querySelector("div");
+    console.log(div.classList);    
+    div.classList.add("name4","name5")
+    div.classList.remove("name1","name2");
+    console.log(div.classList.contains("name3"));
+    div.classList.toggle("name3");
+})();
+</script>  
+</body>
+</html>

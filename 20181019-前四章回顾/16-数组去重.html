@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let arr = [1,23,2,12,1,2,23,25,1]; // 1,23,2,12,25
+let newArr = [];
+// arr.forEach((item,index)=>{
+//     //获取数组的每一位,向后查找一样的话，如果有一样的值，就把后边这位删掉
+//     while(arr.indexOf(item,index+1)>-1){
+//         console.log(arr);
+//         arr.splice(arr.indexOf(item,index+1),1);
+//         console.log(arr);
+//     }
+// });
+for(let i = 0; i < arr.length; i++){
+    if(arr.indexOf(arr[i],i+1)>-1){
+        arr.splice(arr.indexOf(arr[i],i),1);
+        i--;
+    }
+    console.log(arr);
+}
+</script>    
+</body>
+</html>
