@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function fn(nub){
+    console.log(nub);
+    if(nub > 0){
+        fn(nub - 1);
+    }
+    console.log(nub); 
+}   
+fn(5);
+/*
+function fn(5){
+    console.log(5);
+    if(nub > 0){
+       function fn(4){
+            console.log(4);
+            if(nub > 0){
+                function fn(3){
+                    console.log(3);
+                    if(nub > 0){
+                       function fn(2){
+                            console.log(2);
+                            if(nub > 0){
+                                function fn(1){
+                                    console.log(1);
+                                    if(nub > 0){
+                                       function fn(0){
+                                            console.log(0);
+                                            if(nub > 0){
+                                            }
+                                            console.log(0); 
+                                        } 
+                                    }
+                                    console.log(1); 
+                                } 
+                            }
+                            console.log(2); 
+                        } 
+                    }
+                    console.log(3); 
+                } 
+            }
+            console.log(4); 
+        } 
+    }
+    console.log(5); 
+} 
+*/
+</script>    
+</body>
+</html>

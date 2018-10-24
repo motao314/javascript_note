@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #inner {
+            white-space: pre;
+        }
+    </style>
+</head>
+<body> 
+   <div id="box">
+        <h2>h1</h2>
+        <p>p2</p>
+        <h2>h3</h2>
+        <p>p4</p>
+        <p>p5</p>
+   </div>
+<script>
+(function(){
+   let box = document.querySelector("#box");
+   let firstChild = box.firstChild;
+   let firstElement = box.firstElementChild;
+   let lastChild = box.lastChild;
+   let lastElement = box.lastElementChild;
+   let nextNode = firstElement.nextSibling;
+   let nextElement = firstElement.nextElementSibling;
+   let prevElement = lastElement.previousElementSibling;
+   //console.log(firstChild,firstElement,lastChild,lastElement);
+   console.log(prevElement.parentNode);
+})();
+</script>    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<script src="js/data.js"></script>
+</head>
+<body>
+<div id="tree-menu">
+    <!-- <ul>
+        <li>
+            <p>一级菜单</p>
+            <ul>
+        </li>
+        <li>
+            <p>一级菜单</p>
+        </li>
+        <li>
+            <p>一级菜单</p>
+        </li>
+    </ul> -->
+</div>
+<script>
+(function(){
+    let treeMenu = document.getElementById("tree-menu");
+    treeMenu.innerHTML = createMenu(data);
+    function createMenu(data){
+        let inner = "<ul>";
+        data.forEach((item)=>{
+            inner += `<li>
+                <p>${item.title}</p>  
+                ${item.child?createSubMenu(item.child):""}  
+            </li>`;
+        });
+        inner += "</ul>";
+        return inner;
+    }
+    function createSubMenu(data){
+        let inner = "<ul>";
+        data.forEach((item)=>{
+            inner += `<li>
+                <p>${item.title}</p>    
+            </li>`; 
+        });    
+        inner += "</ul>";
+        return inner;
+    }
+})();
+</script>      
+</body>
+</html>

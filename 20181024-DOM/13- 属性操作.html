@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<ul id="box">
+    <li>元素1</li>
+    <li>元素2</li>
+    <li>元素3</li>
+    <li>元素4</li>
+</ul>    
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    let lists = box.children;
+    let list = box.querySelectorAll("li");
+    for(let i = 0; i < lists.length; i++){
+        lists[i].setAttribute("index",i);
+        lists[i].setAttribute("onclick","alert(this.getAttribute('index'));")
+    }
+    box.innerHTML = box.innerHTML + `<li>元素5</li>`;
+    lists[0].setAttribute("className","open");
+})();
+</script>
+</body>
+</html>

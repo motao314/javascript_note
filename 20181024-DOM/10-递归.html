@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function fn(nub){
+    if(nub > -1000){
+        fn(nub-2);
+    }
+    console.log(nub); 
+    if(nub > 0){
+        fn(nub - 1);
+    }
+}   
+fn(5);
+/*
+1,0,3,0,2,1,0,5,0,2,1,0,4,1,0,3,0,2,1,0
+
+function fn(5){
+    if(nub > 1){
+        function fn(3){
+            if(nub > 1){
+                function fn(1){
+                    console.log(1); 
+                    if(nub > 0){
+                        fn(0);
+                        function fn(0){
+                            console.log(0);
+                        }
+                    }
+                } 
+            }
+            console.log(3); 
+            if(nub > 0){
+                function fn(2){
+                    if(nub > 1){
+                        function(){
+                            console.log(0);
+                        }    
+                    }
+                    console.log(2); 
+                    if(nub > 0){
+                        function fn(1){
+                            console.log(1); 
+                            if(nub > 0){
+                                function(){
+                                    console.log(0);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    console.log(5); 
+    if(nub > 0){
+        function fn(4){
+            if(nub > 1){
+                function fn(2){
+                    if(nub > 1){
+                        function(){
+                            console.log(0);
+                        }
+                    }
+                    console.log(2); 
+                    if(nub > 0){
+                        function(1){
+                            console.log(1);
+                            if(nub > 0){
+                                function(){
+                                    console.log(0);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            console.log(4); 
+            if(nub > 0){
+                //fn(3);
+                function fn(3){
+                    if(nub > 1){
+                        function fn(1){
+                            console.log(1); 
+                            if(nub > 0){
+                                function(){
+                                    console.log(0);
+                                }
+                            }
+                        }
+                    }
+                    console.log(3); 
+                    if(nub > 0){
+                        function fn(2){
+                            if(nub > 1){
+                                functon(){
+                                    console.log(0);
+                                }
+                            }
+                            console.log(2); 
+                            if(nub > 0){
+                                function(){
+                                    console.log(1);
+                                    function(){
+                                        console.log(0);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+} 
+*/
+</script>    
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="div" miaov = "妙味"></div>
+</div>    
+<script>
+(function(){
+    let div = document.getElementById("div");  
+    console.log(div.getAttribute("miaov"));
+    div.setAttribute("age",10);
+    //console.log(div.hasAttribute("miaov"));
+    //div.removeAttribute("miaov");
+    console.log(div.attributes);
+})();
+</script>
+</body>
+</html>

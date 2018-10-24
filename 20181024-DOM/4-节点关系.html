@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #inner {
+            white-space: pre;
+        }
+    </style>
+</head>
+<body> 
+    <ul id="list">
+        <li>list1</li>
+        <li>list2</li>
+        <li>list3</li>
+        <li><span>list4</span></li>
+        <!-- 这是注释哟 -->
+    </ul>
+<script>
+(function(){
+   let list = document.querySelector("#list");
+//    let nodes = Array.from(list.childNodes);
+//    nodes.forEach((node)=>{
+//        if(node.nodeType == 1){
+//             node.style.background = "gray";
+//        }
+//    });
+    let nodes = Array.from(list.children);
+    nodes.forEach((node)=>{
+        node.style.background = "red";
+    });
+})();
+</script>    
+</body>
+</html>
