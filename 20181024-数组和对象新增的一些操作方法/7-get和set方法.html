@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let obj = {
+    age: 18,
+    weight: 110,
+    height: 170
+};
+let name;
+Object.defineProperty(obj,"name",{
+    get(){//获取该属性
+        return name;
+    },
+    set(val){//检测对象的该属性值被设置了
+        console.log(val);
+        if(val >= 10){
+            alert("请设置一个0-9的数字");
+        } else {
+            name = val;
+        }
+    }
+});   
+obj.name = 10;
+console.log(obj); 
+console.log(obj.name);
+</script>    
+</body>
+</html>

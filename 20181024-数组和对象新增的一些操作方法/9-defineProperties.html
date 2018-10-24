@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let obj = {};
+let weight;
+let age;
+Object.defineProperties(obj, {
+    weight:{
+        set(val){
+            if(isNaN(val)){
+                console.error("请输入合法数字");
+            } else {
+                weight = val;
+            }
+        },
+        get(){
+            return weight;
+        }
+    },
+    age: {
+        set(val){
+            if(isNaN(val)){
+                console.error("请输入合法数字");
+            } else {
+                age = val;
+            }
+        },
+        get(){
+            return age;
+        }
+    }
+});
+obj.weight = 110;
+obj.age = 28;
+console.log(obj);
+</script>    
+</body>
+</html>

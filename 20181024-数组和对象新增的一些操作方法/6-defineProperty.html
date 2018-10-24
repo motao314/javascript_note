@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let obj = {
+    name: "承龙",
+    age: 18,
+    weight: 110,
+    height: 170
+};
+Object.defineProperty(obj,"name",{
+    configurable: false,
+    enumerable: false,
+    value: "小乐",
+    writable: false
+});   
+//delete obj.name;
+// for(let s in obj){
+//     console.log(s);
+// }
+obj.name = "承龙";
+console.log(obj); 
+</script>    
+</body>
+</html>
