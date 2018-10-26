@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    .wrap {
+        margin: 50px auto;
+        width: 500px;  
+        display: flex;      
+    }
+    .left,
+    .right {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+    }
+    button {
+        margin: auto;
+    }
+    #box {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="left">
+        <div id="box">
+            这是一个<strong>div</strong>
+        </div>
+    </div>
+    <button>克隆</button>
+    <div class="right"><div id="box">
+            这是一个<strong>div</strong>
+        </div></div>
+</div>
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    let btn = document.querySelector("button");
+    let right = document.querySelector(".right");
+    box.onclick = function(){
+        alert(1);
+    };
+    btn.onclick = function(){
+        let newBox = box.cloneNode(true);
+        newBox.onclick = box.onclick;
+        right.appendChild(newBox);
+    };
+})();
+</script>    
+
+</body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .wrap {
+        margin: 50px auto;
+        width: 500px;  
+        display: flex;      
+    }
+    .left,
+    .right {
+        width: 200px;
+        height: 300px;
+        border: 1px solid #000;
+    }
+    #btns {
+        margin: auto;
+    }
+    .wrap li {
+        font: 14px/36px "宋体";
+        background: #ccc;
+        border-bottom: 1px solid #fff;
+        text-indent: 10px;
+    }
+    .wrap .active {
+        background: #000;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="left">
+        <li>天气不错</li>
+        <li>要不我们测试一下</li>
+        <li>还是上次的内容</li>
+    </ul>
+    <div id="btns">
+        <button>向左</button>
+        <button>向右</button>
+    </div>
+    <ul class="right">
+        <li>天气不好</li>
+        <li>在家敲代码吧</li>
+        <li>妙味课堂</li>    
+    </ul>
+</div>
+<script>
+(function(){
+    let lis = document.querySelectorAll(".wrap li");
+    let left = document.querySelector(".left");
+    let btn = document.querySelectorAll("button");
+    let right = document.querySelector(".right");
+    lis.forEach((li)=>{
+        li.onclick = function(){
+            this.classList.toggle("active");
+        };
+    });
+    btn[0].onclick = function(){
+        let actives = right.querySelectorAll(".active");
+        if(actives.length == 0){
+            alert("请选择要移动端元素");
+        }
+        actives.forEach((item)=>{
+            left.insertBefore(item,left.children[0]);
+        });
+    };
+    btn[1].onclick = function(){
+        let actives = left.querySelectorAll(".active");
+        if(actives.length == 0){
+            alert("请选择要移动端元素");
+        }
+        actives.forEach((item)=>{
+            right.insertBefore(item,right.children[0]);
+        });
+    };
+})();
+</script>    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- 这是一个注释 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul id="list">
+    <li>列表项1</li>
+    <li>列表项2</li>
+    <li>列表项3</li>
+    <li>列表项4</li>
+</ul>
+<script>
+(function(){
+    let node = document.childNodes;
+    //console.log(node);
+    //console.log(document.nodeType);
+    console.log(node[1].nodeType);
+})();
+/*
+DOM节点：组成文档基本单元, 文本节点，注释，注释节点，元素节点，文档声明, document
+节点类型 nodeType:
+    元素： 1，
+    属性： 2，
+    文本： 3，
+    注释： 8，
+    document： 9，
+    文档声明： 10
+
+节点关系：
+    childNodes 子节点
+    children   子元素
+    parentNode 父节点
+    firstChild
+    firstElementChild
+    lastChild
+    lastElementChild
+    nextSibling
+    nextElementSibling
+    previousSibling
+    previousElementSibling
+
+属性操作：
+    el.getAttribute("attr")
+    el.setAttribute("attr","val")
+    el.removeAttribute("attr")
+    el.hasAttribute("attr")
+    el.attributes
+
+*/
+</script>    
+</body>
+</html>

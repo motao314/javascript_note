@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input {
+            float: left;
+        }
+        #wrap {
+            float: left;
+        }
+        #wrap div {
+            position: relative;
+            float: left;
+            margin: 20px;
+            width: 60px;
+            height: 60px;
+            background: red;
+            color: #fff;
+            font: 30px/60px "宋体";
+            text-align: center;
+        }
+        .prev {
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: pointer;
+        }
+        .prev::before {
+            content: "<";
+        }
+        .next {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+        .next::before {
+            content: ">";
+        }
+    </style>
+</head>
+<body>
+<div id="wrap"></div>
+<script src="js/miaov.js"></script>
+<script>
+let wrap = document.getElementById("wrap");
+let index = 0;
+let btn = document.createElement("input");
+btn.type = "button";    
+btn.value = "新建按钮";
+btn.onclick = function(){
+    let div = document.createElement("div");
+    let prev = document.createElement("a");
+    let next = document.createElement("a");
+    prev.className = "prev";
+    next.className = "next";
+    css(div,"translateX",0);
+    prev.onclick = function(){
+        let prevElement = div.previousElementSibling;
+        if(prevElement){
+            mTween({
+                el: prevElement,
+                attr: {
+                    translateX: 100 
+                } 
+            });
+            mTween({
+                el: div,
+                attr: {
+                    translateX: -100 
+                },
+                cb: function(){
+                    wrap.insertBefore(div,prevElement);
+                    css(div,"translateX",0);
+                    css(prevElement,"translateX",0); 
+                } 
+            });
+        }
+    };
+    next.onclick = function(){
+        let nextElement = div.nextElementSibling;
+    };
+    index++;
+    div.innerHTML = index;
+    div.appendChild(prev);
+    div.appendChild(next);
+    wrap.appendChild(div);
+};
+/* 添加节点 */
+document.body.appendChild(btn);
+</script>    
+</body>
+</html>

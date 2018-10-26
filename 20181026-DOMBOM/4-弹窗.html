@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+#btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+</style>
+</head>
+<body>
+<div id="btn">
+    <button>点击抽奖</button>    
+    <button>关闭</button>
+</div>    
+<iframe src="http://www.baidu.com" style="width:100%;height:100vh" frameborder="0"></iframe> 
+<script>
+    //console.log(window.prompt());
+    let btn = document.querySelectorAll("button");
+    btn[0].onclick = function(){
+        let win = window.open("https://www.miaov.com","_blank","channelmode=yes");
+        console.log(win);
+        setTimeout(function(){
+            win.close();
+        },3000);
+    };    
+    btn[1].onclick = function(){
+        window.close();
+    };
+</script>        
+</body>
+</html>

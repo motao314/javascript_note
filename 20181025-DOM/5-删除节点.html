@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+</style>
+</head>
+<body>
+<button>新建</button>
+<ul class="list"></ul>   
+<script>
+(function(){
+    let btn = document.querySelector("button");
+    let list = document.querySelector(".list");
+    let index = 0;
+    btn.onclick = function(){
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        a.href = "javascript:;";
+        a.innerHTML = "删除";
+        let nowIndex = index;
+        index++;
+        li.innerHTML = "新的li"+index;
+        a.onclick = function(){
+            list.removeChild(li);
+        };
+        li.appendChild(a);
+        list.insertBefore(li,list.children[0]);
+    };
+})();
+</script>     
+</body>
+</html>

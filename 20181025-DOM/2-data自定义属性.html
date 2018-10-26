@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h2[data-title="妙味餐厅"] {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<!-- 
+    data-key="val"
+-->
+<div id="box">
+    <h2 data-title="妙味课堂" data-label="随便吧">妙味课堂</h2>
+    <p data-txt="miaov">妙味课堂</p>
+</div>            
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    box.children[0].dataset.title = "妙味餐厅";
+    console.log(box.children[0].dataset.title);
+    // dataset    
+
+/*
+    el.dataset
+    el.innerHTML
+*/    
+})();
+</script>
+</body>
+</html>
