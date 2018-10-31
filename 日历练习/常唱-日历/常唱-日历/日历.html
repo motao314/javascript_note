@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>系统日历</title>
+	<style>
+		ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.box{
+			width: 560px;
+			height: 490px;
+			margin: 30px auto;
+			position: relative;
+		}
+		.boxl{
+			width: 200px;
+			height: 490px;
+			background: #292f52;
+			float: left;
+			box-shadow: 3px 0 3px #000;
+			position:absolute;
+		}
+		.zbox{
+            width: 140px;
+			height: 140px;
+			background: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            margin: 0 auto;
+			position: relative;
+			margin-top: 40px;
+			box-shadow: 2px 2px 10px #000;
+        }
+        .list,.list2{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            position: relative;
+        }
+        .list li{
+            position: absolute;
+            top: -2px;
+            left:69px;
+            width: 2px;
+            height: 6px;
+            background: rgb(159, 159, 159);
+            transform-origin: center 72px;
+        }
+        .list2 li span{
+            display: block;
+        }
+        .list2 li{
+            position: absolute;
+            top: 10px;
+            left:66px;
+            width: 3px;
+            height:6px;
+            transform-origin: center 60px;
+			font: bold 10px/15px "微软雅黑";
+			color: #000;
+        }
+        .list li:nth-child(5n+1){
+			height:12px;
+            background: #292f52;
+        }
+        .h{
+            position: absolute;
+            top: 50px;
+            left:67px;
+            width: 4px;
+            height:20px;
+            background: #292f52;
+			transform-origin: bottom;
+			z-index:3;
+        }
+        .m{
+            position: absolute;
+            top: 42px;
+            left:67px;
+            width: 4px;
+            height:28px;
+            background: #292f52;
+			transform-origin: bottom;
+			z-index:2;
+        }
+        .s{
+            position: absolute;
+            top: 33px;
+            left:68px;
+            width: 3px;
+            height:37px;
+            background: rgb(251, 130, 130);
+			transform-origin: bottom;
+			z-index:1;
+		}
+		.ntime {
+            margin-top: 40px;
+            width: 200px;
+			height: 80px;
+			background: #000;
+			font: bold 40px/80px "微软雅黑";
+			color: #fff;
+			text-align: center;
+		}
+		.nyear{
+			width: 200px;
+			text-align: center;
+			margin-top: 50px;
+			font:  20px/40px "微软雅黑";
+			color: #fff;
+		}
+		.nweek{
+			width: 200px;
+			text-align: center;
+			margin-top: 10px;
+			font:  25px/40px "微软雅黑";
+			color: #fff;
+		}
+		.boxr{
+			width: 336px;
+			height: 470px;
+			padding: 20px 11px 0 13px;
+			background: url("img/bg.jpeg") no-repeat;
+			float: right;
+			position: relative;
+		}
+		.now{
+			width: 336px;
+			height: 65px;
+			padding-bottom: 15px;
+			border-bottom: 2px solid #fff;
+			text-align: center;
+		}
+		.now button{
+			padding: 0;
+			margin: 0;
+			background: 0;
+			border: none;
+			width: 30px;
+			height: 65px;
+			font:  20px/65px "微软雅黑";
+			color: #fff;
+			margin: 0 10px;
+			outline: none;
+		}
+		.now span{
+			height: 42px;
+			font: 20px/42px "微软雅黑";
+			color: #fff;
+		}
+		.boxr .mm{
+			display: flex;
+            flex-wrap:wrap ;
+            justify-content: space-around;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.9);
+			position: absolute;
+			top: 80px;
+			left: 0;
+			height: 0;
+			overflow: hidden;
+		}
+		.boxr .mm span{
+            text-align: center;
+            display: inline-block;
+            width: 75px;
+            height: 50px;
+            font: 20px/50px "微软雅黑";
+			color: #fff;
+            margin: 4px 0;
+		}
+		.boxr .daylist{
+			height: 289px;
+			padding-top: 20px;
+		}
+		.boxr .daylist .week{
+			width: 100%;
+			height: 35px;
+			margin-bottom: 5px;
+		}
+		.boxr .daylist .week li{
+			width: 46px;
+			font: 20px/35px "微软雅黑";
+			color: #fff;
+			margin-right: 2px;
+			text-align: center;
+			float: left;
+		}
+		.boxr .date-list {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.boxr .daylist .date-list li{
+			width: 44px;
+			height: 44px;
+			margin: 2px;
+			font: 20px/46px "微软雅黑";
+			color: rgb(221, 221, 221);
+			text-align: center;
+			display: block;
+			margin-right: 2px;
+		}
+		.boxr .daylist .date-list .gray{
+			background: rgba(234, 234, 234,0.3);
+			color: #fff;
+		}
+		.boxr .daylist .date-list .red{
+			background: rgb(251, 130, 130);
+			color: #fff;
+		}
+		.boxr .daylist .date-list li:hover{
+			box-shadow: inset 0 0 0 2px rgb(251, 130, 130);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="boxl">
+			<div class="zbox">
+					<ul class="list"></ul>
+					<ul class="list2">
+					</ul>
+					<div class="h"></div>
+					<div class="m"></div>
+					<div class="s"></div>
+			</div>
+			<div class="ntime">
+				<span>00:00:00</span>
+			</div>
+			<div class="nyear">				
+				<span>0000年00月00日</span>				
+			</div>
+			<div class="nweek">星期几</div>
+		</div>
+		<div class="boxr">
+			<div class="now">
+				<button><</button>
+				<span>0000年00月</span>
+				<button>></button>
+			</div>
+			<div class="mm">
+				<span>一月</span>
+				<span>二月</span>
+				<span>三月</span>
+				<span>四月</span>
+				<span>五月</span>
+				<span>六月</span>
+				<span>七月</span>
+				<span>八月</span>
+				<span>九月</span>
+				<span>十月</span>
+				<span>十一月</span>
+				<span>十二月</span>
+			</div>
+			<div class="daylist">
+				<ul class="week">
+					<li>日</li>
+					<li>一</li>
+					<li>二</li>
+					<li>三</li>
+					<li>四</li>
+					<li>五</li>
+					<li>六</li>					
+				</ul>
+				<ul class="date-list">
+				</ul>
+			</div>
+		</div>
+	</div>
+<script>
+	(function(){
+		//时钟
+		setInterval(fn,20);
+        let list = document.querySelector(".list");
+        let list2 = document.querySelector(".list2");
+        let inner = "";
+        let arr = "";
+        for (i=0;i<60;i++){
+            inner +='<li style="transform: rotate('+i*6+'deg)"></li>';
+        };
+        for (a=1;a<13;a++){
+            arr+='<li style="transform:rotate('+a*30+'deg)"><span style="transform:rotate('+a*-30+'deg)">'+a+'</span></li>';
+        };
+        list.innerHTML =inner;
+        list2.innerHTML =arr;
+        function fn(){
+            let now = new Date();
+            let hours =now.getHours();
+            let minutes= now.getMinutes();
+            let seconds= now.getSeconds();
+            let h =document.querySelector(".h");
+            let m =document.querySelector(".m");
+            let s =document.querySelector(".s");
+            h.style.transform= "rotate("+30*hours+"deg)";
+            m.style.transform= "rotate("+6*minutes+"deg)";
+            s.style.transform= "rotate("+6*seconds+"deg)";
+        };
+		//获取本地时间
+		let ntime = document.querySelector(".ntime");
+		let nyear = document.querySelector(".nyear");
+		let nweek = document.querySelector(".nweek");
+		let nmonth = document.querySelector(".now span");
+		let btn = document.querySelectorAll(".now button");
+		let mm = document.querySelector(".mm");
+        let monthSpan = mm.querySelectorAll(".mm span");
+		let week = ["日","一","二","三","四","五","六"];
+						
+		toTime();
+		let timer = 0;	
+		timer = setInterval(toTime,1000);							
+		function toTime(){
+			let dateTime = new Date();
+			let hours = dateTime.getHours();
+			let minutes = dateTime.getMinutes();
+			let seconds = dateTime.getSeconds();
+			let year = dateTime.getFullYear();
+			let month = dateTime.getMonth() + 1;
+			let date = dateTime.getDate();
+			let day = dateTime.getDay();
+			ntime.innerHTML = `${toDB(hours)}:${toDB(minutes)}:${toDB(seconds)}`;
+			nyear.innerHTML = `${year}年${toDB(month)}月${toDB(date)}日`;			
+			// nmonth.innerHTML = `${year}年${toDB(month)}月`;	
+			nweek.innerHTML = `星期${week[day]}`;
+			//点击返回时间
+			nyear.onclick = function(){
+				let dateTime = new Date();
+				let year = dateTime.getFullYear();
+				let month = dateTime.getMonth() + 1;
+				nmonth.innerHTML = `${year}年${toDB(month)}月`;
+			};	
+			//点击切换月份
+			nmonth.onclick = function (){
+				mm.style.height="174px";
+				nmonth.innerHTML = `${year}年`;
+				btn[0].onclick = function(){
+					year--;
+					nmonth.innerHTML = `${year}年`;
+				};
+				btn[1].onclick = function(){
+					year++;
+					nmonth.innerHTML = `${year}年`;	
+				};
+			};
+			monthSpan.forEach((item,index)=>{
+				item.onclick = function(){
+					mm.style.height="0";
+					nmonth.innerHTML = `${year}年${toDB(index+1)}月`;
+					toDate(year,index+1)
+					li()										
+				};
+			});							
+		};
+
+		
+		toBtn();
+		function toBtn(){
+			let dateTime = new Date();
+			let year = dateTime.getFullYear();
+			let month = dateTime.getMonth() + 1;
+			let date = dateTime.getDate();
+			nyear.innerHTML = `${year}年${toDB(month)}月${toDB(date)}日`;			
+			nmonth.innerHTML = `${year}年${toDB(month)}月`;	
+			//点击月份
+			btn[0].onclick = function(){
+				month--;
+				if(month<1){
+					year--;
+                	month = 12;
+				}
+				nmonth.innerHTML = `${year}年${toDB(month)}月`;
+				toDate(year,month)
+				li()
+			};
+			btn[1].onclick = function(){
+				month++;
+				if(month >12){
+					year++;
+					month =1;
+				}
+				nmonth.innerHTML = `${year}年${toDB(month)}月`;
+				toDate(year,month)
+				li()
+			};	
+		};
+				
+		let tbody = document.querySelector(".date-list");		
+		toDate(2018,10);
+		//点击增加背景色
+		li()
+		function li(){
+			let bgc = tbody.querySelectorAll(".date-list li");
+			for(var j=0;j<bgc.length;j++){
+				bgc[j].onclick = function(){
+					for(var j=0;j<bgc.length;j++){
+						bgc[j].style.backgroundColor = "";
+					};
+					this.style.backgroundColor = "rgba(251, 130, 130,.5)";
+				};
+			};
+		}
+		//获取天数
+		function toDate(year,month){
+			var nowDate = new Date(year,month-1,1);
+			var firstDay = nowDate.getDay();//获取到当月1号是星期几
+			var days = new Date(year,month,0).getDate();//上个月最后一天,通过上个月最后一天获取这个月有几天
+			var lastDays = new Date(year,month-1,0).getDate();//获取上个月一共有多少天
+			var dates = [];
+			for(var i = 0; i < 42; i++){
+				if(i < firstDay){ //这里是要补进去的上个月的日期
+					dates.push(`<li>${lastDays - firstDay+1+i}</li>`);
+				} else if(i==new Date().getDate()&& month == new Date().getMonth() + 1 && year == new Date().getFullYear()){
+					dates.push(`<li class="red">${new Date().getDate()}</li>`);
+				}else if(i >= firstDay && i < days + firstDay){
+					dates.push(`<li class="gray">${i - firstDay + 1}</li>`);
+				} else {
+					dates.push(`<li>${i - (days + firstDay) + 1}</li>`);	
+				};
+			};
+			tbody.innerHTML = dates.join("");
+		};
+	})();
+	function toDB(nub){
+		return nub < 10?"0"+nub:""+nub;
+	};
+</script>   
+</body>
+</html>

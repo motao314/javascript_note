@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p {
+            margin: 0;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .wrap {
+            margin: 0 auto;
+            width: 400px;
+            height: 300px;
+            border: 1px solid #071624;
+            border-radius: 6px;
+        }
+
+        .box1 {
+            width: 398px;
+            height: 298PX;
+            border: 1px solid #e5eef6;
+            border-radius: 5px;
+        }
+
+        .box2 {
+            width: 392px;
+            height: 292PX;
+            border: 3px solid #c1daf0;
+            border-radius: 4px;
+        }
+
+        .box3 {
+            width: 390px;
+            height: 290px;
+            border: 1px solid #fff;
+            border-radius: 3px;
+        }
+
+        .box4 {
+            width: 388px;
+            height: 288px;
+            border: 1px solid #000;
+            border-radius: 3px;
+        }
+
+        .title {
+            height: 45px;
+            text-align: center;
+        }
+
+        .title a {
+            text-decoration: none;
+            color: blue;
+            font: 14px/45px "微软雅黑";
+        }
+
+        .content {
+            height: 215px;
+        }
+
+        .box4 .left {
+            width: 190px;
+            margin: 10px 10px 0;
+            float: left;
+        }
+
+        .box4 .right {
+            width: 158px;
+            padding: 0 10px;
+            float: right;
+            text-align: center;
+            font: 14px/25px "微软雅黑";
+        }
+
+        .left .lis {
+            width: 100%;
+            height: 30px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .lis .lef {
+            float: left;
+            width: 20px;
+            cursor: pointer;
+        }
+
+        .lis .lef:hover {
+            color: blue;
+        }
+
+        .lis .rig:hover {
+            color: blue;
+        }
+
+        .lis .rig {
+            float: left;
+            width: 20px;
+            cursor: pointer;
+        }
+
+        .cent {
+            width: 150px;
+            height: 20px;
+            font: 14px/20px '微软雅黑';
+            float: left;
+            display: none;
+        }
+
+        .left .lis .cent:hover {
+            color: blue;
+            cursor: pointer;
+        }
+
+        .box4 .week {
+            height: 20px;
+            width: 100%;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .box4 .week li {
+            font: 14px/20px "微软雅黑";
+        }
+
+        .box4 .number {
+            width: 190px;
+            height: 150px;
+            transition: .5s;
+            transform-origin: center center;
+        }
+
+        .box4 .number li {
+            float: left;
+            width: 25px;
+            height: 22px;
+            border: 1px solid transparent;
+            text-align: center;
+            font: 14px/22px "微软雅黑";
+        }
+
+        .box4 li:hover {
+            border-color: #bfd1ff;
+            color: bule;
+            border-radius: 5px;
+            background: #ebf1ff;
+        }
+
+        .box4 .yue {
+            width: 190px;
+            height: 150px;
+            display: none;
+            transition: 1s;
+            transform-origin: center center;
+        }
+
+        .box4 .yue li {
+            float: left;
+            width: 47px;
+            height: 50px;
+            font: 14px/50px "微软雅黑";
+            text-align: center;
+        }
+
+        .box4 .nian {
+            width: 190px;
+            height: 150px;
+            display: none;
+            transition: 1s;
+            transform-origin: center center;
+        }
+
+        .box4 .nian li {
+            float: left;
+            width: 47px;
+            height: 50px;
+            font: 14px/50px "微软雅黑";
+            text-align: center;
+            transform-origin: center center;
+        }
+
+        .box4 .nianAll {
+            width: 190px;
+            height: 150px;
+            display: none;
+            transition: 1s;
+        }
+
+        .box4 .nianAll li {
+            padding: 5px 0;
+            float: left;
+            width: 47px;
+            height: 40px;
+            font: 14px/20px "微软雅黑";
+        }
+
+        .right .date {
+            width: 156px;
+            height: 156px;
+            border: 1px solid #4c4c4c;
+            border-radius: 50%;
+        }
+
+        .right .date1 {
+            width: 150px;
+            height: 150px;
+            border: 3px solid #e1e4e7;
+            border-radius: 50%;
+        }
+
+        .right .date2 {
+            width: 148px;
+            height: 148px;
+            border: 1px solid #4c4c4c;
+            border-radius: 50%;
+            background: linear-gradient(to top left, #fff, #ccd6d9);
+            position: relative;
+        }
+
+        .right .scale {
+            width: 146px;
+            height: 146px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+
+        }
+
+        .scale li {
+            width: 2px;
+            height: 2px;
+            background: #999;
+            position: absolute;
+            left: 72.5px;
+            top: 1px;
+            transform-origin: center 73px;
+        }
+
+        .scale li:nth-child(5n+1) {
+            height: 8px;
+            background: #606060;
+        }
+
+        .dot {
+            width: 5px;
+            height: 5px;
+            background: #636363;
+            position: absolute;
+            top: 71px;
+            left: 71px;
+            border-radius: 3px;
+        }
+
+        .h {
+            width: 3px;
+            height: 45px;
+            position: absolute;
+            background: #555;
+            top: 29px;
+            left: 72px;
+            transform-origin: bottom;
+        }
+
+        .m {
+            width: 2px;
+            height: 55px;
+            position: absolute;
+            background: #6d6d6d;
+            top: 19px;
+            left: 72.5px;
+            transform-origin: bottom;
+        }
+
+        .s {
+            width: 1px;
+            height: 90px;
+            position: absolute;
+            background: #a7a7a7;
+            top: 9px;
+            left: 73px;
+            transform-origin: 0 65px;
+        }
+
+        .bottom {
+            text-align: center;
+            font: 14px/27px '微软雅黑';
+            background: #f1f5fb;
+            border-top: 1px solid #ccd9ea;
+        }
+
+        .bottom a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .active {
+            color: #bdbdbd;
+        }
+
+        .xianshi {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box1">
+            <div class="box2">
+                <div class="box3">
+                    <div class="box4">
+                        <div class="title">
+                            <a href="#">2018年10月21日</a>
+                        </div>
+                        <div class="content">
+                            <div class="left">
+                                <div class="lis">
+                                    <span class="lef">
+                                        <</span> <p class="cent xianshi">
+                                            </p>
+                                            <p class="cent"></p>
+                                            <p class="cent"></p>
+                                            <p class="cent">2000-2099</p><span class="rig">></span>
+                                </div>
+                                <ul class="week">
+                                    <li>日</li>
+                                    <li>一</li>
+                                    <li>二</li>
+                                    <li>三</li>
+                                    <li>四</li>
+                                    <li>五</li>
+                                    <li>六</li>
+                                </ul>
+                                <div class="contents">
+                                    <ul class="mi number">
+                                    </ul>
+                                    <ul class="mi yue">
+                                    </ul>
+                                    <ul class="mi nian">
+                                    </ul>
+                                    <ul class="mi nianAll">
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="date">
+                                    <div class="date1">
+                                        <div class="date2">
+                                            <ul class="scale">
+                                            </ul>
+                                            <div class="dot"></div>
+                                            <div class="h"></div>
+                                            <div class="m"></div>
+                                            <div class="s"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>16:13:21</p>
+                                <p>星期</p>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <a href="#">更改日期和时间设置...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="miaov.js"></script>
+</body>
+<script>
+    (function () { //时间列表
+        let nub = document.querySelector('.number');
+        let lef = document.querySelector('.lef');
+        let rig = document.querySelector('.rig');
+        let p2 = document.querySelector('.left p');
+        let title = document.querySelector('.title a');
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1; //月份的获取从0月开始，0月代表1月，正常使用时+1
+        let date2 = date.getDate();
+        let year1 = date.getFullYear();
+        let month1 = date.getMonth() + 1; //月份的获取从0月开始，0月代表1月，正常使用时+1
+        let date3 = date.getDate();
+        let year2 = date.getFullYear();
+        let month2 = date.getMonth() + 1; //月份的获取从0月开始，0月代表1月，正常使用时+1
+        let date4 = date.getDate();
+        //title的时间
+        title.innerHTML = `${year}年${toDB(month)}月${toDB(date2)}日`;
+        p2.innerHTML = `${year}年${toDB(month)}月${toDB(date2)}日`; //title下的时间
+        toDate(year, month);
+
+        let black = document.querySelectorAll('.black');
+        black[date2 - 1].style.backgroundColor = "blue";
+
+        function toDate(year, month) {
+            let firstDay = new Date(year, month - 1, 1).getDay();
+            let lastMonthDays = new Date(year, month - 1, 0).getDate();
+            let inner = "";
+            let lastMonthFirst = lastMonthDays - firstDay + 1; //上个月在这个列表中需要显示的第一天是几号;
+            let nowMonthFirst = 1;
+            let nowMonthLast = new Date(year, month, 0).getDate();
+            let nextMonthFirst = 1;
+            for (let i = 0; i < 42; i++) {
+                if (i < firstDay) {
+                    inner += `<li class="active">${lastMonthFirst}</li>`;
+                    lastMonthFirst++;
+                } else if (nowMonthFirst <= nowMonthLast) {
+                    inner += `<li class="black">${nowMonthFirst}</li>`;
+                    nowMonthFirst++;
+                } else {
+                    inner += `<li class="active">${nextMonthFirst}</li>`;
+                    nextMonthFirst++;
+                }
+            }
+
+            nub.innerHTML = inner;
+
+            let cent = document.querySelectorAll('.cent');
+            let mi = document.querySelectorAll(".mi");
+
+            //点击日期往里切换
+            for (let i = 0; i < cent.length; i++) {
+                cent[0].onclick = function () {
+                    centNone();;
+                    cent[1].style.display = "block";
+                    setTimeout(function () {
+                        mi[0].style.display = "none";
+                    }, 400);
+                    mi[0].style.transform = "scale(0)";
+                    setTimeout(function () {
+                        mi[1].style.display = "block";
+                    }, 400);
+                }
+
+                cent[1].onclick = function () {
+                    centNone();
+                    cent[2].style.display = "block";
+                    setTimeout(function () {
+                        mi[1].style.display = "none";
+                    }, 400);
+                    mi[1].style.transform = "scale(0)";
+                    setTimeout(function () {
+                        mi[2].style.display = "block";
+                    }, 400);
+                }
+                cent[2].onclick = function () {
+                    centNone();
+                    cent[3].style.display = "block";
+                    setTimeout(function () {
+                        mi[2].style.display = "none";
+                    }, 400);
+                    mi[2].style.transform = "scale(0)";
+                    setTimeout(function () {
+                        mi[3].style.display = "block";
+                    }, 400);
+                }
+            };
+
+            function centNone() { //让所有cent隐藏
+                cent.forEach((item) => {
+                    item.style.display = "none";
+                });
+            };
+
+            function mis() { //让所有mi还原
+                mi.forEach((item) => {
+                    item.style.transform = "scale(1)";
+                });
+            };
+
+            function miNone() { //让所有mi隐藏
+                mi.forEach((item) => {
+                    item.style.display = "none";
+                });
+            };
+            //当点击title的时候让时间和内容回到默认
+            title.onclick = function () {
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let date2 = date.getDate();
+                cent[0].innerHTML = `${year}年${toDB(month)}月${toDB(date2)}日`;
+                toDate(year, month);
+                centNone();
+                cent[0].style.display = "block";
+                mis();
+                miNone();
+                nub.style.display = "block";
+                cent[1].innerHTML = year;
+            }
+            dyues();
+            //获取月份的记录
+            function dyues() {
+                let yues = document.querySelector('.yue');
+                let yue = "";
+                let arr = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                for (let i = 0; i < 12; i++) {
+                    yue += `<li>${arr[i]}</li>`;
+                }
+                yues.innerHTML = yue;
+                //月份的title
+                cent[1].innerHTML = year1;
+                let yueAll = yues.querySelectorAll('li');
+                yueAll.forEach((item, index) => {
+                    item.onclick = function () {
+                        mi[1].style.display = "none";
+                        mi[1].style.transform = "scale(1)";
+                        mi[0].style.display = "block";
+                        mi[0].style.transform = "scale(1)";
+                        cent[0].style.display = "block";
+                        cent[1].style.display = "none";
+                        toDate(year, index + 1);
+                        p2.innerHTML = `${year1}年${toDB(index+1)}月${toDB(date2)}日`;
+                    }
+                });
+            };
+
+
+            //获取年份的记录
+            dnian();
+
+            function dnian() {
+                let nians = document.querySelector('.nian');
+                let nian = "";
+                for (let i = 0; i < 12; i++) {
+                    nian += `<li>${(year2-9)+i}</li>`;
+                }
+                nians.innerHTML = nian;
+                //年份的title
+                cent[2].innerHTML = `${year2-8}-${year2+1}`;
+                //当点击年份里面的内容时，显示对应的年份
+                let nianAll = nians.querySelectorAll('li');
+                nianAll.forEach((item, index) => {
+                    item.onclick = function () {
+                        mi[2].style.display = "none";
+                        mi[1].style.display = "block";
+                        cent[1].style.display = "block";
+                        cent[2].style.display = "none";
+                        mi[1].style.transform = "scale(1)";
+                        cent[1].innerHTML = item.innerHTML;
+                    };
+                });
+            }
+
+
+            //获取所有年份的记录
+            let nianAll = document.querySelector('.nianAll');
+            let nianAs = "";
+            for (let i = 0; i < 11; i++) {
+                nianAs += `<li>${(1990+i*10)+'-'+(1999+i*10)}</li>`;
+            }
+            nianAll.innerHTML = nianAs;
+            //当点击月份里面的内容时，显示对应的月份
+
+
+            //年月份的切换按钮
+            lef.onclick = function () { //左切换按钮
+                month--;
+                year1--;
+                year2 = year2 - 10;
+                if (month == 0) {
+                    year = year - 1;
+                    month = 12;
+                }
+                p2.innerHTML = `${year}年${toDB(month)}月${toDB(date2)}日`;
+                toDate(year, month);
+            };
+            rig.onclick = function () { //右切换按钮
+                month++;
+                year1++;
+                year2 = year2 + 10;
+                if (month == 13) {
+                    year = year + 1;
+                    month = 1;
+                }
+                p2.innerHTML = `${year}年${toDB(month)}月${toDB(date2)}日`;
+                toDate(year, month);
+            };
+
+        }
+    })();
+    (function () { //时钟刻度
+        let scale = document.querySelector('.scale');
+        let inner = "";
+        for (let i = 0; i < 60; i++) {
+            inner += `<li style="transform:rotate(${i*6}deg)"></li>`;
+        };
+        scale.innerHTML = inner;
+    })();
+    (function () { //时钟计算
+        let h = document.querySelector('.h');
+        let m = document.querySelector('.m');
+        let s = document.querySelector('.s');
+        toTime();
+        setInterval(toTime, 1000);
+
+        function toTime() {
+            let day = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+            let date = new Date();
+            let second = date.getSeconds();
+            let minutes = date.getMinutes() + second / 60;
+            let hours = date.getHours() + minutes / 60;
+            css(s, "rotate", second * 6);
+            css(m, "rotate", minutes * 6);
+            css(h, "rotate", hours * 30);
+
+            let today = document.querySelectorAll('.right p');
+            let time = toDB(date.getHours()) + ':' + toDB(date.getMinutes()) + ':' + toDB(date.getSeconds());
+            //时钟下的日期
+            let getDay = date.getDay();
+            today[0].innerHTML = time;
+            today[1].innerHTML = day[getDay];
+        }
+    })();
+
+    function toDB(nub) {
+        return nub < 10 ? "0" + nub : "" + nub;
+    }
+</script>
+
+</html>

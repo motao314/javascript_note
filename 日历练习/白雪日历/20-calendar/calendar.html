@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>日历</title>
+    <link rel="stylesheet" href="calendar.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left">
+            <div class="ctrl">
+                <div class="about-date fl">
+                    <span class="year">2018年</span>
+                    <span class="month">11月</span>
+                </div>
+                <div class="change-year fr" style="display:none;">
+                    <span class="prev-year">⇠</span>
+                    <span class="next-year">⇢</span>
+                </div>
+                <div class="change-decade fr" style="display:none;">
+                    <span class="prev-decade">⇤</span>
+                    <span class="next-decade">⇥</span>
+                </div>
+                <div class="btns fr">
+                    <span class="prev">←</span>
+                    <span class="next">→</span>
+                </div>
+            </div>
+            <div class="content">
+                <div class="tab-date" style="display:block;">
+                    <div class="week">
+                        <span>日</span>
+                        <span>一</span>
+                        <span>二</span>
+                        <span>三</span>
+                        <span>四</span>
+                        <span>五</span>
+                        <span>六</span>
+                    </div>
+                    <div class="box">
+                        <ul class="days fl"></ul>
+                        <ul class="days fl"></ul>
+                    </div>
+                </div>
+                <ul class="tab-months" style="display:none;">
+                    <li>一月</li>
+                    <li>二月</li>
+                    <li>三月</li>
+                    <li>四月</li>
+                    <li>五月</li>
+                    <li>六月</li>
+                    <li>七月</li>
+                    <li>八月</li>
+                    <li>九月</li>
+                    <li>十月</li>
+                    <li>十一月</li>
+                    <li>十二月</li>
+                </ul>
+                <div class="tab-year" style="display:none;">
+                    <ul class="decade fl"></ul>
+                    <ul class="decade fl"></ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="right">
+            <div class="date">2018-10-22 周一</div>
+            <div class="appointDate">
+                <input type="text">年
+                <input type="text">月
+            </div>
+        </div>
+    </div>
+    <script src="fns.js"></script>
+    <script src="calendar-1.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    background: rgb(113, 184, 228);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.clear {
+    &::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+.box {
+    width: 360px;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 10px auto;
+    .header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 19px 0 15px 24px;
+        .time {
+            font: 33px/49px 'Microsoft YaHei';
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .titleToday {
+            font: 13px/29px 'Microsoft YaHei';
+            color: rgba(0, 207, 255, 0.9);
+        }
+    }
+    .section {
+        padding: 12px;
+        .clear;
+        .month {
+            .clear;
+            span {
+                float: left;
+                font: 13px/29px 'Microsoft YaHei';
+                color: rgba(255, 255, 255, 0.7);
+                padding-left: 12px;
+            }
+            i {
+                float: right;
+                width: 48px;
+                height: 29px;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.7);
+                font: bold 16px/29px 'Microsoft YaHei';
+                &:active {
+                    background: rgba(255, 255, 255, 0.2);
+                    transition: 0.2s;
+                }
+            }
+        }
+        .week {
+            display: flex;
+            span {
+                flex: 1;
+                margin: 1px;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 40px;
+            }
+        }
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            li {
+                box-sizing: border-box;
+                width: 46px;
+                height: 40px;
+                margin: 1px;
+                padding: 0;
+                border: 2px solid transparent;
+                background: transparent;
+                font: 16px/40px 'Microsoft YaHei';
+                text-align: center;
+                color: #fff;
+                transition: 0.5s;
+                &.active {
+                    background: rgba(0, 207, 255, 0.7);
+                }
+                &.gray {
+                    color: rgba(255, 255, 255, 0.2);
+                }
+            }
+        }
+        .list2 {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            div{
+                width:84px;
+                height:63px;
+                text-align: center;
+                font: 14px/63px 'Microsoft YaHei';
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+        .list3{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            div{
+                width:84px;
+                height:63px;
+                text-align: center;
+                font: 14px/63px 'Microsoft YaHei';
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+    }
+    .footer {
+        .clear;
+        font: 13px/23px 'Microsoft YaHei';
+        color: rgba(0, 207, 255, 0.9);
+        padding-right: 21px;
+        padding-bottom: 11px;
+        text-align: center;
+        span {
+            float: right;
+            width: 66px;
+        }
+        i {
+            float: right;
+            width: 18px;
+            &:active {
+                background: rgba(255, 255, 255, 0.2);
+                transition: 0.2s;
+            }
+        }
+    }
+}

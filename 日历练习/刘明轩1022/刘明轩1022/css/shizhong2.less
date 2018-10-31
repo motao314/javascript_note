@@ -1,0 +1,209 @@
+body,dl,dd,ul {
+  margin: 0;
+}
+ul{
+    padding: 0;
+    list-style: none;
+}
+img{
+    vertical-align: top;
+}
+em{
+    font-style: normal;
+}
+.box {
+  width: 343px;
+  
+  border: 1px solid #000000;
+  margin: 20px auto;
+  padding: 14px 0 0 0;
+  font: 12px /12px "宋体";
+  .today {
+    color: #000080;
+    text-align: center;
+    &:hover{
+              text-decoration: underline;
+              cursor: pointer;
+          };
+    &:hover span{
+              text-decoration: underline
+          };      
+    span {
+      display: inline-block;
+    }
+  }
+  .sbox {
+      
+      height:188px;
+    .calendarbox {
+      width: 175px;
+      padding: 24px 0 0 14px;
+      float: left;
+      .top {
+        height: 16px;
+        background: #0a246a;
+        color: #ffffff;
+        text-align: center;
+        padding: 5px;
+        font:bold 12px /16px "宋体";
+        button {
+          width: 20px;
+          height: 15px;
+          outline: none;
+        }
+        .prev {
+          float: left;
+          background: #d4d0c8 url("../images/prev.png") no-repeat center;
+        }
+        .next {
+          float: right;
+          background: #d4d0c8 url("../images/next.png") no-repeat center;
+        }
+        .times {
+          display: inline-block;
+          
+        }
+      }
+      .content {
+        ul {
+            text-align: center;
+            height:120px;
+          
+          li{
+              &:nth-of-type(1){
+                    height: 18px;
+                    border-bottom: 1px solid #000000;
+                    font: 12px /18px "宋体";
+                    color:#0a246a;
+                    em {
+                        float: left;
+                        width: 25px;
+                    }
+              }
+              height:100px;
+              .active{
+                  color:#ffffff;
+                  background: #0a246a;
+                  border:1px dotted #f5db95;
+                  
+              }
+              .active2{
+                  border:1px solid #0a246a;
+              }
+              span{
+                float: left;
+                font: 12px /34px "宋体";
+                box-sizing: border-box;
+                width:43px;
+                height:34px; 
+                
+              }
+              &:nth-of-type(1) span{
+                  width:25px;
+                  height:16px;
+                  line-height: 16px;
+              }
+              &:nth-of-type(4) span{
+                  line-height: 17px;
+                  em{
+                    width:43px;
+                    height:17px;
+                    font-style: normal;
+                   display: inline-block;
+                }
+              }
+          }
+        }
+      }
+    }
+    .clockbox{
+        padding: 15px 18px 0 0;
+        overflow: hidden;
+        float:right;
+        text-align: center;
+        .clock{
+        width:120px;
+        height:120px;
+        border:2px solid #8d95a6;
+        border-radius: 50%;
+        
+        .inclock{
+            width:114px;
+            height:114px;
+            border:2px solid #8d95a6;
+            border-radius: 50%;
+            margin: 1px;
+            position: relative;
+            div{
+                position: absolute;
+            }
+            .scalebox{
+                width:114px;
+                height:114px;
+                .scale{
+                    position: absolute;
+                    top:5px;
+                    left:56px;
+                    width:2px;
+                    height:2px;
+                    background: #a4b6bb;
+                    transform-origin: 1px 52px;
+                    &:nth-of-type(5n+1){
+                        height:8px;
+                        background: #6f8991;
+                    }
+                }
+            }
+            .point{
+                width:2px;
+                height:2px;
+                border:1px solid #11414e;
+                background: #335c67;
+                top:55px;
+                left:55px;
+            }
+            .second{
+                top:9px;
+                left:56px;
+                width:2px;
+                height:70px;
+                background: #5e7077;
+                transform-origin: 1px 48px;
+            }
+            .minute{
+                top:13px;
+                left:55px;
+                height:44px;
+                width:4px;
+                background: #6b7980;
+                transform-origin: 2px 44px;
+                border-radius: 2px;
+            }
+            .hour{
+                top:24px;
+                left:55px;
+                height:35px;
+                width:4px;
+                background: #6b7980;
+                transform-origin: 2px 33px;
+                border-radius: 2px;
+            }
+        }
+        }
+        .nowtime{
+            padding: 8px 0;
+        }
+    }
+  }
+  .change{
+      background: #d4d0c8;
+      height:40px;
+      font:12px/40px '宋体';
+      text-align: center;
+      color:#000080;
+      &:hover{
+              text-decoration: underline;
+              cursor: pointer;
+          };
+  }
+}

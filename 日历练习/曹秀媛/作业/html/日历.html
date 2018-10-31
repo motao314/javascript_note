@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="../css/日历.css" rel="stylesheet">
+    <script src="miaov.js"></script>
+</head>
+<body>
+    <div class="box">
+         <div class="left">
+             <div class="calendar">
+                 <p class="prev"><</p>
+                 <p class="change"></p>
+                 <p class="next">></p>
+             </div>
+             <ul class="datee">
+                 <li class="weekday">日</li>
+                 <li class="weekday">一</li>
+                 <li class="weekday">二</li>
+                 <li class="weekday">三</li>
+                 <li class="weekday">四</li>
+                 <li class="weekday">五</li>
+                 <li class="weekday">六</li>
+             </ul>
+             <ul class="day">
+             </ul>
+             <ul class="nmonths"></ul>
+             <ul class="tenyear"></ul>
+         </div>
+         <div class="right">
+             <div class="clock">
+                 <div class="center"></div>
+                 <div class="hours"></div>
+                 <div class="minutes"></div>
+                 <div class="seconds"></div>
+                 <ul class="list"></ul>
+                 <ul class="list1"></ul>
+             </div>
+             <div class="time"></div>
+             <div class="week"></div>
+         </div>
+    </div>
+    
+    <script>
+    (function(){
+        //或许现在时间
+        let box = document.querySelector(".box");
+        let change = box.querySelector(".change");
+        let prev = box.querySelector(".prev");
+        let next = box.querySelector(".next");
+        let datee = box.querySelector(".datee");
+        let day = box.querySelector(".day");
+        let list = box.querySelector(".list");
+        let list1 = box.querySelector(".list1");
+        let hours = box.querySelector(".hours");
+        let minutes = box.querySelector(".minutes");
+        let seconds = box.querySelector(".seconds");
+        let time = box.querySelector(".time");
+        let week = box.querySelector(".week");
+        let nmonths = box.querySelector(".nmonths");//生成本年所有月份
+        let tenyear = box.querySelector(".tenyear");//生成十年；
+        
+
+        let inner = "";
+        let inner1="";
+        
+        let date = new Date();//当前日期
+        let year = date.getFullYear();//当前年
+        let month = (date.getMonth())+1;//当前月
+        let date1 = date.getDate();//当前日
+
+        //点击月份，切换日历 缩放效果
+        change.onclick = ()=>{
+            
+            nowyear()//年
+            nowmonths()//现在所有的月
+            datee.style.display = "none";
+            day.style.display = "none";
+            nmonths.style.display = "";
+            // tenyear.style.display = "none";
+            allmonths()
+
+
+            prev.onclick = ()=>{//年 减
+                year--;
+                if(year>1969){
+                   nowyear() 
+                }
+                nowmonths()
+                allmonths()
+            }
+            next.onclick = ()=>{//年 加
+                year++;
+                if(year<2100){
+                    nowyear()
+                }
+                nowmonths()
+                allmonths()
+            }
+           
+               
+        }
+        //显示的当前日期
+        nowtime()    
+        returntop()
+        
+         //刻度生成
+         
+         for(let j=0;j<60;j++){
+            inner +=`<li style="transform:rotate(${j*6}deg)"></li>`;
+         }
+         list.innerHTML = inner;
+         //数字生成
+         for(let a=0;a<12;a++){
+             inner1+=`<li style="transform:rotate(${a*30}deg)"><span style="transform:rotate(${-a*30}deg)">${a?a:12}</span></li>`;
+         }
+         list1.innerHTML = inner1;
+         //加计时器
+         totime()
+         setInterval(totime,1000)
+         function totime(){
+            let date = new Date()
+            let second = date.getSeconds();//当前秒
+            let minute = date.getMinutes()+second/60;//当前分钟
+            let hour = date.getHours()+minute/60;//当前小时
+            let hour1 = toDB(parseInt(date.getHours()));//小时取整 单数补0
+            let minute1 = toDB(parseInt(date.getMinutes()));//分钟取整 单数补0
+            let second1 = toDB(date.getSeconds());//单数补0
+            let day = date.getDay();
+            let weekdays = [
+                "星期日",
+                "星期一",
+                "星期二",
+                "星期三",
+                "星期四",
+                "星期五",
+                "星期六"
+            ];
+
+            week.innerHTML = weekdays[day];
+            time.innerHTML = hour1+":"+minute1+":"+second1;
+            css(seconds,"rotate",second*6);
+            css(minutes,"rotate",minute*6);
+            css(hours,"rotate",hour*30);
+         }
+          week.onclick =()=>{//点击星期 回到默认状态
+            year = date.getFullYear();//当前年
+            month = (date.getMonth())+1;//当前月
+            nowtime()
+             returntop()
+             todate(year,month)
+             
+             
+             nmonths.style.display = "none";
+             tenyear.style.display = "none";
+             datee.style.display = "";
+             day.style.display = "";
+    
+             css(day,"scale",0)
+               mTween({
+                   el:day,
+                   attr:{
+                        scale:1
+                   },
+               })
+
+             css(datee,"scale",0)
+               mTween({
+                   el:datee,
+                   attr:{
+                        scale:1
+                   },
+               })
+               
+            
+          }
+
+
+
+
+
+         //2018.10月日历生成。先生成上月剩余日期，本月，下月 一共42个
+         function todate(year,month){
+             let lmday = new Date(year,month-1,0).getDate();//获取上月最后一天 30号
+             let firstday = new Date(year,month-1,1).getDay();//当月一号的星期 周一
+             let firstdata = new Date(year,month-1,1).getDate();//当月第一天 1号
+             let lastday = new Date(year,month,0).getDate();//当月最后一天 31号
+             let nmday = new Date(year,month,1).getDate(); //或许下月第一天 1号
+             let inner = "";
+             
+             for(let i=0;i<42;i++){
+                if(i<firstday){//上月最后一天递减
+                   inner =`<li>${lmday}</li>` + inner;
+                   lmday--;
+                }else if(firstdata<=lastday){//本月天数
+                    inner +=`<li class="dark">${firstdata}</li>`;
+                    firstdata++;
+                }else if(i<42){//下月剩余天数
+                     inner +=`<li>${nmday}</li>`;
+                     nmday++;
+                }
+             }
+             day.innerHTML = inner;
+             
+         }
+         
+        function nowmonths(){//一年内所有月 
+            let allmonth = [
+                "一月",
+                "二月",
+                "三月",
+                "四月",
+                "五月",
+                "六月",
+                "七月",
+                "八月",
+                "九月",
+                "十月",
+                "十一月",
+                "十二月"
+
+            ]
+            let inner = "";
+               for(let b=0;b<12;b++){
+                   inner +=`<li>${allmonth[b]}</li>`;
+               } 
+               nmonths.innerHTML =  inner;   
+               css(nmonths,"scale",0)
+               mTween({
+                   el:nmonths,
+                   attr:{
+                        scale:1
+                   },
+               })
+
+        }
+
+        function nowtime(){//当前时间
+            change.innerText = toDB(year)+"."+toDB(month)+"."+toDB(date1);
+            change.onclick =()=>{
+
+                nmonths.style.display = "";
+                
+                datee.style.display = "none";
+                day.style.display = "none";
+                nowmonths()
+                nowyear()
+                allmonths()
+                 
+                prev.onclick = ()=>{//年 减
+                    year--;
+                    if(year>1969){
+                    nowyear() 
+                    }
+                    nowmonths()
+                    allmonths()
+                    
+                }
+                next.onclick = ()=>{//年 加
+                    year++;
+                    if(year<2100){
+                        nowyear()
+                    }
+                    nowmonths()
+                    allmonths()
+                }
+            }   
+             
+        }
+
+        function allmonths(){
+                let allmonth = nmonths.querySelectorAll("li");//或许所有nmonths下的所有月份
+                allmonth.forEach((item,index)=>{
+                    item.onclick = ()=>{
+                        console.log(22)
+                        nmonths.style.display = "none";
+                        
+                        datee.style.display = "";
+                        day.style.display = "";
+                        month = index+1;
+                        todate(year,month)
+                        nowyearmonth()//
+                        css(day,"scale",0)
+                        mTween({
+                            el:day,
+                            attr:{
+                                    scale:1
+                            },
+                        })
+                        css(datee,"scale",0)
+                        mTween({
+                            el:datee,
+                            attr:{
+                                    scale:1
+                            },
+                        })
+                       
+                        prev.onclick = ()=>{//月 减
+                            month--;
+                            if(month<1){
+                                year--;
+                                month=12;
+                            }
+                                nowyearmonth()
+                                todate(year,month)
+                        }
+                        next.onclick = ()=>{//月 加
+                            month++;
+                            if(month>12){
+                               year++;
+                               month=1;
+                            }
+                                nowyearmonth()
+                                todate(year,month)
+                        }
+                        
+                    }
+                    
+                })
+            }
+
+
+
+
+
+
+
+        function nowyear(){//当前 年
+            change.innerText = toDB(year); 
+            
+            change.onclick =()=>{
+                let change = box.querySelector(".change");
+                console.log(change.innerHTML.length) 
+                if(change.innerHTML.length==4){
+                   tenyears() 
+                }else if(change.innerHTML.length==7){
+                    nowyear()//年
+                    nowmonths()//现在所有的月
+                    datee.style.display = "none";
+                    day.style.display = "none";
+                    nmonths.style.display = "";
+                    tenyear.style.display = "none";
+                    allmonths()
+
+                    prev.onclick = ()=>{//年 减
+                        year--;
+                        if(year>1969){
+                        nowyear() 
+                        }
+                        nowmonths()
+                        allmonths()
+
+                    }
+                    next.onclick = ()=>{//年 加
+                        year++;
+                        if(year<2100){
+                            nowyear()
+                        }
+                        nowmonths()
+                        allmonths()
+
+                    }
+                    
+                }
+                css(tenyear,"scale",0)
+                    mTween({
+                        el:tenyear,
+                        attr:{
+                                scale:1
+                        },
+                    })
+            } 
+           
+
+
+        }
+        function nowyearmonth(){//当前 年 月
+            change.innerText = toDB(year)+"."+toDB(month);
+            change.click = ()=>{
+                tenyear.style.display = "none"; 
+                console.log(33)
+                
+            } 
+              
+        }
+        
+        function toDB(nub){//单数补0；
+            return nub < 10?"0"+nub:""+nub;
+        }
+
+        function tenyears(){//十年
+            inner = "";
+            let oneyear = toDB(year-8);//第一年 2010年
+            let lastyear = toDB(year+1);//第十年 2019年
+            change.innerText = oneyear+"-"+lastyear;
+            nmonths.style.display = "none";
+            tenyear.style.display = "";
+            
+           
+
+            for(let d=0;d<12;d++){
+                inner +=`<li>${year-9+d}</li>`;
+            }
+             tenyear.innerHTML = inner;
+            let anyyear = tenyear.querySelectorAll("li");//获取到十二年内的每一年
+            
+
+             prev.onclick =()=>{//上一个切换十年
+                if(oneyear<1990){
+                  return;
+                }
+
+                 inner='';
+                 let yearli = tenyear.querySelectorAll('li');
+                 oneyear = yearli[1].innerHTML;
+                 lastyear = yearli[10].innerHTML;
+                 
+                 for(let d=0;d<12;d++){
+                    //  console.log(oneyear)//2010
+                    inner +=`<li>${oneyear-11+d}</li>`;
+                }
+                tenyear.innerHTML = inner;
+                change.innerText = (oneyear-10)+"-"+(lastyear-10);
+             }
+
+             next.onclick =()=>{//切换下一个十年
+                if(oneyear>2080){
+                  return;
+                }
+                 inner='';
+                 let yearli = tenyear.querySelectorAll('li');
+                 oneyear = yearli[1].innerHTML;
+                 lastyear = yearli[10].innerHTML;
+                 
+                 for(let d=0;d<12;d++){
+                     console.log(oneyear)//2010
+                    inner +=`<li>${parseInt(oneyear)+9+d}</li>`;
+                }
+                tenyear.innerHTML = inner;
+                change.innerText = parseInt(oneyear)+10+"-"+(parseInt(lastyear)+10);
+             }
+              
+             anyyear.forEach((item)=>{
+                 item.onclick = ()=>{
+                    change.innerText=item.innerText;
+                    tenyear.style.display = "none";
+                    nmonths.style.display = "";
+                    year = change.innerText
+                   console.log(year)
+                   prev.onclick = ()=>{//年 减
+                        year--;
+                        if(year>1969){
+                        nowyear() 
+                        }
+                        nowmonths()
+                        allmonths()
+                    }
+                    next.onclick = ()=>{//年 加
+                        year++;
+                        if(year<2100){
+                            nowyear()
+                        }
+                        nowmonths()
+                        allmonths()
+                    }
+                 }
+             })
+        }
+
+        function returntop(){// 第一行恢复原值
+            prev.onclick = ()=>{//上月 
+             month--; 
+             if(month==0){
+                month=12;
+                year--;
+                nowtime()
+             }
+            nowtime()
+
+            console.log(month)
+            todate(year,month)
+            
+         }
+         next.onclick = ()=>{//下个月
+             month++;
+             if(month==13){
+                month=1;
+                year++;
+                nowtime() 
+             }
+            nowtime()
+            
+            todate(year,month)
+         }
+         todate(year,month)
+        }
+    })()
+    </script>
+</body>
+</html>

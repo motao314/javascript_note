@@ -1,0 +1,150 @@
+body {
+    background: #5db6c8;
+}
+
+.box {
+    width: 360px;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+}
+
+header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 19px 0 15px 24px;
+}
+
+header .time {
+    font: 33px/49px 'Microsoft YaHei';
+    color: rgba(255, 255, 255, 0.9);
+}
+
+header .titleToday {
+    font: 13px/29px 'Microsoft YaHei';
+    color: rgba(0, 207, 255, 0.9);
+}
+
+section {
+    padding: 12px;
+}
+
+section .month::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+section .month span {
+    float: left;
+    font: 13px/29px 'Microsoft YaHei';
+    color: rgba(255, 255, 255, 0.7);
+    padding-left: 12px;
+}
+
+section .month i {
+    float: right;
+    width: 48px;
+    height: 29px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font: bold 16px/29px 'Microsoft YaHei';
+}
+
+.month i:active {
+    background: rgba(255, 255, 255, 0.2);
+    transition: 0.2s;
+}
+
+section .week::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+section .week span {
+    float: left;
+    width: 46px;
+    height: 40px;
+    margin: 1px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 40px;
+}
+
+section .day::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+section .day button {
+    float: left;
+    width: 46px;
+    height: 40px;
+    margin: 1px;
+    padding: 0;
+    border: 2px solid transparent;
+    background: transparent;
+    outline: none;
+}
+
+.day span {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.day .num {
+    width: 42px;
+    font: 16px/15px 'Microsoft YaHei';
+}
+
+.day .lunar {
+    width: 42px;
+    font: 12px/14px 'Microsoft YaHei';
+}
+
+.day button[data-gray] span {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.day button:nth-child(26) {
+    background: rgba(0, 207, 255, 0.9);
+}
+
+.day button:focus {
+    /*box-shadow:inset 0 0 0 2px rgba(0,207,255,0.9);*/
+    border: 2px solid rgba(0, 207, 255, 0.9);
+}
+
+.day button:active {
+    background: rgba(255, 255, 255, 0.2);
+    transition: 0.2s;
+}
+
+footer {
+    font: 13px/23px 'Microsoft YaHei';
+    color: rgba(0, 207, 255, 0.9);
+    padding-right: 21px;
+    padding-bottom: 11px;
+    text-align: center;
+}
+
+footer::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+footer span {
+    float: right;
+    width: 66px;
+}
+
+footer i {
+    float: right;
+    width: 18px;
+}
+
+footer i:active {
+    background: rgba(255, 255, 255, 0.2);
+    transition: 0.2s;
+}

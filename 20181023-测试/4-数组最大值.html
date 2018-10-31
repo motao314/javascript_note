@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let arr = [-1,-2,1,10,4,5,8];
+// console.log(arr.reduce((n1,n2)=>Math.max(n1,n2)));
+// arr.sort((n1,n2)=>n2-n1);
+// console.log(arr[0]);
+let max = -Infinity;
+arr.forEach((item)=>{
+    max = Math.max(item,max);
+});
+console.log(max);
+</script>        
+</body>
+</html>

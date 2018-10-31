@@ -1,0 +1,99 @@
+body,
+p {
+    margin: 0;        
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.wrap {
+    margin: 30px auto;
+    width: 560px;
+}
+.wrap header {
+    font: 14px/40px "宋体";
+    text-align: center;
+}
+.wrap time {
+    cursor: pointer;
+    color: blue;
+}
+#navs {
+    margin: 0 auto;
+    width: 300px;
+    font: 14px/36px "宋体";
+}
+#navs p {
+    display: none;
+    position: relative;
+    text-align: center;
+}
+#navs .active {
+    display: block;
+}
+#navs .prev {
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+#navs .next {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+#cons {
+    position: relative;
+    height: 500px;
+}
+.conWrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 560px;
+    overflow: hidden;
+    opacity: 0;
+    overflow: hidden;
+    display: none;
+}
+.con {
+    width: 1120px;
+}
+.conWrap.active {
+    display: block;
+}
+.con ul {
+    float: left;
+    width: 560px;
+}
+.data-list li {
+    float: left;
+    box-sizing: border-box;
+    width: 80px;
+    font: 14px/40px "宋体";
+    text-align: center;
+    border: 1px solid #fff;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+.con ul .gray {
+    background: #ccc;
+    color: #000;
+}
+.year-list li,
+.month-list li {
+    float: left;
+    width: 140px;
+    box-sizing: border-box;
+    font: 14px/60px "宋体";
+    text-align: center;
+    border: 1px solid #fff;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}

@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日历动画</title>
+   <script src="js/new_1.js"></script>
+    
+    <style>
+    	
+    	ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+p{
+    margin: 0;
+}
+a{
+    text-decoration:none;
+    color:inherit;
+}
+.box1{
+    width: 330px;
+    padding: 15px;
+    /*background: #5bccea;*/
+    margin: 30px auto;
+}
+.nyr{
+    font: 16px/30px "微软雅黑";
+    color: #3a66cc;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.nyr a:hover{
+    text-decoration:underline;
+}
+.box{
+    width: 330px;
+    height: 184px;
+}
+
+/*日历样式*/
+
+.leftbox{
+    float: left;
+}
+
+.left {
+    width: 160px;
+    height: 184px;
+}
+.day{
+    width: 160px;
+    height: 184px;
+    /*display: none;*/
+}
+.yuefen {
+    width: 160px;
+    height: 184px;
+    display: none;
+}
+.nian {
+    width: 160px;
+    height: 184px;
+    display: none;
+}
+
+.title {
+    width: 160px;
+    height: 32px;
+    font: 16px/32px "微软雅黑";
+    display: flex;
+    justify-content: space-between;
+
+}
+.title .prev{
+    width: 20px;
+}
+.title .prev:hover{
+    color: #0066cc;
+}
+.title .next{
+    width: 20px;
+    text-align: right;
+}
+.title .next:hover{
+    color: #0066cc;
+}
+
+.title>div:hover{
+    color: #0066cc;
+}
+
+.content {
+    width: 156px;
+    height: 152px;
+    /*height: 0;*/
+    overflow: hidden;
+    padding: 0 2px;
+}
+/*.nian .content{*/
+    /*transform: scale(0.1);*/
+    /*transition: 0.5s;*/
+/*}*/
+
+.content nav {
+    height: 17px;
+    border-bottom: 1px solid #f5f5f5;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content nav span {
+    font: 14px/17px "微软雅黑";
+    text-align: center;
+}
+
+.content .data,.yue,.nianlist {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid transparent;
+}
+/*日期的样式*/
+.content .data li {
+    width: 20px;
+    height: 20px;
+    border: 1px solid transparent;
+    font: 12px/20px "微软雅黑";
+    text-align: center;
+    background: transparent;
+}
+/*.content .data li:hover{*/
+    /*color: #3a66cc;*/
+    /*background: #deedff;*/
+    /*border: 1px solid #0066cc;*/
+/*}*/
+   /*月份的样式*/
+.content .yue li,.content .nianlist li {
+    width: 36px;
+    height: 48px;
+    border: 1px solid transparent;
+    font: 12px/48px "微软雅黑";
+    text-align: center;
+    background: transparent;
+}
+.content li:hover{
+    color: #3a66cc;
+    background: #deedff;
+    border: 1px solid #0066cc;
+}
+
+.content .data .gray {
+    color: blue;
+}
+.content .data .now {
+    color: yellow;
+    background: #deedff;
+    border: 1px solid #0066cc;
+}
+
+
+/*圆时钟样式*/
+
+.right{
+    width: 158px;
+    float: right;
+}
+.biaokuang{
+    width: 120px;
+    height: 120px;
+    border: 1px solid #8a5af5;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding: 2px;
+}
+.biao {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #d2dbde;
+    position: relative;
+    /*box-shadow: inherit 1px 1px 0 1px #bfccd6;*/
+}
+
+.list {
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+
+.list li {
+    width: 2px;
+    height: 4px;
+    background: #191c28;
+    position: absolute;
+    left: 59px;
+    top: 0;
+    transform-origin: center 60px;
+}
+.list li:nth-child(5n+1){
+    height: 8px;
+}
+
+.list2{
+    width: 120px;
+    height: 120px;
+}
+.list2 li{
+    width: 14px;
+    height: 12px;
+    font: 12px/12px "微软雅黑";
+    color: red;
+    position: absolute;
+    left: 56px;
+    top: 10px;
+    transform-origin: center 50px;
+}
+.list2 span {
+    display: block;
+}
+.h{
+    width: 4px;
+    height: 30px;
+    background: #00ff66;
+    position: absolute;
+    left: 58px;
+    top: 30px;
+    transform-origin: bottom;
+}
+.m{
+    width: 3px;
+    height: 40px;
+    background: #eef96f;
+    position: absolute;
+    left: 58px;
+    top: 20px;
+    transform-origin: bottom;
+}
+.s{
+    width: 2px;
+    height: 55px;
+    background: #333cf8;
+    position: absolute;
+    left: 59px;
+    top: 5px;
+    transform-origin: bottom;
+}
+.dot1{
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    left: 54px;
+    top: 54px;
+    transform-origin: bottom;
+}
+
+/*当前的时分秒*/
+#wrap {
+    display: flex;
+    width: 131px;
+    height: 22px;
+    /*background: #f3ecec;*/
+    border-radius: 2px;
+    margin: 4px 0;
+    padding-left: 27px;
+}
+
+.nubWrap {
+    margin: 0 1px;
+    width: 12px;
+    height: 22px;
+    overflow: hidden;
+}
+
+.dot {
+    width: 12px;
+    font: bold 12px/22px "微软雅黑";
+    text-align: center;
+    color: red;
+}
+
+.nub span {
+    display: block;
+    width: 12px;
+    height: 22px;
+    /*background: #d3dcdf;*/
+    color: #0c1112;
+    font: 12px/22px "宋体";
+    text-align: center;
+    border-radius: 2px;
+}
+
+/*星期显示*/
+
+.xinqi{
+    width: 158px;
+    font: 14px/25px "微软雅黑";
+    color:red;
+    text-align: center;
+}
+    </style>
+    
+    
+    
+    
+</head>
+<body>
+<div class="box1">
+    <div class="nyr"></div>
+    <div class="box">
+        <div class="leftbox">
+            <div class="left day">
+                <div class="title">
+                    <span class="prev"> < </span>
+                    <div><span class="year">2018</span>年<span class="month">11</span>月</div>
+                    <span class="next"> > </span>
+                </div>
+                <div class="content">
+                    <nav>
+                        <span>日</span>
+                        <span>一</span>
+                        <span>二</span>
+                        <span>三</span>
+                        <span>四</span>
+                        <span>五</span>
+                        <span>六</span>
+                    </nav>
+                    <ul class="data"></ul>
+                </div>
+            </div>
+            <div class="left yuefen">
+                <div class="title">
+                    <span class="prev"> < </span>
+                    <div><span class="year"></span></div>
+                    <span class="next"> > </span>
+                </div>
+                <div class="content">
+                    <ul class="data yue">
+                        <!--月份列表-->
+                    </ul>
+                </div>
+            </div>
+            <div class="left nian">
+                <div class="title">
+                    <span class="prev"> < </span>
+                    <div><span class="year"></span></div>
+                    <span class="next"> > </span>
+                </div>
+                <div class="content">
+                    <ul class="data nianlist">
+                        <!--年份列表-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="biaokuang">
+                <div class="biao">
+                    <ul class="list"></ul>
+                    <ul class="list2"></ul>
+                    <div class="h"></div>
+                    <div class="m"></div>
+                    <div class="s"></div>
+                    <div class="dot1"></div>
+                </div>
+            </div>
+            <div id="wrap">
+                <div class="nubWrap">
+                    <div class="nub">
+                        <span>0</span>
+                        <span>0</span>
+                    </div>
+                </div>
+                <div class="nubWrap">
+                    <div class="nub">
+                        <span>0</span>
+                        <span>0</span>
+                    </div>
+                </div>
+                <div class="dot">:</div>
+                <div class="nubWrap">
+                    <div class="nub">
+                        <span>0</span>
+                        <span>0</span>
+                    </div>
+                </div>
+                <div class="nubWrap">
+                    <div class="nub">
+                        <span>0</span>
+                        <span>0</span>
+                    </div>
+                </div>
+                <div class="dot">:</div>
+                <div class="nubWrap">
+                    <div class="nub">
+                        <span>0</span>
+                        <span>0</span>
+                    </div>
+                </div>
+                <div class="nubWrap">
+                    <div class="nub">
+                        <span>0</span>
+                        <span>0</span>
+                    </div>
+                </div>
+            </div>
+            <p class="xinqi"></p>
+        </div>
+
+    </div>
+</div>
+<script src="js/new_2.js">
+	
+</script>
+
+
+</body>
+</html>
+	

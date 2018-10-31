@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--
+    1. 添加
+    2. 单个删除
+    3. 上移下移 (动画版和无动画版)
+    4. 全选
+    5. 批量删除
+-->
+<div id="form">
+    <input type="text" value="miaov" />
+    <input type="text" value="11" />
+    <select>
+        <option>男</option>
+        <option>女</option>
+        <option>你猜</option>
+    </select>
+    <input type="button" value="添加" />
+</div>
+<table id="table" width = "500" border="1">
+    <thead>
+        <tr>
+            <th>
+                <label>
+                    <input type="checkbox" id="checkAll" />
+                    全选
+                </label>
+            </th>
+            <th>
+                id
+            </th>
+            <th>姓名</th>
+            <th>年龄</th> 
+            <th>性别</th> 
+            <th>操作</th>
+            <th><a href="javascript:;" id="removeChecked">删除</a></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+// console.log(table.tHead);
+// console.log(table.tBodies[0].rows[0].cells);    
+(function(){
+    let table = document.getElementById("table");
+    let form = document.getElementById("form");
+    let checkAll = document.querySelector("#checkAll");
+    let removeChecked = document.querySelector("#removeChecked");
+    let id = 0;
+
+    // 删除选中项
+    removeChecked.onclick = function(){
+       
+        let checkboxs = Array.from(table.tBodies[0].querySelectorAll("input"));
+        checkboxs = checkboxs.filter(item=>item.checked);
+        console.log(checkboxs);
+        if(checkboxs.length === 0){
+            alert("请选中要删除项");
+            return ;
+        }
+        checkboxs.forEach((item)=>{
+            table.tBodies[0].removeChild(item.parentNode.parentNode);
+        });
+        checkAll.checked = false;
+    };
+
+
+    //全选
+    checkAll.onchange = function(){
+        let checkboxs = Array.from(table.tBodies[0].querySelectorAll("input"));
+        checkboxs.forEach((item)=>{
+            item.checked = this.checked;
+        });
+    }
+    form.children[3].onclick = function(){
+        id++;
+        let name = form.children[0].value;
+        let age = form.children[1].value;
+        let gender = form.children[2].value;
+        let row = document.createElement("tr");
+        let cell1 = document.createElement("th");
+        let cell2 = document.createElement("th");
+        let cell3 = document.createElement("th");
+        let cell4 = document.createElement("th");
+        let cell5 = document.createElement("th");
+        let cell6 = document.createElement("th");
+        let cell7 = document.createElement("th");
+        let checkbox = document.createElement("input");
+        let prev = document.createElement("a");
+        let next = document.createElement("a");
+        let remove = document.createElement("a");
+        checkbox.type = "checkbox";
+        // 全选
+        checkbox.onchange = function(){
+            checkAll.checked = isCheckAll();
+        }
+
+        cell1.appendChild(checkbox);
+        cell2.innerHTML = id;
+        cell3.innerHTML = name;
+        cell4.innerHTML = age;
+        cell5.innerHTML = gender;
+        remove.href = next.href = prev.href = "javascript:;";
+        prev.innerHTML = "&uarr;";
+        next.innerHTML = "&darr;";
+        // 上移
+        prev.onclick = function(){
+            let prevRow = row.previousElementSibling;
+            //console.log(preRow);
+            table.tBodies[0].insertBefore(row,prevRow);
+        };
+        // 下移
+        next.onclick = function(){
+            let nextRow =  row.nextElementSibling;
+            if(nextRow){
+                table.tBodies[0].insertBefore(nextRow,row);
+            } else {
+                table.tBodies[0].insertBefore(row, table.tBodies[0].rows[0]);
+            }
+        };
+        cell6.appendChild(prev);
+        cell6.appendChild(next);
+        remove.innerHTML = "删除";
+        // 删除单个
+        remove.onclick = function(){
+            table.tBodies[0].removeChild(row);
+            checkAll.checked = isCheckAll();
+        };
+
+        cell7.appendChild(remove);
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        row.appendChild(cell3);
+        row.appendChild(cell4);
+        row.appendChild(cell5);
+        row.appendChild(cell6);
+        row.appendChild(cell7);
+        table.tBodies[0].appendChild(row);
+        checkAll.checked = false;
+    };  
+
+    function isCheckAll(){
+        let checkboxs = Array.from(table.tBodies[0].querySelectorAll("input"));
+        if(checkboxs.length === 0){
+            return false;
+        }
+        return checkboxs.every(item=>item.checked);
+    }
+})()
+</script>
+
+</body>
+</html>

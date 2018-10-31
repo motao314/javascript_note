@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#wrap {
+    margin: 30px auto;
+    width: 300px;
+    height: 240px;
+}
+nav {
+    display: flex;
+}
+nav a {
+    flex: 1;
+    font: 14px/36px "宋体";
+    border: 2px solid #000;
+    text-align: center;
+}
+#cons {
+    height: 200px;
+    overflow: hidden;
+}
+#cons div {
+    display: none;
+    height: 200px;
+    background: #ccc;
+    font: 50px/200px "宋体";
+    text-align: center;
+}
+#cons .active {
+    display: block;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+    <nav>
+        <a href="#div1">选项一</a>
+        <a href="#div2">选项二</a>
+        <a href="#div3">选项三</a>
+    </nav>
+    <div id="cons">
+        <div class="div1 active">内容一</div>
+        <div class="div2">内容二</div>
+        <div class="div3">内容三</div>
+    </div>    
+</div>    
+<script>
+let cons = document.querySelectorAll("#cons div");
+hashchangeview(); //页面打开时的hash
+window.onhashchange = function(){
+    hashchangeview();//hash 发生改变
+};
+/*
+    其他,"#div1",""   .div1
+    "#div2"      .div2   
+    "#div3"      .div3               
+*/
+function hashchangeview(){
+    let hash = location.hash;
+    hash = hash==""?"div1":hash.substr(1);
+    let nowView = document.querySelector("."+hash);
+    nowView = nowView?nowView:document.querySelector(".div1");
+    cons.forEach((item)=>{
+        item.classList.remove("active");
+    });
+    nowView.classList.add("active");
+    //console.log(nowView);
+    // switch(hash){
+    //     case "#div1":
+    //         console.log("显示div1");
+    //         break;
+    //     case "#div2":
+    //         console.log("显示div2");
+    //         break;
+    //     case "#div3":
+    //         console.log("显示div3");
+    //         break;        
+    //     default:
+    //         console.log("显示div1");
+    // }
+}
+</script>
+</body>
+</html>

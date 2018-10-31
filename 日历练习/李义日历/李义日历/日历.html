@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /*与圆盘*/
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            /*margin: 0 0 0 66px;*/
+            position: relative;
+            display: inline-block;
+            top:130px;
+            /*background: url("u.jpg") no-repeat;*/
+        }
+        .list1,.list2{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            position: relative;
+        }
+        .list1 li{
+            position: absolute;
+            top: 0;
+            left:99px;
+            width: 3px;
+            height:8px;
+            background: #000;
+            transform-origin: center 100px;
+        }
+        .list2 li span{
+            display: block;
+        }
+        .list2 li{
+            position: absolute;
+            top: 4px;
+            left:96px;
+            width: 9px;
+            height:8px;
+            transform-origin: center 96px;
+            font:bold 10px/8px "微软雅黑";
+        }
+        .list2 li span{
+            width: 15px;
+            height: 25px;
+            font:bold 10px/25px "微软雅黑";
+            text-align: center;
+        }
+        .list1 li:nth-child(5n+1){
+            height:10px;
+            background: #0cc215;
+        }
+        .h{
+            position: absolute;
+            top: 60px;
+            left:99px;
+            width: 3px;
+            height:40px;
+            background: #000;
+            transform-origin: bottom;
+        }
+        .m{
+            position: absolute;
+            top: 50px;
+            left:99px;
+            width: 2px;
+            height:50px;
+            background: blue;
+            transform-origin: bottom;
+        }
+        .s{
+            position: absolute;
+            top: 40px;
+            left:99px;
+            width: 2.5px;
+            height:60px;
+            background: red;
+            transform-origin: bottom;
+        }
+        /*日历*/
+        .box1{
+            width: 350px;
+            height: 352px;
+            background: url("1_02_03.jpg");
+            top:-40px;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .title{
+            height: 30px;
+            text-align: center;
+            background-color: #0c5460;
+            opacity: 0.7;
+        }
+        .title span{
+            font: 20px/30px "微软雅黑";
+            color: #fff;
+        }
+        .top{
+            height: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            transition: 1s;
+            background-color: #0dad51;
+            opacity: 0.4;
+        }
+        .top span{
+            font: 15px/30px "微软雅黑";
+            color: #fff;
+        }
+        .nav{
+            height: 40px;
+            display: flex;
+            align-items: center;
+            background-color: #cccccc;
+            opacity: 0.7;
+            transition: 1s;
+        }
+        .nav span{
+            display: inline-block;
+            width: 57px;
+            height: 40px;
+            font: 20px/40px "微软雅黑";
+            text-align: center;
+            color: #2d3439;
+        }
+        button{
+            opacity: 0.4;
+        }
+        .list{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color:#9a9a9a;
+            opacity: 0.5;
+            height: 254px;
+            transition: 1s;
+        }
+        .list li{
+            width: 47px;
+            height:40px;
+            opacity: 0.9;
+            color: #000;
+            text-align: center;
+            font: 20px/48px "微软雅黑";
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .list .cool{
+            opacity: 0.5;
+            color: #206f96;
+            background-color: #cccccc;
+        }
+        .list .coo{
+            background-color: #cccccc;
+            opacity: 0.5;
+            color: #206f96;
+        }
+        .list .co{
+            background-color: red;
+            opacity: 1;
+            color: #000;
+        }
+        .emonth {
+            height: 323px;
+            position: absolute;
+            background-color: #cccccc;
+            top: 30px;
+            transition: 1s;
+            transform:scale(0) ;
+            opacity: 0.6;
+        }
+        .yea{
+            width: 100%;
+            height: 323px;
+            position: absolute;
+            background-color: #cccccc;
+            top: 30px;
+            transition: 1s;
+            transform:scale(0) ;
+            opacity: 0.6;
+        }
+        .ye{
+            display: flex;
+            flex-wrap:wrap ;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ye li{
+            margin: 10px;
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            background-color: #9a9a9a;
+            opacity: 0.8;
+            font: 20px/40px "微软雅黑";
+        }
+        .topp{
+            width: 100%;
+            height: 30px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .emonth .mm span{
+            text-align: center;
+            display: inline-block;
+            width: 75px;
+            height: 75px;
+            font: 25px/75px "微软雅黑";
+            background-color: #9a9a9a;
+            margin: 4px 0;
+        }
+        .emonth .toop{
+            height: 58px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .mm{
+            display: flex;
+            flex-wrap:wrap ;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .mm1{
+            display: flex;
+            flex-wrap:wrap ;
+            justify-content: space-around;
+            align-items: center;
+            width: 350px;
+            height: 249px;
+            position: absolute;
+            top:97px;
+            left: 0;
+            transition: 1s;
+            transform:scale(0) ;
+        }
+        .mm1 span{
+            text-align: center;
+            display: inline-block;
+            width: 75px;
+            height: 75px;
+            font: 25px/75px "微软雅黑";
+            background-color: #9a9a9a;
+            margin: 4px 0;
+        }
+        .one{
+            width: 106px;
+            height: 99px;
+            border: 2px solid red;
+            border-right-color:transparent ;
+            border-bottom-color:transparent ;
+            position: absolute;
+            top:36px;
+            left: 108px;
+        }
+        .tow{
+            width: 175px;
+            height: 120px;
+            border: 2px solid red;
+            border-left-color:transparent ;
+            border-bottom-color:transparent ;
+            position: absolute;
+            top:37px;
+            left:562px;
+        }
+        .tet{
+            width: 175px;
+            height: 40px;
+            font:bold 17px/40px "微软雅黑";
+            text-align: center;
+            border: 2px solid red;
+            position: absolute;
+            top:159px;
+            left:652px;
+        }
+        /*时间*/
+        .box2{
+            width: 300px;
+            height: 50px;
+            display: flex;
+            overflow: hidden;
+            position: absolute;
+            top: 208px;
+            left: 598px;
+            background-color: #ff967e;
+        }
+        .now{
+            width: 40px;
+            height: 50px;
+            margin: 0 5px;}
+       .noww span{
+            display: block;
+            width:30px;
+            height: 50px;
+            font: 25px/50px "微软雅黑";
+            text-align: center;
+        }
+        .dop{
+            width: 5px;
+            height: 50px;
+            font: bold 15px/50px "微软雅黑";
+        }
+    </style>
+</head>
+<body>
+<div class="one"></div>
+<div class="tow"></div>
+<div class="tet">
+    现 在 是 北 京 时 间
+</div>
+<div class="box">
+    <ul class="list1"></ul>
+    <ul class="list2">
+    </ul>
+    <div class="h"></div>
+    <div class="m"></div>
+    <div class="s"></div>
+</div>
+<div class="box1">
+    <div class="title"></div>
+    <div class="top">
+        <button><</button>
+        <div class="div">
+            <span></span>
+            <span>年</span>
+            <span></span>
+            <span>月</span>
+        </div>
+        <button>></button>
+    </div>
+    <div class="nav">
+        <span>日</span>
+        <span>一</span>
+        <span>二</span>
+        <span>三</span>
+        <span>四</span>
+        <span>五</span>
+        <span>六</span>
+    </div>
+    <ul class="list"></ul>
+    <div class="emonth">
+        <div class="toop">
+            <button><</button>
+            <span></span>
+            <button>></button>
+        </div>
+        <div class="mm">
+        <span>一月</span>
+        <span>二月</span>
+        <span>三月</span>
+        <span>四月</span>
+        <span>五月</span>
+        <span>六月</span>
+        <span>七月</span>
+        <span>八月</span>
+        <span>九月</span>
+        <span>十月</span>
+        <span>十一月</span>
+        <span>十二月</span>
+        </div>
+    </div>
+    <div class="yea">
+        <div class="topp">
+            <button><</button>
+            <span>2000-2020</span>
+            <button>></button>
+        </div>
+        <ul class="ye"></ul>
+    </div>
+</div>
+<!--时间-->
+<div class="box2">
+    <div class="now">
+        <div class="noww">
+            <span>0</span>
+            <span>0</span>
+        </div>
+    </div>
+    <div class="now">
+        <div class="noww">
+            <span>0</span>
+            <span>0</span>
+        </div>
+    </div>
+    <div class="dop">:</div>
+    <div class="now">
+        <div class="noww">
+            <span>0</span>
+            <span>0</span>
+        </div>
+    </div>
+    <div class="now">
+        <div class="noww">
+            <span>0</span>
+            <span>0</span>
+        </div>
+    </div>
+    <div class="dop">:</div>
+    <div class="now">
+        <div class="noww">
+            <span>0</span>
+            <span>0</span>
+        </div>
+    </div>
+    <div class="now">
+        <div class="noww">
+            <span>0</span>
+            <span>0</span>
+        </div>
+    </div>
+</div>
+<script src="miaov.js"></script>
+<script>
+    {
+        //获取顶部年月日
+        let title = document.querySelector(".title");
+        let inner = "";
+        let now = new Date();//当前年月日
+        let year = now.getFullYear();//年份
+        let month = now.getMonth();//月份
+        let date = now.getDate();//日期
+        let Day =now.getDay();
+        inner += '<span>' + year + '年</span>' + '<span>' + (month + 1) + '月</span>' + '<span>' + date + '日</span>';
+        title.innerHTML = inner;
+        //获取年月
+        let span = document.querySelectorAll(".top span");
+        span[0].innerHTML = year;
+        span[2].innerHTML = month + 1;
+        day(span[0].innerHTML, span[2].innerHTML);
+        //点击事件
+        let div = document.querySelector(".div");
+        let list = document.querySelector(".list");
+        let emonth = document.querySelector(".emonth");
+        let nav = document.querySelector(".nav");
+        let top = document.querySelector(".top");
+        let topp = document.querySelector(".toop");
+        let btt = topp.querySelectorAll("button");
+        let spa = document.querySelector(".toop span");
+        let mm = document.querySelector(".mm");
+        let monthSpan = mm.querySelectorAll(".mm span");
+        //点击缩放
+        div.onclick = function () {
+            //点击切换月份
+            spa.innerHTML = span[0].innerHTML;
+            monthSpan.forEach((item, index) => {
+                if (span[2].innerHTML == index + 1&& spa.innerHTML == span[0].innerHTML) {
+                    monthSpan.forEach((item) => {
+                        item.style.backgroundColor = "";
+                    });
+                    item.style.backgroundColor = "red";
+                }
+            });
+            ///////////////////////////////////////
+            list.style.transform = "scale(0)";
+            nav.style.transform = "scale(0)";
+            top.style.transform = "scale(0)";
+            emonth.style.transform = "scale(1)";
+            li();
+        };
+        //点击缩放过后的年份切换
+        let mm1 = document.querySelector(".mm1");
+        btt[0].onclick = function () {
+            spa.innerHTML--;
+        };
+        btt[1].onclick = function () {
+            spa.innerHTML++;
+        };
+        spa.onclick = function () {
+            spa.innerHTML = span[0].innerHTML;
+        };
+        let but = document.querySelectorAll("button");
+        //点击缩放
+        title.onclick = function () {
+            span[0].innerHTML = year;
+            span[2].innerHTML = month + 1;
+            day(year, month + 1);
+            list.style.transform = "scale(1)";
+            nav.style.transform = "scale(1)";
+            top.style.transform = "scale(1)";
+            emonth.style.transform = "scale(0)";
+            yea.style.transform = "scale(0)";
+            li();
+        };
+        //点击左边切换
+        but[0].onclick = function () {
+            if (span[2].innerHTML > 1) {
+                span[2].innerHTML--;
+            } else {
+                span[2].innerHTML = 12;
+                span[0].innerHTML--;
+            }
+            day(span[0].innerHTML, span[2].innerHTML);
+            li();
+        };
+        //点击右边切换
+        but[1].onclick = function () {
+            if (span[2].innerHTML >= 12) {
+                span[0].innerHTML++;
+                span[2].innerHTML = 1;
+            } else {
+                span[2].innerHTML++;
+            }
+            day(span[0].innerHTML, span[2].innerHTML);
+            li();
+        };
+        //点击切换年月日
+        monthSpan.forEach((item, index) => {
+            item.onclick = function () {
+                let spaa = document.querySelector(".toop span");
+                span[2].innerHTML = index + 1;
+                 span[0].innerHTML=spaa.innerHTML ;
+                day(span[0].innerHTML, span[2].innerHTML);
+                list.style.transform = "scale(1)";
+                nav.style.transform = "scale(1)";
+                top.style.transform = "scale(1)";
+                emonth.style.transform = "scale(0)";
+                let lii = document.querySelectorAll(".ye li");
+                lii.forEach((item,index)=> {
+                    if (spa.innerHTML == ite.innerHTML) {
+                        ite.style.backgroundColor = "red";
+                    }
+                });
+                li();
+            }
+        });
+        //鼠标移入事件
+        li();
+        function li() {
+            let lis = list.querySelectorAll("li");
+            lis.forEach((item) => {
+                item.onmousemove = () => {
+                    lis.forEach((i) => {
+                        i.style.backgroundColor = "";
+                    });
+                    item.style.backgroundColor = "red";
+                };
+            });
+            list.onmouseout = () => {
+                lis.forEach((item) => {
+                    item.style.backgroundColor = "";
+                })
+            };
+        }
+        let yea = document.querySelector(".yea");
+        spa.onclick = function () {
+            yea.style.transform = "scale(1)";
+            emonth.style.transform = "scale(0)";
+        };
+        let iinn = "";
+        let ye  = document.querySelector(".ye");
+        let nee = span[0].innerHTML-18;
+       for(let i =0;i<=19;i++){
+           iinn+="<li>"+(nee+i)+"</li>";
+       }
+        ye.innerHTML =iinn;
+        let lii = document.querySelectorAll(".ye li");
+        lii.forEach((item,index)=>{
+           if(span[0].innerHTML==item.innerHTML){
+               item.style.backgroundColor ="red";
+           }
+            item.onclick =function () {
+                lii.forEach((ite)=>{
+                    ite.style.backgroundColor ="";
+                });
+               item.style.backgroundColor ="red";
+               yea.style.transform = "scale(0)";
+               emonth.style.transform = "scale(1)";
+               span[0].innerHTML = item.innerHTML;
+               spa.innerHTML =item.innerHTML;
+           };
+            li();
+        });
+        let toppBth =document.querySelectorAll(".topp button");
+        toppBth.forEach((item)=>{
+            item.onclick= function () {
+                window.open("https://wannianrili.51240.com/","_blank","channelmode=yes");
+            }
+        });
+        //时间封装
+        function day(year, month) {
+            let list = document.querySelector(".list");
+            let inn = "";
+            //获取到当月1号是星期几
+            let firstDay = new Date(year, month - 1, 1).getDay();
+            //获取上个月一共有多少天
+            let nextMonth = new Date(year, month - 1, 0).getDate();
+            //获取这个月一共多少天
+            let nowMonth = new Date(year, month + 1, 0).getDate();
+            //获取上个月在当月显示的第一天是几号
+            let lastMonth = nextMonth - firstDay + 1;
+            //当月从几号开始
+            let naw = 1;
+            //下个月从几号开始
+            let nextNaw = 1;
+            for (let i = 0; i < 42; i++) {
+                if (i < firstDay) {
+                    inn += '<li class="cool">' + lastMonth + '</li>';
+                    lastMonth++;
+                } else if (naw <= nowMonth) {
+                    if (naw == date && span[2].innerHTML == new Date().getMonth() + 1 && span[0].innerHTML == new Date().getFullYear()) {
+                        inn += '<li class="co">' + naw + '</li>';
+                    } else if (naw == 1 && span[2].innerHTML != new Date().getMonth() + 1) {
+                        inn += '<li class="co">' + naw + '</li>';
+                    } else {
+                        inn += '<li>' + naw + '</li>';
+                    }
+                    naw++;
+                } else {
+                    inn += '<li  class="cool">' + nextNaw + '</li>';
+                    nextNaw++;
+                }
+            }
+            list.innerHTML = inn;
+        }
+
+        //时钟
+        setInterval(fn, 20);
+        let list1 = document.querySelector(".list1");
+        let list2 = document.querySelector(".list2");
+        let inner1 = "";
+        let arr = "";
+        for (i = 0; i < 60; i++) {
+            inner1 += '<li style="transform: rotate(' + i * 6 + 'deg)"></li>';
+        }
+        for (a = 1; a < 13; a++) {
+            arr += '<li style="transform:rotate(' + a * 30 + 'deg)"><span style="transform:rotate(' + a * -30 + 'deg)">' + a + '</span></li>';
+        }
+        list1.innerHTML = inner1;
+        list2.innerHTML = arr;
+        function fn() {
+            let now = new Date();
+            let seconds = now.getSeconds();
+            let minutes = now.getMinutes()+seconds/60;
+            let hours = now.getHours()+minutes/60;
+            let s = document.querySelector(".s");
+            let m = document.querySelector(".m");
+            let h = document.querySelector(".h");
+            h.style.transform = "rotate(" + 30 * hours + "deg)";
+            m.style.transform = "rotate(" + 6 * minutes + "deg)";
+            s.style.transform = "rotate(" + 6 * seconds + "deg)";
+        }
+        ///时钟。。。。。
+        //圆点闪烁
+        let dop = document.querySelectorAll(".dop");
+        setInterval(fn1, 1000);
+        function fn1() {
+            dop.forEach((item)=>{
+                mTween({
+                    el:item,
+                    attr: {
+                        opacity: 0
+                    },
+                    time: 200,
+                    type: "linear",
+                    cb:function () {
+                        mTween({
+                            el: item,
+                            attr: {
+                                opacity:1
+                            },
+                            time: 200,
+                            type: "linear"
+                        });
+                    }
+                })
+            });
+            //时间
+            let noww=document.querySelectorAll(".noww");
+            let date = new Date();
+            let year=toDB(date.getHours())+toDB(date.getMinutes())+toDB(date.getSeconds());
+            noww.forEach((item,index)=>{
+                let span =item.querySelectorAll("span");
+                if(span[1].innerHTML == year[index]){
+                    return;
+                }
+                span[0].innerHTML = span[1].innerHTML;
+                span[1].innerHTML = year[index];
+                css(item,"translateY",0);
+                mTween({
+                    el:item,
+                    attr:{
+                        translateY:-50
+                    },
+                    time:200
+                })
+            })
+        }
+        function toDB(noww) {
+            return noww < 10?"0"+noww:""+noww;
+        }
+    }
+</script>
+</body>
+</html>

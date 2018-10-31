@@ -1,0 +1,167 @@
+body{
+    margin: 0;
+}
+ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.wrap{
+    width: 1000px;
+    margin: 50px auto;
+    overflow: hidden;
+}
+.content{
+    width: 500px;
+    height: 350px;
+    position: relative;
+}
+.tab-date{
+    /* transform: scale(1); */
+    width: 500px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    z-index: 99;
+    overflow: hidden;
+}
+.left{
+    width: 500px;
+    float: left;
+    /* overflow: hidden; */
+}
+.ctrl{
+    overflow: hidden;
+}
+.about-date{
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+}
+.about-date span{
+    line-height: 40px;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.about-date span:hover,.btns span:hover,.tab-months li:hover,.tab-year li:hover,.change-year span:hover,.change-decade span:hover{
+    border: 1px solid rgb(74, 173, 253);
+    box-shadow: 0 0 10px rgb(167, 211, 252);
+}
+.btns,.change-year,.change-decade{
+    width: 100px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+    color: #999;
+}
+.btns span,.change-year span,.change-decade span{
+    height: 30px;
+    line-height: 30px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.week{
+    width: 100%;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+.box{
+    width: 200%;
+    height: 300px;
+}
+.days{
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: absolute;
+}
+.days li{
+    width: 70px;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.days .today{
+    border-radius: 10px;
+    border: 1px solid rgb(74, 173, 253);
+    box-shadow: 0 0 10px rgb(167, 211, 252);
+}
+.days .other{
+    color: #999;
+}
+.right{
+    float: left;
+}
+.date{
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 50px;
+    color: #555;
+}
+.appointDate{
+    margin-left: 50px;
+    margin-top: 20px;
+}
+.tab-months{
+    width: 500px;
+    /* border: 1px solid paleturquoise; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    /* transform: scale(0); */
+}
+.tab-months li{
+    width: 125px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.tab-year{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.tab-year li{
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    border-radius: 20%;
+}
+.decade{
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}

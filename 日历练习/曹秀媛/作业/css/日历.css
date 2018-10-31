@@ -1,0 +1,226 @@
+.box {
+  width: 702px;
+  height: 435px;
+  border: 2px solid #000;
+  margin: 50px auto;
+}
+.box .left {
+  width: 400px;
+  height: 435px;
+  border-right: 2px solid #000;
+  float: left;
+}
+.box .left .calendar {
+  height: 70px;
+  border-bottom: 2px solid #656462;
+  position: relative;
+}
+.box .left .calendar .prev {
+  width: 30px;
+  height: 70px;
+  margin: 0px;
+  position: absolute;
+  top: 0px;
+  left: 100px;
+  font: 22px/70px "微软雅黑";
+  cursor: pointer;
+}
+.box .left .calendar .change {
+  margin: 0 auto;
+  width: 200px;
+  height: 70px;
+  font: 23px/70px "宋体";
+  text-align: center;
+  color: #8b8a8c;
+}
+.box .left .calendar .block {
+  display: none;
+}
+.box .left .calendar .next {
+  margin: 0;
+  position: absolute;
+  top: 0px;
+  right: 100px;
+  font: 22px/70px "微软雅黑";
+  cursor: pointer;
+}
+.box .left .datee {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.box .left .datee .weekday {
+  width: 54px;
+  height: 47px;
+  background: #ddcdd0;
+  margin: 2px 0;
+  font: 20px/47px "微软雅黑";
+  text-align: center;
+  color: #656462;
+}
+.box .left .block {
+  display: none;
+}
+.box .left .day {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.box .left .day li {
+  width: 54px;
+  height: 47px;
+  margin-bottom: 3px;
+  text-align: center;
+  color: #656462;
+  font: 17px/50px "微软雅黑";
+  background: #f0ebe5;
+}
+.box .left .day .dark {
+  background: #b0afaf;
+}
+.box .left .nmonths {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.box .left .nmonths li {
+  width: 97px;
+  height: 97px;
+  background: #f0ebe5;
+  text-align: center;
+  font: 22px/100px "宋体";
+  margin: 2px 0px;
+}
+.box .left .tenyear {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.box .left .tenyear li {
+  width: 97px;
+  height: 97px;
+  background: #f0ebe5;
+  text-align: center;
+  font: 22px/100px "宋体";
+  margin: 2px 0px;
+}
+.box .left .tenyear li:nth-child(1) {
+  background: #fafafa;
+  color: #696867;
+}
+.box .left .tenyear li:nth-child(12) {
+  background: #fafafa;
+  color: #696867;
+}
+.box .right {
+  width: 300px;
+  height: 435px;
+  float: right;
+}
+.box .right .clock {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 3px solid #000;
+  margin: 30px auto;
+  position: relative;
+}
+.box .right .clock .center {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  left: 122px;
+  z-index: 1;
+}
+.box .right .clock .hours {
+  width: 4px;
+  height: 80px;
+  background: red;
+  border-radius: 10px;
+  position: absolute;
+  top: 48px;
+  left: 123px;
+  transform-origin: bottom;
+}
+.box .right .clock .minutes {
+  width: 2px;
+  height: 100px;
+  background: red;
+  border-radius: 10px;
+  position: absolute;
+  top: 28px;
+  left: 124px;
+  transform-origin: bottom;
+}
+.box .right .clock .seconds {
+  width: 2px;
+  height: 120px;
+  background: #000;
+  border-radius: 10px;
+  position: absolute;
+  top: 8px;
+  left: 124px;
+  transform-origin: bottom;
+}
+.box .right .clock .list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+.box .right .clock .list li {
+  width: 2px;
+  height: 10px;
+  background: #000;
+  position: absolute;
+  left: 122px;
+  top: 0;
+  transform-origin: center 126px;
+}
+.box .right .clock .list li:nth-child(5n+1) {
+  background: #000;
+  width: 5px;
+  height: 12px;
+}
+.box .right .clock .list1 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+.box .right .clock .list1 li {
+  position: absolute;
+  left: 117px;
+  top: 17px;
+  transform-origin: center 109px;
+}
+.box .right .clock .list1 li span {
+  display: inline-block;
+  text-align: center;
+}
+.box .right .time {
+  height: 30px;
+  font: 30px/30px "微软雅黑";
+  text-align: center;
+}
+.box .right .week {
+  padding-top: 20px;
+  height: 30px;
+  font: 30px/30px "微软雅黑";
+  text-align: center;
+}

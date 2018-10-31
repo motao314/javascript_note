@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        p {
+            margin: 0;
+        }
+
+        .clear::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .box {
+            width: 350px;
+            margin: 60px auto;
+        }
+
+        .titletime {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: blue;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+
+        .warp {
+            width: 184px;
+            height: 170px;
+            padding: 0 2px;
+            float: left;
+        }
+
+        .timepiece {
+            width: 158px;
+            height: 158px;
+            float: right;
+            background: url(21.png);
+            position: relative;
+            top: -10px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            position: absolute;
+            left: calc(50% - 3px);
+            top: calc(50% - 3px);
+            background: #000;
+        }
+
+        .hours {
+            width: 2px;
+            height: 25px;
+            background: #596b73;
+            position: absolute;
+            left: calc(50% - 1px);
+            top: calc(50% - 25px);
+            transform-origin: bottom;
+        }
+
+        .minutes {
+            width: 2px;
+            height: 50px;
+            background: #596b73;
+            position: absolute;
+            left: calc(50% - 1px);
+            top: calc(50% - 50px);
+            transform-origin: bottom;
+        }
+
+        .seconds {
+            width: 1px;
+            height: 80px;
+            background: #919da2;
+            position: absolute;
+            left: calc(50% - 0.5px);
+            top: calc(50% - 60px);
+            transform-origin: center 75%;
+        }
+
+        .time_info {
+            position: absolute;
+            width: 158px;
+            height: 50px;
+            top: 100%;
+            left: 0;
+        }
+
+        .time_info p {
+            text-align: center;
+        }
+
+        .info_timer {
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+        }
+
+        .info_day {
+            height: 20px;
+            line-height: 20px;
+            color: #575757;
+            font-size: 14px;
+        }
+
+        .control_bar {
+            width: 180px;
+            height: 30px;
+            text-align: center;
+            margin-left: 5px;
+        }
+
+        .control_bar em {
+            width: 10px;
+            height: 30px;
+            line-height: 30px;
+            position: relative;
+        }
+
+        .control_bar em::after {
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-right-color: #000;
+        }
+
+        .control_bar .l_bt {
+            float: left;
+        }
+
+        .control_bar .control_date {
+            line-height: 30px;
+            display: inline-block;
+        }
+
+        .control_bar .r_bt {
+            float: right;
+            margin-right: 10px;
+        }
+
+        .control_bar .r_bt::after {
+            border-right-color: transparent;
+            border-left-color: #000;
+        }
+
+        .warp1 {
+            width: 175px;
+            height: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .warp_date {
+            width: 350px;
+            height: 140px;
+            position: absolute;  
+            top: 0;
+            left: 0;
+            background: #fff;
+            /* transition: 1s; */
+            z-index: 9;
+            /**/
+        }
+
+        .warp_month {
+            width: 350px;
+            height: 140px; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            background: #fff;
+            z-index: 7;
+        }
+
+        .warp_month div {
+            width: 175px;
+            height: 140px;
+            font-size: 0;
+            word-spacing: 5px;
+            float: left;
+        }
+
+        .warp_month span {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            text-align: center;
+            font-size: 12px;
+            line-height: 40px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .calendar {
+            width: 175px;
+            height: 140px;
+            font-size: 0;
+            float: left;
+            transition: .6s;
+        }
+
+        .calendar>span {
+            width: 25px;
+            height: 20px;
+            display: inline-block;
+            text-align: center;
+            line-height: 18px;
+            font-size: 12px;
+            box-sizing: border-box;
+            border: 1px solid transparent;
+        }
+
+        .calendar>span:hover{
+            border: 1px solid #0066cc;
+            background: linear-gradient(#f2f8ff, #d0e5ff);
+        }
+        .month_list > span:hover{
+            border: 1px solid #0066cc;
+            background: linear-gradient(#f2f8ff, #d0e5ff);
+        }
+        .calendar>span>em {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            padding-right: 5px;
+            box-sizing: border-box;
+            font-style: normal;
+        }
+
+        .gray {
+            color: #aaa;
+            
+        }
+
+        #nowdate {
+            border: 1px solid #0066cc;
+            background: linear-gradient(#f2f8ff, #d0e5ff);
+        }
+    </style>
+    <script src="miaov.js"></script>
+</head>
+
+<body>
+    <div class="box clear">
+        <p class="titletime">2018年10月22日</p>
+        <div class="warp">
+            <div class="control_bar clear">
+                <em class="l_bt"></em>
+                <span class="control_date">xxxx年xx月</span>
+                <em class="r_bt"></em>
+            </div>
+            <div class="warp1">
+                <div class="warp_date">
+                    <div class="calendar">
+                        <span class="calendar_day">日</span>
+                        <span class="calendar_day">一</span>
+                        <span class="calendar_day">二</span>
+                        <span class="calendar_day">三</span>
+                        <span class="calendar_day">四</span>
+                        <span class="calendar_day">五</span>
+                        <span class="calendar_day">六</span>
+                    </div>
+                    <div class="calendar">
+                        <span class="calendar_day">日</span>
+                        <span class="calendar_day">一</span>
+                        <span class="calendar_day">二</span>
+                        <span class="calendar_day">三</span>
+                        <span class="calendar_day">四</span>
+                        <span class="calendar_day">五</span>
+                        <span class="calendar_day">六</span>
+                    </div>
+                </div>
+                <div class="warp_month">
+                    <div class="month_list">
+                        <span>一月</span>
+                        <span>二月</span>
+                        <span>三月</span>
+                        <span>四月</span>
+                        <span>五月</span>
+                        <span>六月</span>
+                        <span>七月</span>
+                        <span>八月</span>
+                        <span>九月</span>
+                        <span>十月</span>
+                        <span>十一月</span>
+                        <span>十二月</span>
+                    </div>
+                    <div class="month_list">
+                        <span>一月</span>
+                        <span>二月</span>
+                        <span>三月</span>
+                        <span>四月</span>
+                        <span>五月</span>
+                        <span>六月</span>
+                        <span>七月</span>
+                        <span>八月</span>
+                        <span>九月</span>
+                        <span>十月</span>
+                        <span>十一月</span>
+                        <span>十二月</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="timepiece">
+            <span class="dot"></span>
+            <span class="hours"></span>
+            <span class="minutes"></span>
+            <span class="seconds"></span>
+            <div class="time_info">
+                <p class="info_timer"></p>
+                <p class="info_day"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        {
+            let calendar = document.querySelectorAll(".calendar");
+            calendar_inner = calendar[0].innerHTML;
+            let warp2 = document.querySelector(".warp_date");
+            let l_bt = document.querySelector(".l_bt");
+            let r_bt = document.querySelector(".r_bt");
+            let control_date = document.querySelector(".control_date");
+            let layer = 0; //当前展示第几层 0层为日期 1为月
+            let titletime = document.querySelector(".titletime");
+
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1; //月份的获取从0月开始，0月代表1月，正常使用时+1
+            let date2 = date.getDate();
+
+
+            titletime.onclick = () =>{
+                let date = new Date();
+                year = date.getFullYear();
+                month = date.getMonth() + 1; //月份的获取从0月开始，0月代表1月，正常使用时+1
+                date2 = date.getDate();
+                toDate(year, month);
+            }
+
+
+
+
+
+
+            timer();
+            let timers = setInterval(timer, 1000); //钟表定时器
+            
+            toDate(year, month); //获取时间设置日期列表
+
+
+            function toDate(year, month, direction) {
+                let control_date = document.querySelector(".control_date");
+                let nowDate = new Date(year, month - 1, 1); //通过年月获取这个月的第一天
+                let firstDay = nowDate.getDay(); //判断第一天是周几
+                let days = new Date(year, month, 0).getDate(); //下个月的第0天就是这个月的最后一天
+                let lastDays = new Date(year, month - 1, 0).getDate();
+                let list = "";
+                control_date.innerHTML = `${year}年${month}月`;
+                for (let i = 0; i < 42; i++) {
+                    if (i < firstDay) {
+                        list += `<span class="gray"><em>${lastDays - (firstDay + 1) + i}</em></span>`
+                    } else if (i >= firstDay && i < firstDay + days) {
+                        if (year == new Date().getFullYear() && month == new Date().getMonth()+1 && i == date2) {
+                            list += `<span id="nowdate"><em>${i - (firstDay - 1)}</em></span>`;
+                        }else{
+                            list += `<span><em>${i - (firstDay - 1)}</em></span>`;
+                        }
+                    } else {
+                        list += `<span class="gray"><em>${i - (firstDay + days - 1)}</em></span>`
+                    }
+                }
+                if (direction === undefined) {
+                    calendar[0].innerHTML = calendar_inner + list;
+                    calendar[1].innerHTML = calendar_inner + list;
+                } else if (direction == true) {
+                    calendar[0].innerHTML = calendar[1].innerHTML;
+                    css(warp2, "left", 0);
+                    calendar[1].innerHTML = calendar_inner + list;
+                    mTween({
+                        el: warp2,
+                        attr: {
+                            left: -175,
+                        },
+                        time: 150,
+                        type: "linear",
+                        cb: function () {
+                            calendar[0].innerHTML = calendar[1].innerHTML;
+                            css(warp2, "left", 0);
+                        },
+                    })
+                } else if (direction == false) {
+                    calendar[1].innerHTML = calendar[0].innerHTML;
+                    css(warp2, "left", -175);
+                    calendar[0].innerHTML = calendar_inner + list;
+                    mTween({
+                        el: warp2,
+                        attr: {
+                            left: 0,
+                        },
+                        time: 150,
+                        type: "linear",
+                        cb: function () {
+                            calendar[1].innerHTML = calendar[0].innerHTML;
+                            css(warp2, "left", -175);
+                        },
+                    })
+                }
+
+            }
+
+            function slideMonth(a) {
+                let warp_month = document.querySelector(".warp_month");
+                if(!a){
+                    css(warp_month,"left",-175);
+                    mTween({
+                        el: warp_month,
+                        attr: {
+                            left: 0,
+                        },
+                        time: 150,
+                        type: "linear"
+                    })
+                }else{
+                    css(warp_month,"left",0);
+                    mTween({
+                        el: warp_month,
+                        attr: {
+                            left: -175,
+                        },
+                        time: 150,
+                        type: "linear"
+                    })
+                }
+            }
+            function Monthclick(a=0) {
+                let warp_month = document.querySelector(".warp_month");
+                let month_list = document.querySelectorAll(".month_list");
+                // console.log(parseInt(warp_month.style.left) != -175);
+                    let Monthspan = month_list[a].querySelectorAll("span");
+                    Monthspan.forEach((item,index) =>{
+                        item.onclick = () =>{
+                            console.log(index);
+                            if(parseInt(warp2.style.left) >= 0 || warp2.style.left == ""){
+                                warp2.style.zIndex = 9;
+                                css(calendar[0],"scale",1);
+                            }else{
+                                warp2.style.zIndex = 9;
+                                css(calendar[1],"scale",1);
+                            }
+                            layer = 0;
+                            month = index+1;
+                            control_date.innerHTML = `${year}年${month}月`;
+                            toDate(year, month);
+                        }
+                    })
+                }
+            
+
+            l_bt.onclick = () => {
+                if(layer == 0){
+                    month--;
+                    if (month < 1) {
+                        month = 12;
+                        year--;
+                        toDate(year, month, true);
+                    } else {
+                        month - 1;
+                        toDate(year, month, true);
+                    } 
+                }
+                if(layer == 1){
+                    year--;
+                    control_date.innerHTML = `${year}年${month}月`;
+                    slideMonth(0);
+                    Monthclick()
+                }
+
+               
+            }
+            r_bt.onclick = () => {
+                if(layer == 0){
+                    month++;
+                    if (month > 12) {
+                        month = 1;
+                        year++;
+                        toDate(year, month, false);
+                    } else {
+                        toDate(year, month, false);
+                    }
+                }
+                if(layer == 1){
+                    year++;
+                    control_date.innerHTML = `${year}年${month}月`;
+                    slideMonth(1);
+                    Monthclick(1)
+                }
+
+            }
+
+            function toDB(nub) {
+                return nub < 10 ? "0" + nub : "" + nub;
+            }
+
+            function timer() {
+                let info_content = document.querySelectorAll(".time_info p");
+                let Seconds = document.querySelector(".seconds");
+                let minutes = document.querySelector(".minutes");
+                let hours = document.querySelector(".hours");
+                let date = new Date();
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1; //月份的获取从0月开始，0月代表1月，正常使用时+1
+                let date2 = date.getDate();
+                let daylist = ["日", "一", "二", "三", "四", "五", "六"];
+                let day2 = date.getDay();
+                let datehours = date.getHours();
+                let dateminute = date.getMinutes() + datehours / 60;
+                let dateSeconds = date.getSeconds() + dateminute / 60;
+                css(Seconds, "rotate", dateSeconds * 6);
+                css(minutes, "rotate", dateminute * 6);
+                css(hours, "rotate", datehours * 30);
+                titletime.innerHTML = `${year}年${month}月${date2}日`;
+                info_content[0].innerHTML = `${toDB(datehours)}:${toDB(date.getMinutes())}:${toDB(date.getSeconds())}`;
+                info_content[1].innerHTML = `星期${daylist[day2]}`;
+            }
+            
+            control_date.onclick = () =>{
+                if(parseInt(warp2.style.left) >= 0 || warp2.style.left == ""){
+                    calendar[0].style.transformOrigin = `${(month-1)%4*45+20}px ${(Math.ceil(month/4)-1)*50+20}px 0`;
+                    css(calendar[0],"scale",0);
+                    setTimeout(() =>{
+                    warp2.style.zIndex = -5;
+                    },300)
+                }else{
+                    calendar[1].style.transformOrigin = `${(month-1)%4*45+20}px ${(Math.ceil(month/4)-1)*50+20}px 0`;
+                    css(calendar[1],"scale",0);
+                    setTimeout(() =>{
+                    warp2.style.zIndex = -5;
+                    },300)
+                }
+                layer = 1;
+                Monthclick();
+            }
+            
+        
+        
+        }
+    </script>
+</body>
+
+</html>

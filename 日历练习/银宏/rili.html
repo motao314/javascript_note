@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box{
+        width:382px;
+        height:380px;
+        background:#ffcc00;
+        float: left;
+        position: relative;
+        margin-top:250px;
+    }
+    #box span{
+        display: block;
+        float: left;
+        width:50px;
+        height:50px;
+        font:16px/50px"宋体";
+        text-align: center;
+        border:1px solid #fff;
+        margin-left:2px;
+        margin-top:2px;
+    }
+    .list{
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
+    .list li{
+        float: left;
+        width:50px;
+        height:50px;
+        font:20px/50px"宋体";
+        text-align: center;
+        border:1px solid #fff;
+        margin-left:2px;
+        margin-top:2px;
+    }
+    .list .gray {
+        background: #f8fb00;
+        font-size:1px;
+        font-family: "楷体";
+    }
+    #box2{
+        width:382px;
+        height:200px;
+        background:#ffcc00;
+        float: left;
+        margin-top: 50px;
+        margin-left: -382px;
+    }
+    #box2 p{
+        margin:0;
+        width:100%;
+        height:50px;
+        font:20px/50px"微软雅黑";
+        text-align: center;
+    }
+    #box2 i{
+        display: block;
+        width:100%;
+        height:50px;
+        font:30px/50px"微软雅黑";
+        text-align: center;
+    }
+    #box2 em{
+        display: block;
+        width:100%;
+        height:50px;
+        font:30px/50px"微软雅黑";
+        text-align: center;
+    }
+    #box .day{
+        width:380px;
+        height:380px;
+        transform-origin: center center;
+        transition:.5s;
+        position: absolute;
+        background:#ffcc00;
+        top:0;
+        left:0;
+        z-index:1;
+    }
+    .day :hover{
+        background:#fa7c00;
+    }
+    .btn{
+        position: absolute;
+        top:-50px;
+        left:0;
+        font:20px/50px"楷体";
+        border:1px solid #fff;
+        width:380px;
+        height:50px;
+        background:#ffcc00; 
+    }
+    
+    #box .month{
+        width:380px;
+        height:380px;
+        transform-origin: center center;
+        transition:.5s;
+        background: #ffcc00;
+        position: absolute;
+        top:0;
+        left:0;
+        z-index:0;
+        transform: scale(1);
+    }
+    
+   #box .month span{
+       display: block;
+        width:90px;
+        height:100px;    
+        margin-top:19px;
+        margin-left:3px;
+        font:20px/100px"微软雅黑";
+    }
+    #box .month span:hover{
+        background:#fa7c00;
+    }
+    #box .annual{
+        width:380px;
+        height:380px;
+        transform: scale(0);   
+    }
+    #box .annual span:hover{
+        background:#fa7c00;
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="day">
+        <span>日</span>
+        <span>一</span>
+        <span>二</span>
+        <span>三</span>
+        <span>四</span>
+        <span>五</span>
+        <span>六</span>
+        <ul class="list">
+        </ul>
+        <input type="button" value="选择鈅份" class="btn">
+      </div>
+      <div class="month">
+        <input type="button" value="选择年份" class="btn">
+          <span>一月</span>
+          <span>二月</span>
+          <span>三月</span>
+          <span>四月</span>
+          <span>五月</span>
+          <span>六月</span>
+          <span>柒鈅</span>
+          <span>八月</span>
+          <span>九月</span>
+          <span>十月</span>
+          <span>十一月</span>
+          <span>十二月</span>
+      </div>
+      <div class="annual">
+          <span>1998</span>
+          <span>1999</span>
+          <span>2000</span>
+          <span>2001</span>
+          <span>2002</span>
+          <span>2003</span>
+          <span>2004</span>
+          <span>2005</span>
+          <span>2006</span>
+          <span>2007</span>
+          <span>2008</span>
+          <span>2009</span>
+          <span>2010</span>
+          <span>2011</span>
+          <span>2012</span>
+          <span>2013</span>
+          <span>2014</span>
+          <span>2015</span>
+          <span>2016</span>
+          <span>2017</span>
+          <span>2018</span>
+          <span>2019</span>
+          <span>2020</span>
+          <span>2021</span>
+          <span>2022</span>
+          <span>2023</span>
+          <span>2024</span>
+          <span>2025</span>
+          <span>2026</span>
+          <span>2027</span>
+          <span>2028</span>
+          <span>2029</span>
+          <span>2030</span>
+          <span>2031</span>
+          <span>2032</span>
+          <span>2033</span>
+          <span>2034</span>
+          <span>2035</span>
+          <span>2036</span>
+          <span>2037</span>
+          <span>2038</span>
+          <span>2039</span>
+          <span>2040</span>
+          <span>2041</span>
+          <span>2042</span>
+          <span>2043</span>
+          <span>2044</span>
+          <span>2045</span>
+          <span>2046</span>
+      </div>
+    </div>
+    <div id="box2">
+        <p>0000年00月00日</p>
+        <i>星期0</i>
+        <em>00:00:00</em>
+    </div>
+    <script>
+        (function(){
+            let p = document.querySelector("p");
+            let em =document.querySelector("em");
+            let i =document.querySelector("i");
+            let week = ["日","一","二","三","四","五","六"];
+            toTime();
+            setInterval(toTime,1000);
+            function toTime(){
+                let dateTime = new Date();
+                let year = dateTime.getFullYear();
+                let month = dateTime.getMonth() + 1;
+                let date = dateTime.getDate();
+                let hours = dateTime.getHours();
+                let minutes = dateTime.getMinutes();
+                let seconds = dateTime.getSeconds();
+                let day = dateTime.getDay();
+                p.innerHTML = `${year}年${toDB(month)}月${toDB(date)}日`;
+                em.innerHTML = `${toDB(hours)}:${toDB(minutes)}:${toDB(seconds)}`;
+                i.innerHTML = `星期${week[day]}`
+            }
+        })();
+    function toDB(nub){
+            return nub < 10?"0"+nub:""+nub;
+        }
+
+
+
+
+        (function(){
+    let tbody = document.querySelector(".list");
+    let txt = document.querySelectorAll("input");
+    toDate(2018,10);
+    function toDate(year,month){
+        let firstDay = new Date(year,month - 1,1).getDay();
+        let lastMonthDays = new Date(year,month - 1,0).getDate();
+        let inner = "";
+        let lastMonthFirst = lastMonthDays-firstDay+1;//上个月在这个列表中需要显示的第一天是几号;
+        let nowMonthFirst = 1;
+        let nowMonthLast =  new Date(year,month,0).getDate();
+        let nextMonthFirst = 1;
+        for(let i = 0; i < 42; i++){
+            if(i < firstDay){
+                inner += `<li class="gray">${lastMonthFirst}</li>`;
+                lastMonthFirst++;
+            } else if(nowMonthFirst <= nowMonthLast) {
+                inner += `<li>${nowMonthFirst}</li>`;
+                nowMonthFirst++;
+            } else {
+                inner += `<li class="gray">${nextMonthFirst}</li>`;
+                nextMonthFirst++;
+            }
+        }
+        tbody.innerHTML = inner;
+    }
+})(); 
+
+
+(function(){
+    let btn =document.querySelectorAll(".btn");
+    let day =document.querySelector(".day");//日
+    let month =document.querySelector(".month");//月
+    let annual=document.querySelector(".annual");//年
+    let annualspan= document.querySelectorAll(".annual span")//年里的span
+    let monthspan=document.querySelectorAll(".month span");//月里的span
+    
+    btn[0].onmouseover=function(){
+        this.style.background="#e1b60b"
+    }
+    btn[0].onmouseout=function(){
+        this.style.background=""
+    }
+    btn[1].onmouseover=function(){
+        this.style.background="#e1b60b"
+    }
+    btn[1].onmouseout=function(){
+        this.style.background=""
+    }
+    btn[0].onclick=function(){//当点击选择月份时
+        month.style.transform="scale(1)";
+        day.style.transform="scale(0)";//日缩小为0；
+        annual.style.transform="scale(0)";//年缩小为0；
+        setTimeout(function(){month.style.zIndex="1";},1000);//让月延迟一秒出现
+    }
+    btn[1].onclick=function(){//当点击选择年份时
+        month.style.transform="scale(0)";//月缩小为0；
+        annual.style.transform="scale(1)";//年放大为1；
+    }
+    annualspan.forEach((tame,index)=>{//循环年里的span
+        tame.onclick=function(){//当点击某个span时
+            month.style.transform="scale(1)";//月放大为1；
+        }
+        monthspan.forEach((tame,index)=>{//循环月里的span
+            tame.onclick=function(){//当点击某个span时
+                month.style.transform="scale(0)";//月缩小为0；
+                day.style.transform="scale(1)";//日放大为1；
+            }
+        })
+    })
+})()
+        </script> 
+</body>
+</html>

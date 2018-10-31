@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            margin:0;
+            padding:0;
+            list-style:none ;
+        }
+        .box{
+            height:550px;
+            width:650px;
+            background-color: #fcededcc;
+            margin:  0 auto;
+            border: 3px solid #557ec0;
+        } 
+        .time{
+            height:50px;
+            width:180px;
+            margin: 0 auto;
+            font: 20px/50px "宋体";
+            color:#8a7fc8;
+        }
+        .jl{
+            margin: 0 auto;
+            width: 570px;
+            font: 26px/70px "宋体";
+            color:#8a7fc8;
+        }
+        .alendar{
+            height:300px;
+            width: 350px;
+            display: flex;
+        }
+        .xq{
+            height:50px;
+            width: 350px;
+            display: flex;
+        }
+        .xq span{
+            flex: 1;
+            width: 48px;
+            height: 48px;
+            font: 26px/48px "宋体";
+            color:#908383;
+            border:1px solid #ffffff;
+            background-color: #f8dfdf;
+            text-align: center;
+        }
+        .riqi{
+            width:350px ;
+            height:300px;
+            /* overflow: hidden; */
+        }
+        .day-time{
+            height:300px;
+            width: 350px;
+            overflow: hidden;
+            /* transform:10s;
+            transform: scale(0) */
+               
+        }
+        .day-time li{
+            float: left;
+        }
+        .day-time .yellow {
+            width: 48px;
+            height: 48px;
+            font: 26px/48px "宋体";
+            color:#ffffff;
+            border:1px solid #ffffff;
+            background-color: rgb(143, 126, 126) ;
+            text-align: center;
+        }
+        .day-time .gray{
+            width: 48px;
+            height: 48px;
+            color:#ffffff;
+            font: 26px/48px "宋体";
+            border:1px solid #f8eded;
+            text-align: center;
+            background-color:#d4d0d0;
+        }
+        .day-month{    
+            height:300px;
+            width: 350px;
+            overflow: hidden;
+            /* transform: 0.5s;
+             transform:scale(0);  */
+        } 
+        .yue{  
+            float: left;
+            width: 85px;
+            height: 100px; 
+            color:#ffffff;
+            font: 26px/98px "宋体";
+            border:1px solid #f8eded;
+            text-align: center;
+            background-color: #d8d1d1;
+        }
+        .day-FullYear{
+            height:300px;
+            width: 350px;
+            overflow: hidden;
+            /* transform: 0.5s; */
+        }
+        .FullYear{
+            float: left;
+            width: 85px;
+            height: 100px; 
+            color:#ffffff;
+            font: 26px/98px "宋体";
+            border:1px solid #f8eded;
+            text-align: center;
+            background-color: #d8d1d1;
+            
+        }
+        button{
+            width: 40px;
+            height: 40px;
+            /* float: right; */
+            background-color: #d8d1d1;
+            border:none;
+        }
+        .biaopan{
+            position: relative;
+            bottom:350px;
+            left:400px ;
+            width:212px;
+            height: 212px;
+            background: url(itme.png) no-repeat -3px -3px;
+            background-size: 212px 212px;
+            border-radius: 50%;
+        }
+        .seconds{
+            width: 2px;
+            height: 85px;
+            background-color: blueviolet;
+            transform-origin:1px 84px 0;
+            transform:  rotate(0deg);
+            position: absolute;
+            top:19px;
+            left:102px;
+        }
+        .minutes{
+            width:2px ;
+            height: 60px;
+            background-color: gold;
+            transform-origin:1px 59px 0;
+            transform:  rotate(0deg);
+            position: absolute;
+            top:44px;
+            left:102px;
+        }
+        .hours{
+            width: 2px;
+            height: 75px;
+            background-color:royalblue;
+            transform-origin:1px 74px 0;
+            transform:  rotate(0deg);
+            position: absolute;
+            top:29px;
+            left:102px;
+        }
+        .sj{
+            position: relative;
+            bottom:300px;
+            left:430px ;
+            font: 26px/48px "宋体";
+            display: inline-block;
+        }  
+         
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="time">
+        <span>0</span>年
+        <span>0</span>月
+        <span>0</span>日
+    </div>
+    <div class="jl">
+        <button><</button>
+        <span class="Nian"><span class="year"></span>年</span>
+        <span class="Yue"><span class="year"></span>月</span>
+        <button>></button>
+    </div>
+    <div class="calendar">
+        <div class="xq">
+            <span>日</span>
+            <span>一</span>
+            <span>二</span>
+            <span>三</span>
+            <span>四</span>
+            <span>五</span>
+            <span>六</span>
+        </div>
+        <div class="riqi">
+            <ul class="day-time" >  
+            </ul>
+            <ul class="day-month">
+            </ul>
+            <ul class="day-FullYear">
+            
+            </ul>
+        </div>
+    </div>
+    <div class="biaopan">
+            <span class='seconds'></span> 
+            <span class='hours'></span>
+            <span class='minutes'></span>
+    </div>
+    <div class="sj">
+            <span class='s'></span> : 
+            <span class='f'></span> :
+            <span class='m'></span><br>
+            <span>星期</span><span></span>
+    </div>
+</div>
+<script src="miaov.js"></script>
+<script>
+    (function() {
+        let year = document.querySelectorAll('.year');
+        let btn = document.querySelectorAll('button');
+        let dayMonth = document.querySelector('.day-month')//月
+        let dayTime = document.querySelector('.day-time')//日期
+        let dayFullYear = document.querySelector('.day-FullYear')//年份
+        let dangqianNyr = document.querySelector(".time")//头部返回
+        let nyr = document.querySelectorAll(".time span")//年月日
+        let NF = new Date().getFullYear();//年
+        let YF = new Date().getMonth();//月
+        let RQ = new Date().getDate() ;//日
+        let z = 0//当前日期记录
+        let l = 0//年份记录
+        // fn(NF,YF+1);//传值
+        // back();//当前日期标记调用 
+        // time()//当前时间获取
+        // yue();
+        shuaxin();//刷新页面时 调用所有
+        dangqianNyr.onclick=(()=>{//头部返回
+            z = 0 
+            shuaxin();
+            let yellow = document.querySelectorAll('.yellow');//当前月所有日期
+            if(z == 0){
+                yellow[RQ-1].style.backgroundColor="#f00";//当前日 颜色
+                yellow[RQ-1].style.color="#fff";
+            }
+            // console.log(z)
+        }); 
+        function shuaxin(){
+            console.log("已调用返回首页")
+            time()//当前时间获取
+            fn(NF,YF+1);//传值
+            back();//当前日期标记调用
+            A();//日期切换
+            nianF()//年份切换+-
+            dayTime.style.display = "block";//日期
+            dayMonth.style.display="none"//1-12月份
+            dayFullYear.style.display="none"//年
+            yueclk();
+            NianF()//2009-2019
+        };  
+
+        ///////////////////////////////////////////// 
+        function NianF(){//改变年份与月份的背景颜色
+            let Nian = document.querySelector('.Nian')//月
+            Nian.onclick=(()=>{//月份显示
+                dayTime.style.display = "none";//日期
+                dayMonth.style.display="none"//1-12月份
+                dayFullYear.style.display="block"//年
+                C()//  // 点击年2009-2019 切换  及背景颜色
+               FullYearF()//年份生成
+                let  FullYear = document.querySelectorAll(".FullYear")//加背景颜色
+                for(let i = 0 ; i<FullYear.length; i++){
+                    FullYear[i].style.color="rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+                } 
+            });
+         }
+       
+        function C(){//年份选择  
+            let n = 10//当前年份记录
+            let  FullYear = document.querySelectorAll(".FullYear")//
+            FullYear.innerHTML = FullYear.innerHTML
+            btn[0].onclick=(()=>{  //第一个按钮  
+                l--
+                    dayFullYear.innerHTML ="";
+                let N =[
+                    2009,
+                    2010,
+                    2011,
+                    2012,
+                    2013,
+                    2013,
+                    2014,
+                    2015,
+                    2016,
+                    2017,
+                    2018,
+                    2019,
+                ]  
+       console.log(n,l)
+          for(let i=0 ; i< 12 ;i++){
+                dayFullYear.innerHTML += `<li class="FullYear">${N[i]+n*l}</li>`;
+            }  
+            let  FullYear = document.querySelectorAll(".FullYear")//加背景颜色
+                for(let i = 0 ; i<FullYear.length; i++){
+                    FullYear[i].style.color="rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+                } 
+            FullYearF()
+            });
+            btn[1].onclick=(()=>{  //第一个按钮  
+                l++
+                    dayFullYear.innerHTML ="";
+                let N =[
+                    2009,
+                    2010,
+                    2011,
+                    2012,
+                    2013,
+                    2013,
+                    2014,
+                    2015,
+                    2016,
+                    2017,
+                    2018,
+                    2019,
+                ]  
+                console.log(n,l)
+                for(let i=0 ; i< 12 ;i++){
+                    dayFullYear.innerHTML += `<li class="FullYear">${N[i]+n*l}</li>`;
+                }  
+                let  FullYear = document.querySelectorAll(".FullYear")//加背景颜色
+                for(let i = 0 ; i<FullYear.length; i++){
+                    FullYear[i].style.color="rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+                } 
+                FullYearF()
+            });
+        };
+          
+        function  FullYearF(){//年份生成   
+       let N =[
+            2009,
+            2010,
+            2011,
+            2012,
+            2013,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+       ]  
+    //    for(let i=0 ; i< 12 ;i++){// 年的数组要改
+    //            if(i<1){
+    //             inner += `<li class="gray">${weekl}</li>`;
+    //             weekl++;
+    //             // console.log(i)
+    //            }else if(i>11){
+    //             inner += `<li class="yellow">${r}</li>`;
+    //             r++;
+    //            }else {  
+    //                inner += `<li class="gray">${l}</li>`;
+    //                l++;
+    //            };
+    //        };
+       console.log(dayFullYear.innerHTML)   
+          for(let i=0 ; i< 12 ;i++){
+                dayFullYear.innerHTML += `<li class="FullYear">${N[i]}</li>`;
+            }  
+            FullYearclk();//年份点击
+       };
+        function FullYearclk(){//当年点击的时候
+            let  FullYear = document.querySelectorAll(".FullYear");
+            for (let i= 0 ; i < FullYear.length; i++){
+                FullYear[i].index = i
+                FullYear[i].onclick=(() => {
+             console.log(FullYear[i].index,"年份执行")
+                    if( FullYear[i].index< 2 ){// 加0
+                        FullYear[i].index = FullYear[i].index
+                // console.log(FullYear[i].index)
+           };
+                fn( FullYear[i].innerHTML,year[1].innerHTML)
+                 console.log( FullYear[i].innerHTML)   
+                dayFullYear.style.display = "none";
+                dayMonth.style.display = "block";
+                dayTime.style.display = "none";
+                nianF()
+                 yueF()
+                 B()
+                 let  yue = document.querySelectorAll(".yue")//加背景颜色
+                for(let i = 0 ; i<yue.length; i++){
+                    yue[i].style.backgroundColor="rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+                } 
+                })
+            }
+        };
+///////////////////////////////////////////////////////////////
+        function nianF(){//改变年份与月份的  背景颜色
+            let Yue = document.querySelector('.Yue')//月
+            Yue.onclick=(()=>{//月份显示
+                dayFullYear.style.display = "none";
+                dayTime.style.display = "none";
+                dayMonth.style.display="block"
+                B()//  // 点击月 份年++———— 切换背景颜色
+                yueF()//月份生成
+                let  yue = document.querySelectorAll(".yue")//加背景颜色
+                for(let i = 0 ; i<yue.length; i++){
+                    yue[i].style.backgroundColor="rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+                } 
+            });
+         } 
+        function B(){//年++————  // B()//点击切换背景颜色  
+            btn[0].onclick=(()=>{  //第一个按钮         
+                year[0].innerHTML--
+                fn(year[0].innerHTML,year[1].innerHTML)
+                    // back();//当前日期标记调用
+                let  yue = document.querySelectorAll(".yue")//加背景颜色
+                for(let i = 0 ; i<yue.length; i++){
+                    yue[i].style.backgroundColor="rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+                } 
+            });
+            btn[1].onclick=(()=>{//第二个按钮  
+                year[0].innerHTML++
+                fn(year[0].innerHTML,year[1].innerHTML)
+                // back();//当前日期标记调用
+                let  yue = document.querySelectorAll(".yue")//加背景颜色
+                console.log(yue)
+                for(let i = 0 ; i<yue.length; i++){
+                    yue[i].style.backgroundColor="rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+                }
+            });
+        }; 
+        function yueF(){//月份生成
+            let y =[
+                "一月",
+                "二月",
+                "三月",
+                "四月",
+                "五月",
+                "六月",
+                "七月",
+                "八月",
+                "九月",
+                "十月",
+                "十一月",
+                "十二月",
+            ]  
+            for(let i=0 ; i< 12 ;i++){
+                dayMonth.innerHTML += `<li class="yue">${y[i]}</li>`;
+            }
+            if(n=0){
+            let  yue = document.querySelectorAll(".yue")//加背景颜色
+            // console.log(yue)
+            yue[YF].style.backgroundColor="red";  
+            }
+            yueclk()
+       };
+       function yueclk(){//当月点击的时候
+            let  yue = document.querySelectorAll(".yue");
+            for (let i= 0 ; i <yue.length; i++){
+                yue[i].index = i
+                yue[i].onclick=(() => {
+                    if( yue[i+1].index< 2 ){// 加0
+                        yue[i+1].index =  0 + yue[i+1].index
+           };
+                fn(year[0].innerHTML,yue[i+1].index)
+                dayMonth.style.display="none"
+                dayTime.style.display = "block"; 
+                dayFullYear.style.display="none"
+                A()//日期切换
+                })
+            }
+        };
+        function A(){//月份切换
+            btn[0].onclick=(()=>{  //第一个按钮  
+                z--  
+                if(year[1].innerHTML<=1){
+                    year[0].innerHTML--
+                    year[1].innerHTML=12
+                }else{
+                    year[1].innerHTML--
+                }  
+                fn(year[0].innerHTML,year[1].innerHTML)
+                    back();//当前日期标记调用
+            });
+            btn[1].onclick=(()=>{//第二个按钮  
+                z++
+                if(year[1].innerHTML>=12){
+                    year[0].innerHTML++
+                    year[1].innerHTML= 1
+                }else{
+                    year[1].innerHTML++     
+                }
+                fn(year[0].innerHTML,year[1].innerHTML)
+                back();//当前日期标记调用
+            });
+        };
+        function back(){//当前日期标记
+            console.log(z)
+            let NF = new Date().getFullYear();
+            let YF = new Date().getMonth();
+            let RQ = new Date().getDate();
+            let yellow = document.querySelectorAll('.yellow');
+            // year[0].innerHTML == NF && year[1].innerHTML == YF  
+            if(z == 0){
+                yellow[RQ-1].style.backgroundColor="#f00";
+                yellow[RQ-1].style.color="#fff";
+            }
+        };
+       function  fn(Fullyear,Month){
+           let week = new Date(Fullyear,Month-1,1).getDay();//当前月的日期是星期几
+           let weeks = new Date(Fullyear,Month-1,0).getDate();//上月最后一天是几号
+           let inner = '';
+           let weekl =( weeks - week + 1)//上个月在这个列表的第一天，星期几
+           let r = 1 
+           let weekx = new Date(Fullyear,Month,0).getDate();//当前月最后一天是几号
+           let l = 1
+            console.log(Month)
+           if( Month.length < 2 ){// 加0
+                Month =  0 + Month
+                console.log(Month.length)
+           };
+           console.log(week,weeks,weekl)
+           year[0].innerHTML  = Fullyear;//传入的值
+           year[1].innerHTML  = Month;//传入的值
+
+           for(let i=0 ; i< 42 ;i++){
+               if(i<week){
+                inner += `<li class="gray">${weekl}</li>`;
+                weekl++;
+                // console.log(i)
+               }else if(r<=weekx){
+                inner += `<li class="yellow">${r}</li>`;
+                r++;
+               }else {  
+                   inner += `<li class="gray">${l}</li>`;
+                   l++;
+               };
+           };
+           dayTime.innerHTML = inner;  
+           
+       } ;
+       function time(){//数字时间
+            let NF = new Date().getFullYear();
+            let YF = new Date().getMonth();
+            let RQ = new Date().getDate();
+            nyr[0].innerHTML = NF;
+            nyr[1].innerHTML = YF+1;
+            nyr[2].innerHTML = RQ;
+           
+        };
+    })();
+    (function(){
+    itmes()
+    setInterval(itmes,1000)
+   function itmes(){
+       let biaopan = document.querySelector('.biaopan')
+        let needle = biaopan.querySelectorAll('span')
+        let sj = document.querySelectorAll('.sj span')
+        let dateitme = new Date();
+        let hours = dateitme.getHours();//时针
+        let minutes = dateitme.getMinutes();//分针
+        let seconds =dateitme.getSeconds();//秒针
+        let day = dateitme.getDay()
+        let x = [
+            "日",
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六"       
+        ]
+        sj[0].innerHTML = toDB(hours)
+        sj[1].innerHTML = toDB(minutes)
+        sj[2].innerHTML = toDB(seconds) 
+        sj[4].innerHTML = x[day]
+        // console.log(sj)
+        css(needle[0],'rotate',(seconds*6))
+        css(needle[1],'rotate',(minutes*6))
+        css(needle[2],'rotate',(hours*30))
+   }
+})()
+function toDB(nub){//填0
+    return nub < 10?"0"+nub:""+nub;
+}
+</script>    
+</body>
+</html> 

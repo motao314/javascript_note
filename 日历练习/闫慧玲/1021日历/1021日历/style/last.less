@@ -1,0 +1,198 @@
+.wrap {
+    width: 425px;
+    height: 319px;
+    border: 1px solid #000;
+    margin: 50px auto;
+  }
+  
+  .top {
+    color: #0066cc;
+    text-align: center;
+    font: 13px/58px "宋体";
+  }
+  .middle {
+    width: 389px;
+    height: 204px;
+    margin: 0 18px;
+    overflow: hidden;
+    .left {
+      width: 210px;
+      height: 100%;
+      float: left;
+      position: relative;
+      .select {
+        overflow: hidden;
+        .prev {
+          width: 19px;
+          height: 31px;
+          float: left;
+          img {
+            vertical-align: top;
+            margin: 10px 7px;
+          }
+        }
+        .date {
+          width: 172px;
+          text-align: center;
+          font: 13px/31px "宋体";
+          color: #000;
+          float: left;
+          &:hover {
+            color: #0066cc;
+          }
+        }
+        .next {
+          width: 19px;
+          height: 31px;
+          float: left;
+          img {
+            vertical-align: top;
+            margin: 10px 7px;
+          }
+        }
+      }
+      .title {
+        // width: 210px;
+        font-size: 0;
+        // display: none;
+        span {
+          display: inline-block;
+          font: 13px/19px "宋体";
+          color: #000;
+          padding: 2px 8px 0 8px;
+        }
+      }
+      .Month_box{
+        font:bold 11px/38px "宋体";
+        overflow: hidden;
+        text-align: center;
+        display: none;
+        div{
+          float: left;
+          width:50px ;
+          height: 38px;
+          border:1px solid transparent;
+          &:hover{
+            border-color: #84acdd;
+            background: linear-gradient(#f2f8ff, #d0e5ff);
+          }
+        }
+      }
+      .year_box{
+        font:bold 11px/38px "宋体";
+        overflow: hidden;
+        text-align: center;
+        display: none;
+        div{
+          float: left;
+          width:50px ;
+          height: 38px;
+          border:1px solid transparent;
+          
+          &:hover{
+            border-color: #84acdd;
+            background: linear-gradient(#f2f8ff, #d0e5ff);
+          }
+        }
+      }
+      .calendar {
+        // width: 210px;
+        overflow: hidden;
+        border-top: 1px solid #f5f5f5;
+        position: relative;
+        // display: none;
+        div {
+          float: left;
+          font: 11px/18px "宋体";
+          color: #000;
+          padding: 0 6px;
+          border: 1px solid transparent;
+          border-radius: 1px;
+          width: 13px;
+          padding: 2px 7px 0 7px;
+          text-align: right;
+          &:hover {
+            color: #0066cd;
+            border-color: #bfd8fa;
+          }
+        }
+        .active {
+          color: #0066cd;
+          border-color: #0066cd;
+          background: linear-gradient(#f2f8ff, #d0e5ff);
+        }
+        .click {
+          border-color: #84b0e2;
+          background-color: #bfd8fa;
+        }
+        .inactivity {
+          color: #ccc;
+        }
+      }
+    }
+    .right {
+      float: left;
+      .circular {
+        width: 158px;
+        height: 158px;
+        background: url(../img/clock_03.png) no-repeat;
+        margin-left: 15px;
+        position: relative;
+        .H {
+          width: 1px;
+          height: 30px;
+          background-color: #a2a8a7;
+          position: absolute;
+          top: 49px;
+          left: 78px;
+          transform: rotate(0);
+          transform-origin: bottom;
+        }
+        .M {
+          width: 1px;
+          height: 36px;
+          background-color: #8b9cb0;
+          position: absolute;
+          top: 43px;
+          left: 78px;
+          transform: rotate(0);
+          transform-origin: bottom;
+        }
+        .S {
+          width: 1px;
+          height: 60px;
+          background-color: #6d7a81;
+          position: absolute;
+          top: 30px;
+          left: 78px;
+          transform: rotate(0);
+          transform-origin: 50% 82%;
+        }
+        .dot {
+          width: 8px;
+          height: 8px;
+          background-color: #73949f;
+          border-radius: 50%;
+          position: absolute;
+          top: 75px;
+          left: 75px;
+        }
+      }
+      .time {
+        width: 100%;
+        font: 13px/43px "宋体";
+        color: #000;
+        text-align: center;
+      }
+    }
+  }
+  .bottom {
+    width: 100%;
+    height: 55px;
+    border-top: 1px solid #ccd9ea;
+    text-align: center;
+    font: 13px/55px "宋体";
+    color: #0066cc;
+    background-color: #f1f5fb;
+  }
+  

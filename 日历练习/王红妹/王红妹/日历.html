@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<script type="text/javascript" src="miaov.js"></script>
+<style type="text/css">
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.wrap{
+	width: 400px;
+	height: 378px;
+	padding: 20px;
+	border: 2px solid #88f99d;
+	border-radius: 3px;
+	position: relative;
+}
+.currentTime{
+	float: left;
+	margin-left: 110px;
+}
+.title{
+	overflow: hidden;
+	width: 360px;
+	text-align: center;
+	font: 22px/26px "宋体";
+	display: block;
+}
+.title2,.title3{
+	overflow: hidden;
+	width: 360px;
+	text-align: center;
+	font: 22px/26px "宋体";
+	display: none;
+}
+.title button,.title2 button,.title3 button{
+	border:none;
+}
+.title .prev,.title2 .prev,.title3 .prev{
+	float: left;
+	width: 24px;
+	height: 26px;
+	background: url(img/prev-bg.jpg) center no-repeat;
+}
+.title .next,.title2 .next,.title3 .next{
+	float: right;
+	width: 24px;
+	height: 26px;
+	background: url(img/next-bg.jpg) center no-repeat;
+}
+.title input,.title2 input,.title3 input{
+	width: 48px;
+	font: 20px/26px "宋体";
+	border: none;
+}
+.title .currentMonth,.title2 .currentMonth {
+	width: 28px;
+}
+.nav {
+	width: 400px;
+	flex: 1;
+	padding: 14px 0;
+}
+.nav span{
+	font: 24px/30px "宋体";
+	padding: 0 11px;
+
+}
+.box{
+	transform-origin:center; top;
+	position: absolute;
+	left: 20px;
+	top: 48px;
+}
+.list,.monthList,.list3{
+	width: 350px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.list li,.monthList li{
+	width: 48px;
+	height: 48px;
+	border: 1px solid #fff;
+	font: 24px/48px "宋体";
+	text-align: center;
+	background: #f7f8f8;
+	color: #11aafb
+}
+.monthList{
+	width: 400px;
+	transform: scale(0);
+	transform-origin:left bottom;
+}
+.monthList li,.list3 li{
+	width: 88px;
+	height: 100px;
+	font: 24px/100px "宋体";
+}
+.monthList .on{
+	color: red;
+	background: #020000;
+}
+.list3{
+	transform: scale(0);
+	transform-origin:right center;
+}
+.list3 li{
+	width: 85px;
+	border: 1px solid #fff;
+	text-align: center;
+	background: #f7f8f8;
+	color: #11aafb;
+}
+.list .active{
+	color: #000;
+	font-size: 26px;
+	background: #F7F8B4;
+}
+.list .gray,.list3 .gray{
+	color: #adadad;
+}
+</style>
+<body>
+<div class="wrap">
+	<div class="title">
+		<button class="prev"></button>
+		<button class="next"></button>
+		<div class="currentTime">
+			<input class="currentYear" type="text" value="" name="">年
+			<input class="currentMonth" type="text" value="" name="">月
+		</div>
+	</div>
+	<div class="title2">
+		<button class="prev"></button>
+		<button class="next"></button>
+		<div class="currentTime">
+			<input class="currentYear" type="text" value="" name="">
+		</div>
+	</div>
+	<div class="title3">
+		<button class="prev"></button>
+		<button class="next"></button>
+		<span class="startYear"></span>-
+		<span class="endYear"></span>
+	</div>
+
+	<div class="box">
+		<nav class="nav">
+			<span>日</span>
+			<span>一</span>
+			<span>二</span>
+			<span>三</span>
+			<span>四</span>
+			<span>五</span>
+			<span>六</span>
+		</nav>
+		<ul class="list"></ul>
+	</div>
+	<div class="box">
+		<ul class="monthList">
+			<li>一月</li>
+			<li>二月</li>
+			<li>三月</li>
+			<li>四月</li>
+			<li>五月</li>
+			<li>六月</li>
+			<li>七月</li>
+			<li>八月</li>
+			<li>九月</li>
+			<li>十月</li>
+			<li>十一月</li>
+			<li>十二月</li>
+		</ul>
+	</div>
+	<div class="box">
+		<ul class="list3">
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+(function(){
+	let currentTime = document.querySelector(".currentTime");
+	let title = document.querySelector(".title");
+	let title2 = document.querySelector(".title2");
+	let input2 = document.querySelector(".title2 input");
+	let title3 = document.querySelector(".title3");
+	let prev = document.querySelector(".prev");
+	let next = document.querySelector(".next");
+	let prev2 = document.querySelector(".title2 .prev");
+	let next2 = document.querySelector(".title2 .next");
+	let prev3 = document.querySelector(".title3 .prev");
+	let next3 = document.querySelector(".title3 .next");
+	let list = document.querySelector(".list");
+	let currentMonth = document.querySelector(".currentMonth");
+	let currentYear= document.querySelector(".currentYear");
+	let nowYear = new Date().getFullYear() ;
+	currentYear.value = nowYear;
+	let nowMonth = new Date().getMonth() +1;
+	 currentMonth.value = nowMonth;
+	input2.value =  nowYear;
+	//点击title2的时候，显示单个年份
+	title2.onclick = ()=>{
+		let list3 = document.querySelector(".list3");
+		let arrYear = [];
+		title2.style.display = "none";
+		title3.style.display = "block";
+		css(list3,"scale",0);
+		mTween({
+			el:monthList,
+			attr:{
+				scale:0
+			},
+			type:"linear"
+		});
+		mTween({
+			el:list3,
+			attr:{
+				scale:1
+			},
+			type:"linear"
+		});
+		year(2010,2019)//生成年份
+		function year(startY,endY){
+			let startYear = document.querySelector(".startYear");
+			let endYear = document.querySelector(".endYear");
+			let startValue = nowYear-nowYear%10;
+			let endValue = nowYear-nowYear%10 + 9 ;
+			let inner2 = "";
+			startYear.innerHTML = startValue;
+			endYear.innerHTML = endValue;
+			for(let i = 0; i < 12; i++){
+				if(i < 1){
+					inner2 +=`<li class="gray">${startValue-1}</li>`;
+					arrYear.push(startValue-1);
+				} else if(i>=1 && i<=10){
+					inner2 +=`<li>${startValue +i-1}</li>`;
+					arrYear.push(startValue +i-1);
+				} else if(i<12){
+					inner2 +=`<li class="gray">${endValue+1}</li>`;
+					arrYear.push(endValue+1);
+				}
+			}
+			list3.innerHTML = inner2;
+		}
+		//点击左右按钮，切换年份
+		prev3.onclick = ()=>{
+			//操作数组，每点击一次让数组的每一项减10
+			let lisValue3 = [];//每次减10之后的新数组，arrYear是原始的数组
+			arrYear.forEach((item,index)=>{//获取每一个li 的值
+				if(index==0){
+					lisValue3.push(arrYear[0]-10);
+				} else if(index==11){
+					lisValue3.push(arrYear[11]-10);
+				} else{
+					lisValue3.push(arrYear[index]-10);
+				}
+				//item=item-10;	
+			});
+			console.log(lisValue3);
+			let inner3 = "";
+			lisValue3.forEach((item,index)=>{//获取每一个li 的值
+				if(index==0){
+					inner3+=`<li class="gray">${lisValue3[0]}</li>`;
+				} else if(index==11){
+					inner3+=`<li class="gray">${lisValue3[11]}</li>`;
+				} else{
+					inner3+=`<li>${lisValue3[index]}</li>`;
+				}
+			});
+			
+			list3.innerHTML = inner3;
+		}
+	}
+
+	//点击当前时间，显示当前年份的每一个月
+	let box = document.querySelector(".box");
+	let monthList = document.querySelector(".monthList");
+	let lis = monthList.querySelectorAll("li");
+	currentTime.onclick = ()=>{
+		css(box,"scale",1);
+		css(monthList,"scale",0);
+		//点击月份，显示当前的时间
+		lis.forEach((item,index)=>{
+			item.onclick = ()=>{
+				title.style.display = "block";
+				title2.style.display = "none";
+				mTween({
+					el:box,
+					attr:{
+						scale:1
+					},
+					type:"linear"
+				});
+				mTween({
+					el:monthList,
+					attr:{
+						scale:0
+					},
+					type:"linear"
+				});
+				nowMonth = index+1;
+				nowYear = input2.value;
+				currentYear.value = nowYear;
+				currentMonth.value = nowMonth;
+				hour(nowYear,nowMonth);
+			}
+			
+		});
+		//去掉所有月份的当前样式，给点击的月份加上当前的样式
+		lis.forEach((item,i)=>{
+			item.className = "";
+		});
+		lis[nowMonth-1].className = "on";
+		//点击后只显示当前的年份
+		title.style.display = "none";
+		title2.style.display = "block";
+		//在选择月份的时候，点击左右按钮
+		if(title2.style.display = "block"){
+			next2.onclick = ()=>{
+				nowYear++;
+				lis.forEach((item)=>{
+					item.className = "";
+				});
+				lis[0].className = "on";
+				input2.value =  nowYear;
+			}
+			prev2.onclick = ()=>{
+				nowYear--;
+				lis.forEach((item)=>{
+					item.className = "";
+				});
+				lis[0].className = "on";
+				input2.value =  nowYear;
+			}
+		}
+		//点击currentTime，让box缩放到0，monthList缩放到1
+		mTween({
+			el:box,
+			attr:{
+				scale:0
+			},
+			type:"linear"
+		});
+		mTween({
+			el:monthList,
+			attr:{
+				scale:1
+			},
+			type:"linear"
+		});
+	}
+	//点击左右按钮，月份递增
+	prev.onclick = ()=>{
+		nowMonth--;
+		if(nowMonth < 1){
+			nowMonth =12;
+			nowYear --;
+		}
+		currentYear.value = nowYear;
+		currentMonth.value = nowMonth;
+		hour(currentYear.value,currentMonth.value);
+	}
+	next.onclick = ()=>{
+		nowMonth++;
+		if(nowMonth > 12){
+			nowMonth =1;
+			nowYear ++;
+		}
+		currentYear.value = nowYear;
+		currentMonth.value = nowMonth;
+		hour(currentYear.value,currentMonth.value);
+	}
+	
+	hour(2018,10);
+	function hour(year,month){
+		let date = new Date(year,month - 1,1);
+		let activeDate = new Date().getDate();
+		let nowDate = new Date(year,month ,0).getDate();//根据上一个月的第零天，获取当前月共有几天
+		let nowDay = date.getDay();//每个月的一号是星期几
+		let lastDate = new Date(year,month - 1,0).getDate();//上一个月共有几天
+		let dates = [];
+		for(let i = 0; i < 42; i++){
+			if(i < nowDay){
+				dates.push(`<li class="gray">${lastDate - nowDay +1+i}</li>`);
+			} else if(i >= nowDay && i < nowDay+nowDate){
+				dates.push(`<li>${i - nowDay +1}</li>`);
+			} else{
+				dates.push(`<li class="gray">${i - (nowDate+nowDay)+1}</li>`);
+			}
+		}
+		list.innerHTML = dates.join("");
+		let lis = list.querySelectorAll("li");
+		lis[activeDate+nowDay-1].className = "active";
+	}
+})();
+</script>
+</body>
+</html>

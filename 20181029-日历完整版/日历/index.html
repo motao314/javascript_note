@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+<div class="wrap">
+    <header >
+        <time id="now-date">2018年10月29日</time>
+    </header>
+    <div id="content">
+        <nav id="navs">
+            <p class="active">
+                <a class="prev"><</a>
+                <time>2018年10月</time>
+                <a class="next">></a>
+            </p>
+            <p>
+                <a class="prev"><</a>
+                <time>2018</time>
+                <a class="next">></a>
+            </p>
+            <p>
+                <a class="prev"><</a>
+                <time>2010-2019</time>
+                <a class="next">></a>
+            </p>
+        </nav>
+        <div id="cons">
+            <div class="con date">
+                <ul class="data-list"></ul>
+                <ul class="data-list"></ul>
+            </div>  
+           <div class="con month">
+                <ul class="month-list">
+                    <li>一月</li>
+                    <li>二月</li>
+                    <li>三月</li>
+                    <li>四月</li>
+                    <li>五月</li>
+                    <li>六月</li>
+                    <li>七月</li>
+                    <li>八月</li>
+                    <li>九月</li>
+                    <li>十月</li>
+                    <li>十一月</li>
+                    <li>十二月</li>
+                </ul>
+                <ul class="month-list">
+                    <li>一月</li>
+                    <li>二月</li>
+                    <li>三月</li>
+                    <li>四月</li>
+                    <li>五月</li>
+                    <li>六月</li>
+                    <li>七月</li>
+                    <li>八月</li>
+                    <li>九月</li>
+                    <li>十月</li>
+                    <li>十一月</li>
+                    <li>十二月</li>
+                </ul>
+            </div>
+            <div class="con year">
+                <ul class="year-list"></ul>
+                <ul class="year-list"></ul>
+            </div> 
+        </div>
+    </div>
+</div>   
+<script>
+(function(){
+    let nowDateEl = document.querySelector("#now-date");
+    let navs = document.querySelectorAll("#navs p");
+    let cons = document.querySelector("#cons"); 
+    let consList = cons.querySelectorAll(".con");
+    let active = 0;
+    let activeDate,activeMonth,activeYear,nowDate,nowMonth,nowYear;
+    let nowTime = new Date();
+    let week = ["日","一","二","三","四","五","六"];
+    activeDate = nowDate = nowTime.getDate();
+    activeMonth = nowMonth = nowTime.getMonth();
+    nowYear = activeYear = nowTime.getFullYear();
+    nowDateEl.innerHTML = `${nowYear}年${nowMonth+1}月${nowDate}日`;
+
+
+    nowDateEl.onclick = function(){
+        active = 0;
+        activeDate = nowDate;
+        activeMonth = nowMonth;
+        activeYear = nowYear;
+        create();
+    };
+
+
+    navs.forEach((item,index)=>{
+        item.children[1].onclick = function(){
+            if(index < navs.length-1){
+                active = index+1;
+                create();
+            }
+        };
+    });
+
+
+    Array.from(consList[1].children).forEach((item)=>{
+        Array.from(item.children).forEach((item,index)=>{
+            item.onclick = function(){
+                active = 0;
+                activeMonth = index;
+                create();
+            };
+        });;
+    });
+
+    create();
+    // 根据active决定生成哪一个
+    function create(){
+        navs.forEach((item,index)=>{
+            item.classList.remove("active");
+            consList[index].classList.remove("active");
+        });
+        consList[active].classList.add("active");
+        navs[active].classList.add("active");
+        if(active === 0){
+            navs[active].children[1].innerHTML = `${activeYear}年${activeMonth+1}月`;
+            createDate(consList[active].children[0],activeYear,activeMonth);
+        } else if(active === 1) {
+            navs[active].children[1].innerHTML = activeYear;
+        } else if(active === 2){
+            let range = getYearRange(activeYear);
+            navs[active].children[1].innerHTML = `${range.start}-${range.end-1}`;
+            createYear(consList[active].children[0],activeYear); 
+        }
+    }
+    // 根据 年月生成日期
+    function createDate(el,year,month){
+        let activeTime = new Date(year,month,1);
+        let firstDay = activeTime.getDay();//这个月第一天是周几，前边有几个格子显示上个月的
+        let lastDate = new Date(year,month,0).getDate();// 当前月有多少天
+        let lastMonth = new Date(year,month,0).getDate();//上个月最后一天是周几
+        let inner = '';
+        week.forEach((item)=>{
+            inner += `<li>${item}</li>`;
+        });
+        el.innerHTML = inner;
+        for(let i = 0; i < 42; i++){
+            let li = document.createElement("li");
+            if(i < firstDay){
+                li.innerHTML = lastMonth - firstDay+1+i;
+                li.className = "gray";
+            } else if( i < lastDate + firstDay){
+                li.innerHTML = i - firstDay + 1;
+            } else {
+                li.innerHTML = i - lastDate - firstDay + 1;
+                li.className = "gray";
+            }
+            el.appendChild(li); 
+        }
+    }
+
+
+    // 根据年分，生成年份列表
+    function createYear(el,year){
+        let range = getYearRange(year);
+        el.innerHTML = "";
+        
+        let lastYear = document.createElement("li");
+        lastYear.classList = "gray";
+        lastYear.innerHTML = range.start -1;
+        el.appendChild(lastYear);
+        for(let i = range.start; i < range.end; i++){
+            let li = document.createElement("li");
+            li.innerHTML = i;
+            el.appendChild(li);
+        }
+        let nextYear = document.createElement("li");
+        nextYear.classList = "gray";
+        nextYear.innerHTML = range.end;
+        el.appendChild(nextYear);
+
+        let years = Array.from(el.children);
+        years.forEach((item)=>{
+            item.onclick = function(){
+                active = 1;
+                activeYear = Number(this.innerHTML);
+                create();
+            };
+        });
+    }
+
+    // 根据年份 或者 这十年的开始 和 结束
+    function getYearRange(year){
+        let start = parseInt(year/10)*10;
+        let end =  start + 10;
+        return {start,end};  
+    }
+})();
+</script>
+</body>
+</html>

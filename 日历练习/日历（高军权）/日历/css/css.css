@@ -1,0 +1,209 @@
+body {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.box {
+  background: #eee;
+  width: 320px;
+  padding: 10px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  margin: 30px auto;
+  color: #333;
+  user-select: none;
+  cursor: default;
+}
+.box .tit_tim {
+  height: 25px;
+  font-size: 12px;
+  line-height: 25px;
+  color: #66ccff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.box .wrap {
+  height: 180px;
+  justify-content: space-between;
+}
+.box .wrap .date_box {
+  background: #fff;
+  border-radius: 5px;
+  float: left;
+  width: 160px;
+  height: 180px;
+  font-size: 12px;
+  padding: 0 10px;
+  position: relative;
+}
+.box .wrap .date_box .date_tit {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box .wrap .date_box .date_tit .btn {
+  width: 20px;
+  text-align: center;
+}
+.box .wrap .date_box .date_tit .btn:hover {
+  background: #ccc;
+}
+.box .wrap .date_box .date_area {
+  opacity: 1;
+  transform: scale(1);
+  position: absolute;
+  top: 25px;
+  left: 10px;
+  z-index: 1;
+}
+.box .wrap .date_box .date_area .date_week {
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+.box .wrap .date_box .date_area .date_week li {
+  width: 22px;
+  height: 15px;
+  text-align: center;
+}
+.box .wrap .date_box .date_area .date_day {
+  margin-top: 5px;
+  width: 160px;
+  height: 100px;
+  position: absolute;
+  overflow: hidden;
+}
+.box .wrap .date_box .date_area .date_day .day_list {
+  position: absolute;
+  left: 0;
+  width: 320px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.box .wrap .date_box .date_area .date_day .day_list ul {
+  width: 160px;
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.box .wrap .date_box .date_area .date_day .day_list ul li {
+  width: 22px;
+  height: 15px;
+  line-height: 13px;
+  text-align: center;
+  border-radius: 3px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+.box .wrap .date_box .date_area .date_day .day_list ul li:hover {
+  border-color: #aaa;
+}
+.box .wrap .date_box .date_area .date_day .day_list ul li:active {
+  background: #eee;
+}
+.box .wrap .date_box .date_area .date_day .day_list ul li.gray {
+  color: #aaa;
+}
+.box .wrap .date_box .item {
+  width: 160px;
+  height: 120px;
+  margin-top: 10px;
+  opacity: 0;
+  position: absolute;
+  top: 25px;
+  left: 10px;
+  transform: scale(0);
+  z-index: -1;
+  overflow: hidden;
+}
+.box .wrap .date_box .item .list_box {
+  width: 320px;
+  height: 120px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+}
+.box .wrap .date_box .item .list_box ul {
+  width: 160px;
+  height: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.box .wrap .date_box .item .list_box ul li {
+  width: 38px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  box-sizing: border-box;
+  background: #eee;
+  border-radius: 3px;
+}
+.box .wrap .date_box .item .list_box ul li:hover {
+  background: #ddd;
+}
+.box .wrap .date_box .item .list_box ul li:active {
+  background: #aaa;
+}
+.box .wrap .clock {
+  float: left;
+  width: 140px;
+  height: 180px;
+}
+.box .wrap .clock .clock_pic {
+  width: 125px;
+  height: 125px;
+  position: relative;
+  background: url(../img/clock.png) no-repeat;
+  margin: 0 auto;
+}
+.box .wrap .clock .clock_pic .hours {
+  width: 1px;
+  height: 35px;
+  position: absolute;
+  background: #000;
+  left: 62px;
+  top: 30px;
+  transform-origin: center 30px;
+}
+.box .wrap .clock .clock_pic .minutes {
+  width: 1px;
+  height: 45px;
+  position: absolute;
+  background: #000;
+  left: 62px;
+  top: 20px;
+  transform-origin: center 40px;
+}
+.box .wrap .clock .clock_pic .seconds {
+  width: 1px;
+  height: 55px;
+  position: absolute;
+  background: #000;
+  left: 62px;
+  top: 10px;
+  transform-origin: center 50px;
+}
+.box .wrap .clock .clock_tim {
+  text-align: center;
+  margin-top: 5px;
+}
+.box .wrap .clock .clock_tim p {
+  font-size: 14px;
+  line-height: 20px;
+}
+.box .wrap .clock .clock_tim div {
+  font-size: 16px;
+  line-height: 30px;
+}

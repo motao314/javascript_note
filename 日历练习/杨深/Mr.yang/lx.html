@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 700px;
+            height: 750px;
+            background: #000;
+            opacity: 0.5;
+            margin: 5px auto;
+        }
+        .box1{
+            padding-top: 20px;
+            border: 1px solid rgb(117, 116, 116);
+        }
+        h2{
+            color: #fff;
+            font-family: "宋体";
+            margin: 0 0 0 20px;
+        }
+        p{
+            color: rgb(14, 71, 97);
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        span{
+            color: #fff;
+        }
+        .nm{
+            overflow: hidden;
+            height: 30px;
+            padding: 10px;
+            padding-bottom: 0;
+        }
+        .left,.right{
+            float: right;
+            margin-right: 20px;
+        }
+        nav {
+            width: 700px;
+            display: flex;
+        }
+        nav span {
+            flex: 1;
+            background: #000;
+            color: #fff;
+            font: 20px/48px "宋体";
+            text-align: center;
+        }
+        .list {
+            width: 700px;
+            margin: 0;
+            padding: 0;
+            list-style:  none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .list li {
+            width: 98px;
+            height: 48px;
+            background: #666;
+            color: #fff;
+            font: 20px/48px "宋体";
+            text-align: center;
+            border: 1px solid #fff;
+        }
+        .list .gray {
+            background: #eee;
+            color: #000;
+        }
+        .one,.two{
+            display: none;
+        }
+        .one,.two{
+            width: 700px;
+            margin: 0;
+            padding: 0;
+            list-style:  none;
+            flex-wrap: wrap;
+        }
+        .sure,.top{
+            width: 700px;
+            margin: 0;
+            padding: 0;
+            list-style:  none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .sure li,.top li{
+            width: 173px;
+            height: 48px;
+            background: #666;
+            color: #fff;
+            font: 20px/48px "宋体";
+            text-align: center;
+            border: 1px solid #fff;
+        }
+        .one,.two{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+   <div class="box">
+       <div class="box1">
+           <h2></h2>
+           <p></p>
+       </div>
+       <div class="wrap">
+           <div class="nm">
+               <span class="r"></span>
+               <span class="right">></span>
+               <span class="left"><</span>
+           </div>
+            <nav class="na">
+                <span>日</span>
+                <span>一</span>
+                <span>二</span>
+                <span>三</span>
+                <span>四</span>
+                <span>五</span>
+                <span>六</span>
+            </nav>
+            <ul class="list"></ul>
+       </div>
+       <div class="one">
+            <div class="nm">
+                <span class="r"></span>
+                <span class="right">></span>
+                <span class="left"><</span> 
+            </div> 
+            <ul class="sure"></ul>
+        </div>
+        <div class="two">
+            <div class="nm">
+                <span class="r"></span>
+                <span class="right">></span>
+                <span class="left"><</span> 
+            </div> 
+            <ul class="top"></ul>
+        </div>
+   </div>
+   <script src="miaov.js"></script>
+   <script>
+    (function(){
+        let h = document.querySelector('h2');//获取动态时间的对象
+        let p = document.querySelector('p');//获取显示当前时间的对象
+        let l = document.querySelector('.wrap .left');//获取日期页面左边按钮
+        let r = document.querySelector('.wrap .right');//获取日期页面右边按钮
+        let top = document.querySelector('.top');//获取年份生成年份的ul对象
+        let arr = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+        Tab();//动态时间走动事件
+        setInterval(Tab,1000);
+        function Tab(){
+            let dateTime = new Date();
+            let hours = toDB(dateTime.getHours());
+            let minutes = toDB(dateTime.getMinutes());
+            let seconds = toDB(dateTime.getSeconds());
+            let year = dateTime.getFullYear();
+            let month = dateTime.getMonth() + 1;
+            let date = dateTime.getDate();
+            h.innerHTML = hours + ":" + minutes + ":" + seconds;
+            p.innerHTML = year + "年" + month + "月" + date + "日";
+        }
+        let dateTime = new Date();//169-175获取当前时间年月日
+        let hours = toDB(dateTime.getHours());
+        let minutes = toDB(dateTime.getMinutes());
+        let seconds = toDB(dateTime.getSeconds());
+        let year = dateTime.getFullYear();
+        let month = dateTime.getMonth() + 1;
+        let date = dateTime.getDate();
+        let xz = document.querySelector(".r");//获取日期页面的左边年月对象
+        xz.innerHTML = year + "年" + month + "月";//生成日期页面左边年月对象内容
+        let one = document.querySelector('.one');//获取月页面的对象
+        let two = document.querySelector('.two');//获取年页面的对象
+        let list = document.querySelector('.list');//获取日期页面生成日期的ul对象
+        let wrap = document.querySelector('.wrap');//获取日期页面的对象
+        let sure = one.querySelector('.sure');//获取月页面生成月份的ul对象
+        let nxz = one.querySelector('.r')//获取月份页面的左上角年份对象
+        let inner = "";//184-188 生成1到12月
+        for(let i = 0;i<arr.length;i++){
+            inner += `<li>${arr[i]}</li>`;
+        }
+        sure.innerHTML = inner;
+        let ol = document.querySelector('.one .left');//获取月份页面左按钮
+        let or = document.querySelector('.one .right');//获取月份页面右按钮
+        let lis = sure.querySelectorAll('li');//获取每个月份的li元素
+        let al = document.querySelector('.two .left');//获取年份页面左按钮
+        let ar = document.querySelector('.two .right');//获取年份页面右按钮
+        toDate(year,month);//195-215老师写的生成日期函数，没看懂(*/ω＼*)，时间都花到写别的JS上了-_-||
+        function toDate(year, month) {
+            let firstDay = new Date(year, month - 1, 1).getDay();
+            let lastMonthDays = new Date(year, month - 1, 0).getDate();
+            let inner = "";
+            let lastMonthFirst = lastMonthDays - firstDay + 1;//上个月在这个列表中需要显示的第一天是几号;
+            let nowMonthFirst = 1;
+            let nowMonthLast = new Date(year, month, 0).getDate();
+            let nextMonthFirst = 1;
+            for (let i = 0; i < 42; i++) {
+                if (i < firstDay) {
+                    inner += `<li class="gray">${lastMonthFirst}</li>`;
+                    lastMonthFirst++;
+                } else if (nowMonthFirst <= nowMonthLast) {
+                    inner += `<li>${nowMonthFirst}</li>`;
+                    nowMonthFirst++;
+                } else {
+                    inner += `<li class="gray">${nextMonthFirst}</li>`;
+                    nextMonthFirst++;
+                }
+            }
+            list.innerHTML = inner;
+            l.onclick = function () {//日期页面的左按钮点击事件（月份减）：点击的时候月份减，如果月份的值减少到0，月份的值变成12，年份减1
+                month--;
+                if (month == 0) {
+                    month = 12;
+                    year = year-1;
+                }
+                xz.innerHTML = year + "年" + month + "月";//日期页面左边的内容显示为减少后的年月
+                toDate(year, month);//生成减少后的日期表
+            }
+            r.onclick = function () {//日期页面的右按钮点击事件（月份加）：点击的时候月份加，如果月份的值增加到12，月份的值变成0，年份加1
+                month++;
+                if (month == 13) {
+                    month = 1;
+                    year = year+1;
+                }
+                xz.innerHTML = year + "年" + month + "月";//日期页面左边的内容显示为增加后的年月
+                toDate(year, month);//生成增加后的日期表
+            }
+            p.onclick = function () {//显示当前年月日的点击事件：点击后生成当前电脑时间的日期表
+                let dateTime = new Date();
+                let year = dateTime.getFullYear();
+                let month = dateTime.getMonth() + 1;
+                toDate(year, month);
+                xz.innerHTML = year + "年" + month + "月";
+            }
+            lis.forEach((item, index) => {//每一个月份的循环点击事件：点击某一个月份使月份页面消失，显示日期页面，获取点击前的左边显示年份和点击的月份，
+                item.onclick = function () {//生成对应得年月日期表，日期页面按钮左边显示为生成的年份月份
+                    wrap.style.display = "block";
+                    one.style.display = "none";
+                    let s = parseInt(item.innerHTML);
+                    let b = parseInt(nxz.innerHTML);
+                    toDate(b, s);
+                    xz.innerHTML = b + "年" + s + "月";
+                }
+            })
+            xz.onclick = function () {//日期页面按钮左边的年月点击事件：日期页面消失，月份页面显示，并且它的内容变为点击时日期页面的年份
+                wrap.style.display = "none";
+                one.style.display = "block";
+                let xz = one.querySelector('.r');//获取月份页面按钮左边的年份对象
+                xz.innerHTML = year + "年";
+                ol.onclick = function () {//月份页面左按钮，点击时年份减少，按钮左边的年份显示为减少后的年份
+                    year--;
+                    xz.innerHTML = year + "年";
+                }
+                or.onclick = function () {//月份页面右按钮，点击时年份增加，按钮左边的年份显示为增加后的年份
+                    year++;
+                    xz.innerHTML = year + "年";
+                }
+            }
+            nxz.onclick = function(){//月份页面按钮左边的年份月份点击事件：点击后显示年份页面，月份日期页面消失
+                wrap.style.display = "none";
+                one.style.display = "none";
+                two.style.display = "block";
+                let xz = two.querySelector('.r');//获取年份页面的按钮左边年份对象
+                let oneZ = one.querySelector('.r');
+                let a = String(parseInt(oneZ.innerHTML)).substr(0,3);//截取点击时月份页面最左边显示的年份的前三个数字
+                xz.innerHTML = `${a}0-${a}9`;//使年份页面按钮最左边的内容显示为当前年份所在的整十年区间
+                let anner = "";//272-277年份页面生成整十区间的各个年份
+                for (let i = 0; i < 10; i++) {
+                    anner += `<li>${a}${i}</li>`
+                }
+                top.innerHTML = anner;
+                let las = top.querySelectorAll('li');//获取年份页面的每个年份对象
+                las.forEach((item, index) => {//每个年份的点击事件
+                    item.onclick = function () {
+                        wrap.style.display = "none";
+                        one.style.display = "block";
+                        two.style.display = "none";
+                        let m = parseInt(item.innerHTML);
+                        let xz = one.querySelector('.r');
+                        xz.innerHTML = `${m}年`;
+                        ol.onclick = function () {//月份页面左按钮，点击时年份减少，按钮左边的年份显示为减少后的年份
+                            m--;
+                            xz.innerHTML = m + "年";
+                        }
+                        or.onclick = function () {//月份页面右按钮，点击时年份增加，按钮左边的年份显示为增加后的年份
+                            m++;
+                            xz.innerHTML = m + "年";
+                        }
+                    }
+                })
+                al.onclick = function () {//年份页面左按钮点击事件
+                    a--;
+                    xz.innerHTML = `${a}0-${a}9`;
+                    let anner = "";
+                    for (let i = 0; i < 10; i++) {
+                        anner += `<li>${a}${i}</li>`
+                    }
+                    top.innerHTML = anner;
+                    let las = top.querySelectorAll('li');
+                    las.forEach((item, index) => {
+                        item.onclick = function () {
+                            wrap.style.display = "none";
+                            one.style.display = "block";
+                            two.style.display = "none";
+                            let m = parseInt(item.innerHTML);
+                            let xz = one.querySelector('.r');
+                            xz.innerHTML = `${m}年`;
+                            ol.onclick = function () {//月份页面左按钮，点击时年份减少，按钮左边的年份显示为减少后的年份
+                                m--;
+                                xz.innerHTML = m + "年";
+                            }
+                            or.onclick = function () {//月份页面右按钮，点击时年份增加，按钮左边的年份显示为增加后的年份
+                                m++;
+                                xz.innerHTML = m + "年";
+                            }
+                        }
+                    })
+                }
+                ar.onclick = function () {//年份页面右按钮点击事件
+                    a++;
+                    xz.innerHTML = `${a}0-${a}9`;
+                    let anner = "";
+                    for (let i = 0; i < 10; i++) {
+                        anner += `<li>${a}${i}</li>`
+                    }
+                    top.innerHTML = anner;
+                    let las = top.querySelectorAll('li');
+                    las.forEach((item, index) => {
+                        item.onclick = function () {
+                            wrap.style.display = "none";
+                            one.style.display = "block";
+                            two.style.display = "none";
+                            let m = parseInt(item.innerHTML);
+                            let xz = one.querySelector('.r');
+                            xz.innerHTML = `${m}年`;
+                            ol.onclick = function () {//月份页面左按钮，点击时年份减少，按钮左边的年份显示为减少后的年份
+                                m--;
+                                xz.innerHTML = m + "年";
+                            }
+                            or.onclick = function () {//月份页面右按钮，点击时年份增加，按钮左边的年份显示为增加后的年份
+                                m++;
+                                xz.innerHTML = m + "年";
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    })();
+    function toDB(nub) {
+        return nub < 10 ? "0" + nub : "" + nub;
+    }
+   </script>
+</body>
+</html>

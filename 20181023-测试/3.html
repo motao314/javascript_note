@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+console.log( func("miao-wei-ke-tang") );   
+function func(str){
+    let arr = str.split("-");
+    return arr.map((item,index)=>index==0?item:item[0].toUpperCase() + item.substr(1)).join("");
+    // let index = 0;
+    // while(str.indexOf("-",index) >= 0){
+    //     index = str.indexOf("-",index);
+    //     let start = str.substring(0,index);
+    //     let firstLetter = str.substr(index+1,1).toUpperCase();
+    //     let end = str.substring(index+2);
+    //     str = start+firstLetter+end;
+    //     index+=2;
+    // }
+    // return str;
+}
+</script>    
+</body>
+</html>

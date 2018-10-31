@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p {
+            margin: 0;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid black;
+            margin: 30px auto;
+        }
+
+        .title {
+            height: 50px;
+            text-align: center;
+            font: 16px/50px "宋体";
+            color: dodgerblue;
+        }
+
+        .left {
+            width: 195px;
+            height: 230px;
+            margin-left: 10px;
+            float: left;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .monthWarp {
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .monthWarp span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            /* border-width: 7px; */
+            /* border-style: solid; */
+            position: absolute;
+            /* margin-top: 8px; */
+            vertical-align: middle;
+            font: 16px/30px "宋体";
+        }
+
+        .month {
+            width: 130px;
+            display: inline-block;
+            position: absolute;
+            left: 33px;
+            /* background: red; */
+            height: 100%;
+            font: 16px/30px "宋体";
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .arrowL {
+            /* border-color: transparent black transparent transparent; */
+            left: 10px;
+        }
+
+        .arrowR {
+            /* border-color: transparent transparent transparent black; */
+            right: -10px;
+        }
+
+        .week {
+            height: 30px;
+            font: 16px/30px "宋体";
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .week li {
+            height: 30px;
+            width: 20px;
+        }
+
+        .date {
+            font: 16px/25px "宋体";
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            height: 160px;
+            width: 195px;
+            text-align: center;
+            margin-top: 6px;
+            transform: scale(1);
+            position: absolute;
+            float: left;
+            left: 0;
+            top: 60px;
+        }
+
+        .date li {
+            border:1px solid transparent;
+            box-sizing: border-box;
+            width: 25px;
+            height: 25px;
+            background: #f1f1f1;
+            /* color: rgba(255, 255, 255, 0.7); */
+            border-radius: 8px;
+        }
+        .date li:hover{
+            border:1px solid orange;
+            box-sizing: border-box;
+        }
+        .monthContent {
+            width: 195px;
+            height: 170px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            position: absolute;
+            left: 0;
+            transform: scale(0);
+            /* background-color: #666; */
+        }
+
+        .monthContent li {
+            width: 46px;
+            height: 46px;
+            font: 18px/46px "宋体";
+            /* background-color:#666; */
+            /* color: white; */
+            text-align: center;
+            border:1px solid transparent;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+        .monthContent li:hover{
+            border:1px solid orange;
+            box-sizing: border-box;
+        }
+        .yearContent {
+            width: 195px;
+            height: 170px;
+            /* display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap; */
+            position: absolute;
+            left: 0;
+            transform: scale(0);
+            border:1px solid transparent;
+            box-sizing: border-box;
+            /* background-color: #666; */
+        }
+
+        .yearContent li {
+            width: 46px;
+            height: 46px;
+            font: 18px/46px "宋体";
+            border:1px solid transparent;
+            box-sizing: border-box;
+            /* background-color:#666; */
+            /* color: white; */
+            text-align: center;
+            float: left;
+            border-radius: 10px;
+        }
+        .yearContent li:hover{
+            border:1px solid orange;
+            box-sizing: border-box;
+        }
+        .right {
+            width: 130px;
+            height: 130px;
+            border: 1px solid black;
+            border-radius: 50%;
+            margin-left: 40px;
+            margin-top: 10px;
+            position: relative;
+            float: left;
+        }
+
+        .time {
+            font: 16px/20px "宋体";
+            position: absolute;
+            top: 145px;
+            left: 35px;
+        }
+
+        .right p:last-child {
+            font: 16px/20px "宋体";
+            position: absolute;
+            top: 170px;
+            left: 43px;
+        }
+
+        .list li {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: #999;
+            left: 63px;
+            top: 0px;
+            transform-origin: center 65px;
+        }
+
+        .list li:nth-child(5n+1) {
+            height: 15px;
+            background: black;
+        }
+
+        .hours {
+            width: 6px;
+            height: 40px;
+            position: absolute;
+            top: 25px;
+            left: 62px;
+            background: black;
+            transform-origin: bottom;
+            border-radius: 20%;
+        }
+
+        .minutes {
+            width: 6px;
+            height: 50px;
+            position: absolute;
+            left: 62px;
+            top: 15px;
+            background: #999;
+            transform-origin: bottom;
+            border-radius: 20%;
+        }
+
+        .seconds {
+            width: 6px;
+            height: 60px;
+            position: absolute;
+            left: 62px;
+            top: 5px;
+            background: red;
+            transform-origin: bottom;
+            border-radius: 20%;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: black;
+            position: absolute;
+            left: 59px;
+            top: 58px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="title"></div>
+        <div class="left">
+            <div class="monthWarp">
+                <span class="arrowL"><</span> 
+                <em class="month"></em>
+                <span class="arrowR">></span>
+            </div>
+            <ul class="week">
+                <li>日</li>
+                <li>一</li>
+                <li>二</li>
+                <li>三</li>
+                <li>四</li>
+                <li>五</li>
+                <li>六</li>
+            </ul>
+            <ul class="date"></ul>
+            <ul class="date"></ul>
+            <ul class="monthContent"></ul>
+            <ul class="yearContent"></ul>
+        </div>
+        <div class="right">
+            <ul class="list"></ul>
+            <div class="hours"></div>
+            <div class="minutes"></div>
+            <div class="seconds"></div>
+            <div class="dot"></div>
+            <p class="time"></p>
+            <p></p>
+        </div>
+    </div>
+</body>
+<script src="miaov.js"></script>
+<script>
+    (function () {//右边时钟，时间和顶部时间
+        let list = document.querySelector('.list');
+        let title = document.querySelector('.title');
+        // let monthContent = document.querySelector('.month')
+        let hours = document.querySelector('.hours');
+        let minutes = document.querySelector('.minutes');
+        let seconds = document.querySelector('.seconds');
+        let p = document.querySelector('.time');
+        let Week = document.querySelector('.right p:last-child');
+        let arr = ["日", "一", "二", "三", "四", "五", "六"]
+        let inner = '';
+        let timer = 0;
+        Time();
+        timer = setInterval(Time, 1000);
+        function Time() {
+            let dateTime = new Date();
+            let year = dateTime.getFullYear();
+            let month = dateTime.getMonth() + 1;
+            let date = dateTime.getDate();
+            let week = dateTime.getDay();
+            // let s1 = dateTime.getSeconds(
+            let s = dateTime.getSeconds();
+            let m = dateTime.getMinutes() + s / 60;
+            let h = dateTime.getHours() + m / 60;
+            let s1 = dateTime.getSeconds();
+            let m1 = dateTime.getMinutes();
+            let h1 = dateTime.getHours();
+            css(hours, "rotate", h * 30);
+            css(minutes, "rotate", m * 6);
+            css(seconds, "rotate", s * 6);
+            p.innerHTML = `${toDb(h1)}:${toDb(m1)}:${toDb(s1)}`;
+            title.innerHTML = `${year}年${toDb(month)}月${toDb(date)}日`;//最上面的日期获取
+            // monthContent.innerHTML = `${year}年${toDb(month)}月`;//带左右箭头部分的月份
+            Week.innerHTML = `星期${arr[week]}`;
+        }
+        for (let i = 0; i < 60; i++) {
+            inner += `
+                <li style = "transform:rotate(${i * 6}deg)"></li>
+            `
+        }
+        list.innerHTML = inner;
+    })()
+    function toDb(number) {
+        return number < 10 ? "0" + number : "" + number;
+    }
+    (function () {
+        let day = document.querySelectorAll(".date");
+        // console.log(day)
+        let arrowL = document.querySelector('.arrowL');
+        let arrowR = document.querySelector('.arrowR');
+        let months = document.querySelector('.monthContent');
+        let monthContents = document.querySelector('.month')
+        let nub = new Date().getMonth() + 1;
+        let num = new Date().getFullYear();
+        let yearContent = document.querySelector('.yearContent');
+        // console.log(nub,num);
+        let inner = '';
+        let m = 1;
+        monthContents.innerHTML = `${num}年${toDb(nub)}月`;
+        for (let i = 0; i < 12; i++) {
+                inner += `<li>${i+1}月</li>`
+        }
+        months.innerHTML = inner;//月份的生成；
+        monthContents.onclick = function () {//日期到月份的变换...
+            // console.log(monthContents.innerHTML.length);
+            if (monthContents.innerHTML.length === 8) {
+                css(day[1], 'scale', 1)
+                css(day[0], 'scale', 1)
+                css(months, 'scale', 0)
+                // console.log(months, day[0])
+                monthContents.innerHTML = `${num}年`;
+                // console.log(lis);
+                mTween({
+                    el: day[1],
+                    attr: {
+                        scale: 0
+                    },
+                    type: "easeBoth",
+                    time: 200,
+                    cb: () => {
+                        mTween({
+                            el: months,
+                            attr: {
+                                scale: 1
+                            },
+                            type: "easeBoth",
+                            time: 200
+                        })
+                    }
+                })
+                mTween({
+                    el: day[0],
+                    attr: {
+                        scale: 0
+                    },
+                    type: "easeBoth",
+                    time: 200,
+                    cb: () => {
+                        mTween({
+                            el: months,
+                            attr: {
+                                scale: 1
+                            },
+                            type: "easeBoth",
+                            time: 200
+                        })
+                    }
+                })
+            } else if (monthContents.innerHTML.length === 5) {
+                css(day[1], 'scale', 0)
+                css(day[0], 'scale', 0)
+                css(months, 'scale', 1)
+                css(yearContent,"scale",0);
+                // console.log(yearContent);
+                let a = '';
+                console.log(monthContents.innerHTML);
+                // console.log(String(parseFloat(monthContents.innerHTML)).substring(0, 3));
+                let start = `${String(parseFloat(monthContents.innerHTML)).substring(0, 3)}0`;
+                let end = `${String(parseFloat(monthContents.innerHTML)).substring(0, 3)}9`;
+                // let end1 = Number(start) + 11;
+                // console.log(end1);
+                monthContents.innerHTML = `${start} - ${end}`;
+                for (let i = start; i <= end; i++) {
+                    a += `<li>${i}</li>`;
+                }
+                yearContent.innerHTML = a;//年的生成.....
+                let li = yearContent.querySelectorAll("li");
+                li.forEach((item)=>{
+                    item.onclick = function(){
+                        mTween({
+                            el:yearContent,
+                            attr:{
+                                scale:0
+                            },
+                            time:200
+                        })
+                        mTween({
+                            el:months,
+                            attr:{
+                                scale:1
+                            },
+                            time:200
+                        })
+                        monthContents.innerHTML = `${item.innerHTML}年` 
+                        num = item.innerHTML;
+                    }
+                })
+                console.log(li);
+                mTween({
+                    el: yearContent,
+                    attr: {
+                        scale: 1
+                    },
+                    time: 200,
+                    type: 'easeBoth',
+                })
+                mTween({
+                    el: months,
+                    attr: {
+                        scale: 0
+                    },
+                    time: 200,
+                    type: 'easeBoth'
+                })
+                mTween({
+                    el: day[0],
+                    attr: {
+                        scale: 0
+                    },
+                    time: 200,
+                    type: 'easeBoth'
+                })
+                mTween({
+                    el: day[1],
+                    attr: {
+                        scale: 0
+                    },
+                    time: 200,
+                    type: 'easeBoth'
+                })
+            }
+        }
+        toDate(num, nub);
+        lis = document.querySelectorAll('.monthContent li');//每个月份点击相对应转换...
+        lis.forEach((item,index)=>{
+            item.onclick = function(){
+                mTween({
+                    el:day[0],
+                    attr:{
+                        scale:1
+                    },
+                    time:200
+                })
+                mTween({
+                    el:day[1],
+                    attr:{
+                        scale:1
+                    },
+                    time:200
+                })
+                mTween({
+                    el:months,
+                    attr:{
+                        scale:0
+                    },
+                    time:200
+                })
+                toDate(num,parseInt(item.innerHTML));
+                monthContents.innerHTML = `${num}年${toDb(parseInt(item.innerHTML))}月`;
+                // css(months,"scale",0)
+                // css(day[0],"scale",1)
+                // css(day[1],"scale",1)
+                nub = toDb(parseInt(item.innerHTML));
+            }
+        })
+        arrowL.onclick = function () {//左点击是日期的变换，月变换，年变换
+            if(monthContents.innerHTML.length == 8){
+                nub--;
+                if (nub <= 0) {
+                    nub = 12;
+                    num--;
+                }
+                monthContents.innerHTML = `${num}年${toDb(nub)}月`;
+                toDate(num, nub);
+                css(day[0], "left", 0)
+                css(day[1], "left", -195)
+                mTween({
+                    el: day[1],
+                    attr: {
+                        left: 0
+                    },
+                    type: "linear",
+                })
+                mTween({
+                    el: day[0],
+                    attr: {
+                        left: 195
+                    },
+                    type: "linear",
+                })
+                css(day[0], "left", -195);
+            }else if(monthContents.innerHTML.length == 5){
+                num--;
+                console.log(num);
+                monthContents.innerHTML = `${num}年`;  
+            }else{
+                let yearContent = document.querySelector('.yearContent');
+                let arr = [];
+                let b = '';
+                console.log(monthContents.innerHTML);
+                monthContents.innerHTML.split('-').map((item)=>{
+                    arr.push(item-10);
+                })
+                monthContents.innerHTML = arr.join('-');
+                for(let i = arr[0]; i <= arr[1]; i++){
+                    b += `<li>${i}</li>`;
+                }
+                yearContent.innerHTML = b;
+                let li = yearContent.getElementsByTagName("li");
+                console.log(li);
+                for( let i = 0; i < li.length; i++){
+                    li[i].index = i;
+                    li[i].onclick = function(){
+                        mTween({
+                            el:yearContent,
+                            attr:{
+                                scale:0
+                            },
+                            time:200
+                        })
+                        mTween({
+                            el:months,
+                            attr:{
+                                scale:1
+                            },
+                            time:200
+                        })
+                        console.log( `${li[this.index]}年${toDb(nub)}月` ) 
+                        monthContents.innerHTML = `${li[this.index].innerHTML}年` 
+                        num = li[this.index].innerHTML;
+                    }
+                }
+            }
+        }
+        arrowR.onclick = function () {//右点击的日期变换，月变换，年变换
+            if(monthContents.innerHTML.length == 8){
+                nub++;
+                if (nub > 12) {
+                    nub = 1;
+                    num++;
+                }
+                monthContents.innerHTML = `${num}年${toDb(nub)}月`;
+                toDate(num, nub);
+                css(day[0], "left", 0)
+                css(day[1], "left", 195)
+                mTween({
+                    el: day[1],
+                    attr: {
+                        left: 0
+                    },
+                    time: 400,
+                    type: "linear",
+                })
+                mTween({
+                    el: day[0],
+                    attr: {
+                        left: -195
+                    },
+                    type: "linear",
+                })
+                css(day[0], "left", 195);
+            }else if(monthContents.innerHTML.length == 5){
+                num++;
+                console.log(num);
+                monthContents.innerHTML = `${num}年`;  
+            }else{
+                let yearContent = document.querySelector('.yearContent');
+                let arr = [];
+                let b = '';
+                console.log(monthContents.innerHTML);
+                monthContents.innerHTML.split('-').map((item)=>{
+                    arr.push(Number(item)+10);
+                })
+                monthContents.innerHTML = arr.join('-');
+                for(let i = arr[0]; i <= arr[1]; i++){
+                    b += `<li>${i}</li>`;
+                }
+                yearContent.innerHTML = b;
+                let li = yearContent.getElementsByTagName("li");
+                console.log(li);
+                for( let i = 0; i < li.length; i++){
+                    li[i].index = i;
+                    li[i].onclick = function(){
+                        mTween({
+                            el:yearContent,
+                            attr:{
+                                scale:0
+                            },
+                            time:200
+                        })
+                        mTween({
+                            el:months,
+                            attr:{
+                                scale:1
+                            },
+                            time:200
+                        })
+                        console.log( `${li[this.index]}年${toDb(nub)}月` ) 
+                        monthContents.innerHTML = `${li[this.index].innerHTML}年` 
+                        num = li[this.index].innerHTML;
+                    }
+                }
+            }
+        }
+        //日期的获取与赋值
+        function toDate(year, month) {
+            console.log(year,month);
+            let inner = '';
+            let firstDay = new Date(year, month - 1, 1).getDay();
+            let lastMonthFirst = (new Date(year, month - 1, 0).getDate()) - firstDay + 1;
+            let nowMonthFirst = 1;
+            let nowMonthLast = new Date(year, month, 0).getDate();
+            // console.log(nowMonthLast);
+            let nextMonthFirst = 1;
+            // console.log(firstDay)
+            for (let i = 0; i < 42; i++) {
+                if (i < firstDay) {
+                    inner += `<li>${lastMonthFirst}</li>`;
+                    lastMonthFirst++;
+                } else if (nowMonthFirst <= nowMonthLast) {
+                    inner += `<li>${nowMonthFirst}</li>`;
+                    nowMonthFirst++;
+                } else {
+                    inner += `<li>${nextMonthFirst}</li>`;
+                    nextMonthFirst++;
+                }
+                day[0].innerHTML = inner;
+                day[1].innerHTML = inner;  
+            } 
+            let lis1 = day[1].querySelectorAll("li");
+            console.log(lis1);
+            console.log(new Date().getMonth()+1);
+            if(year == new Date().getFullYear() && month == new Date().getMonth()+1){     
+                lis1[new Date().getDate()].style.background = "red";
+            }
+        }
+    })()
+</script>
+
+</html>

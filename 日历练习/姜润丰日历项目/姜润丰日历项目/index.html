@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,p{
+            margin: 0;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .wrap{
+            width:950px;
+            /*height:368px;*/
+            border:2px solid #58abff;
+            margin:50px auto;
+        }
+        a{
+            text-decoration: none;
+            color: #898a8a;
+            font-size: 20px;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .wrapLeft{
+            width:336px;
+            /*height:100%;*/
+            padding:10px;
+            /*display: flex;*/
+            position: relative;
+        }
+        .wrapRight{
+            width:194px;
+            background-color: #58abff;
+        }
+        .timeBox{
+            display: flex;
+            justify-content: center;
+        }
+        .timeBox .year{
+            display: flex;
+            /*border:1px solid #d8d8d8;*/
+            height:20px;
+        }
+        .timeBox .year span{
+            cursor: pointer;
+        }
+        .timeBox a{
+            width:20px;
+            height:20px;
+            border:1px solid #d8d8d8;
+            line-height:20px;
+            margin:0 5px;
+            text-align: center;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+            border-top: 2px solid #55aaff;
+            border-bottom:2px solid #c8cacc;
+            margin-top:10px;
+        }
+        nav span{
+            width:56px;
+            height:32px;
+            line-height:32px;
+            text-align: center;
+        }
+        .calendar ul,.monthNum,.yearNum{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .calendar ul li{
+            width:48px;
+            height:56px;
+            line-height:56px;
+            text-align: center;
+            border-bottom:2px solid #c8cacc;
+            box-sizing: border-box;
+            border-top:2px solid transparent;
+        }
+        .calendar ul li:hover{
+            background-color: rgba(0,0,0,0.2) !important;
+            border:2px solid #ff4433 !important;
+        }
+        .gray{
+            background-color: rgba(255,68,51,0.5) !important;
+
+        }
+        .hide{
+            display: none !important;
+        }
+        .monthNum,.yearNum{
+            border-top:2px solid #55aaff;
+            margin-top:10px;
+        }
+        .monthNum li,.yearNum li{
+            width:84px;
+            height:84px;
+            text-align: center;
+            line-height:84px;
+            border-bottom:2px solid #c8cacc;
+            border-top:2px solid transparent;
+            box-sizing: border-box;
+        }
+        .monthNum li:hover,.yearNum li:hover{
+            background-color: rgba(0,0,0,0.2) !important;
+            border:2px solid transparent !important;
+        }
+        .wrapRight .time{
+            padding-top:10px;
+            width:100%;
+            text-align: center;
+            color: #fff;
+        }
+        .wrapRight .hms{
+            line-height:50px;
+            font-size: 40px;
+            font-family: "楷体";
+            color: #fff;
+            text-align: center;
+            padding:10px;
+        }
+        .wrapRight .timeDate{
+            width:100px;
+            height:100px;
+            line-height:100px;
+            text-align: center;
+            font-size: 60px;
+            color: #fff;
+            margin:10px auto;
+            background-color: #ffbb00;
+            border-radius:20px;
+        }
+        .wrapRight .fu{
+            width:174px;
+            border-top:3px solid #94c9ff;
+            margin:10px auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .wrapRight .fu span{
+            width:80px;
+            line-height:50px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+        }
+        .wrapRight .fu ul{
+            width:60px;
+            line-height:30px;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+        }
+        .calendar ul .color{
+            background: rgba(0,0,0,0.3);
+            border:2px solid #ffcb40;
+        }
+        .active{
+            background-color: rgba(0,0,0,0.2) !important;
+            border:2px solid #ff4433 !important;
+        }
+        .wrapLeft .timeBox .today{
+            display: inline-block;
+            width:inherit;
+            font-size: 14px;
+            color: #000;
+            padding:0 5px;
+            line-height:20px;
+            border-radius:10px;
+        }
+        .clock{
+            width:398px;
+            height:464px;
+            border-right: 2px solid #58abff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #58abff;
+        }
+        .clockImg{
+            width:300px;
+            height:300px;
+            transform-origin: center center;
+            transform: rotate(45deg);
+            animation: linear zhuan 10s infinite;
+        }
+        .pan{
+            width:200px;
+            height:200px;
+            border-radius:50%;
+            background-color: #fff;
+            position: absolute;
+            top:133px;
+            left:99px;
+        }
+        .shi{
+            width:5px;
+            height:50px;
+            position: absolute;
+            left:97px;
+            top:50px;
+            background-color: red;
+            transform-origin: bottom;
+        }
+        .fen{
+            width:5px;
+            height:70px;
+            position: absolute;
+            left:97px;
+            top:30px;
+            background-color: blue;
+            transform-origin: bottom;
+        }
+        .miao{
+            width:5px;
+            height:90px;
+            position: absolute;
+            left:97px;
+            top:10px;
+            background-color: #000;
+            transform-origin: bottom;
+        }
+        .dian{
+            width:20px;
+            height:20px;
+            position: absolute;
+            left:90px;
+            top:90px;
+            background-color: #000;
+            border-radius:50%;
+
+
+        }
+        .clock p{
+            position: absolute;
+            width:100%;
+            top:10px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: '楷体';
+        }
+        .clock p:nth-child(3){
+            top:42px;
+        }
+        .clock p:nth-child(3) a{
+            display: inline-block;
+            width:150px;
+            line-height:30px;
+            border-radius:20px;
+            background-color: rgba(0,0,0,0.8);
+            color: #fff;
+        }
+        .clock .xingzuo{
+            position: absolute;
+            width:100px;
+            font-size: 30px;
+            font-weight: bold;
+            bottom:5px;
+            color: yellow;
+
+        }
+        @keyframes zhuan {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg)
+            }
+        }
+        .wrapLeft .ani{
+            width:400px;
+            position: absolute;
+            bottom:-33px;
+            left:50%;
+            margin-left:-200px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        #yuyin{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap clear">
+    <div class="clock fl">
+        <audio src="http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=" id="yuyin"></audio>
+        <p>我只是一个丑到爆的时钟</p>
+        <!--<p>但我可以语音报时 <a href="javascript:;" id="bobao">点击报时</a></p>-->
+        <h2 class="xingzuo">水瓶座</h2>
+        <div class="clockImg">
+            <img src="225.png" alt="">
+        </div>
+        <div class="pan">
+            <img src="clock.png" alt="">
+            <div class="shi"></div>
+            <div class="fen"></div>
+            <div class="miao"></div>
+            <div class="dian"></div>
+        </div>
+    </div>
+    <div class="wrapLeft fl ">
+        <div class="timeBox">
+            <div class="year yearBox">
+                <a href="javascript:;" class="prev"><</a>
+                <span>2018年</span>
+                <a href="javascript:;" class="next">></a>
+            </div>
+            <div class="year monthBox">
+                <a href="javascript:;" class="prev"><</a>
+                <span>11月</span>
+                <a href="javascript:;" class="next">></a>
+            </div>
+            <a href="javascript:;" class="today">返回今天</a>
+        </div>
+        <div class="calendar">
+            <nav>
+                <span>日</span>
+                <span>一</span>
+                <span>二</span>
+                <span>三</span>
+                <span>四</span>
+                <span>五</span>
+                <span>六</span>
+            </nav>
+            <ul></ul>
+        </div>
+        <ul class="monthNum hide">
+            <li>1月</li>
+            <li>2月</li>
+            <li>3月</li>
+            <li>4月</li>
+            <li>5月</li>
+            <li>6月</li>
+            <li>7月</li>
+            <li>8月</li>
+            <li>9月</li>
+            <li>10月</li>
+            <li>11月</li>
+            <li>12月</li>
+            <li>1月</li>
+            <li>2月</li>
+            <li>3月</li>
+            <li>4月</li>
+        </ul>
+        <ul class="yearNum hide">
+            <li>2010</li>
+            <li>2011</li>
+            <li>2012</li>
+            <li>2013</li>
+            <li>2014</li>
+            <li>2015</li>
+            <li>2016</li>
+            <li>2017</li>
+            <li>2018</li>
+            <li>2019</li>
+            <li>2020</li>
+            <li>2021</li>
+            <li>2022</li>
+            <li>2023</li>
+            <li>2024</li>
+            <li>2025</li>
+        </ul>
+        <p class="ani">2018</p>
+    </div>
+
+    <div class="wrapRight fr">
+        <p class="time">111</p>
+        <p class="hms">11111</p>
+        <p class="timeDate">22</p>
+        <div class="fu">
+            <span>宜</span>
+            <span>忌</span>
+            <ul class="yi">
+                <li>祭祀</li>
+                <li>祭祀</li>
+                <li>祭祀</li>
+                <li>祭祀</li>
+                <li>祭祀</li>
+            </ul>
+            <ul class="ji">
+                <li>祭祀</li>
+                <li>祭祀</li>
+                <li>祭祀</li>
+                <li>祭祀</li>
+                <li>祭祀</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="miaov.js"></script>
+<script>
+(function(){
+    let yearBox = document.querySelector('.yearBox'); //显示年的父级
+    let yearPrev = yearBox.querySelector('.prev'); //上一年
+    let yearNext = yearBox.querySelector('.next'); //下一年
+    let yearTitle = yearBox.querySelector('span'); //显示年文字
+    let monthBox = document.querySelector('.monthBox'); //显示年的父级
+    let monthPrev = monthBox.querySelector('.prev'); //上一年
+    let monthNext = monthBox.querySelector('.next'); //下一年
+    let monthTitle = monthBox.querySelector('span'); //显示年文字
+    let calendarBox = document.querySelector('.calendar');
+    let calendar = document.querySelector('.calendar ul'); //当前日历
+    let calendarLi = calendar.querySelectorAll('li');
+    let yearNum = document.querySelector('.yearNum'); //年份
+    let dayArr = [
+        '星期日',
+        '星期一',
+        '星期二',
+        '星期三',
+        '星期四',
+        '星期五',
+        '星期六'
+    ];
+    let yi = ['祭祀','安葬','嫁娶','出行','祈福','动土','开光','安床','拆卸','立卷','交易','求嗣','上梁'];
+    let ji = ['纳采','入殓','移徙','破土','解除','入宅','修造','栽种','开市','移柩','订盟','纳财','起基'];
+
+
+    //宜忌
+    yiji();
+    function yiji(){
+        yi.sort(()=>Math.random() - .5);
+        ji.sort(()=>Math.random() - .5);
+        let fu = document.querySelector('.fu');
+        let fuYi = fu.querySelector('.yi');
+        let fuJi = fu.querySelector('.ji');
+        fuYi.innerHTML = fuJi.innerHTML = '';
+        for(let i = 0;i <=5 ;i++){
+            fuYi.innerHTML += `<li>${yi[i]}</li>`;
+            fuJi.innerHTML +=`<li>${ji[i]}</li>`;
+        }
+    }
+    //获取当前时间
+    let right = document.querySelector('.wrapRight');
+    let rightTime = right.querySelector('.time');
+    let hms = right.querySelector('.hms');
+    let timeDate = right.querySelector('.timeDate');
+
+
+    let time = new Date();
+    let year1 = time.getFullYear();
+    let month1 = time.getMonth();
+    let date1 = time.getDate();
+    let day1 = time.getDay();
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    let seconds = time.getSeconds();
+
+    function toDay(a){
+        return dayArr[a];
+    }
+    function toDB(nub){
+        return nub < 10?"0"+nub:""+nub;
+    }
+    rightTime.innerHTML = year1 + '年' + toDB(month1 +1) + '月' + toDB(date1) + '日' + toDay(day1);
+    timeDate.innerHTML = toDB(date1);
+    setInterval(function(){
+        time = new Date();
+        hours = time.getHours();
+        minutes = time.getMinutes();
+        seconds = time.getSeconds();
+        hms.innerHTML = toDB(hours) + ':' + toDB(minutes) + ':' + toDB(seconds);
+    },1000);
+    //获取当前时间
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    //获取当月有多少天
+
+    yearTitle.innerHTML = year + '年';
+    monthTitle.innerHTML = month + '月';
+//    let yue = parseInt(monthTitle.innerHTML);
+//    let nian = parseInt(yearTitle.innerHTML);
+    //上一年点击
+
+
+    let yearClick = yearNum.querySelectorAll('li');  //选择年
+
+    let yearInner = '';
+    yearPrev.onclick = function(){
+        if(yearNum.className == 'yearNum hide'){
+            year--;
+            yearTitle.innerHTML = year + '年';
+            toDate(year,month);
+            css(calendar,"scale",0);
+            mTween({
+                el:calendar,
+                attr:{
+                    scale:1
+                }
+            })
+        }else{
+            yearInner = '';
+            for(let i = 0;i<16;i++){
+                yearInner += `<li>${yearClick[0].innerHTML - 12 +i}</li>`;
+            }
+            yearNum.innerHTML = yearInner;
+            toDate(year,month);
+            yearClick = yearNum.querySelectorAll('li');
+            css(yearNum,"scale",0);
+            mTween({
+                el:yearNum,
+                attr:{
+                    scale:1
+                }
+            });
+            yearClick.forEach((item)=>{
+                item.onclick =()=>{
+                year = item.innerHTML;
+                yearTitle.innerHTML = year + '年';
+                toDate(year,month);
+                yearNum.classList.add('hide');
+                calendarBox.classList.remove('hide');
+                css(calendar,"scale",0);
+                mTween({
+                    el:calendar,
+                    attr:{
+                        scale:1
+                    }
+                })
+                }
+            })
+        }
+
+
+    };
+    //下一年点击
+    yearNext.onclick = function(){
+        if(yearNum.className == 'yearNum hide'){
+            year++;
+            yearTitle.innerHTML = year + '年';
+            toDate(year,month);
+            css(calendar,"scale",0);
+            mTween({
+                el:calendar,
+                attr:{
+                    scale:1
+                }
+            })
+        }else{
+            yearInner = '';
+            for(let i = 0;i<16;i++){
+                yearInner += `<li>${parseInt(yearClick[11].innerHTML) +i}</li>`;
+            }
+
+            yearNum.innerHTML = yearInner;
+            yearClick = yearNum.querySelectorAll('li');
+            console.log(yearClick[0].innerHTML)
+            css(yearNum,"scale",0);
+            mTween({
+                el:yearNum,
+                attr:{
+                    scale:1
+                }
+            })
+
+            yearClick.forEach((item)=>{
+                item.onclick =()=>{
+                year = item.innerHTML;
+                yearTitle.innerHTML = year + '年';
+                toDate(year,month);
+                yearNum.classList.add('hide');
+                calendarBox.classList.remove('hide');
+                css(calendar,"scale",0);
+                mTween({
+                    el:calendar,
+                    attr:{
+                        scale:1
+                    }
+                })
+                }
+            })
+        }
+    };
+    //上一月点击
+    monthPrev.onclick = function(){
+        month--;
+        if(month  == 0){
+            month =12;
+            year--;
+            yearTitle.innerHTML = year + '年';
+        }
+        monthTitle.innerHTML = month + '月';
+        monthClick.forEach((item)=>{
+            item.className = "";
+        })
+        monthClick[month-1].className = 'active';
+        toDate(year,month);
+        css(monthNum,"scale",0);
+        mTween({
+            el:monthNum,
+            attr:{
+                scale:1
+            }
+        })
+        css(calendar,"scale",0);
+        mTween({
+            el:calendar,
+            attr:{
+                scale:1
+            }
+        })
+
+    };
+    //下一月点击
+    monthNext.onclick = function(){
+        month++;
+        if(month  > 12){
+            month =1;
+            year++;
+            yearTitle.innerHTML = year + '年';
+        }
+        monthTitle.innerHTML = month + '月';
+        monthClick.forEach((item)=>{
+            item.className = "";
+        })
+        monthClick[month-1].className = 'active';
+        toDate(year,month);
+        css(monthNum,"scale",0);
+        mTween({
+            el:monthNum,
+            attr:{
+                scale:1
+            }
+        })
+        css(calendar,"scale",0);
+        mTween({
+            el:calendar,
+            attr:{
+                scale:1
+            }
+        })
+    };
+    //月标题点击
+    let monthNum = document.querySelector('.monthNum');  //选择月
+    let monthClick = monthNum.querySelectorAll('.monthNum li');  //选择月
+    monthTitle.onclick = function(){
+        calendarBox.classList.add('hide'); //日期隐藏
+        monthNum.classList.remove('hide'); //显示月份
+        yearNum.classList.add('hide'); //隐藏年份
+        monthClick.forEach((item)=>{
+            item.className = "";
+        })
+        monthClick[month-1].className = 'active';
+        css(monthNum,"scale",0);
+        mTween({
+            el:monthNum,
+            attr:{
+                scale:1
+            }
+        })
+    };
+    //单月点击
+    monthClick.forEach((item,index)=>{
+        item.onclick =()=>{
+            if(index <= 11){
+                month = index +1;
+            }else{
+                year++;
+                yearTitle.innerHTML = year + '年';
+                month = index%11
+            }
+            monthTitle.innerHTML = month + '月';
+            toDate(year,month);
+            monthNum.classList.add('hide');
+            calendarBox.classList.remove('hide');
+            css(calendar,"scale",0);
+            mTween({
+                el:calendar,
+                attr:{
+                    scale:1
+                }
+            })
+        }
+    })
+    //年点击
+
+
+    yearTitle.onclick = function(){
+        calendarBox.classList.add('hide'); //日期隐藏
+        monthNum.classList.add('hide'); //月份隐藏
+        yearNum.classList.remove('hide'); //显示年份
+        css(yearNum,"scale",0);
+
+        mTween({
+            el:yearNum,
+            attr:{
+                scale:1
+            }
+        })
+    };
+//    单年点击
+
+
+
+    yearClick.forEach((item)=>{
+        item.onclick =()=>{
+            year = item.innerHTML;
+            yearTitle.innerHTML = year + '年';
+            toDate(year,month);
+            yearNum.classList.add('hide');
+            calendarBox.classList.remove('hide');
+            css(calendar,"scale",0);
+            mTween({
+                el:calendar,
+                attr:{
+                    scale:1
+                }
+            })
+        }
+    })
+    //返回今天点击
+    let today = document.querySelector('.today');
+    today.onclick = function(){
+        year = year1;
+        month = month1+1;
+        yearNum.classList.add('hide');
+        monthNum.classList.add('hide');
+        calendarBox.classList.remove('hide');
+        toDate(year,month);
+        yearTitle.innerHTML = year + '年';
+        monthTitle.innerHTML = month + '月';
+        css(calendar,"scale",0);
+
+        mTween({
+            el:calendar,
+            attr:{
+                scale:1,
+            },
+
+        })
+        timeDate.innerHTML = date1;
+        yiji();
+        shengxiao(parseInt(yearTitle.innerHTML));
+    }
+    toDate(year,month);
+    function toDate(year,month){
+        var nowDate = new Date(year,month-1,1);
+        var firstDay = nowDate.getDay();
+        var days = new Date(year,month,0).getDate();//上个月最后一天,通过上个月最后一天获取这个月有几天
+        var lastDays = new Date(year,month-1,0).getDate();
+        var dates = [];
+        for(var i = 0; i < 42; i++){
+            if(i < firstDay){ //这里是要补进去的上个月的日期
+                dates.push(`<li class="gray">${lastDays - firstDay+1+i}</li>`);
+            } else if(i >= firstDay&& i < days + firstDay){
+                dates.push(`<li>${i - firstDay + 1}</li>`);
+            } else {
+                dates.push(`<li class="gray">${i - (days + firstDay) + 1}</li>`);
+            }
+        }
+        calendar.innerHTML = dates.join("");
+        calendarLi = calendar.querySelectorAll('li');
+        if(year == year1 &&month == month1+1){
+            calendarLi[date1 + firstDay-1].className = 'color';
+        }
+
+        //日期点击
+        calendarLi.forEach((item)=>{
+            item.onclick =()=>{
+                calendarLi.forEach((item) =>{
+                    item.classList.remove('active');
+                })
+                item.classList.add('active');
+                timeDate.innerHTML = item.innerHTML;
+                xingzuo();
+                yiji();
+
+            }
+        })
+        monthClick = monthNum.querySelectorAll('.monthNum li');
+        mTween({
+            el:calendar,
+            attr:{
+                scale:1
+            }
+        })
+        xingzuo();
+        shengxiao(parseInt(yearTitle.innerHTML));
+    }
+
+    //时钟开始
+
+    setInterval(clockTab,1000);
+    function clockTab(){
+        let clock = document.querySelector('.clock');
+        let clockImg = clock.querySelector('.clockImg');
+        let pan = clock.querySelector('.pan');
+        let shi = pan.querySelector('.shi');
+        let fen = pan.querySelector('.fen');
+        let miao = pan.querySelector('.miao');
+
+        hours = time.getHours();
+        minutes = time.getMinutes();
+        seconds = time.getSeconds();
+//        css(clockImg,"rotate",seconds*6)
+        css(miao,"rotate",seconds*6)
+        css(fen,"rotate",minutes*6)
+        css(shi,"rotate",hours*30)
+
+    }
+
+    //星座
+    xingzuo();
+    function xingzuo(){
+        let xingzuo = document.querySelector('.xingzuo');
+        let monthXz = parseInt(monthTitle.innerHTML);
+        let dateXz = parseInt(timeDate.innerHTML);
+        if((monthXz == 3 && dateXz >= 21) || (monthXz == 4 && dateXz <=19)){
+            xingzuo.innerHTML = '白羊座';
+        }else  if((monthXz == 4 && dateXz >= 20) || (monthXz == 5 && dateXz <=20)){
+            xingzuo.innerHTML = '金牛座';
+        }else  if((monthXz == 5 && dateXz >= 21) || (monthXz == 6 && dateXz <=21)){
+            xingzuo.innerHTML = '双子座';
+        }else  if((monthXz == 6 && dateXz >= 22) || (monthXz == 7 && dateXz <=22)){
+            xingzuo.innerHTML = '巨蟹座';
+        }else  if((monthXz == 7 && dateXz >= 23) || (monthXz == 8 && dateXz <=22)){
+            xingzuo.innerHTML = '狮子座';
+        }else  if((monthXz == 8 && dateXz >= 23) || (monthXz == 9 && dateXz <=22)){
+            xingzuo.innerHTML = '处女座';
+        }else  if((monthXz == 9 && dateXz >= 23) || (monthXz == 10 && dateXz <=23)){
+            xingzuo.innerHTML = '天秤座';
+        }else  if((monthXz == 10 && dateXz >= 24) || (monthXz == 11 && dateXz <=22)){
+            xingzuo.innerHTML = '天蝎座';
+        }else  if((monthXz == 11 && dateXz >= 23) || (monthXz == 12 && dateXz <=21)){
+            xingzuo.innerHTML = '射手座';
+        }else  if((monthXz == 12 && dateXz >= 22) || (monthXz == 1 && dateXz <=19)){
+            xingzuo.innerHTML = '摩羯座';
+        }else  if((monthXz == 1 && dateXz >= 20) || (monthXz == 2 && dateXz <=18)){
+            xingzuo.innerHTML = '水瓶座';
+        }else  if((monthXz == 2 && dateXz >= 19) || (monthXz == 3 && dateXz <=20)){
+            xingzuo.innerHTML = '双鱼座';
+        }
+    }
+    //生肖
+    shengxiao(year);
+    function shengxiao(year){
+        let ani = document.querySelector('.ani');
+        var animals = ["猴","鸡","狗","猪","鼠","牛","虎","兔","龙","蛇","马","羊"];
+        var ainIndex = year % 12;
+        console.log(animals[ainIndex])
+        console.log(yearTitle.innerHTML)
+        ani.innerHTML = '当前是' + yearTitle.innerHTML + ",属相为" + animals[ainIndex];
+    }
+    //语音播报
+    let bobao = document.getElementById('bobao');
+    bobao.onclick = function(){
+        let timeYY = toDB(hours)+toDB(minutes);
+        let timeYYarr = ['十','二十','三十','四十','五十'];
+        let timeAudio = document.querySelector('#yuyin');
+        let timeYYInner = '';
+        //判断小时是否大于10
+        if(timeYY.charAt(0) != 0){
+            timeYYInner = timeYYarr[timeYY.charAt(0) - 1] + timeYY.charAt(1) + '点';
+        }else{
+            timeYYInner = timeYY.charAt(1) + '点';
+        }
+        //判断分钟是否大于10
+        if(timeYY.charAt(2) != 0){
+            timeYYInner += timeYYarr[timeYY.charAt(2) - 1] + timeYY.charAt(3) + '分';
+        }else{
+            timeYYInner += timeYY.charAt(3) + '分';
+        }
+
+        timeAudio.src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&per=3&text=' + timeYYInner;
+
+        timeAudio.play();
+    }
+
+//    function YY(){
+//        let timeYY = toDB(hours)+toDB(minutes);
+//        let timeYYarr = ['十','二十','三十','四十','五十'];
+//        let timeAudio = document.querySelector('#yuyin');
+//        let timeYYInner = '';
+//        //判断小时是否大于10
+//        if(timeYY.charAt(0) != 0){
+//            timeYYInner = timeYYarr[timeYY.charAt(0) - 1] + timeYY.charAt(1) + '点';
+//        }else{
+//            timeYYInner = timeYY.charAt(1) + '点';
+//        }
+//        //判断分钟是否大于10
+//        if(timeYY.charAt(2) != 0){
+//            timeYYInner += timeYYarr[timeYY.charAt(2) - 1] + timeYY.charAt(3) + '分';
+//        }else{
+//            timeYYInner += timeYY.charAt(3) + '分';
+//        }
+//
+//        timeAudio.src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=' + timeYYInner;
+//
+//        timeAudio.play();
+//    }
+
+})();
+</script>
+</body>
+</html>

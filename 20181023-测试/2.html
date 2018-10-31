@@ -1,0 +1,92 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/// 6，以下代码运行后，arr的结果为：__A_____arr2的结果为__C_____
+// var arr = [1,2];
+// var arr2 = arr.concat();	
+// arr2.push( arr.splice(1, 0) );
+// A，	[1,2]		B，	[1,2,[2]]		C，[1,2,[]]		D，	[1,2,3]
+//console.log(arr,arr2);
+
+
+// 7，alert( "12" > "9" ) 的运行结果正确的是：____B___
+// A，	true							B，	false
+//alert("12" > "9");
+
+//8，以下代码运行后，打印出b的值为：_______ B
+// (function(){
+//    let a =b=5; 
+// })();
+// console.log(b);
+//A.程序报错		 B. 5		C. undefined 		D. A
+
+// 9，下面的描述中不正确的是（多选）：    __A,B,C_____
+// 	A， '==' 在比较过程中，不但会比较两边的值，还会比较两边的数据类型。 	 	
+//  B， NaN == NaN 的结果是 true。
+// 	C， isNaN，判断传入的参数是否为数字，为数字返回true，否则返回false 
+// 	D， arguments 中保存了实际传入函数内的所有参数。
+
+// 10，下面关于数组的描述正确的是：__A_____
+// A，数组的 length 既可以获取，也可以修改。
+// B，调用 pop() 方法，不会修改原数组中的值。
+// C，shift() 方法的返回值是新数组的长度。
+// D，调用 concat() 方法，会修改原数组的值。
+
+//  下面的等式成立的是：   _______ D
+// 	A， parseInt(12.5) == parseFloat(12.5)
+// 	B， "100"=== 100
+// 	C， NaN == NaN
+// 	D， typeof NaN === 'number'
+
+// 12，下面对 substring() 方法描述不正确的是： ____C___
+// A，一共有两个参数，省略第一个参数表示从开始位置提取到字符串结束。
+// B，提取之前会比较两个参数的大小，并根据大小调整位置。
+// C，可以接收负数参数，负数表示从后往前数字符位置。
+// D，如果没有设置参数，直接返回整个字符串
+
+//let str = "abcde";
+//console.log(str.substring(0,0));
+
+//13，以下代码运行后，结果为：_______ B
+//fn1();
+//var fn1 = function(a){ alert(a); }
+
+//A，	1		B，	程序报错		C，	alert(1);		D，	undefined
+
+//14，下列代码中 i 的运行结果为：_____  A
+
+// for(var i = 0; i < 5; i++) {
+//     setTimeout(function(nub) {
+//         return function() {
+//             console.log(nub);
+//         };
+//     }(i), i * 1000);
+// }
+
+//A.0,1,2,3,4   B.5,5,5,5,5   C. 5   D. 1
+
+//15.下边 a 的运行结果为:_____ A
+// var a = 10;
+// setTimeout(function(){
+//     a = 20;
+// },50);
+// console.log(a);
+//A:10     B:20
+
+// 20
+
+// 1. D     2. B,D   3. A    4. C      5. A A B 
+// 6. A C   7. B     8. B    9. A,B,C  10.A
+// 11.D     12.C     13.B    14.A      15.A    
+var str = "abc";
+console.log(str.join());
+</script>    
+</body>
+</html>

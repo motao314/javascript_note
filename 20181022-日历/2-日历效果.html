@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #wrap {
+        width: 350px;
+    }
+    nav {
+        width: 350px;
+        display: flex;
+    }
+    nav span {
+        flex: 1;
+        border: 1px solid #fff;
+        background: #000;
+        color: #fff;
+        font: 20px/48px "宋体";
+        text-align: center;
+    }
+    #date-list {
+        margin: 0;
+        padding: 0;
+        list-style:  none;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #date-list li {
+        width: 48px;
+        height: 48px;
+        background: #666;
+        color: #fff;
+        font: 20px/48px "宋体";
+        text-align: center;
+        border: 1px solid #fff;
+    }
+    #date-list .gray {
+        background: #eee;
+        color: #000;
+    }
+</style>
+</head>
+<body>
+<input type="text" />年<input type="text" />月<button>切换</button>
+<div id="wrap">
+    <nav>
+        <span>日</span>
+        <span>一</span>
+        <span>二</span>
+        <span>三</span>
+        <span>四</span>
+        <span>五</span>
+        <span>六</span>
+    </nav>
+    <ul id="date-list">
+
+    </ul>
+</div>
+<script>
+(function(){
+    let tbody = document.querySelector("#date-list");
+    let txt = document.querySelectorAll("input");
+    let btn = document.querySelector("button");
+    toDate(2019,2);
+    btn.onclick = function(){
+        toDate(txt[0].value,txt[1].value);
+    };
+    function toDate(year,month){
+        var nowDate = new Date(year,month-1,1);
+        var firstDay = nowDate.getDay();
+        var days = new Date(year,month,0).getDate();//上个月最后一天,通过上个月最后一天获取这个月有几天
+        var lastDays = new Date(year,month-1,0).getDate();
+        var dates = [];
+        for(var i = 0; i < 42; i++){
+            if(i < firstDay){ //这里是要补进去的上个月的日期
+                dates.push(`<li class="gray">${lastDays - firstDay+1+i}</li>`);
+            } else if(i >= firstDay&& i < days + firstDay){
+                dates.push(`<li>${i - firstDay + 1}</li>`);
+            } else {
+                dates.push(`<li class="gray">${i - (days + firstDay) + 1}</li>`);
+            }
+        }
+        tbody.innerHTML = dates.join("");
+    }
+})();    
+
+</script>      
+</body>
+</html>

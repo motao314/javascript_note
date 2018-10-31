@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	.body{
+		width: 350px;
+		margin: 50px auto;
+	}
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	#wrap {
+        width: 350px;
+        height: 350px;
+        position: relative;
+        overflow: hidden;
+    }
+    nav {
+    	width: 350px;
+    	display: flex;
+    }
+    nav span{
+    	flex: 1;
+        border: 1px solid #fff;
+        background: #000;
+        color: #fff;
+        font: 20px/48px "宋体";
+        text-align: center;
+    }
+    #day{
+    	height: 350px;
+    }
+    #month,#year {
+    	display: none;
+    	width: 350px;
+    	opacity: 0;
+    	position: absolute;
+    	
+    }
+    #month .list li,#month .list2 li,#year .list li,#year .list2 li{
+    	float: left;
+    	width: 70px;
+    	height: 70px;
+        border: 1px solid #fff;
+        background: #000;
+        color: #fff;
+        font: 20px/68px "宋体";
+        text-align: center;
+        
+    }
+    #month .list,#month .list2,#year .list,#year .list2 {
+    	width: 350px;
+        margin: 0;
+        padding: 0;
+        list-style:  none;
+    }
+    #date{
+    	display: flex;
+    	width: 350px;
+    	position: absolute;
+    }
+    #date .list,#date .list2 {
+    	width: 350px;
+        margin: 0;
+        padding: 0;
+        list-style:  none;
+    }
+    #date .list li,#date .list2 li {
+    	float: left;
+        width: 48px;
+        height: 48px;
+        background: #666;
+        color: #fff;
+        font: 20px/48px "宋体";
+        text-align: center;
+        border: 1px solid #fff;
+    }
+    #wrap .list .gray,#wrap .list2 .gray {
+        background: #eee;
+        color: #000;
+    }    
+</style>
+</head>
+<body>
+	<div class="body">			
+		<div class="title">
+		<button class="prev"><</button>
+		<span id="datetime"></span>
+		<button class="next">></button>
+		</div>
+		<div id="wrap">
+			<div id="day">
+				<nav>
+					<span>日</span>
+					<span>一</span>
+					<span>二</span>
+					<span>三</span>
+					<span>四</span>
+					<span>五</span>
+					<span>六</span>
+				</nav>
+				<ul id="date">
+					<li><ul id="list" class="list"></ul></li>
+					<li><ul  class="list2"></ul></li>
+				</ul>
+			</div>
+			<ul id="month">
+				<li><ul class="list"></ul></li>
+				<li><ul class="list2"></ul></li>
+			</ul>
+			<ul id="year">
+				<li><ul class="list"></ul></li>
+				<li><ul class="list2"></ul></li>
+			</ul>
+		</div>	
+	</div>	
+		
+		
+<script src="miaov.js" type="text/javascript" charset="utf-8"></script>	
+<script type="text/javascript">
+	(function(){
+		let ul = document.querySelector("#date");
+		let list = document.querySelector("#list")
+		let prev = document.querySelector(".prev");
+		let next = document.querySelector(".next");
+		let dateTime= document.querySelector("#datetime")
+		let dayDiv= document.querySelector("#day")
+		let monthDiv= document.querySelector("#month")
+		let yearDiv= document.querySelector("#year")		
+		let month =new Date().getMonth()+1
+		let year =new Date().getFullYear();
+		let flag = "day";
+		dateTime.innerHTML=`${year}年${month}月`		
+		date(new Date().getFullYear(),new Date().getMonth() + 1,list);
+		next.onclick = function(){  //下一个被点击时
+			if(flag == "day"){  //若果当前显示的是日期
+				let list = ul.querySelector(".list") //获取日期下的列表1
+				let list2 = ul.querySelector(".list2")//获取日期下的列表2
+				css(ul,"left",0)					//显示列表1
+				date(year,month,list);				//当前月显示在列表1
+				date(year,month+1,list2);			//下一页显示在列表2				
+				month++;                            //月份自增
+				if(month>12){                      //过界处理
+					month=1
+					year++;
+				}
+				mTween({                           //动画  显示列表2
+					"el":ul,
+					"attr":{
+						"left":-350
+					},
+					"cb":function(){              //动画结束后
+						date(year,month,list);    //当前月显示在列表1
+						css(ul,"left",0)          //列表1显示
+						date(year,month+1,list2);//下一月显示列表2					
+						dateTime.innerHTML=`${year}年${month}月`							
+					}
+				})
+			}else if(flag=="month"){   //如果当前显示的是月份
+				year++;                //年份自增
+				let list = monthDiv.querySelector(".list") //获取月份下的列表1
+				let list2 = monthDiv.querySelector(".list2")//获取月份下的列表2
+				console.log(list)
+				console.log(list2)
+				
+				css(monthDiv,"left",0)//列表1显示
+				monthfn(list)//月份显示在列表1
+				monthfn(list2)//月份显示在列表2
+				mTween({       //动画
+					"el":monthDiv,//显示列表2
+					"attr":{
+						"left":-350
+					},
+					"cb":function(){//动画结束后
+						css(ul,"left",0)//显示列表1
+						dateTime.innerHTML=`${year}年`//显示当前年份
+					}
+				})
+				monthOn();
+				
+			}else if(flag=="year"){  //若果当前显示的是年份
+				let list = yearDiv.querySelector(".list") //获取年份下的列表1
+				let list2 = yearDiv.querySelector(".list2")//获取年份下的列表2
+				css(yearDiv,"left",0)					//显示列表1
+				yearfn (year,list)				//当前年显示在列表1
+				yearfn (year+10,list2)			//下一年显示在列表2				
+				year=year+10;//年份自增
+				console.log(year)
+				mTween({                           //动画  显示列表2
+					"el":yearDiv,
+					"attr":{
+						"left":-350
+					},
+					"cb":function(){              //动画结束后
+						yearfn (year,list)		//当前年显示在列表1 
+						css(yearDiv,"left",0)          //列表1显示
+						yearfn (year+10,list2)//下一年显示在列表2	
+						let num=parseInt(year/10)*10
+						dateTime.innerHTML=`${num}年——${num+9}年`
+						yearOn()
+					}
+				})
+				
+			}
+			
+			
+		}
+		prev.onclick = function(){ //上一个被点击时
+			if(flag == "day"){   //若果当前显示的是日期
+				let list = ul.querySelector(".list")//获取日期下的列表1
+				let list2 = ul.querySelector(".list2")//获取日期下的列表2
+				date(year,month,list2);//当前月显示在列表2
+				css(ul,"left",-350)			//列表2显示
+				date(year,month-1,list);	//上一月显示在列表1			
+				month--;  //月份自减
+				if(month<1){ //过界处理
+					month=12
+					year--;
+				}
+				mTween({  //动画效果
+					"el":ul,
+					"attr":{
+						"left":0  //显示列表1
+					},
+					"cb":function(){  //动画结束后
+						date(year,month,list2);//当前月显示在列表2
+						css(ul,"left",-350)//列表2显示
+						date(year,month-1,list);//上一月显示在列表1
+						dateTime.innerHTML=`${year}年${month}月`//修改显示月份						
+						
+					}
+				})
+			}else if(flag=="month"){ //若果当前显示的是月份
+				year--; //年份自减
+				let list = monthDiv.querySelector(".list") //获取月份下的列表1
+				let list2 = monthDiv.querySelector(".list2")//获取月份下的列表2
+				css(monthDiv,"left",-350)//列表2显示
+				monthfn(list)//列表1月份
+				monthfn(list2)//列表2月份
+				mTween({//动画
+					"el":monthDiv,
+					"attr":{
+						"left":0//显示列表1
+					},
+					"cb":function(){//动画结束后
+						css(ul,"left",0)//显示列表1
+						dateTime.innerHTML=`${year}年`//修改显示年份
+					}
+				})
+				monthOn()
+			}else if(flag == "year"){
+				let list = yearDiv.querySelector(".list")//获取年份下的列表1
+				let list2 = yearDiv.querySelector(".list2")//获取年份下的列表2
+				yearfn(year,list2);//当前年显示在列表2
+				css(yearDiv,"left",-350)			//列表2显示
+				yearfn(year-10,list);	//上一年显示在列表1			
+				year=year-10;  //年份自减				
+				mTween({  //动画效果
+					"el":yearDiv,
+					"attr":{
+						"left":0  //显示列表1
+					},
+					"cb":function(){  //动画结束后
+						yearfn(year,list2);//当前年显示在列表2
+						css(yearDiv,"left",-350)//列表2显示
+						yearfn(year-10,list);//上一年显示在列表1
+						let num=parseInt(year/10)*10
+						dateTime.innerHTML=`${num}年——${num+9}年`//修改年份区间显示					
+						yearOn()
+					}
+				})
+				
+			}
+			
+		}
+		dateTime.onclick = function(){   //日期被点击时
+			if(flag == "day"){  //若果当前显示的是日期
+				let list = monthDiv.querySelector(".list")
+				monthfn(list)//创建月份标签
+				dateTime.innerHTML=`${year}年`	//显示当前年份					
+				flag = "month"  //将显示改为月份
+
+				css(dayDiv,"scale",1)  //动画
+				css(dayDiv,"opacity",1)
+				mTween({
+					el:dayDiv,  //日期消失动画
+					attr:{
+	                	scale: 0.2,
+	                	opacity:0
+					},
+					cb:function() {
+						dayDiv.style.display="none"
+						monthDiv.style.display="flex"
+						css(monthDiv,"scale",1.3)		//月份出现动画	
+						mTween({
+							el:monthDiv,
+							attr:{
+			                	scale: 1,
+	                			opacity:1		                	
+							},
+							
+						})
+					}
+				})
+				monthOn();
+				
+			}else if(flag == "month"){    //如果当前显示的是月份
+				let list = yearDiv.querySelector(".list")
+				let monthList2 = monthDiv.querySelector(".list2");			
+				let num=parseInt(year/10)*10   //年份区间
+				dateTime.innerHTML=`${num}年——${num+9}年`
+				yearfn(year,list)  //生成年份标签
+				flag="year"        //将显示改为year
+				css(monthDiv,"left",0)
+				monthList2.innerHTML="";
+				css(monthDiv,"scale",1)  //动画
+				css(monthDiv,"opacity",1)
+				mTween({
+					el:monthDiv,        //月份消失
+					attr:{
+	                	scale: 0.2,
+	                	opacity:0
+					},
+					cb:function() {       //年份出现
+						monthDiv.style.display="none"
+						yearDiv.style.display="flex"
+						css(yearDiv,"scale",1.3)			
+						mTween({
+							el:yearDiv,
+							attr:{
+			                	scale: 1,
+	                			opacity:1		                	
+							},
+							
+						})
+					}
+				})
+				yearOn()
+			}
+		}
+		function monthOn(){  //当月份被点击函 数
+				let li = monthDiv.querySelectorAll(".month");
+				let list2 = monthDiv.querySelector(".list2");				
+				li.forEach((item)=>{     //当月份被点击时
+					item.onclick =function(){
+						flag = "day" //目前显示为日期
+						month =parseInt(item.innerHTML)  //获取点击月份
+						year = parseInt(dateTime.innerHTML)//获取当前年份
+						css(monthDiv,"left",0)	
+						list2.innerHTML=""
+						css(ul,"left",0)
+						date(year,month,list);				
+						mTween({                //月份消失动画
+							el:monthDiv,
+							attr:{
+								scale: 0.2,
+	                			opacity:0	
+							},
+							cb:function(){        //日期出现动画
+								dayDiv.style.display="block"
+								css(dayDiv,"scale",1.3)			
+								mTween({
+									el:dayDiv,
+									attr:{
+					                	scale: 1,
+			                			opacity:1		                	
+									},
+								})
+							dateTime.innerHTML=`${year}年${month}月`	//修改日期显示	
+								
+							}
+						})
+						
+					}
+				})
+			}
+		function yearOn(){  //年份点击函数
+			let li = yearDiv.querySelectorAll(".year");
+			let list = yearDiv.querySelector(".list");	
+			let list2 = yearDiv.querySelector(".list2");						
+			li.forEach((item)=>{
+				item.onclick = function(){  //当年份被点击时
+					flag ="month";          //显示为月份
+					year =Number(item.innerHTML) //获取选中年份
+					css(monthDiv,"left",0)
+					yearfn(year,list)
+					css(yearDiv,"left",0)
+					list2.innerHTML=""; 
+					mTween({               //年份消失动画
+							el:yearDiv,
+							attr:{
+								scale: 0.2,
+	                			opacity:0	
+							}, 
+							cb:function(){       //月份出现动画
+								monthDiv.style.display="flex"
+								yearDiv.style.display="none"								
+								css(monthDiv,"scale",1.3)			
+								mTween({
+									el:monthDiv,
+									attr:{
+					                	scale: 1,
+			                			opacity:1		                	
+									},
+								})
+							dateTime.innerHTML=`${year}年`	//修改日期显示	
+								
+							}
+						})
+				}
+			})
+		}
+	})()
+	function date(year,month,list){   //创建日期函数
+		let inner =""
+		let firstDay = new Date(year,month-1,1).getDay();
+		let lastMonthDay= new Date(year,month-1,0).getDate();
+		let lastMonth = lastMonthDay-firstDay+1;
+		let toMonthDay = new Date(year,month,0).getDate();
+		let toMonth =1;
+		let nextMonth=1;
+		for(let i=0; i<42; i++){
+			if(i<firstDay){
+				inner+=`<li class="gray">${lastMonth}</li>`
+				lastMonth++				
+			}else if(i<toMonthDay+firstDay){
+				inner+=`<li>${toMonth}</li>`
+				toMonth++
+			}else{
+				inner+=`<li class="gray">${nextMonth}</li>`
+				nextMonth++
+			}
+		}
+		list.innerHTML=inner;
+	}
+	function monthfn(list) {  //创建月份韩式
+		let inner=''
+		for(let i=0;i<12;i++){
+			inner+=`<li class="month">${i+1}月</li>`
+		}
+		list.innerHTML=inner
+	}
+	function yearfn (year,list) {   //创建年份函数
+		let inner=''
+		let num=parseInt(year/10)*10
+		for(let i=0;i<12;i++){
+			if(i<1){
+				inner+=`<li class="gray year">${num-1}</li>`
+			}else if(i<11){
+				inner+=`<li class="year">${num}</li>`
+				num++
+			}else{
+				inner+=`<li class="gray year">${num}</li>`				
+			}
+		}
+		list.innerHTML = inner;
+		
+	}
+</script>
+</body>
+</html>

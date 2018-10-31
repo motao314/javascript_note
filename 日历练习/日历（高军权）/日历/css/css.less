@@ -1,0 +1,211 @@
+body{
+    margin:0;
+}
+p {
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.box {
+    background: #eee;
+    width: 320px;
+    padding: 10px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin: 30px auto;
+    color: #333;
+    user-select: none;
+    cursor: default;
+    .tit_tim {
+        height: 25px;
+        font-size: 12px;
+        line-height: 25px;
+        color: #66ccff;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .wrap {
+        height: 180px;
+        justify-content: space-between;
+        .date_box {
+            background: #fff;
+            border-radius:5px; 
+            float: left;
+            width: 160px;
+            height: 180px;
+            font-size: 12px;
+            padding: 0 10px;
+            position: relative;
+            .date_tit {
+                height: 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .btn {
+                    width: 20px;
+                    text-align: center;
+                    &:hover {
+                        background: #ccc;
+                    }
+                }
+            }
+            .date_area {
+                opacity: 1;
+                transform: scale(1);
+                position: absolute;
+                top: 25px;
+                left: 10px;
+                z-index: 1;
+                .date_week {
+                    height: 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: 1px solid #eee;
+                    li {
+                        width: 22px;
+                        height: 15px;
+                        text-align: center;
+                    }
+                }
+                .date_day {
+                    margin-top: 5px;
+                    width: 160px;
+                    height: 100px;
+                    position: absolute;
+                    overflow: hidden;
+                    .day_list {
+                        position: absolute;
+                        left: 0;
+                        width: 320px;
+                        height: 100px;
+                        display: flex;
+                        justify-content: space-between;
+                        ul {
+                            width: 160px;
+                            height: 100px;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-evenly;
+                            li {
+                                width: 22px;
+                                height: 15px;
+                                line-height: 13px;
+                                text-align: center;
+                                border-radius: 3px;
+                                box-sizing: border-box;
+                                border: 1px solid transparent;
+                                &:hover {
+                                    border-color: #aaa;
+                                }
+                                &:active {
+                                    background: #eee;
+                                }
+                                &.gray {
+                                    color: #aaa;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .item {
+                width: 160px;
+                height: 120px;
+                margin-top:10px; 
+                opacity: 0;
+                position: absolute;
+                top: 25px;
+                left: 10px;
+                transform: scale(0);
+                z-index: -1;
+                overflow: hidden;
+                .list_box {
+                    width: 320px;
+                    height: 120px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    display: flex;
+                    ul {
+                        width: 160px;
+                        height: 120px;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-evenly;
+                        li {
+                            width: 38px;
+                            height: 35px;
+                            line-height: 35px;
+                            text-align: center;
+                            box-sizing: border-box;
+                            background: #eee;
+                            border-radius: 3px;
+                            &:hover {
+                                background: #ddd;
+                            }
+                            &:active {
+                                background: #aaa;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .clock {
+            float: left;
+            width: 140px;
+            height: 180px;
+            .clock_pic {
+                width: 125px;
+                height: 125px;
+                position: relative;
+                background: url(../img/clock.png) no-repeat;
+                margin: 0 auto;
+                .hours {
+                    width: 1px;
+                    height: 35px;
+                    position: absolute;
+                    background: #000;
+                    left: 62px;
+                    top: 30px;
+                    transform-origin: center 30px;
+                }
+                .minutes {
+                    width: 1px;
+                    height: 45px;
+                    position: absolute;
+                    background: #000;
+                    left: 62px;
+                    top: 20px;
+                    transform-origin: center 40px;
+                }
+                .seconds {
+                    width: 1px;
+                    height: 55px;
+                    position: absolute;
+                    background: #000;
+                    left: 62px;
+                    top: 10px;
+                    transform-origin: center 50px;
+                }
+            }
+            .clock_tim {
+                text-align: center;
+                margin-top: 5px;
+                p {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+                div {
+                    font-size: 16px;
+                    line-height: 30px;
+                }
+            }
+        }
+    }
+}

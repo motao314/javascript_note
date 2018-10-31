@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #wrap {
+        width: 350px;
+    }
+    nav {
+        width: 350px;
+        display: flex;
+    }
+    nav span {
+        flex: 1;
+        border: 1px solid #fff;
+        background: #000;
+        color: #fff;
+        font: 20px/48px "宋体";
+        text-align: center;
+    }
+    #date-list {
+        margin: 0;
+        padding: 0;
+        list-style:  none;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #date-list li {
+        width: 48px;
+        height: 48px;
+        background: #666;
+        color: #fff;
+        font: 20px/48px "宋体";
+        text-align: center;
+        border: 1px solid #fff;
+    }
+    #date-list .gray {
+        background: #eee;
+        color: #000;
+    }
+</style>
+</head>
+<body>
+<input type="text" />年<input type="text" />月<button>切换</button>
+<div id="wrap">
+    <nav>
+        <span>日</span>
+        <span>一</span>
+        <span>二</span>
+        <span>三</span>
+        <span>四</span>
+        <span>五</span>
+        <span>六</span>
+    </nav>
+    <ul id="date-list">
+
+    </ul>
+</div>
+<script>
+(function(){
+    let tbody = document.querySelector("#date-list");
+    let txt = document.querySelectorAll("input");
+    let btn = document.querySelector("button");
+    toDate(2019,2);
+    btn.onclick = function(){
+        toDate(txt[0].value,txt[1].value);
+    };
+    function toDate(year,month){
+        let firstDay = new Date(year,month - 1,1).getDay();
+        let lastMonthDays = new Date(year,month - 1,0).getDate();
+        let inner = "";
+        let lastMonthFirst = lastMonthDays-firstDay+1;//上个月在这个列表中需要显示的第一天是几号;
+        let nowMonthFirst = 1;
+        let nowMonthLast =  new Date(year,month,0).getDate();
+        let nextMonthFirst = 1;
+        for(let i = 0; i < 42; i++){
+            if(i < firstDay){
+                inner += `<li class="gray">${lastMonthFirst}</li>`;
+                lastMonthFirst++;
+            } else if(nowMonthFirst <= nowMonthLast) {
+                inner += `<li>${nowMonthFirst}</li>`;
+                nowMonthFirst++;
+            } else {
+                inner += `<li class="gray">${nextMonthFirst}</li>`;
+                nextMonthFirst++;
+            }
+        }
+        tbody.innerHTML = inner;
+    }
+})();    
+
+</script>      
+</body>
+</html>

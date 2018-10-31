@@ -1,0 +1,170 @@
+body,
+dl,
+dd {
+  margin: 0;
+}
+img {
+  vertical-align: top;
+}
+.box {
+  width: 343px;
+  border: 1px solid #000000;
+  margin: 20px auto;
+  padding: 14px 0 0 0;
+  font: 12px / 12px "宋体";
+}
+.box .today {
+  color: #000080;
+  text-align: center;
+}
+.box .today span {
+  display: inline-block;
+}
+.box .sbox {
+  height: 188px;
+}
+.box .sbox .calendarbox {
+  width: 175px;
+  padding: 24px 0 0 14px;
+  float: left;
+}
+.box .sbox .calendarbox .top {
+  height: 16px;
+  background: #0a246a;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px;
+  font: bold 12px / 16px "宋体";
+}
+.box .sbox .calendarbox .top button {
+  width: 20px;
+  height: 15px;
+  outline: none;
+}
+.box .sbox .calendarbox .top .prev {
+  float: left;
+  background: #d4d0c8 url("../images/prev.png") no-repeat center;
+}
+.box .sbox .calendarbox .top .next {
+  float: right;
+  background: #d4d0c8 url("../images/next.png") no-repeat center;
+}
+.box .sbox .calendarbox .top .times {
+  display: inline-block;
+}
+.box .sbox .calendarbox .content dl {
+  text-align: center;
+  height: 120px;
+}
+.box .sbox .calendarbox .content dl dt {
+  height: 18px;
+  border-bottom: 1px solid #000000;
+  font: 12px / 18px "宋体";
+  color: #0a246a;
+}
+.box .sbox .calendarbox .content dl dt span {
+  float: left;
+  width: 25px;
+}
+.box .sbox .calendarbox .content dl dd {
+  height: 100px;
+}
+.box .sbox .calendarbox .content dl dd .active {
+  color: #ffffff;
+  background: #0a246a;
+  border: 1px dotted #f5db95;
+}
+.box .sbox .calendarbox .content dl dd .active2 {
+  border: 1px solid #0a246a;
+}
+.box .sbox .calendarbox .content dl dd span {
+  width: 25px;
+  float: left;
+  height: 16px;
+  font: 12px / 16px "宋体";
+  box-sizing: border-box;
+}
+.box .sbox .clockbox {
+  padding: 15px 18px 0 0;
+  overflow: hidden;
+  float: right;
+  text-align: center;
+}
+.box .sbox .clockbox .clock {
+  width: 120px;
+  height: 120px;
+  border: 2px solid #8d95a6;
+  border-radius: 50%;
+}
+.box .sbox .clockbox .clock .inclock {
+  width: 114px;
+  height: 114px;
+  border: 2px solid #8d95a6;
+  border-radius: 50%;
+  margin: 1px;
+  position: relative;
+}
+.box .sbox .clockbox .clock .inclock div {
+  position: absolute;
+}
+.box .sbox .clockbox .clock .inclock .scalebox {
+  width: 114px;
+  height: 114px;
+}
+.box .sbox .clockbox .clock .inclock .scalebox .scale {
+  position: absolute;
+  top: 5px;
+  left: 56px;
+  width: 2px;
+  height: 2px;
+  background: #a4b6bb;
+  transform-origin: 1px 52px;
+}
+.box .sbox .clockbox .clock .inclock .scalebox .scale:nth-of-type(5n+1) {
+  height: 8px;
+  background: #6f8991;
+}
+.box .sbox .clockbox .clock .inclock .point {
+  width: 2px;
+  height: 2px;
+  border: 1px solid #11414e;
+  background: #335c67;
+  top: 55px;
+  left: 55px;
+}
+.box .sbox .clockbox .clock .inclock .second {
+  top: 9px;
+  left: 56px;
+  width: 2px;
+  height: 70px;
+  background: #5e7077;
+  transform-origin: 1px 48px;
+}
+.box .sbox .clockbox .clock .inclock .minute {
+  top: 13px;
+  left: 55px;
+  height: 44px;
+  width: 4px;
+  background: #6b7980;
+  transform-origin: 2px 44px;
+  border-radius: 2px;
+}
+.box .sbox .clockbox .clock .inclock .hour {
+  top: 24px;
+  left: 55px;
+  height: 35px;
+  width: 4px;
+  background: #6b7980;
+  transform-origin: 2px 33px;
+  border-radius: 2px;
+}
+.box .sbox .clockbox .nowtime {
+  padding: 8px 0;
+}
+.box .change {
+  background: #d4d0c8;
+  height: 40px;
+  font: 12px/40px '宋体';
+  text-align: center;
+  color: #000080;
+}

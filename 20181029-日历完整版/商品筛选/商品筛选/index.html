@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			font-size: 14px;
+			font-family: "Lantinghei SC Extralight",Arial;
+		}
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		a {
+			text-decoration: none;
+		}
+		img {
+			vertical-align: top;
+		}
+		#wrap {
+			width: 760px;
+			height: 260px;
+			margin: 100px auto;
+			padding: 145px 120px 95px;
+			background: url(img/bg.jpg) no-repeat 0 0;
+		}
+		#section {
+			width: 760px;
+			height: 260px;
+			-moz-box-shadow: 0px 0px 4px rgba(0,0,0,.2); 
+			box-shadow: 0px 0px 4px rgba(0,0,0,.2);
+		}
+		#choose {
+			width: 760px;
+			height: 50px;
+			margin: 0 auto;
+			background: url(img/nav_bg.png) no-repeat 0 0;
+			line-height: 50px;
+			text-indent: 21px;
+		}
+		#type {
+			width: 100%;
+			height: 210px;
+			background: url(img/type_bg.png) no-repeat 0 0;
+			padding: 17px 0 16px 28px;
+		}
+		#type li {
+			height: 44px;
+			color: #8a8a8a;
+			line-height: 44px;
+		}
+		#type a {
+			margin: 0 12px 0 11px;
+			color: #000;
+		}
+		#choose mark {
+			position: relative;
+			display: inline-block;
+			height: 24px;
+			line-height: 24px;
+			border: 1px solid #28a5c4;
+			color: #28a5c4;
+			margin: 12px 5px 0;
+			background: none;
+			padding: 0 30px 0 6px;
+			text-indent: 0;
+			/*opacity: 0;*/
+			transition: 0.5s;
+		}
+		#choose mark a {
+			position: absolute;
+			top: 3px;
+			right: 2px;
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			background: #28a5c4;
+			color: #fff;
+			line-height: 18px;
+			font-size: 16px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<div id="wrap">
+	<section id="section">
+		<nav id="choose">
+		你的选择:
+		<!-- <mark><em>haha<em><a href="javascript:;">X</a></mark> -->
+		</nav>
+		<ul id="type">
+			<li>
+				品牌：
+				<a href="javascript:;">苹果</a>
+				<a href="javascript:;">小米</a>
+				<a href="javascript:;">锤子</a>
+				<a href="javascript:;">魅族</a>
+				<a href="javascript:;">华为</a>
+				<a href="javascript:;">三星</a>
+				<a href="javascript:;">OPPO</a>
+				<a href="javascript:;">vivo</a>
+				<a href="javascript:;">乐视</a>
+				<a href="javascript:;">360</a>
+				<a href="javascript:;">中兴</a>
+				<a href="javascript:;">索尼</a>
+			</li>
+			<li>
+				尺寸：
+				<a href="javascript:;">3.0英寸以下</a>
+				<a href="javascript:;">3.0-3.9英寸</a>
+				<a href="javascript:;">4.0-4.5英寸</a>
+				<a href="javascript:;">4.6-4.9英寸</a>
+				<a href="javascript:;">5.0-5.5英寸</a>
+				<a href="javascript:;">6.0英寸以上</a>
+			</li>
+			<li>
+				系统：
+				<a href="javascript:;">安卓 ( Android )</a>
+				<a href="javascript:;">苹果 ( IOS )</a>
+				<a href="javascript:;">微软 ( WindowsPhone )</a>
+				<a href="javascript:;">无</a>
+				<a href="javascript:;">其他</a>
+			</li>
+			<li>
+				网络：
+				<a href="javascript:;">联通3G</a>
+				<a href="javascript:;">双卡单4G</a>
+				<a href="javascript:;">双卡双4G</a>
+				<a href="javascript:;">联通4G</a>
+				<a href="javascript:;">电信4G</a>
+				<a href="javascript:;">移动4G</a>
+			</li>
+		</ul>
+	</section>
+</div>
+<script>
+/*
+	1. 点击标签把标签添加到头部
+	2. 同一类型标签只能添加一个
+	3. 添加进去的标签显示顺序要按照 从上到小的顺序
+	4. 点击叉号删除标签 
+	5. 内容放在数组，把数组渲染到头部去
+*/
+(function(){
+	let choose = document.querySelector("#choose");
+	let type = document.querySelector("#type");
+	let types = Array.from(type.children);
+	let marks = [];
+	types.forEach((type,index)=>{
+		let typeMarks = type.querySelectorAll("a");
+		typeMarks.forEach((mark)=>{
+			mark.onclick = function(){
+				let newMark = document.createElement("mark");
+				let clos = document.createElement("a");
+				newMark.innerHTML = this.innerHTML;
+				clos.innerHTML = "x";
+				clos.onclick = function(){
+					marks[index] = null;
+					create();
+				};
+				newMark.appendChild(clos);
+				marks[index] = newMark;//把标签记录到数组对应位
+				create();
+			};
+		});
+	});
+	// 把数组中的内容，放入DOM中
+	function create(){
+		let inner = marks.filter((item)=>{
+			return item;
+		});
+		choose.innerHTML = "你的选择:";
+		inner.forEach((item)=>{
+			choose.appendChild(item);
+		});
+	}
+})();
+</script>
+
+
+</body>
+</html>

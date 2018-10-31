@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#wrap {
+    margin: 30px auto;
+    width: 300px;
+    height: 240px;
+}
+nav {
+    display: flex;
+}
+nav a {
+    flex: 1;
+    font: 14px/36px "宋体";
+    border: 2px solid #000;
+    text-align: center;
+}
+#cons div {
+    display: none;
+    height: 200px;
+    background: #ccc;
+    font: 50px/200px "宋体";
+    text-align: center;
+}
+#cons ul {
+    display: none;
+}
+#cons .active {
+    display: block;
+}
+#cons .div1 {
+    font: 12px/30px "宋体";
+}
+
+</style>
+</head>
+<body>
+<div id="wrap">
+    <nav>
+        <a href="#div1">选项一</a>
+        <a href="#div2">选项二</a>
+        <a href="#div3">选项三</a>
+    </nav>
+    <div id="cons">
+        <div class="div1 active">
+            <nav>
+                <a href="#div1/list1">列表一</a>
+                <a href="#div1/list2">列表二</a>
+            </nav>
+            <ul class="list1 active">
+               <li>列表一的信息</li>
+               <li>列表一的信息</li>
+               <li>列表一的信息</li> 
+            </ul>
+            <ul class="list2">
+                <li>列表二的信息</li>
+                <li>列表二的信息</li>
+                <li>列表二的信息</li> 
+            </ul>
+        </div>
+        <div class="div2">内容二</div>
+        <div class="div3">内容三</div>
+    </div>    
+</div>    
+<script>
+// 匹配对应的规则，然后返回正确信息
+
+// #div1/list1
+// #div1/list2
+
+let cons = document.querySelectorAll("#cons div");
+let list = document.querySelectorAll(".div1 ul");
+hashchangeview();
+window.onhashchange = function(){
+    hashchangeview();
+};
+function hashchangeview(){
+    let hash = location.hash;
+    hash = hash==""?"div1":hash.substr(1);
+    hash = hash.split("/")
+    let nowView = document.querySelector("."+hash[0]);
+    nowView = nowView?nowView:document.querySelector(".div1");
+    cons.forEach((item)=>{
+        item.classList.remove("active");
+    });
+    nowView.classList.add("active");
+    if(hash[0] == "div1"){
+        list.forEach((item)=>{
+            item.classList.remove("active");
+        });
+        hash[1] = hash[1]?hash[1]:"list1";
+        let nowList = nowView.querySelector("."+hash[1]);
+        console.log(nowList);
+        nowList.classList.add("active")
+    }
+}
+</script>
+</body>
+</html>

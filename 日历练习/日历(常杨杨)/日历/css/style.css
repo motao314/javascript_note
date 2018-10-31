@@ -1,0 +1,193 @@
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clear:after{
+    content: ' ';
+    display: block;
+    clear: both;
+}
+.box{
+    overflow: hidden;
+    width:450px;
+    background: #2d2d2d;
+    font-family: "microsoft yahei";
+    color:#fff;
+    transition: 2s;
+    margin: auto;
+}
+.box .time{
+    height:139px;
+    font:52px 'microsoft yahei';
+    border-bottom: 1px solid #4c4c4c;
+    padding: 0 0 0 30px;
+    margin-bottom: 25px;
+}
+.box .time span{
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    text-align: left;
+}
+.box .time .now_date{
+    color: #429ce3;
+    font-size: 17px;
+    line-height: 36px;
+    cursor: pointer;
+}
+.box .time span:first-child{
+     line-height: 62px;
+    margin-top: 24px;
+}
+.date_month{
+    height: 490px;
+    position: relative;
+}
+.date_month .month{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 353px;
+    margin-top: 60px;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(2);
+}
+.date_month .month .month_block{
+     height: 353px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.date_month .month .list_month{
+    height: 353px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.date_month .month .list_month li{
+    width: 103px;
+    height: 80px;
+    /*background: #abcdef;*/
+    text-align: center;
+    line-height: 80px;
+    font-size: 20px;
+    
+}
+.date_month .month .list_month .active_gray{
+    color: #595959;
+}
+.date_month .month .list_month .active_blue{
+    color: #0078d7;
+}
+.date_month .date_top{
+    font-size: 17px;
+    color: #dfdfdf;
+}
+.date_month .date_top .arrow{
+    font-size: 24px;
+}
+.date_month .date_top span:first-child{
+    margin-left: 30px;
+}
+.date_month .date_top span:nth-of-type(2){
+    margin-right: 30px;
+    margin-left: 38px;
+}
+.date_month .date_top .date_year:hover{
+    color: #fff;
+    cursor: pointer;
+}
+.date_block{
+    /*height: 500px;*/
+    /*display: none;*/
+}
+.date_week{
+    margin-left: 16px;
+    margin-top: 15px;
+    user-select: none;
+}
+.date_week li{
+    text-align: center;
+    float: left;
+    width: 58px;
+    height: 40px;
+    margin-right: 2px;
+    line-height: 40px;
+}
+.date_area{
+    position: relative;
+    height: 348px;
+    overflow: hidden;
+    user-select: none;
+}
+
+.date_month .list{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:696px;
+    overflow: hidden;
+    transform-origin: center 188px;
+}
+.date_area .list .date{
+    width: 418px;
+    height: 348px;
+    margin-left: 16px;
+}
+.date_area .list .date li{
+    width: 52px;
+    height: 50px;
+    padding: 0;
+    border: 3px solid #2d2d2d;
+    background: transparent;
+    color: #fff;
+    float: left;
+    line-height: 50px;
+    text-align: center;
+    outline: none;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    transition: .5s;
+}
+.date_area .list .date li:nth-of-type(7n){
+    margin-right: 0;
+}
+.date_area .list .date li:hover{
+    border-color: rgba(255,255,255,.3);
+    background: rgba(255,255,255,.1);
+}
+.date_area .list .date li:focus{
+    border-color: #0078d7;
+    color: #fff;
+}
+.date_area .list .date li:active{
+    background-color: rgba(255,255,255,.3);
+    transition: .5s;
+}
+.date_area .list .date .active_blue{
+    background: #0078d7;
+    border: 3px solid #0078d7;
+    box-shadow: inset 0 0 0 2px #000;
+}
+.date_area .list .date .active_gray{
+    color:#595959;
+}
+.schedule{
+    color: #0078d7;
+    text-align: right;
+    margin-right: 30px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}

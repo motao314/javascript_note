@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="miaov.js"></script>
+    <link rel="stylesheet" href="font/iconfont.css">
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        .warp {
+            margin: 30px auto;
+            width: 650px;
+            height: 485px;
+            border: 1px solid #333;
+            /* overflow: hidden; */
+        }
+
+        .kalendar {
+            float: left;
+        }
+
+        .calendar {
+            border-bottom: 1px solid #535353;
+            width: 350px;
+            height: 80px;
+        }
+
+        .riqi {
+            width: 150px;
+            text-align: center;
+        }
+
+        .riqi p {
+            margin: 0;
+            font: 30px/40px "微软雅黑";
+            color: #fff;
+            text-align: center;
+        }
+
+        .riqi .xingqi {
+            width: 170px;
+            font: 15px/30px "微软雅黑";
+            color: #019aa6;
+            text-align: center;
+        }
+
+        .rili {
+            width: 350px;
+            height: 400px;
+            border-bottom: 1px solid #535353;
+            position: relative;
+        }
+
+        .banner {
+            width: 350px;
+            height: 50px;
+            position: relative;
+        }
+
+        .left {
+            width: 120px;
+            font: 15px/50px "微软雅黑";
+            color: #fff;
+            position: absolute;
+            left: 0;
+            text-align: center;
+        }
+
+        .banner .right1 {
+            position: absolute;
+            right: 0;
+            z-index: 1;
+        }
+
+        .right1 span {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            font: 25px/50px "微软雅黑";
+            color: #535353;
+            text-align: center;
+        }
+
+        .banner .right2 {
+            position: absolute;
+            right: 0;
+            z-index: 0;
+        }
+
+        .right2 span {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            font: 25px/50px "微软雅黑";
+            color: #535353;
+            text-align: center;
+        }
+
+        .banner .right3 {
+            position: absolute;
+            right: 0;
+            z-index: 0;
+        }
+
+        .right3 span {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            font: 25px/50px "微软雅黑";
+            color: #535353;
+            text-align: center;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .list {
+            width: 350px;
+            display: flex;
+        }
+
+        .list span {
+            flex: 1;
+            width: 48px;
+            height: 48px;
+            font: 20px/49px "微软雅黑";
+            color: #fff;
+            text-align: center;
+            border: 1px solid #fff;
+        }
+
+        .dayList {
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+
+        }
+
+        .monthlist {
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 50px;
+        }
+
+        .yearlist {
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 50px;
+        }
+
+        .yearlist li {
+            width: 85px;
+            height: 72px;
+            border: 1px solid transparent;
+            font: 20px/72px "微软雅黑";
+            color: #fff;
+            text-align: center;
+        }
+
+        .monthlist li {
+            width: 85px;
+            height: 72px;
+            border: 1px solid transparent;
+            font: 20px/72px "微软雅黑";
+            color: #fff;
+            text-align: center;
+        }
+
+        .dayList li {
+            width: 48px;
+            height: 48px;
+            font: 20px/49px "微软雅黑";
+            color: #fff;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .dayList .blue {
+            color: #535353;
+        }
+
+        .dayList .active {
+            border: 1px solid #42e9ff;
+        }
+
+        .monthlist .blue {
+            color: #535353;
+        }
+
+        .yearlist .blue {
+            color: #535353;
+        }
+
+        .yearlist .active {
+            border: 1px solid #42e9ff;
+        }
+
+        .monthlist .active {
+            border: 1px solid #42e9ff;
+        }
+
+        .clock {
+            float: left;
+            width: 300px;
+            height: 482px;
+
+        }
+
+        .clocks {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            margin: 130px 55px 30px 55px;
+        }
+
+        .clock p {
+            text-align: center;
+            font: 20px/40px "微软雅黑";
+            color: #fff;
+            margin: 0;
+        }
+
+        .last li {
+            position: absolute;
+            width: 3px;
+            height: 8px;
+            background: #999;
+            left: 98px;
+            top: 0;
+            transform-origin: center 100px;
+        }
+
+        .last li:nth-child(5n+1) {
+            height: 15px;
+            background: #fff;
+        }
+
+        .last2 li {
+            position: absolute;
+            left: 85px;
+            top: 7px;
+            width: 30px;
+            height: 30px;
+            font: 20px/40px "宋体";
+            text-align: center;
+            color: #fff;
+            transform-origin: center 95px;
+        }
+
+        .last2 span {
+            display: block;
+        }
+
+        .h {
+            position: absolute;
+            left: 97px;
+            top: 50px;
+            width: 5px;
+            height: 49px;
+            background: rgb(233, 38, 38);
+            transform-origin: bottom;
+        }
+
+        .f {
+            position: absolute;
+            left: 98px;
+            top: 39px;
+            width: 3px;
+            height: 60px;
+            background: rgb(176, 233, 18);
+            transform-origin: bottom;
+        }
+
+        .s {
+            position: absolute;
+            left: 99px;
+            top: -1px;
+            width: 1px;
+            height: 100px;
+            background: rgb(215, 18, 233);
+            transform-origin: bottom;
+        }
+
+        .dot {
+            position: absolute;
+            left: 94px;
+            top: 94px;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="warp">
+        <div class="kalendar">
+            <div class="calendar">
+                <div class="riqi">
+                </div>
+            </div>
+            <div class="rili">
+                <div class="banner">
+                    <div class="left"></div>
+                    <div class="right1">
+                        <span class="iconfont icon-jiantoushang"></span>
+                        <span class="iconfont icon-arrow-left"></span>
+                    </div>
+                    <div class="right2">
+                        <span class="iconfont icon-jiantoushang"></span>
+                        <span class="iconfont icon-arrow-left"></span>
+                    </div>
+                    <div class="right3">
+                        <span class="iconfont icon-jiantoushang"></span>
+                        <span class="iconfont icon-arrow-left"></span>
+                    </div>
+                </div>
+                <div class="fuji">
+                    <div class="list">
+                        <span>日</span>
+                        <span>一</span>
+                        <span>二</span>
+                        <span>三</span>
+                        <span>四</span>
+                        <span>五</span>
+                        <span>六</span>
+                    </div>
+                    <ul class="dayList"></ul>
+                </div>
+                <ul class="monthlist">
+                </ul>
+                <ul class="yearlist"></ul>
+            </div>
+        </div>
+        <div class="clock">
+            <div class="clocks">
+                <ul class="last">
+                </ul>
+                <ul class="last2">
+                    <li>
+                        <span>12</span>
+                    </li>
+                    <li>
+                        <span>1</span>
+                    </li>
+                    <li>
+                        <span>2</span>
+                    </li>
+                </ul>
+                <div class="h"></div>
+                <div class="f"></div>
+                <div class="s"></div>
+                <div class="dot"></div>
+            </div>
+            <p></p>
+        </div>
+        <div>
+<script>
+    (function () {
+        //元素获取
+        let week = ["日", "一", "二", "三", "四", "五", "六"];
+        let calendar = document.querySelector('.calendar');
+        let riqi = calendar.querySelector('.riqi');
+        let span = riqi.querySelector('span');
+        let fuji = document.querySelector('.fuji');
+        let rili = document.querySelector('.rili');
+        let left = rili.querySelector('.left');
+        let dayList = rili.querySelector('ul');
+        let monthlist = rili.querySelector('.monthlist');
+        let yearlist = rili.querySelector('.yearlist');
+        let clock = document.querySelector('.clock');
+        let p = clock.querySelector('p');
+        let right1 = rili.querySelector('.right1');
+        let right2 = rili.querySelector('.right2');
+        let right3 = rili.querySelector('.right3');
+
+        riqiTab();
+        setInterval(riqiTab, 1000);
+        function riqiTab() {
+            let date = new Date();
+            let year = toDB(date.getFullYear());//年
+            let month = toDB(date.getMonth() + 1);//月
+            let day = toDB(date.getDate());//日
+            let dayr = date.getDay();
+            let h = toDB(date.getHours());//时
+            let fen = toDB(date.getMinutes());//分
+            let s = toDB(date.getSeconds());//秒
+            riqi.innerHTML = `<p>${h}:${fen}:${s}</p><div class="xingqi">${year}/${month}/${day} 星期${week[dayr]}</div>`;
+            p.innerHTML = `${year}-${month}-${day} 星期${week[dayr]}`
+        }
+        //默认样式
+        css(fuji, "scale", 1)
+        css(monthlist, "scale", 0)
+        css(yearlist, "scale", 0)
+        css(right1, "zIndex", 1)
+        css(right2, "zIndex", 0)
+        css(right3, "zIndex", 0)
+        let date = new Date();
+        let year = toDB(date.getFullYear());//年
+        let month = toDB(date.getMonth() + 1);//月
+        left.innerHTML = `${year}年${month}月`
+        toDate(year, month);
+
+        function toDate(year, month) {
+            let firstDay = new Date(year, month - 1, 1).getDay();
+            let lastMonthDays = new Date(year, month - 1, 0).getDate();
+            let inner = "";
+            yuefenInner = "";
+            yearInner = "";
+            let lastMonthFirst = lastMonthDays - firstDay + 1;//上个月在这个列表中需要显示的第一天是几号;
+            let nowMonthFirst = 1;
+            let nowMonthLast = new Date(year, month, 0).getDate();
+            let nextMonthFirst = 1;
+            for (let i = 0; i < 42; i++) {
+                if (i < firstDay) {
+                    inner += `<li class="blue">${lastMonthFirst}</li>`;
+                    lastMonthFirst++;
+                } else if (nowMonthFirst <= nowMonthLast) {
+                    inner += `<li>${nowMonthFirst}</li>`;
+                    nowMonthFirst++;
+                } else {
+                    inner += `<li class="blue">${nextMonthFirst}</li>`;
+                    nextMonthFirst++;
+                }
+            }
+            dayList.innerHTML = inner;
+            //月份生成
+            for (let i = 1; i <= 16; i++) {
+                if (i <= 12) {
+                    yuefenInner += `<li>${i}月</li>`
+                } else {
+                    yuefenInner += `<li class="blue">${i % 12}月</li>`
+                }
+            }
+            //年份生成
+            let start = `${String(parseFloat(left.innerHTML)).substring(0,3)}0`;
+            let end = `${String(parseFloat(left.innerHTML)).substring(0,3)}9`;
+            let born = Number(start)+16;
+            for (let i = start;i<born;i++) {
+                yearInner +=`<li>${i}</li>`
+            }
+            yearlist.innerHTML = yearInner;
+            //日期页面点击按钮
+        let btn = right1.querySelectorAll("span");
+        dayTob(btn[0], true);
+        dayTob(btn[1], false);
+        function dayTob(btn, flag) {
+            btn.onclick = () => {
+                flag ? month-- : month++
+                if (month > 12) {
+                    month = 1;
+                    year++;
+                } else if (month < 1) {
+                    month = 12;
+                    year--;
+                }
+                left.innerHTML = `${year}年${toDB(month)}月`;
+                toDate(year, month);
+            }
+        }
+        monthlist.innerHTML = yuefenInner;
+    //月份点击切换按钮
+    let btn1 = right2.querySelectorAll('span');
+    btn1[0].onclick = () => {
+        year--;
+        left.innerHTML = `${year}年`;
+    }
+    btn1[1].onclick = () => {
+        year++;
+        left.innerHTML = `${year}年`;
+    }
+    //年份点击按钮
+    let btn2 = right3.querySelectorAll('span');
+    btn2[0].onclick = () => {
+        let leftArry = [];
+        left.innerHTML.split("-").map((item) => {
+            leftArry.push(item - 10);
+        });
+        left.innerHTML = leftArry.join("-");
+        let yearInner = "";
+        for (let i = leftArry[0]; i < Number(leftArry[1] + 7); i++) {
+            if (i < leftArry[0]) {
+                yearInner += `
+                    <li>${i}</li>
+                    `;
+            } else {
+                yearInner += `<li class="blue">${i}</li>`
+            }
+            yearlist.innerHTML = yearInner;
+            //点击年份回到月份
+            let lisYear = yearlist.querySelectorAll("li");
+            lisYear.forEach((item, index) => {
+                item.onclick = () => {
+                    css(yearlist, "scale", 0);
+                    mTween({
+                        el: monthlist,
+                        attr: {
+                            scale: 1
+                        },
+                        time: 600
+                    });
+                    left.innerHTML = `${item.innerHTML}年`;
+                    css(right2, "zIndex", 1)
+                    css(right3, "zIndex", 0)
+                    year = item.innerHTML;
+                }
+            });
+        }
+    }
+    btn2[1].onclick = () => {
+        let leftArry = [];
+        left.innerHTML.split("-").map((item) => {
+            leftArry.push(Number(item) + 10);
+
+        });
+        left.innerHTML = leftArry.join("-");
+        let yearInner = "";
+        for (let i = leftArry[0]; i < Number(leftArry[1] + 7); i++) {
+            if (i < leftArry[0]) {
+                yearInner += `
+                    <li>${i}</li>
+                    `;
+            } else {
+                yearInner += `<li class="blue">${i}</li>`
+            }
+            yearlist.innerHTML = yearInner;
+            //点击年份回到月份
+    let lisYear = yearlist.querySelectorAll("li");
+    lisYear.forEach((item, index) => {
+        item.onclick = () => {
+            css(yearlist, "scale", 0);
+            mTween({
+                el: monthlist,
+                attr: {
+                    scale: 1
+                },
+                time: 600
+            });
+            left.innerHTML = `${item.innerHTML}年`;
+            css(right2, "zIndex", 1)
+            css(right3, "zIndex", 0)
+            year = item.innerHTML;
+        }
+    });
+        }
+    }
+    //点击月份回到日期
+    let lisMonth = monthlist.querySelectorAll('li');
+    lisMonth.forEach((item, index) => {
+        item.onclick = () => {
+            if (index <= 11) {
+                month = index + 1;
+            } else {
+                year++;
+                month = index % 11;
+            }
+            css(monthlist, "scale", 0);
+            mTween({
+                el: fuji,
+                attr: {
+                    scale: 1
+                },
+                time: 300
+            });
+
+            left.innerHTML = `${year}年${toDB(month)}月`;
+            css(right1, "zIndex", 1)
+            css(right2, "zIndex", 0)
+        }
+    });
+        //点击年份回到月份
+    let lisYear = yearlist.querySelectorAll("li");
+    lisYear.forEach((item, index) => {
+        item.onclick = () => {
+            css(yearlist, "scale", 0);
+            mTween({
+                el: monthlist,
+                attr: {
+                    scale: 1
+                },
+                time: 600
+            });
+            left.innerHTML = `${item.innerHTML}年`;
+            css(right2, "zIndex", 1)
+            css(right3, "zIndex", 0)
+            year = item.innerHTML;
+        }
+    });
+    //点击切换到月份 再次点击切换到年份 切换事件
+            left.onclick = () => {
+                if (left.innerHTML.length == 8) {
+                    mTween({
+                        el: fuji,
+                        attr: {
+                            scale: 0
+                        },
+                        time: 300
+                    });
+                    mTween({
+                        el: monthlist,
+                        attr: {
+                            scale: 1
+                        },
+                        time: 600
+                    });
+                    left.innerHTML = `${year}年`;
+                    css(right1, "zIndex", 0);
+                    css(right2, "zIndex", 1);
+                } else if (left.innerHTML.length == 5) {
+                    mTween({
+                        el: monthlist,
+                        attr: {
+                            scale: 0
+                        },
+                        time: 300
+                    });
+                    mTween({
+                        el: yearlist,
+                        attr: {
+                            scale: 1
+            },
+            time: 600
+        });
+            left.innerHTML = `${start}-${end}`;
+            css(right2, "zIndex", 0);
+            css(right3, "zIndex", 1);
+        }
+    }
+        //鼠标入到日期 月份 年份 上面给他改变对应的边框颜色
+        let lis = dayList.querySelectorAll('li');
+        let lisyear = yearlist.querySelectorAll('li');
+        clockTab(lis);
+        clockTab(lisMonth);
+        clockTab(lisyear);
+        function clockTab(el){
+            el.forEach((item)=>{
+                item.onmouseover = () =>{
+                    item.classList.add('active');
+                }
+                item.onmouseout = () => {
+                    item.classList.remove('active');
+                    }
+                });
+            }
+        
+    }
+})();
+    //补0操作
+    function toDB(nub) {
+        return nub < 10 ? "0" + nub : "" + nub;
+    }
+    // 刻度生成
+    (function () {
+        let last = document.querySelector(".last");
+        let inner = "";
+        for (let i = 0; i < 60; i++) {
+            inner += `<li style="transform:rotate(${i * 6}deg)"></li>`;
+        }
+        last.innerHTML = inner;
+    })();
+    // 生成 数字
+    (function () {
+        let list = document.querySelector(".last2");
+        let inner = "";
+        for (let i = 0; i < 12; i++) {
+            inner += `<li style="transform:rotate(${i * 30}deg)"><span style="transform:rotate(${-i * 30}deg)">${i ? i : 12}</span></li>`;
+        }
+        list.innerHTML = inner;
+    })();
+    // 时间走动
+    (function () {
+        let h = document.querySelector(".h");
+        let m = document.querySelector(".f");
+        let s = document.querySelector(".s");
+        toTime();
+        setInterval(toTime, 1000);
+        function toTime() {
+            let date = new Date();
+            let second = date.getSeconds();
+            let minutes = date.getMinutes() + second / 60;
+            let hours = date.getHours() + minutes / 60;
+            css(s, "rotate", second * 6);
+            css(m, "rotate", minutes * 6);
+            css(h, "rotate", hours * 30);
+        }
+    })();
+</script>

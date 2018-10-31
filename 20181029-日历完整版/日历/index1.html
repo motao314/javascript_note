@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        textarea{
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <audio src="" class="read"></audio>
+    <textarea class="text">
+
+    </textarea>
+
+    <button class="btn">给我阅读</button>
+
+<script>
+    (function(){
+        let text = document.querySelector('.text');
+        let btn= document.querySelector('.btn');
+        let read = document.querySelector('.read');
+
+        btn.onclick = function(){
+            read.src = "http://tts.baidu.com/text2audio?lan=zh&spd=5&ie=UTF-8&text=" + text.value;
+            read.play();
+        }
+    })();
+</script>
+</body>
+</html>

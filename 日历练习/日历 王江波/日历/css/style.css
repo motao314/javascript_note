@@ -1,0 +1,267 @@
+body{
+    margin: 0;
+    /* background: #aefacb; */
+}
+p{
+    margin: 0;  
+}
+ul{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+.wrap{
+    width:680px;
+    border:2px solid #ff06ea;
+    margin: 30px auto;
+    background:#fd94fa;
+    
+}
+.title{
+    height:80px;
+    width:660px;
+    padding: 10px;
+    border-bottom: 1px solid #ff06ea;
+    text-align: center;
+}
+.title time{
+    font:40px/40px "微软雅黑";
+    color:#fff;
+
+}
+.title p{
+    margin: 5px 0;
+    font:18px/30px "微软雅黑";
+    color:#fff;
+}
+.box{
+    display: flex;
+    width:680px;
+}
+.content{
+    height:415px;
+    width:380px;
+    border-right: 1px solid #ff06ea;
+}
+.content .topYear{
+    padding: 10px;
+    height:30px;
+    width:360px;
+}
+.content .topYear time{
+    font:18px/30px "微软雅黑";
+    color: #fff;
+    float: left;
+}
+.content .topYear button{
+    transform: rotate(90deg);
+    font:20px/30px "微软雅黑";
+    float:right;
+    width:50px;
+    background: transparent;
+    border:1px solid transparent;
+    color: #fff;
+
+}
+.content .topYear button:nth-of-type(2){
+    transform: rotate(-90deg);
+}
+
+.content nav {
+    width: 380px;
+    display: flex;
+}
+.content nav span {
+    width:52px;
+    height:50px;
+    border: 1px solid #fff;
+    background: #f59fdf;
+    color: #fff;
+    font: 20px/48px "宋体";
+    text-align: center;
+}
+.content .list{
+    display: flex;
+    flex-wrap: wrap;
+  
+
+}
+.content .list li{
+   
+    width:52px;
+    height:50px;
+    border:1px solid #fff;
+    text-align: center;
+    font:18px/50px "微软雅黑";
+    color: #fff;
+
+}
+.content .list li:hover{
+    border:1px solid rgb(243, 90, 223);
+}
+.content .list .gray{
+    background:#e0a0d0;
+     /* #faaef7; */
+    color:#fff;
+}
+button{
+    outline: none;
+}
+.content .monthBox{
+    display: flex;
+    flex-wrap: wrap;
+    width:380px;
+    /* display: none; */
+    
+}
+.content .monthBox li{
+    
+    width:92px;  
+    height:90px;
+    /* border:1px solid #fff; */
+    text-align: center;
+    font:18px/90px "微软雅黑";
+    color: #fff;
+
+   
+}
+.content .yearBox{
+    display: flex;
+    flex-wrap: wrap;
+    width:380px;
+    /* display: none; */
+    
+}
+.content .yearBox li{
+    width:92px;
+    height:90px;
+    /* border:1px solid #fff; */
+    text-align: center;
+    font:18px/90px "微软雅黑";
+    color: #fff;
+}
+.nowDayColor{
+    background: yellow !important;
+}
+.hide{
+    display: none !important;
+}
+.show{
+    display:block  !important;
+}
+.monthBox li:nth-last-of-type(1){
+    color:#eb0fe3;
+}
+.monthBox li:nth-last-of-type(2){
+    color:#eb0fe3;
+}
+.monthBox li:nth-last-of-type(3){
+    color:#eb0fe3;
+}
+.monthBox li:nth-last-of-type(4){
+    color:#eb0fe3;
+}
+.yearBox li:nth-last-of-type(1){
+    color:#eb0fe3;
+}
+.yearBox li:nth-last-of-type(2){
+    color:#eb0fe3;
+}
+.yearBox li:nth-last-of-type(3){
+    color:#eb0fe3;
+}
+.yearBox li:nth-last-of-type(4){
+    color:#eb0fe3;
+}
+.yearBox li:nth-last-of-type(5){
+    color:#eb0fe3;
+}
+.yearBox li:nth-last-of-type(6){
+    color:#eb0fe3;
+}
+.box .clock{
+    width:298px;
+    height:415px;
+}
+.clockSmall{
+    width: 260px;
+    height: 260px;
+    border:2px solid #ff06ea;
+    border-radius: 50%;
+    margin: 60px auto;
+    position:relative;
+
+}
+
+.clockSmall .clockList{
+  
+    height:260px;
+    position:relative;
+
+}
+.clockSmall .clockList li{
+    width: 2px;
+    height: 10px;
+    background: #ff06ea;
+    position: absolute;
+    left:129px;
+    top:0;
+    transform-origin: center 130px;
+}
+.clockSmall .clockList li:nth-child(5n+1){
+    height:15px;
+    background: #cacaca;
+}
+
+
+.s{
+     width: 4px;
+    height: 75px;
+    background: yellow;
+    position: absolute;
+    left:130px;
+    top:55px;
+    transform-origin: bottom;
+}
+.f{
+     width: 3px;
+    height: 98px;
+    background:#cacaca;
+    position: absolute;
+    left:130px;
+    top:34px;
+    transform-origin: bottom;
+}
+.m{
+     width: 2px;
+    height:110px;
+    background:red;
+    position: absolute;
+    left:130px;
+    top:22px;
+    transform-origin: bottom;
+}
+.butten{
+    width:10px;
+    height:10px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left:126px;
+        top:126px;
+    }
+
+.list2 li {
+    position: absolute;
+    left: 122px;
+    top: 21px;
+    width: 20px;
+    height: 20px;
+    font: 20px/20px "宋体";
+    color:#fff;
+    text-align: center;
+    transform-origin: center 110px;
+}
+.list2 span {
+    display: block;
+}

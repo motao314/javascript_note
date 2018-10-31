@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @keyframes shadow {
+            0% {
+                box-shadow: 
+                    0 0 0 0px rgba(0, 0, 0, .3),
+                    0 0 0 20px rgba(0, 0, 0, .3),
+                    0 0 0 20px rgba(0, 0, 0, .3);
+            }
+            100% {
+                box-shadow: 
+                    0 0 0 20px rgba(0, 0, 0, .3),
+                    0 0 0 0px rgba(0, 0, 0, .3),
+                    0 0 0 20px rgba(0, 0, 0, .3);
+            }
+        }
+        body {
+            margin: 0;
+        }
+        img {
+            margin: 0 auto;
+            display: block;
+        }
+        #topBtn {
+            display: none;
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            padding: 15px;
+            width: 30px;
+            height: 30px;
+            font: 12px/15px "宋体";
+            text-align: center;
+            text-decoration: none;
+            background: #000;
+            color: #fff;
+            border-radius: 50%; 
+            animation: 1s ease-in-out shadow infinite alternate;   
+        }
+    </style>
+</head>
+<body>
+    <img src="img/优酷-这世界很酷.png" />   
+    <a href="javascript:;" id="topBtn">返回顶部</a> 
+<script>
+(function(){
+    let topBtn = document.querySelector("#topBtn");
+    window.onscroll = function(){
+        if(document.documentElement.scrollTop > window.innerHeight){
+            topBtn.style.display = "block";
+        } else {
+            topBtn.style.display = "none";
+        }
+    };
+    topBtn.onclick = function(){
+        document.documentElement.scrollTop = 0;
+    };
+})();
+</script>    
+</body>
+</html>
