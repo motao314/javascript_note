@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" id="user" />
+<script>
+(function(){
+    let user = document.querySelector("#user");
+    // get
+    // user.onblur = function(){
+    //     let ajax = new XMLHttpRequest;
+    //     ajax.open("GET","/get?name="+encodeURI(user.value));
+    //     ajax.send();
+    //     ajax.onload = function(){
+    //         console.log(ajax.response);
+    //     };
+    // };
+    user.onblur = function(){
+        let ajax = new XMLHttpRequest;
+        ajax.open("POST","/post");
+        ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        ajax.send("name="+user.value);
+        ajax.onload = function(){
+            console.log(ajax.response);
+        };
+    };
+})();
+</script>    
+</body>
+</html>

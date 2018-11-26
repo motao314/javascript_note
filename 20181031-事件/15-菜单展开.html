@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h2 {
+            margin: 0;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #menu {
+            position: fixed;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+        }
+        #title {
+            position: absolute;
+            right: -35px;
+            top: 54px;
+            width: 15px;
+            padding: 10px 15px 10px 5px;
+            font: 14px/20px "宋体";
+            text-align: center;
+            cursor: pointer;
+            background: #ddd;
+        }
+        #option {
+            width: 80px;
+            padding: 20px 10px;
+            background: #ddd;
+        }
+        #option li {
+            font: 12px/28px "宋体";
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="menu">
+    <h2 id="title">妙味课堂</h2>
+    <ul id="option">
+        <li>妙味茶馆</li>
+        <li>妙味戏馆</li>
+        <li>妙味食堂</li>
+        <li>妙味茶馆</li>
+        <li>妙味戏馆</li>
+        <li>妙味食堂</li>
+    </ul>
+</div> 
+<script src="miaov.js"></script>
+<script>
+(function(){
+    let menu = document.querySelector("#menu");
+    menu.addEventListener("mouseenter",function(e){
+        mTween({
+            el: menu,
+            attr: {
+                left: 0
+            }
+        });
+    });
+    menu.addEventListener("mouseleave",function(e){
+        mTween({
+            el: menu,
+            attr: {
+                left: -100
+            }
+        });
+    });
+})();
+</script>   
+</body>
+</html>

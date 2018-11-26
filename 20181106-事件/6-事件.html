@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--
+onunload	用户退出页面	1	2	3
+onkeydown	某个键盘的键被按下	1	4	3
+onkeyup	某个键盘的键被松开	1	4	3
+onload	某个页面或图像被完成加载	1	2	3
+onchange	用户改变域的内容	1	2	3
+onclick	鼠标点击某个对象	1	2	3
+ondblclick	鼠标双击某个对象	1	4	4
+onerror	当加载文档或图像时发生某个错误	1	3	4
+onmousedown	某个鼠标按键被按下	1	4	4
+onmousemove	鼠标被移动	1	6	3
+onmouseout	鼠标从某元素移开	1	4	4
+onmouseover	鼠标被移到某元素之上	1	2	3
+onmouseup	某个鼠标按键被松开	1	4	4
+onmouseenter 移入范围 
+onmouseleave 移出范围
+
+onselectstart 内容被选中
+onselect	文本被选定	
+
+onblur	元素失去焦点	1	2	3
+onfocus	元素获得焦点	1	2	3
+onreset	重置按钮被点击	1	3	4
+onresize	窗口或框架被调整尺寸	1	4	4
+onsubmit	提交按钮被点击	1	2	3
+
+-->    
+<input type="button" value="按钮" id="btn" />
+<textarea id="text"></textarea>
+<!-- <img src="img.png" id="img" /> -->
+<p id="p">哈哈哈哈</p>
+<img src="img.png" style="width:100px;" />
+<script>
+(function(){
+    // btn.ondblclick = function(){
+    //     console.log("双击");
+    // };
+
+    //let img = document.createElement("img");
+    // let img = new Image();
+    // img.src = "img1.png";
+    // img.onload = function(){
+    //     console.log("图片加载完成");
+    // };
+    // img.onerror = function(){
+    //     console.log("图片加载失败");
+    // };
+
+    // window.onunload = function(){
+    //     window.open(this.location.href);
+    //     // window.open(this.location.href);
+    // };
+
+    document.onselectstart = function(){
+       console.log(1);
+       return false;
+    };
+
+})();
+</script>
+</body>
+</html>

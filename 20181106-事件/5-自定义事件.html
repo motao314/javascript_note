@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>设置</button>
+    <button>获取</button>
+<script>
+let btns = document.querySelectorAll("button");
+let dataSet = new Event("设置");
+let dataGet = new Event("获取");    
+let obj = {};
+Object.defineProperty(obj,"name",{
+    set(val){
+        window.dispatchEvent(dataSet);
+    },
+    get(){
+        window.dispatchEvent(dataGet);
+    }
+});
+
+window.addEventListener("设置",function(){
+    console.log(1);
+})
+window.addEventListener("获取",function(){
+    console.log(2);
+})
+obj.name = "承龙";
+let n = obj.name;
+</script>    
+</body>
+</html>

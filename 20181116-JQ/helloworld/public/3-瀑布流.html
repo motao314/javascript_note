@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+        #wrap {
+            margin: 0 auto;
+            width: 1200px;
+        }
+        .picList {
+            float: left;
+            width: 220px;
+            margin: 0 10px;
+            padding: 0;
+            list-style: none;
+        }
+        .picList li {
+            margin: 10px 0;
+            width: 220px;
+            height: 300px;;
+            background: #ccc;
+            display: flex;
+        }
+        .picList img {
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+            opacity: 0;
+            transition: .5s opacity;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <ul class="picList">
+    </ul>
+    <ul class="picList">
+    </ul>
+    <ul class="picList">
+    </ul>
+    <ul class="picList">
+    </ul>
+    <ul class="picList">
+    </ul>
+</div>  
+<!-- <script>
+// function fn(data){
+//     console.log(data);
+// }    
+// </script> -->
+<!-- // <script src="http://list.mogujie.com/search?callback=fn&_version=8193&ratio=3%3A4&cKey=15&page=2"></script> -->
+<script>
+let isLoad = false; 
+let page = 1;    
+let timer = 0;
+postData();
+function postData(){
+    $(`<script src="http://list.mogujie.com/search?callback=getData&_version=8193&ratio=3%3A4&cKey=15&page=${page}" id="jsonp"><\/script>`).appendTo($(document.body));
+}
+function getData(data){
+    console.log(data);
+    data = data.result.wall.docs;
+    isLoad = false;
+    $("#jsonp").remove();
+    data.forEach((item,index) => {
+        $(".picList").eq(index%5).append(`<li src="${item.img}"></li>`);
+    });
+    testScroll();
+}
+$(window).scroll(function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+        testScroll();
+    },50);
+});
+$(window).scroll(function(){
+    if(isLoad){
+        return;
+    }
+    let bottom = $(document).innerHeight() - $(window).scrollTop() - innerHeight;
+    if(bottom < innerHeight*3){
+        isLoad = true;
+        page++;
+        postData();
+    }
+});
+function testScroll(){
+    $("#wrap li").each(function(index,item){
+       let rect = item.getBoundingClientRect();
+       if(rect.bottom > 0
+       && rect.top < window.innerHeight
+       && $(item).attr("src")){
+            createImg(item,$(item).attr("src"))
+            $(item).removeAttr("src");
+       }
+    });
+}
+function createImg(li,src){
+    let img = new Image();
+    img.src = src;
+    img.onload = function(){
+        $(li).append(img);
+        $(img).animate({opacity:1});
+    };
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #smail {
+            position: relative;
+            border: 1px solid #000;
+            width: 480px;
+            height: 270px;
+        }
+        #smail img {
+            display: block;
+        }
+        #mask {
+            position: absolute;
+            left: 250px;
+            top: 100px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, .3);
+        }
+        #big {
+            width: 160px;
+            height: 160px;
+            background: url(img.jpg) no-repeat -1000px -400px;
+        }
+    </style>
+</head>
+<body>
+<div id="smail">
+    <img src="img.jpg" width="480" height="270" />
+    <span id="mask"></span>
+</div> 
+<div id="big"></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li{
+            background: red;
+            height: 30px;
+            color: #fff;
+        }
+        #list li:empty {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<!--
+    JQuery: http://jquery.com/
+-->
+<ul id="list">
+    <li>哈1</li>
+    <li>哈2</li>
+    <li>哈3</li>
+</ul>
+<script>
+/*
+    append
+    appendTo
+*/
+$(function(){
+
+    $("#list").append("<li>哈4</li>");
+    $("<li>哈5</li>").appendTo("#list");
+    
+    //$("#list li").prepend("<b>MiaoV</b>");
+    //$("#list li").prepend("<b>MiaoV</b>");
+    $("<h1>???</h1>").insertBefore("#list");
+    $("#list li:eq(0)").remove();
+
+});
+/*
+    https://list.mogujie.com/search?callback=jQuery21104317743373329437_1542255277941&_version=8193&ratio=3%3A4&cKey=15&page=11&sort=pop&ad=0&fcid=51642&action=home&acm=3.mce.1_10_1jxci.128038.0.ccy5br9rjUfS7.pos_10-m_464813-sd_119&ptp=1.CHC55b.0.0.onPewyyt&_=1542255277952
+*/
+</script>
+</body>
+</html>

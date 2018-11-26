@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+// 拖拽
+(function(){
+    let box = document.querySelector("#box");
+    box.addEventListener("mousedown",function(){
+        box.addEventListener("mousemove",move);
+        box.addEventListener("mouseup",end,{
+            once: true
+        });
+    });
+    function move(){
+        console.log("滑动");
+    }
+    function end(){
+        box.removeEventListener("mousemove",move);
+    }
+})();    
+</script>
+</body>
+</html>

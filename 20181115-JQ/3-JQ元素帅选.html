@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li{
+            background: red;
+            height: 30px;
+        }
+        #list li:empty {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<!--
+    JQuery: http://jquery.com/
+-->
+<ul id="list">
+    <li miaov="哈哈">哈哈0</li>
+    <li>哈哈1</li>
+    <li>哈哈1</li>
+    <li>哈哈1</li>
+    <li class="li">哈哈2</li>
+    <li class="li">哈哈3</li>
+    <li>哈哈4</li>
+    <li>list item 2
+        <ul>
+            <li id="li">list item 2-a</li>
+            <li>list item 2-b</li>
+        </ul>
+    </li>
+</ul>
+<script>
+// 筛选
+/*
+    eq(index)
+        index: 
+            正值 从前向后找
+            负值 从后向前找
+
+    hasClass 是否包含某个class        
+
+    filter 筛选出与指定表达式匹配的元素集合。
+*/
+$(function(){
+//    console.log($("#list li").eq(-1)); 
+    // console.log($("#list li").eq(1).hasClass("li")); 
+
+
+    // filter
+    // console.log($("#list li").filter(".li"));
+    // console.log($("#list li").filter($(".li")));
+    // console.log($("#list li").filter(document.querySelector(".li")));
+    // console.log($("#list li").filter(function(index,item){
+    //     return index%2;
+    // }));
+
+    // has
+    //console.log($("#list>li").has("ul"));
+
+    // not 
+    //console.log($("#list>li").not(".li"));
+
+    // closest 匹配父级 符合规则的最近的一个父级
+    //console.log($("#li").closest("*"));
+
+    // find
+   // console.log($("#list").find("li"));
+
+    // next
+    //console.log($("#list li:eq(1)").next());
+
+    // nextAll
+    //console.log($("#list li:eq(1)").nextAll());
+
+    // 找到$("#list li:eq(0)") 之后，nextUntil(".li")之前的元素
+    console.log($("#list li:eq(0)").nextUntil(".li"));
+
+    // parents
+    console.log($("#li").parents());
+
+    // parentsUntil
+    console.log($("#li").parentsUntil("body"));
+
+    // siblings  所有同级
+
+    // add
+    console.log($("#li").add(".li"));
+});
+</script>
+</body>
+</html>

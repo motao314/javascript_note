@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrap {
+            position: relative;
+            margin: 100px auto;
+            width: 340px;
+            height: 172px;
+            border: 2px solid #000;
+            overflow: hidden;
+        }
+        #pic {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #pic li {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #pic img {
+            display: block;
+            width: 340px;
+            height: 172px;
+        }
+        .prev,
+        .next {
+            position: absolute;
+            z-index: 2;
+            top: 70px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, .5);
+            font: 30px/32px "宋体";
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <ul id="pic">
+        <li><img src="img/1.jpg"></li>
+        <li><img src="img/2.jpg"></li>
+        <li><img src="img/3.jpg"></li>
+        <li><img src="img/4.jpg"></li>
+        <li><img src="img/5.jpg"></li>
+        <li><img src="img/6.jpg"></li>
+        <li><img src="img/7.jpg"></li>
+        <li><img src="img/8.jpg"></li>
+    </ul>
+    <a class="prev"><</a>
+    <a class="next">></a>
+</div>
+<script src="miaov.js"></script>
+<script>
+(function(){
+    let wrap = document.querySelector("#wrap");
+    let next = document.querySelector(".next");
+    let prev = document.querySelector(".prev");
+    let pics = document.querySelectorAll("#pic li");
+    let now = 0;
+    let imgW = wrap.clientWidth;
+    let imgH = wrap.clientHeight;
+    let isMove = false;
+    pics.forEach((item,index)=>{
+        css(item,"translateX",0);
+        css(item,"translateY",0);
+        css(item,"zIndex",pics.length-index);
+    });
+    prev.onclick = leftMove;
+    next.onclick = rightMove;
+    window.addEventListener("keydown",function(e){
+        switch(e.keyCode){
+            case 37:
+                leftMove();
+                e.preventDefault();
+                break;
+            case 38:
+                topMove();
+                e.preventDefault();
+                break;
+            case 39:
+                rightMove();
+                e.preventDefault();
+                break;
+            case 40:
+                bottomMove();
+                e.preventDefault();
+                break;
+        }
+    });
+    //四个方向动画
+    function leftMove(){
+        move({
+            translateX: -imgW
+        });
+    }
+    function rightMove(){
+        move({
+            translateX: imgW
+        });
+    }
+    function topMove(){
+        move({
+            translateY: -imgH 
+        });
+    }
+    function bottomMove(){
+        move({
+            translateY: imgH 
+        });
+    }
+    function move(attr){
+        if(isMove){
+            return ;
+        }
+        isMove = true;
+        mTween({
+            el: pics[now],
+            attr,
+            cb: function(){
+                pics.forEach((item)=>{
+                    if(item == pics[now]){
+                        css(item,"zIndex",1);
+                        css(item,"translateX",0);
+                        css(item,"translateY",0);
+                    } else {
+                        let z = css(item,"zIndex");
+                        css(item,"zIndex",z+1);
+                    }
+                });  
+                now++;
+                now = now>pics.length-1?0:now;   
+                isMove = false;
+            }
+        });
+    }
+})();
+</script>
+</body>
+</html>

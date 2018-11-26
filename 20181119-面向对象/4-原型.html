@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+    this.say = function(){
+        console.log("大家好，我叫"+this.name);
+    };
+}
+Person.prototype.hehe = 10;
+
+let Tww = new Person("tww",15);
+let 承龙 = new Person("承龙",50);
+
+// console.log(Tww.say == 承龙.say);
+
+console.dir([1,2,3]);
+console.log(Tww);
+console.dir(Person);
+
+// constructor 构造函数
+/*
+    prototype 原型对象
+    实例化对象的 __proto__ 属性,指向构造函数的prototype属性
+
+    当我调用对象的某个属性或方法对象，没有的时候，就去 __proto__ 中找
+*/
+</script>    
+</body>
+</html>

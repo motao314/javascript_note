@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+class Drag {
+    constructor(el){ 
+        this.el = el;
+        this.startMouse = {};
+        this.startPosition = {};
+        const THIS = this;
+        /*
+            call 和 apply 是在函数执行的时候修改this 指向
+        */
+        this.el.addEventListener("mousedown",function(e){
+            THIS.start(e);
+        });
+    }
+    start(e){
+        this.startMouse.x = e.clientX;
+        this.startMouse.y = e.clientY;
+        this.startPosition.x = this.getStyle("left");
+        this.startPosition.y = this.getStyle("top");
+        console.log(this.startMouse);
+    }
+    getStyle(attr){
+        return parseFloat(getComputedStyle(this.el)[attr])
+    }
+}    
+(function(){
+    let box = document.querySelector("#box");
+    new Drag(box);
+    // function drag(el){
+    //     let startMouse = {};
+    //     let startPosition = {};
+    //     box.addEventListener("mousedown",function(e){
+    //         startMouse.x = e.clientX;
+    //         startMouse.y = e.clientY;
+    //         startPosition.x = getStyle(box,"left");
+    //         startPosition.y = getStyle(box,"top");
+    //         document.addEventListener("mousemove",move);
+    //         document.addEventListener("mouseup",function(){
+    //             document.removeEventListener("mousemove",move);
+    //         },{
+    //             once:true
+    //         })
+    //         e.preventDefault();
+    //     });
+    //     function move(e){
+    //         let nowMouse = {
+    //             x: e.clientX,
+    //             y: e.clientY
+    //         };
+    //         let disMouse = {
+    //             x: nowMouse.x - startMouse.x,
+    //             y: nowMouse.y - startMouse.y
+    //         };
+    //         let l = startPosition.x + disMouse.x;
+    //         let t = startPosition.y + disMouse.y;
+    //         setStyle(box,"left",l);
+    //         setStyle(box,"top",t);
+    //     }
+    //     function getStyle(el,attr){
+    //         return parseFloat(getComputedStyle(el)[attr])
+    //     }
+    //     function setStyle(el,attr,val){
+    //         el.style[attr] = val + "px"
+    //     }
+    // }
+})();    
+</script>
+</body>
+</html>

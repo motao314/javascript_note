@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+        ul {
+            display: none;
+        }
+        .show {
+            display: block;
+        }
+        #box2,
+        #box3 {
+            border-top: 2px solid #000;
+        }
+
+        .select {
+            color: blue;
+        }
+        .selectCon {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <nav>
+        <a class="active">选项一</a>
+        <a>选项二</a>
+        <a>选项三</a>
+        <a>选项四</a>
+    </nav>
+    <ul class="show">
+        <li>列表一</li>
+        <li>列表一</li>
+        <li>列表一</li>
+    </ul>
+    <ul>
+        <li>列表二</li>
+        <li>列表二</li>
+        <li>列表二</li>
+    </ul>
+    <ul>
+        <li>列表三</li>
+        <li>列表三</li>
+        <li>列表三</li>
+    </ul>
+    <ul>
+        <li>列表四</li>
+        <li>列表四</li>
+        <li>列表四</li>
+    </ul>
+</div>
+
+<div id="box2">
+    <nav>
+        <button>上一步</button>
+        <a class="active">选项一</a>
+        <a>选项二</a>
+        <a>选项三</a>
+        <a>选项四</a>
+        <button>下一步</button>
+    </nav>
+    <ul class="show">
+        <li>列表一</li>
+        <li>列表一</li>
+        <li>列表一</li>
+    </ul>
+    <ul>
+        <li>列表二</li>
+        <li>列表二</li>
+        <li>列表二</li>
+    </ul>
+    <ul>
+        <li>列表三</li>
+        <li>列表三</li>
+        <li>列表三</li>
+    </ul>
+    <ul>
+        <li>列表四</li>
+        <li>列表四</li>
+        <li>列表四</li>
+    </ul>
+</div>
+
+<div id="box3">
+    <nav>
+        <button>上一步</button>
+        <a class="select">选项一</a>
+        <a>选项二</a>
+        <a>选项三</a>
+        <a>选项四</a>
+        <button>下一步</button>
+    </nav>
+    <ul class="selectCon">
+        <li>列表一</li>
+        <li>列表一</li>
+        <li>列表一</li>
+    </ul>
+    <ul>
+        <li>列表二</li>
+        <li>列表二</li>
+        <li>列表二</li>
+    </ul>
+    <ul>
+        <li>列表三</li>
+        <li>列表三</li>
+        <li>列表三</li>
+    </ul>
+    <ul>
+        <li>列表四</li>
+        <li>列表四</li>
+        <li>列表四</li>
+    </ul>
+</div>
+
+
+<script>
+function Tab(navs,list){
+    this.navs = navs;
+    this.cons = list;
+    this.now = 0;
+    this.timer = 0;
+    this.active = "active";
+    this.show = "show";
+} 
+Tab.prototype = {
+    addEv(event){
+       this.navs.forEach((item,index)=>{
+            item.addEventListener(event,()=>{
+                this.now = index;
+                this.tab();
+            })
+       });
+    },
+    tab(){
+        this.navs.forEach((item,index)=>{
+            item.classList.remove(this.active);
+            this.cons[index].classList.remove(this.show);
+        });
+        this.navs[this.now].classList.add(this.active);
+        this.cons[this.now].classList.add(this.show);
+    },
+    prev(){
+        this.now--;
+        if(this.now < 0 ){
+            this.now = this.navs.length - 1;
+        }
+        this.tab();
+    },
+    next(){
+        this.now++;
+        if(this.now > this.navs.length - 1 ){
+            this.now = 0;
+        }
+        this.tab();
+    },
+    auto(){
+        this.stopAuto();
+        this.timer = setInterval(()=>{
+            this.next();
+        },2000);
+    },
+    stopAuto(){
+        clearInterval(this.timer);
+    }
+};  
+
+(function(){
+    let box = document.querySelector("#box");
+    let navs = box.querySelectorAll("nav a");
+    let list = box.querySelectorAll("ul");
+    let tab = new Tab(navs,list);
+    tab.addEv("click");
+    tab.auto();
+    box.onmouseenter = function(){
+        tab.stopAuto();
+    };
+    box.onmouseleave = function(){
+        tab.auto();
+    }
+
+    let box2 = document.querySelector("#box2");
+    let navs2 = box2.querySelectorAll("nav a");
+    let list2 = box2.querySelectorAll("ul");
+    let btns =  box2.querySelectorAll("nav button")
+    let tab2 = new Tab(navs2,list2);
+    tab2.addEv("mouseover");
+    btns[0].onclick = function(){
+        tab2.prev();
+    }
+    btns[1].onclick = function(){
+        tab2.next();
+    }
+    
+    let box3 = document.querySelector("#box3");
+    let navs3 = box3.querySelectorAll("nav a");
+    let list3 = box3.querySelectorAll("ul");
+    let btns2 =  box3.querySelectorAll("nav button");
+    let tab3 = new Tab;
+    tab3.navs = navs3;
+    tab3.cons = list3;
+    tab3.active = "select";
+    tab3.show = "selectCon";
+    btns2[0].onclick = function(){
+        tab3.prev();
+    };
+    btns2[1].onclick = function(){
+        tab3.next();
+    };
+
+})();
+</script>
+</body>
+</html>

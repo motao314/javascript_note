@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<h2>选中同学名单</h2>
+<ul id="list">
+
+</ul>
+<h2>未选中同学名单</h2>
+<ul id="list2">
+
+</ul>
+<script>
+let AllNames = ["孔繁磊","魏守丽","王江波","闫慧玲","白姣姣","常杨杨","高军权","杨深","姜润丰","常唱","马华","银宏","胡林","曹秀媛","刘明轩","张明","李钦举","刘一帆","戈磊","李义","张晟","王寒颖","田文文","王红妹","刘慧","孔云云","白雪","卜若琪"];
+let actives = [];
+let unActives = AllNames.concat();
+// window.sessionStorage;
+if(localStorage.getItem("actives")){
+    actives = JSON.parse(localStorage.getItem("actives"));
+}
+if(localStorage.getItem("unActives")){
+    unActives =  JSON.parse(localStorage.getItem("unActives"));
+}
+actives.forEach(item => {
+    $("#list").append(`<li>${item}</li>`);
+});
+unActives.forEach(item => {
+    $("#list2").append(`<li>${item}</li>`);
+});
+
+
+$("#list").click(function(e){
+    if(e.target.tagName == "LI"){
+        $("#list2").append(e.target);
+         actives = actives.filter(item=>item!=$(e.target).html());
+         unActives.push($(e.target).html());
+       
+        localStorage.setItem("actives",JSON.stringify(actives))
+        localStorage.setItem("unActives",JSON.stringify(unActives))
+    }
+});
+$("#list2").click(function(e){
+    if(e.target.tagName == "LI"){
+        $("#list").append(e.target);
+        unActives = unActives.filter(item=>item!=$(e.target).html());
+        actives.push($(e.target).html());
+       
+        localStorage.setItem("actives",JSON.stringify(actives))
+        localStorage.setItem("unActives",JSON.stringify(unActives))
+    }
+});
+
+window.addEventListener("storage",function(){
+    //console.log("localStorage在其他窗口发生变化");
+    actives = JSON.parse(localStorage.getItem("actives"));
+    unActives =  JSON.parse(localStorage.getItem("unActives"));
+    $("#list").html("");
+    $("#list2").html("");
+    actives.forEach(item => {
+        $("#list").append(`<li>${item}</li>`);
+    });
+    unActives.forEach(item => {
+        $("#list2").append(`<li>${item}</li>`);
+    });
+});
+
+
+
+</script>
+</body>
+</html>

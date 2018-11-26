@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    drag(box);
+    function drag(el){
+        let startMouse = {};
+        let startPosition = {};
+        box.addEventListener("mousedown",function(e){
+            startMouse.x = e.clientX;
+            startMouse.y = e.clientY;
+            startPosition.x = getStyle(box,"left");
+            startPosition.y = getStyle(box,"top");
+            document.addEventListener("mousemove",move);
+            document.addEventListener("mouseup",function(){
+                document.removeEventListener("mousemove",move);
+            },{
+                once:true
+            })
+            e.preventDefault();
+        });
+        function move(e){
+            let nowMouse = {
+                x: e.clientX,
+                y: e.clientY
+            };
+            let disMouse = {
+                x: nowMouse.x - startMouse.x,
+                y: nowMouse.y - startMouse.y
+            };
+            let l = startPosition.x + disMouse.x;
+            let t = startPosition.y + disMouse.y;
+            setStyle(box,"left",l);
+            setStyle(box,"top",t);
+        }
+        function getStyle(el,attr){
+            return parseFloat(getComputedStyle(el)[attr])
+        }
+        function setStyle(el,attr,val){
+            el.style[attr] = val + "px"
+        }
+    }
+})();    
+</script>
+</body>
+</html>

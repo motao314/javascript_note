@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+Function.prototype.say = function(){
+    console.log("这是Function的say");
+}
+Object.prototype.say = function(){
+    console.log("这是Object的say");
+}
+let tww = new Person("tww",15);
+// console.dir(Person);
+// console.log(Function);
+
+/*
+    tww.__proto__ --> Person.protoType
+    Person.protoType.__proto__ --> Object.protoType
+
+    Person.__proto__ --> Function.protoType
+    Function.protoType__proto__ --> Object.protoType
+*/
+/*
+    __proto__
+	每个对象都拥有这个属性，指向创建这个对象的构造函数的原型
+	通过这个属性记住对象的原型
+
+    对象的__proto__指向构造函数的原型，构造函数的原型是一个对象，这个对象的__proto__指向另一个构造函数的原型，直到Object.prototype上。这样就行成了属性查找的原型链。
+
+    当查找一个属性时，会沿着原型链依次查找。
+    查不到，返回undefined。
+*/
+</script>    
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<input type="number" value="0" min="0" id="nub" />
+<script src="miaov.js"></script>
+<script>
+(function(){
+    let nub = document.querySelector("#nub");
+    let val = nub.value;
+    scrollWheel(nub,function(){
+        val++;
+        this.value = val;
+    },function(){
+        val--;
+        this.value = val;
+    });
+})();
+</script>    
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" value="" id="user" />    
+<script>
+(function(){
+    user.onblur = function(){
+        ajaxGet({
+            url: "/get",
+            data: {
+                user: user.value
+            },
+            succ(data){
+                console.log(data);
+            },
+            error(err){
+                console.log(err);
+            }
+        });
+    };
+})();
+/*
+op: {
+    url:,
+    data:{},
+    succ:function(){
+
+    },
+    error: function(){
+
+    }
+}
+*/
+function ajaxGet(op){
+    let ajax = new XMLHttpRequest;
+    let {url,data,succ,error} = op;
+    /*url + ? + wd=haha&key=123*/
+    ajax.open("GET",url + "?" + toUrl(data));
+    ajax.send();
+    ajax.onload = function(){
+        succ(ajax.response);
+    };
+    ajax.onerror = function(){
+        error(ajax.status);
+    };
+}
+/*
+    {
+        key1:val,
+        key2:val,
+        key3:val
+    }
+    key1=val&key2=val&key3=val
+*/
+function toUrl(obj){
+    let data = [];
+    for(let s in obj){
+        data.push(s + "=" + obj[s]);
+    }
+    return data.join("&");
+}
+</script>    
+</body>
+</html>

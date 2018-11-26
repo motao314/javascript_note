@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+let box = document.querySelector("#box");
+let w = box.offsetWidth;    
+/* 滚轮事件 */
+scrollWheel(box,function(e){
+    console.log(e);
+    this.style.width = ++w + "px";
+},function(e){
+    console.log(e);
+    this.style.width = --w + "px";
+})
+// box.addEventListener("wheelUp",function(){})
+// box.addEventListener("wheelDown",function(){})
+
+function scrollWheel(el,upEvent,downEvent){
+    el.addEventListener("mousewheel",function(e){
+        if(e.wheelDelta < 0){
+            downEvent&&downEvent.call(this,e);
+        } else {
+            upEvent&&upEvent.call(this,e);
+        }
+    });
+    el.addEventListener("DOMMouseScroll",function(e){
+        if(e.detail > 0){
+            downEvent&&downEvent.call(this,e);
+        } else {
+            upEvent&&upEvent.call(this,e);
+        }
+    });
+}
+/*
+
+ chrome 和 IE
+
+ mousewheel 滚轮事件
+       e.wheelDelta 监听滚轮方向
+            负值 向下滚动
+            正值 向上滚动
+
+ firefox 
+    DOMMouseScroll 滚轮事件
+        e.detail 监听滚轮方向
+            负值 向上滚动
+            正值 向下滚动
+*/
+</script>    
+</body>
+</html>

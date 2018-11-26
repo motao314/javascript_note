@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #box {
+            position: relative;
+            margin: auto;
+            width: 100px;
+            height: 100px;
+            background:  red;
+            font: 50px/100px "宋体";
+            color: #fff;
+            text-align: center;
+        }
+        .paodan {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: 0px;
+            left: 45px;
+            background: red;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<!-- <div id="box" contenteditable="true"></div> -->
+<div id="box">上</div>
+<script src="miaov.js"></script>
+<script>
+/*
+    event.ctrlKey
+    event.shiftKey
+    event.altKey
+*/    
+//  box.onkeydown = function(){
+//      console.log(1);
+//  } 
+(function(){
+    let box = document.querySelector("#box");
+    let x = 0;
+    let y = 0;
+    css(box,"translateX",x);
+    css(box,"translateY",y);
+    css(box,"rotate",0);
+    document.addEventListener("keydown",function(e){
+        switch(e.keyCode){
+            case 37:
+                x-=5;
+                css(box,"rotate",-90);
+                break;
+            case 38:
+                y-=5;
+                css(box,"rotate",0);
+                break;
+            case 39:
+                x+=5;
+                css(box,"rotate",90);
+                break;
+            case 40:
+                y+=5;
+                css(box,"rotate",180);
+                break;
+        }
+        //console.log(e.ctrlKey,e.shiftKey,e.altKey);
+        if(e.ctrlKey&&e.keyCode == 13){
+            let paodan = document.createElement("span");
+            paodan.className = "paodan";
+            css(paodan,"scale",1);
+            css(paodan,"translateY",0);
+            box.appendChild(paodan);
+            mTween({
+                el: paodan,
+                attr: {
+                    opacity: 0,
+                    translateY: -300,
+                    scale: 2
+                },
+                cb: function(){
+                    box.removeChild(paodan);
+                }
+            });
+        }
+        css(box,"translateX",x);
+        css(box,"translateY",y);
+        e.preventDefault();
+    })
+})();  
+</script>
+</body>
+</html>

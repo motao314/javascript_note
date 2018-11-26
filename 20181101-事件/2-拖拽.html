@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="miaov.js"></script>
+<script>
+// 拖拽
+/*
+    按下：
+        1. 鼠标的位置
+        2. 元素初始位置
+
+    移动:
+        1. 鼠标移动后的位置  
+        2. 鼠标移动距离 = 鼠标移动后的位置 - 鼠标的位置
+        3. 元素当前位置 = 元素初始位置 + 鼠标移动距离
+*/
+
+(function(){
+    let box = document.querySelector("#box");
+    let startClient = {};//按下时鼠标位置
+    let startPosition = {}; // 按下时元素位置
+    box.addEventListener("mousedown",function(e){
+        startClient={
+            x: e.clientX,
+            y: e.clientY
+        };
+        startPosition = {
+            l: css(box,"left"),
+            t: css(box,"top")
+        }
+        box.addEventListener("mousemove",move);
+        box.addEventListener("mouseup",end,{
+            once: true
+        });
+    });
+    function move(e){
+        let nowClient = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        let disClient = {
+            x: nowClient.x - startClient.x,
+            y: nowClient.y - startClient.y
+        };
+        let l = startPosition.l + disClient.x;
+        let t = startPosition.t + disClient.y;
+        css(box,"left",l);
+        css(box,"top",t);
+    }
+    function end(){
+        box.removeEventListener("mousemove",move);
+    }
+})();    
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #box2 {
+            position: absolute;
+            left: 100px;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+/*
+    1.事件函数存储队列
+    2.事件监听器
+    3.事件触发器
+*/
+let tap = new Event("点击");
+box.onclick = function(){
+    box.dispatchEvent(tap);// 事件触发
+};
+
+//事件监听器 
+box.addEventListener("点击",function(){
+    console.log("点击");
+});
+box.addEventListener("点击",function(){
+    console.log("点击2");
+});
+box.addEventListener("点击",function(){
+    console.log("点击3");
+});
+
+</script>    
+</body>
+</html>

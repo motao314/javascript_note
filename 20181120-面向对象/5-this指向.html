@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+<script>
+// let obj = {
+//     name:"呵呵",
+//     say(){
+//         console.log(this);
+//     }
+// }    
+// obj.say();
+
+function fn(){
+    console.log(this);
+}
+fn.call(1);
+
+/* this 上下文对象 */
+
+/*
+    全局: window
+
+    function
+        1) 谁调用指向谁
+            1. 自执行和直接调用: window
+            2. 事件调用，触发事件的元素
+            3. 定时器等window下的方法, window
+            4. 对象下的方法：指向当前对象
+
+    箭头函数:
+        没有 this，在箭头函数中 this 指向其所在作用域的this
+
+    call,apply 修改 this 指向
+
+    fn.bind();
+    
+
+*/
+</script>    
+</body>
+</html>

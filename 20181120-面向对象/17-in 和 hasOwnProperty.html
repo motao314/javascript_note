@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    #box2 {
+        position: absolute;
+        left: 100px;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: blue;
+    }
+</style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box2"></div>
+<script>
+class Drag {
+    constructor(el){ 
+        this.el = el;
+        this.startMouse = {};
+        this.startPosition = {};
+        const THIS = this;
+        function fn(e){
+            THIS.move(e);
+        }
+        this.el.addEventListener("mousedown",function(e){
+            THIS.start(e);
+            document.addEventListener("mousemove",fn);
+            document.addEventListener("mouseup",function(){
+                document.removeEventListener("mousemove",fn);
+            },{
+                once:true
+            });
+            e.preventDefault();
+        });
+    }
+    start(e){
+        this.startMouse.x = e.clientX;
+        this.startMouse.y = e.clientY;
+        this.startPosition.x = this.getStyle("left");
+        this.startPosition.y = this.getStyle("top");
+    }
+    move(e){
+        let nowMouse = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        let disMouse = {
+            x: nowMouse.x - this.startMouse.x,
+            y: nowMouse.y - this.startMouse.y
+        };
+        let l = this.startPosition.x + disMouse.x;
+        let t = this.startPosition.y + disMouse.y;
+        this.setStyle("left",l);
+        this.setStyle("top",t);
+    }
+    setStyle(attr,val){
+        this.el.style[attr] = val + "px"
+    }
+    getStyle(attr){
+        return parseFloat(getComputedStyle(this.el)[attr])
+    }
+}
+(function(){
+    let box = document.querySelector("#box");
+    let box2 = document.querySelector("#box2");
+    let boxDrag = new Drag(box);
+    console.dir(boxDrag)
+    /*
+        in 和 hasOwnProperty 检测对象上是否有这个属性或方法
+            in 会检测 原型链
+            hasOwnProperty 只检查自身
+    */
+    console.log("start" in boxDrag);
+    console.log( boxDrag.hasOwnProperty("start"));
+})();    
+</script>
+</body>
+</html>

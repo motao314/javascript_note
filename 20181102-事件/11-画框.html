@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            position: fixed;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<script src="miaov.js"></script>    
+<script>
+ (function(){
+     let box = null;
+     let startMouse = {};
+     let isDown = false;
+     document.addEventListener("mousedown",function(e){
+         if(e.button != 0){
+             return;
+         }
+         box = document.createElement("div");
+         box.className = "box";
+         document.body.appendChild(box);
+         startMouse.x = e.clientX;
+         startMouse.y = e.clientY;
+         css(box,"left",e.clientX);
+         css(box,"top",e.clientY);
+         isDown = true;
+     });
+     document.addEventListener("mousemove",function(e){
+        if(!isDown){
+            return ;     
+        }
+        let nowMouse = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        css(box,"left",Math.min(startMouse.x,nowMouse.x));
+        css(box,"top", Math.min(startMouse.y,nowMouse.y));
+        css(box,"width",Math.abs(nowMouse.x - startMouse.x));
+        css(box,"height",Math.abs(nowMouse.y - startMouse.y));
+     });
+     document.addEventListener("mouseup",function(e){
+        if(!isDown){
+            return ;     
+        }
+        isDown = false;
+     });
+ })();   
+</script>    
+</body>
+</html>

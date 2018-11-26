@@ -1,0 +1,139 @@
+.page.loginPage {
+    padding-top: .9rem;
+    background: url("../img/login_bg.png") no-repeat;
+    background-size:cover;
+}
+.loginTitle {
+    padding: .5rem 0 .65rem;
+    text-align: center;
+    height: .81rem;
+}
+.loginTitle img {
+    height: 100%;
+}
+.loginWrap {
+    margin: 0 auto;
+    width: 6.5rem;
+    perspective: 10rem;
+    /*景深*/
+}
+.login3d {
+    position: relative;
+    height: 8.52rem;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: 1s;
+    /*父级进行3d变换时，保留子元素的3d变换*/
+}
+.login-inner {
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 0.7rem;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,.8);
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, .2);
+    font-size: 50px;
+    backface-visibility: hidden;
+}
+.login-form {
+    transform: rotateY(0deg);
+}
+.register-form {
+    transform: rotateY(180deg);
+}
+.login-ico {
+    padding-top: .57rem;
+    font-size: 1.3rem;
+    line-height: 1;
+    text-align: center;
+    color: #66cde1;
+}
+.login-info {
+    font: .3rem/.88rem "宋体";
+    text-align: center;
+    color: #000;
+}
+.login-info a {
+    color: #e15671;
+}
+.input-txt {
+    position: relative;
+    font: .28rem/.8rem "宋体";
+}
+.input-txt input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 .58rem;
+    width: 100%;
+    height: .8rem;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #c1c8cb;
+    outline: none;
+    color: #666;
+}
+.input-txt .input-txt-ico {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: .4rem;
+    color: #c1c8cb;
+}
+.input-txt input:focus {
+    color: #e15671;
+    border-bottom-color: #e15671;
+}
+.input-txt input:focus+.input-txt-ico{
+    color: #e15671;
+}
+.input-record {
+    font: .3rem/.88rem "宋体";
+    color: #666;
+}
+.input-record input {
+    width: .3rem;
+    height: .3rem;
+    vertical-align: middle;
+}
+.input-record label {
+    vertical-align: middle;
+}
+.input-btn {
+    display: block;
+    margin: .3rem auto 0;
+    width: 3.14rem;
+    height: .7rem;
+    background: linear-gradient(-62deg,#f72e6c,#fb88ba);
+    border-radius: .35rem;
+    box-shadow: 1px 1px 5px rgba(225, 86, 113, .5);
+    font: .3rem/.7rem "宋体";
+    text-align: center;
+    color: #fff;
+}
+.register-title{
+    padding-top: .5rem;
+    font-size: .32rem;
+}
+.register-form .input-btn {
+    margin-top: .7rem;
+    display: block;
+}
+.input-verify {
+    padding: .1rem 0;
+    overflow: hidden;
+}
+.input-verify input {
+    padding-right: 0 ;
+}
+.input-verify .input-txt {
+    width: 38%;
+    float: left;
+}
+.input-verify .input-verify-img {
+    float: right;
+    width: 60%;
+    height: .8rem;
+}

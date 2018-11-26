@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable = no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80%;
+            height: 200px;
+            background: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+document.addEventListener("touchstart",function(e){
+    e.preventDefault();
+},{
+    passive:false
+});    
+(function(){
+   let box = document.querySelector("#box");
+   box.addEventListener("touchstart",function(e){
+      console.log(e.changedTouches[0]);
+   });
+   /*
+        clientX/clientY
+        pageX/pageY
+   */
+})(); 
+</script>    
+</body>
+</html>

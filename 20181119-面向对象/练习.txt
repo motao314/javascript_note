@@ -1,0 +1,9 @@
+class Drag {
+
+}
+/*
+    Drag.clone = true || false; 
+    getPath() // 获取拖拽的路径
+    backMove()// 拖拽回放
+*/
+new Drag(el);

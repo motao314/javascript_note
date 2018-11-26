@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<!--
+    JQuery: http://jquery.com/
+-->
+<ul id="list">
+    <li>哈哈1</li>
+    <li>哈哈2</li>
+    <li>哈哈3</li>
+</ul>
+<script>
+// console.log($("#list").css("width","100px").animate({width: 200}));
+//console.log($(document.body));
+
+// console.log($("#list li").css("width","100px").animate({width: 200}));
+/*
+    $("css selector"); 选择器  返回值 JQ 对象
+    $(document.body);
+    $(function);  文档加载完成之后执行这个函数
+*/
+$(function(){
+    // let lists = $("#list li");
+    // lists.css("width","100px");
+    // lists.animate({width: 200});
+    $("#list li").css("width","100px");
+    $("#list li").hover(function(){
+        $(this).stop().animate({width:200})
+    },function(){
+        $(this).stop().animate({width:100})
+    });
+});
+</script>
+</body>
+</html>

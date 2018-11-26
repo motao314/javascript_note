@@ -1,0 +1,19 @@
+npm 包 管理工具
+
+初始化项目:
+npm init
+
+
+安装: 
+npm install <package name>  -->  npm i <package name>
+npm i <package name> -g  下载到全局
+npm i <package name> -s   下载并保存到依赖	
+npm i <package name>@2.2.0
+
+删除
+npm uninstall <package name>
+
+更新
+npm update  <package name>
+
+npm i create-react-app -g

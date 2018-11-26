@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrap {
+            position: relative;
+            margin: 30px auto;
+            width: 700px;
+        }
+        #small {
+            width: 480px;
+        }
+        #small img{
+            width: 480px;
+            display: block;
+        }
+        #big {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+            background: url(img.jpg) no-repeat;
+        }
+        .mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, .4);
+            display: none;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="small">
+        <img src="img.jpg" />
+        <span class="mask"></span>
+    </div>    
+    <div id="big"></div>
+</div>
+<script>
+function css(el,attr){
+    return parseInt(getComputedStyle(el)[attr]);
+}    
+window.onload = function(){    
+    let big= document.querySelector("#big");
+    let mask= document.querySelector(".mask");
+    let small = document.querySelector("#small");
+    let w = css(mask,"width");
+    let h = css(mask,"height");;
+    let maxL =  css(small,"width") - w;
+    let maxT =  css(small,"height") - h;
+    let scale = css(big,"width") / w;
+    small.addEventListener("mouseenter",function(){
+        mask.style.display = "block";
+        big.style.display = "block";
+    });
+    small.addEventListener("mouseleave",function(){
+        mask.style.display = "none";
+        big.style.display = "none";
+    });
+    small.addEventListener("mousemove",function(e){
+        let rect = small.getBoundingClientRect();
+        let l = e.clientX - rect.left - w/2;
+        let t = e.clientY - rect.top - h/2;
+        // if(l < 0){
+        //     l = 0;
+        // } else if(l > maxL){
+        //     l = maxL;
+        // }
+        l = l < 0?0:l>maxL?maxL:l;
+        // if(t < 0){
+        //     t = 0;
+        // } else if(t > maxT){
+        //     t = maxT;
+        // }
+        t = t<0?0:t>maxT?maxT:t;
+        mask.style.left = l + "px";
+        mask.style.top = t + "px";
+        big.style.backgroundPosition = `-${scale*l}px -${scale*t}px`;
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+@font-face {
+    font-family: "iconfont";
+    src:
+    url('../font/iconfont.ttf?t=1528878976361') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../font/iconfont.svg?t=1528878976361#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family:"iconfont" !important;
+}
+
+.icon-kecheng:before { content: "\e607"; }
+
+.icon-dianhua:before { content: "\e701"; }
+
+.icon-zuanshi:before { content: "\e7ad"; }
+
+.icon-hycaidan:before { content: "\e62e"; }
+
+.icon-tuijian:before { content: "\e679"; }
+
+.icon-laoshishi:before { content: "\e632"; }
+
+.icon-back:before { content: "\e619"; }
+
+.icon-tuijian1:before { content: "\e650"; }
+
+.icon-kefu:before { content: "\e7ae"; }
+
+.icon-authcode:before { content: "\e688"; }
+
+.icon-denglu:before { content: "\e608"; }
+
+.icon-wendacopy:before { content: "\e87a"; }
+
+.icon-xingzhengguanli:before { content: "\e600"; }
+
+.icon-liuyan:before { content: "\e60b"; }
+
+.icon-xiaoxi:before { content: "\e61a"; }
+
+.icon-peixunjiangshi:before { content: "\e61e"; }
+
+.icon-youxiang:before { content: "\e605"; }
+
+.icon-home:before { content: "\e622"; }
+
+.icon-mima:before { content: "\e601"; }
+
+.icon-dengluming:before { content: "\e623"; }
+
+
+
+
+
+
+
+
+
+html {
+    font-size: 13.333333vw;
+}
+body {
+    font-size: .3rem;
+    -webkit-text-size-adjust: none;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+dl,
+dd,
+pre {
+    margin: 0;
+}
+pre {
+    white-space: pre-line;
+}
+h1,
+h2,
+h3,
+h4,
+th {
+  font-weight: normal;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+table {
+    border-collapse: collapse;
+}
+td,
+th {
+    padding: 0;
+}
+img {
+    vertical-align: top;
+}
+a {
+    text-decoration: none;
+}
+input,
+textarea,
+a {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-appearance: none;
+}
+textarea {
+    overflow: auto;
+    resize: none;
+}
+a:active,
+.a-active {
+    opacity: .8;
+}
+.clear:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+#header {
+    position: fixed;
+    left: 0;
+    top:0;
+    width: 100vw;
+    height: .9rem;
+    background: #323436;
+    z-index: 100;
+}
+.header-btn-left,
+.header-btn-right {
+    position: absolute;
+    top: 0;
+    width: .9rem;
+    height: .9rem;
+    text-align: center;
+    color: #d1d1d1;
+    line-height: .9rem;
+    font-size: .55rem;
+}
+.header-btn-left {
+    left: 0;
+}
+.header-btn-right {
+    right: 0;
+}
+#logo {
+    margin: .23rem auto 0;
+    display: block;
+    width: 1.84rem;
+}
+.header-user {
+    padding-right: .1rem;
+    text-align: right;
+    overflow: hidden;
+    font-size: .26rem;
+    text-overflow: ellipsis;
+}
+.footer-nav {
+    padding: .15rem .3rem .35rem;
+    background: #323436;
+}
+.miaov-contact a {
+    float: left;
+    position: relative;
+    font: .24rem/.6rem "\5B8B\4F53";
+    color: #fff;
+    padding: 0 .3rem 0 .95rem;
+}
+.miaov-contact a:before {
+    position: absolute;
+    left: .37rem;
+    top: 0;
+    font-size: .4rem;
+}
+.footer-nav nav a {
+    float: left;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 25%;
+    margin-top: .2rem;
+    font: .24rem/.26rem "\5B8B\4F53";
+    color: #adaeae;
+    padding-left: .37rem;
+    border-right: 1px solid #adaeae;
+}
+.footer-nav nav a:nth-of-type(4n){
+    border: none;
+}
+.footer-copy {
+    font: .24rem/.74rem "\5FAE\8F6F\96C5\9ED1";
+    text-align: center;
+    color: #868b8d;
+    background: #2d2f30;
+}
+.page {
+    position: relative;
+    z-index: 10;
+    background: #f2f9fc;
+    transition: .3s;
+}
+.page.pageHide {
+    transition: .5s cubic-bezier(.6,-0.25,.5,1.35);
+    transform: translateX(4.5rem);
+}
+.wrap {
+    height: 100%;
+    background: #f2f9fc;
+    overflow: hidden;
+}
+.scroll-con {
+    padding-top: .9rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 100%;
+}
+.page-con {
+    flex: 1;
+}
+#menu {
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 1.2rem .5rem;
+    width: 4.5rem;
+    height: 100vh;
+    background: url("../img/menu.png") no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+#menu a {
+    display: block;
+    font: .3rem/.9rem "宋体";
+    border-bottom: 1px solid rgba(255, 255, 255, .3);
+    color: rgba(255, 255, 255, .8);
+}
+#menu a:before {
+    font-size: .4rem;
+    margin: 0 .1rem;
+    color: rgba(255, 255, 255, .6);
+    vertical-align: middle;
+}
+#menu a:first-child {
+    border-top: 1px solid rgba(255, 255, 255, .3);
+}
+.tab {
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+}
+.picList {
+    backface-visibility: hidden;
+    width: 400vw;
+    overflow: hidden;
+}
+.picList>li {
+    float: left;
+    width: 100vw;
+}
+.picList img {
+    width: 100vw;
+}
+.picNav {
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    bottom: .2rem;
+    height: .1rem;
+    text-align: center;
+}
+.picNav span {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 .1rem;
+    width: .3rem;
+    height: .1rem;
+    background: rgba(255,255,255,.5);
+
+}
+.picNav .active {
+    background: #fff;
+}
+.banner img {
+    height: 4.6rem;
+}
+.miaov-btn {
+    background: linear-gradient(-72deg,#f72e6c,#fb88ba);
+    box-shadow: 1px 1px 5px rgba(225,86,113,.5);
+    text-align: center;
+    color: #fff;
+}
+.miaov-btn-sm {
+    width: 2rem;
+    height: .6rem;
+    font: .3rem/.6rem "\5B8B\4F53";
+    letter-spacing: 3px;
+    border-radius: .3rem;
+}
+.miaov-btn-md {
+    width: 3rem;
+    height: .7rem;
+    font: .34rem/.7rem "\5B8B\4F53";
+    color:  #fff;
+    text-align: center;
+    letter-spacing: 3px;
+    border-radius: .35rem;
+}
+.loadMore {
+    font-size: .3rem;
+    line-height: .7rem;
+    text-align: center;
+    color: #999;
+}
+.loadIn span {
+    vertical-align: top;
+    display: inline-block;
+    padding-left: .4rem;
+    background: url("../img/loading.gif") no-repeat 0 center;
+    background-size: .3rem .3rem;
+}
+@keyframes loading {
+    0%{
+        background: #f1f1f1 ;
+    }
+    100% {
+        background: #ccc;
+    }
+}
+.loading {
+    margin: 0 auto;
+    width: 90vw;
+}
+.loading-row {
+    display: flex;
+    height: 10px;
+    padding: 5px 0;
+}
+.loading-ceil {
+    flex: 1;
+    margin: 0 5px;
+    height: 10px;
+    background: #f1f1f1;
+    animation: .6s loading infinite linear alternate;
+}

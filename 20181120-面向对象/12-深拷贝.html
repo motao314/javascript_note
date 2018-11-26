@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let obj = {
+    name: "呵呵",
+    age: 58,
+    child:[
+        {
+            name: "嘻嘻",
+            age: 30,
+            child: [{
+                    name: "嘿嘿",
+                    age: 7
+                }
+            ]
+        },
+        {
+            name: "哈哈",
+            age: 27,
+            child: [{
+                    name: "啦啦",
+                    age: 3
+                }
+            ]
+        }
+    ]
+};
+
+let obj2 = clone(obj);
+// obj2.child[0].child.push({
+//     name: "随便",
+//     age: 1
+// });
+// console.log(obj2);
+// console.log(obj);
+function clone(data){
+   if(typeof data == "object"){
+       return Array.isArray(data)?cloneArray(data):cloneObj(data);
+   }
+   return data;
+}
+// 拷贝数组
+function cloneArray(arr){
+    let newArr = [];
+    for(let i = 0; i < arr.length; i++){
+        let data = clone(arr[i]);
+        newArr.push(data);
+    }
+    return newArr;
+}
+// 拷贝对象
+function cloneObj(obj){
+    let newObj = {};
+    for(let s in obj){
+        let data = clone(obj[s]);
+        newObj[s] = data;
+    }
+    return newObj;
+}
+</script>    
+</body>
+</html>

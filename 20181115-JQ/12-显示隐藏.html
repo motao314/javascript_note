@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<button id="show">显示</button>
+<button id="hide">隐藏</button>
+<ul id="list">
+    <li>选项1</li>
+    <li>选项2</li>
+    <li>选项3</li>
+</ul>
+<script>
+/*
+index() 索引
+hide() 隐藏
+show() 显示
+
+easing ：  swing linear
+
+slideDown()
+slideUp()
+*/
+$(function(){
+    $("#show").click(function(){
+        // $("#list").slideDown();
+       // $("#list").fadeIn();
+       $("#list").fadeToggle();
+    });
+    $("#hide").click(function(){
+       // $("#list").slideUp();
+       $("#list").fadeOut();
+    });
+});
+</script>
+</body>
+</html>

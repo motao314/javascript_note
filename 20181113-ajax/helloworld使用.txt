@@ -1,0 +1,5 @@
+1. 安装node
+2. 打开helloworld目录
+3. 右键 + shift 打开命令行工具
+4. npm i 下载相关依赖文件
+5. npm start

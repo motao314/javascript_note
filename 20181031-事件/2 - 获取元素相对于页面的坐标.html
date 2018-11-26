@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;left: 700px; top: 300px;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #box2 {
+            position: absolute;left: 200px; top: 400px;
+            border: 2px solid #000;
+        }
+        #box3 {
+            position: relative;margin: 300px;
+            width: 200px;
+            height: 200px;
+            background: green;
+        }
+        #box4 {
+            position: absolute;left: -300px; top: -100px;
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="box2">
+        <div id="box3">
+            <div id="box4"></div>
+        </div>
+    </div>
+</div>   
+<script>
+(function(){
+   let box = document.getElementById("box4");
+  console.log( getOffsetPage(box)) ;
+})();
+// 获取元素相对于页面的坐标
+// function getOffsetPage(el){
+//     let rect = el.getBoundingClientRect();
+//     return {
+//         left: rect.left + window.scrollX,
+//         top: rect.top + window.scrollY
+//     }
+// }
+function getOffsetPage(el){
+    let top = 0;
+    let left = 0;
+    while(el){
+        top += el.clientTop;
+        left += el.clientLeft;
+        top += el.offsetTop;
+        left += el.offsetLeft;
+        el = el.offsetParent;  
+    }
+    return {top,left};
+}
+</script>
+</body>
+</html>

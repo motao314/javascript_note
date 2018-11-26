@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li{
+            background: red;
+            height: 30px;
+        }
+        #list li:empty {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<!--
+    JQuery: http://jquery.com/
+-->
+<ul id="list">
+    <li>哈哈1</li>
+    <li>哈哈2</li>
+    <li>哈哈3</li>
+    <li></li>
+</ul>
+<script>
+// 所有的合法的css 选择器
+// eq(index)
+// gt(index) 匹配所有大于index
+// lt(index) 匹配所有小于index
+// http://jquery.cuishifeng.cn/lt.html
+$(function(){
+    $("#list li:eq(0)").css("width","100px");
+    $("#list li:gt(0)").css("width","150px");
+    $("#list li:lt(1)").css("background","yellow");
+    console.log($('#list li:contains("2")'));
+   // $(":input")
+});
+</script>
+</body>
+</html>

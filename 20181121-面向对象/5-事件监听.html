@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #box2 {
+            position: absolute;
+            left: 100px;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+<script>
+/*
+    dragstart 开始拖拽的时候
+    drag 正在拖拽
+    dragend 拖拽完成
+
+    1. 事件队列
+    2. 事件监听器 -- 收集事件存储入事件队列
+    3. 事件派发
+*/
+class Drag {
+    constructor(el){ 
+        this.el = el;
+        this.events = {};
+    }
+    init(){
+        this.startMouse = {};
+        this.startPosition = {};
+        const THIS = this;
+        function fn(e){
+            THIS.move(e);
+        }
+        this.el.addEventListener("mousedown",function(e){
+            THIS.start(e);
+            document.addEventListener("mousemove",fn);
+            document.addEventListener("mouseup",function(){
+                document.removeEventListener("mousemove",fn);
+                THIS.up();
+            },{
+                once:true
+            });
+            e.preventDefault();
+        });
+        return this;
+    }
+    addEv(event,fn){
+        if(!this.events[event]){
+            this.events[event] = [];
+        }
+        this.events[event].push(fn);
+    }
+    // 触发器
+    dispatch(event){
+        if(this.events[event]){
+            this.events[event].forEach((item)=>{
+                item.call(this);
+            });
+        }
+    }
+    start(e){
+        this.startMouse.x = e.clientX;
+        this.startMouse.y = e.clientY;
+        this.startPosition.x = this.getStyle("left");
+        this.startPosition.y = this.getStyle("top");
+        this.dispatch("dragstart");
+    }
+    move(e){
+        let nowMouse = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        let disMouse = {
+            x: nowMouse.x - this.startMouse.x,
+            y: nowMouse.y - this.startMouse.y
+        };
+        let l = this.startPosition.x + disMouse.x;
+        let t = this.startPosition.y + disMouse.y;
+        this.setStyle("left",l);
+        this.setStyle("top",t);
+        this.dispatch("drag");
+    }
+    up(){
+        this.dispatch("dragend");
+    }
+    removeEv(event,fn){
+        if(this.events[event]){
+            this.events[event] = this.events[event].filter(item=>item!=fn); 
+        }
+    }
+    removeAllEv(event){
+        if(event){
+          delete  this.events[event];
+        } else {
+          this.events = {};
+        }
+    }
+    setStyle(attr,val){
+        this.el.style[attr] = val + "px";
+        return this;
+    }
+    getStyle(attr){
+        return parseFloat(getComputedStyle(this.el)[attr])
+    }
+}   
+(function(){
+    let box = document.querySelector("#box");
+    let boxDrag = new Drag(box).init();
+    boxDrag.addEv("dragstart",function(){
+        this.el.style.boxShadow = "0 0 10px rgba(0,0,0,.7)";
+    });
+    boxDrag.addEv("dragstart",function(){
+        console.log("开始拖拽");
+    });
+    boxDrag.addEv("drag",function(){
+        const THIS = this;
+        let newNode = this.el.cloneNode(true);
+        this.el.parentNode.appendChild(newNode);
+        newNode.style.transition = "1s";
+        setTimeout(function(){
+            newNode.style.opacity = 0;
+            newNode.style.transform = "scale(0)";
+        },30);
+        setTimeout(function(){
+            THIS.el.parentNode.removeChild(newNode);
+        },1030);
+    });
+    boxDrag.addEv("dragend",function(){
+        this.el.style.boxShadow = "none";
+    });
+    boxDrag.addEv("dragend",function(){
+        console.log("结束拖拽");
+    });
+})();
+
+
+</script>    
+</body>
+</html>

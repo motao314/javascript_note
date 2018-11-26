@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    #box2 {
+        position: absolute;
+        left: 100px;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: blue;
+    }
+</style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box2"></div>
+<script> 
+function Drag(el) {
+    this.el = el;
+    this.startMouse = {};
+    this.startPosition = {};
+    const THIS = this;
+    function fn(e){
+        THIS.move(e);
+    }
+    this.el.addEventListener("mousedown",function(e){
+        THIS.start(e);
+        document.addEventListener("mousemove",fn);
+        document.addEventListener("mouseup",function(){
+            document.removeEventListener("mousemove",fn);
+        },{
+            once:true
+        });
+        e.preventDefault();
+    });
+} 
+Drag.prototype = {
+    constructor: Drag,
+    start(e){
+        this.startMouse.x = e.clientX;
+        this.startMouse.y = e.clientY;
+        this.startPosition.x = this.getStyle("left");
+        this.startPosition.y = this.getStyle("top");
+    },
+    move(e){
+        let nowMouse = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        let disMouse = {
+            x: nowMouse.x - this.startMouse.x,
+            y: nowMouse.y - this.startMouse.y
+        };
+        let l = this.startPosition.x + disMouse.x;
+        let t = this.startPosition.y + disMouse.y;
+        this.setStyle("left",l);
+        this.setStyle("top",t);
+    },
+    setStyle(attr,val){
+        this.el.style[attr] = val + "px"
+    },
+    getStyle(attr){
+        return parseFloat(getComputedStyle(this.el)[attr])
+    }
+};
+
+// 构造函数继承
+function CloneDrag(el){
+    Drag.call(this,el);
+}
+// CloneDrag.prototype = Drag.prototype; 注意传址
+// Object.assign(CloneDrag.prototype,Drag.prototype);
+
+CloneDrag.prototype = clone(Drag.prototype);
+CloneDrag.prototype.constructor = CloneDrag;
+
+function clone(data){
+   if(typeof data == "object"){
+       return Array.isArray(data)?cloneArray(data):cloneObj(data);
+   }
+   return data;
+}
+// 拷贝数组
+function cloneArray(arr){
+    let newArr = [];
+    for(let i = 0; i < arr.length; i++){
+        let data = clone(arr[i]);
+        newArr.push(data);
+    }
+    return newArr;
+}
+// 拷贝对象
+function cloneObj(obj){
+    let newObj = {};
+    for(let s in obj){
+        let data = clone(obj[s]);
+        newObj[s] = data;
+    }
+    return newObj;
+}
+
+(function(){
+    let box = document.querySelector("#box");
+    let box2 = document.querySelector("#box2");
+    CloneDrag.prototype.name = "呵呵";
+    console.dir(Drag);
+    console.dir(CloneDrag);
+    new Drag(box);
+    new CloneDrag(box2);
+})();  
+/*
+拷贝:
+    生成与原对象一模一样的对象。
+    浅拷贝：只会复制对象的第一层数据
+    深拷贝：不仅仅会复制第一层的数据，如果里面还有对象，会继续进行复制，直到复制到全是基本数据类型为止
+    Object.assign()
+	Object.assign(target, source1,source2，source3...)
+	合并多个对象
+	用于对象的合并，将源对象（source）的所有可枚举属性，
+	复制到目标对象（target）
+深拷贝
+	使用递归的形式进行拷贝
+*/  
+</script>
+</body>
+</html>

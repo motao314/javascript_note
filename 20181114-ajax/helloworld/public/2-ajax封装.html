@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" id="user" />
+<script>
+user.onblur = function(){
+    // Ajax({
+    //     type: "get",
+    //     url: "/get",
+    //     data: {
+    //         name: user.value
+    //     },
+    //     dataType: "json",
+    //     succ(data){
+    //         console.log(data);
+    //     }
+    // });
+    // Ajax({
+    //     type: "post",
+    //     url: "/post",
+    //     data: {
+    //         name: user.value
+    //     },
+    //     dataType: "json",
+    //     succ(data){
+    //         console.log(data);
+    //     }
+    // });
+    Ajax({
+        type: "get",
+        url: "/data.xml",
+        data: {},
+        dataType: "xml",
+        succ(data){
+            //console.log(data);
+            console.log(data.childNodes[0].tagName)
+            console.log(data.childNodes[0].children[0].tagName)
+            console.log(data.childNodes[0].children[0].innerHTML)
+        }
+    });
+};
+/*
+op: {
+    type: "GET"|"POST",
+    url: "",
+    data: {},
+    dataType: text|josn|xml,
+    succ:,
+    error:
+}
+*/    
+function Ajax(op){
+    let ajax = new XMLHttpRequest;
+    let type = op.type.toUpperCase()
+    if( type == "GET"){
+        ajax.open("GET",op.url + "?" + toUrl(op.data) );
+        ajax.send();
+    } else {
+        ajax.open("POST",op.url);
+        ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        ajax.send(toUrl(op.data));
+    }
+    ajax.onload = function(){
+        let data = "";
+        switch(op.dataType){
+            case "text":
+                data = ajax.responseText;
+                break;
+            case "json":
+                 data = JSON.parse(ajax.responseText);
+                 break;
+            case "xml":
+                 data = ajax.responseXML             
+        }
+        op.succ&&op.succ(data);
+    };
+    ajax.onerror = function(){
+        console.log(ajax.status);
+    }
+}
+function toUrl(obj){
+    let data = [];
+    for(let s in obj){
+        data.push(encodeURI(s) + "=" + encodeURI(obj[s]));
+    }
+    return data.join("&");
+}
+</script>    
+</body>
+</html>

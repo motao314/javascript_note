@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #box {
+            position: relative;
+            margin: 200px;
+        }
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            position: relative;
+            left: 10px;
+            top: 10px;
+            margin: 0;
+            padding: 10px;
+            list-style: none;
+        }
+        #list li{
+            background: red;
+            height: 30px;
+            color: #fff;
+        }
+        #list li:empty {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul id="list">
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+    </ul>
+</div>    
+<script>
+/*
+    css(name|pro|[,val|fn])
+
+    offset();
+*/
+
+$(function(){
+   // console.log($("#list").css("display"));
+   // console.log($("#list").css("padding","20px"));
+//    console.log($("#list").css({
+//        width: 200,
+//        height: 300
+//    }));
+
+    // 获取 相对于视口的坐标
+    console.log($("#list").offset());
+
+    // 获取 left 和 top
+    console.log($("#list").position());
+
+    // 获取和设置滚动条
+    console.log($(window).scrollTop());
+    console.log($(window).scrollLeft());
+
+    // height 和 width
+    console.log($("#list").width());
+    console.log($("#list").height());
+
+    // innerWitdh 和 innerHeight 内容宽高
+
+    // outerHeight 和 outerWidth 可视宽高
+    
+});
+</script>
+</body>
+</html>

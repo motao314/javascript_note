@@ -1,0 +1,127 @@
+.work-page .scroll-con {
+    background: #fff;
+    padding-bottom: .9rem;
+}
+.work-title {
+    padding: .2rem .2rem;
+    font: bold .36rem/.7rem "微软雅黑";
+    color: #666;
+}
+.wrok-details {
+    padding: .2rem;
+    font: .26rem/.5rem "宋体";
+    color: #03987a;
+}
+.wrok-details p,
+.wrok-details h1,
+.wrok-details h2,
+.wrok-details h3,
+.wrok-details h4,
+.wrok-details h5,
+.wrok-details h6,
+.wrok-details ul,
+.message-con p,
+.message-con h1,
+.message-con h2,
+.message-con h3,
+.message-con h4,
+.message-con h5,
+.message-con h6,
+.message-con ul {
+    margin: .1rem 0 .05rem 0;
+    word-break: break-all;
+}
+.message-con a,
+.wrok-details a {
+    color: #543cfd;
+}
+.wrok-details img {
+    display: block;
+    margin: .1rem auto ;
+    max-width: 80%;
+}
+.work-aside {
+    border-top: 1px solid #ebebeb;
+    height: 1rem;
+    padding: 0 .2rem;
+    line-height: 1rem;
+}
+.work-aside .good {
+    float: left;
+    font-size: .28rem;
+}
+.work-aside a {
+    float: right;
+    font-size: .5rem;
+    transition: .1s cubic-bezier(.19,.89,.61,1.22);
+}
+.work-aside a:active,
+.work-aside .a-active{
+    transform: scale(1.1);
+}
+.work-aside .isGood {
+    color: #f60;
+}
+.work-no-info {
+    border-top: 1px solid #ebebeb;
+    font-size: .4rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #333;
+    padding: 0 .2rem;
+}
+.work-page .content {
+    padding-bottom: 1rem;
+}
+.message-list aside {
+    padding: .2rem;
+    border-top: 1px solid #ebebeb;
+}
+.message-info {
+    font: .26rem/.5rem "宋体";
+    color: #666;
+}
+.message-info span {
+    font-size: .3rem;
+    color: #9a9a9a;
+    display: block;
+}
+.message-con {
+    padding-left: .2rem;
+    word-break: break-all;
+    font: .3rem/.7rem "宋体";
+    color: #666;
+}
+.work-page .works-more {
+    border-top: 1px solid #ebebeb;
+}
+.post-message {
+    position: fixed;
+    z-index: 30;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: .9rem;
+    background: #fff;
+}
+#message-btn {
+    position: fixed;
+    z-index: 30;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: .9rem;
+    background: #e15771;
+    color: #fff;
+    font: .36rem/.9rem "宋体";
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .4);
+}
+#message-btn:before {
+    font-size: .5rem;
+    vertical-align: top;
+    margin-right: .2rem;
+}
+.message-list .loadMore {
+    border-top: 1px solid #ebebeb;
+}

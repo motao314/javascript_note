@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    #box2 {
+        position: absolute;
+        left: 100px;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: blue;
+    }
+</style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box2"></div>
+<script>
+class Drag {
+    constructor(el){ 
+        this.el = el;
+        this.startMouse = {};
+        this.startPosition = {};
+    }
+    init(){
+        const THIS = this;
+        function fn(e){
+            THIS.move(e);
+        }
+        this.el.addEventListener("mousedown",function(e){
+            THIS.start(e);
+            document.addEventListener("mousemove",fn);
+            document.addEventListener("mouseup",function(){
+                document.removeEventListener("mousemove",fn);
+                THIS.up(e);
+            },{
+                once:true
+            });
+            e.preventDefault();
+        });
+        return this;
+    }
+    start(e){
+        this.startMouse.x = e.clientX;
+        this.startMouse.y = e.clientY;
+        this.startPosition.x = this.getStyle("left");
+        this.startPosition.y = this.getStyle("top");
+    }
+    move(e){
+        let nowMouse = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        let disMouse = {
+            x: nowMouse.x - this.startMouse.x,
+            y: nowMouse.y - this.startMouse.y
+        };
+        let l = this.startPosition.x + disMouse.x;
+        let t = this.startPosition.y + disMouse.y;
+        this.setStyle("left",l);
+        this.setStyle("top",t);
+    }
+    up(){
+
+    }
+    setStyle(attr,val){
+        this.el.style[attr] = val + "px";
+        return this;
+    }
+    getStyle(attr){
+        return parseFloat(getComputedStyle(this.el)[attr])
+    }
+}   
+// Drag2 继承 Drag; 
+class CloneDrag extends Drag {
+    start(e){
+        this.newEl = this.el.cloneNode(true);
+        this.startMouse.x = e.clientX;
+        this.startMouse.y = e.clientY;
+        this.startPosition.x = this.getStyle("left");
+        this.startPosition.y = this.getStyle("top");
+        this.el.style.opacity = .5;
+        this.el.parentNode.appendChild(this.newEl);
+    }
+    up(){
+        this.el.style.opacity = 1;
+        this.el.parentNode.removeChild(this.newEl);
+    }
+}
+(function(){
+    let box = document.querySelector("#box");
+    let box2 = document.querySelector("#box2");
+    // console.log(new Drag(box).init().setStyle("top",100).setStyle("left",100));
+    let boxDrag = new Drag(box).init();
+    let box2Drag = new CloneDrag(box2).init();
+})();    
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--
+DOM(document object model) 文档对象模型
+
+DOM 时对文档相关的操作(增 删 改 查)
+
+属性的操作:
+    获取属性：
+        node.getAttribute('attr')
+    设置修改:
+        node.setAttribute('attr','value');     
+    删除：    
+        node.removeAttribute('attr');
+    dataset    
+        操作data自定义属性
+
+DOM 和 ECMA 属性操作的区别
+
+ECMAScript: 
+    获取 obj.key   obj['key']
+    修改 obj.key = val  obj['key'] = val
+    删除 delete obj.key    delete obj['key']
+
+DOM的属性操作: 值是存在页面文档中，获取时，也是从文档中获取属性值,设置时会把值记录在文档中。注意问当中只能记录字符串; 
+
+ECMAscript 的属性操作: 值是存在内存中，获取时，也是从内存中获取属性值,设置时会把值记录在内存中
+        
+    
+-->    
+<div id="miaov"></div>
+<script>
+// miaov.dataset.haha = "哈哈";
+// console.log(miaov.getAttribute("id"));
+// miaov.setAttribute("miaov","hehe");
+// miaov.removeAttribute('id');
+// console.dir(miaov);
+// miaov.setAttribute("class",'box');
+// console.log(miaov.className);
+
+</script>
+</body>
+</html>

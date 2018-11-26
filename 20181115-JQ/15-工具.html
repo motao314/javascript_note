@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+console.log($.browser);
+$.each( ["a","b","c"], function(i, n){
+  console.log( "Item #" + i + ": " + n );
+});
+console.log($.grep( [0,1,2], function(n,i){
+  return n > 0;
+}));
+</script>
+</body>
+</html>

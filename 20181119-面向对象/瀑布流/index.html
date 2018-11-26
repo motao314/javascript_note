@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .wrap {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .wrap::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .wrap ul {
+            float: left;
+            width: 180px;
+            margin: 0 10px;
+            padding: 0;
+            list-style: none;    
+        }
+        .wrap li {
+            width: 170px;
+            margin: 5px 0;
+            padding: 5px;
+            min-height: 150px;
+            background: #ccc;
+        }
+        .wrap img {
+            width: 100%;
+            display: block;
+            opacity: 0;
+            transition: 1s;
+            filter: grayscale(100%);
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>  
+<script>
+/*
+    1. 获取数据
+    2. 根据数据生成li
+    3. 判断哪些li在可视区中
+    4. 生成图片，进行动画
+    5. 当滚动条到到一定位置，请求新数据
+*/
+let page = 1;
+let isLoad = false;
+let timer = 0;
+getData();
+function getData(){
+    
+    if(isLoad)return;
+    isLoad = true;
+    console.log(page);
+    page++;
+    let script = document.createElement("script");
+    script.src = `http://list.mogujie.com/search?callback=create&_version=8193&ratio=3%3A4&cKey=15&page=${page}`;
+    script.id = "jsonp";
+    document.head.appendChild(script);
+}
+function create(data){
+    let jsonp = document.querySelector("#jsonp");
+    jsonp.remove();
+    let ul = document.querySelectorAll(".wrap ul");
+    data.result.wall.docs.forEach((item,index)=>{
+        let li = document.createElement("li");
+        li.src = item.img;
+        ul[index%ul.length].appendChild(li);
+    })
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+        showImage();
+    },200);
+    isLoad = false;
+}
+window.addEventListener("scroll",function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+        showImage();
+    },200);
+});
+window.addEventListener("scroll",function(){
+    let scrollBottom = document.body.clientHeight - scrollY - innerHeight;
+    if(scrollBottom < innerHeight*3){
+        getData();
+    }
+})
+// 判断哪些li 在 可视区
+function showImage(){
+    let li = document.querySelectorAll(".wrap li");
+    li.forEach((li)=>{
+        let rect = li.getBoundingClientRect();
+        if(rect.top < window.innerHeight
+        && rect.bottom > 0
+        && li.src){
+            createImg(li);
+        }
+    });
+}
+function createImg(li){
+    let img = new Image();
+    img.src = li.src;
+    img.onload = function(){
+        li.appendChild(img);
+        setTimeout(function(){
+            img.style.opacity = 1; 
+            img.style.filter = " grayscale(0)";    
+        },30);
+    }
+    li.src = null;
+}
+</script>  
+</body>
+</html>

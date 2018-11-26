@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #box {
+            margin: auto;
+            width: 100px;
+            height: 100px;
+            background:  red;
+        }
+    </style>
+</head>
+<body>
+<!-- <div id="box" contenteditable="true"></div> -->
+<div id="box"></div>
+<script src="miaov.js"></script>
+<script>
+//  box.onkeydown = function(){
+//      console.log(1);
+//  } 
+(function(){
+    let box = document.querySelector("#box");
+    let x = 0;
+    let y = 0;
+    css(box,"translateX",x);
+    css(box,"translateY",y);
+    document.addEventListener("keydown",function(e){
+        // console.log(e.keyCode);
+        switch(e.keyCode){
+            case 37:
+                x-=5;
+                break;
+            case 38:
+                y-=5;
+                break;
+            case 39:
+                x+=5;
+                break;
+            case 40:
+                y+=5;
+                break;
+        }
+        css(box,"translateX",x);
+        css(box,"translateY",y);
+        e.preventDefault();
+    })
+})();  
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: fixed;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #div {
+            position: fixed;
+            left: 100px;
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+        #div2 {
+            position: fixed;
+            left: 200px;
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="div">
+        <div id="div2"></div>
+    </div>
+</div>    
+<script>
+(function(){
+    box.addEventListener("click",function(e){
+        console.log("box");
+        e.preventDefault();
+    },{
+        capture: true,
+        passive: false,
+        once: true
+    });
+    div.addEventListener("click",function(){
+        console.log("div");
+    },{
+        capture: true
+    });
+    div2.addEventListener("click",function(){
+        console.log("div2");
+    },{
+        capture: true
+    });
+})();
+</script>
+</body>
+</html>

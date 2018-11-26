@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="user" />
+<script>
+user.onblur = function(){
+    Ajax({
+        type: "GET",
+        dataType: "text",
+        url: "http://127.0.0.1:3000",
+        data: {},
+        succ(data){
+            console.log(data);
+        }
+    });
+};
+function Ajax(op){
+    let ajax = new XMLHttpRequest;
+    let type = op.type.toUpperCase()
+    if( type == "GET"){
+        ajax.open("GET",op.url + "?" + toUrl(op.data) );
+        ajax.send();
+    } else {
+        ajax.open("POST",op.url);
+        ajax.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        ajax.send(toUrl(op.data));
+    }
+    ajax.onload = function(){
+        let data = "";
+        switch(op.dataType){
+            case "text":
+                data = ajax.responseText;
+                break;
+            case "json":
+                 data = JSON.parse(ajax.responseText);
+                 break;
+            case "xml":
+                 data = ajax.responseXML             
+        }
+        op.succ&&op.succ(data);
+    };
+    ajax.onerror = function(){
+        console.log(ajax.status);
+    }
+}
+function toUrl(obj){
+    let data = [];
+    for(let s in obj){
+        data.push(encodeURI(s) + "=" + encodeURI(obj[s]));
+    }
+    return data.join("&");
+}
+</script>    
+<!--
+同源：
+    所谓同源是指，域名，协议，端口相同。
+    如果协议，端口（如果指定了一个）和域名对于两个页面是相同的，则两个页面具有相同的源。
+同源策略:
+    同源策略是浏览器的一个安全功能，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源。所以a.com下的js脚本采用ajax读取b.com里面的文件数据是会报错的。
+
+跨域：（跨源）
+    请求不同源下的数据    
+        1. 在服务中设置访问白名单
+        2. 后端代理
+            后端去请求数据不会有跨域问题
+            后端先把数据取到当前服务器中，
+            然后前端通过 正常 的 ajax 请求来获取数据
+-->    
+</body>
+</html>

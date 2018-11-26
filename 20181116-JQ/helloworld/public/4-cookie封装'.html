@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    name : cookie的name
+    val: cookie的value
+    expires: 过期时间 单位(天)
+*/
+setCookie("tw","皮",1);
+setCookie("马华","皮",1);
+function setCookie(name,val,expires){
+    document.cookie = `${name}=${val}; expires = ${new Date(Date.now() + 86400000*expires)}`;
+}
+/*
+    name 
+*/
+console.log(getCookie("tw"));
+function getCookie(name){
+    let cookies = [];
+    cookies = document.cookie.split("; ");
+    for(let i = 0; i < cookies.length; i++){
+        let nowCookie = cookies[i].split("=");
+        if(nowCookie[0] == name){
+            return nowCookie[1];
+        } 
+    }
+}
+
+/*
+    name
+*/
+// 删除 cookie
+function removeCookie(name){
+    setCookie(name,"",-1);
+}
+</script>    
+</body>
+</html>

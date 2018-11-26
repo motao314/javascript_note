@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div style="height:2000px"></div>
+<body>
+<script>
+console.log(document.documentElement.clientWidth,document.documentElement.clientHeight);    
+/* DOM */
+
+// DOM节点类型都包含什么
+/*
+    1. 元素节点
+    2. 属性节点
+    3. 文本节点
+    8. 注释
+    9. 文档
+*/
+
+// 节点关系查找
+/*
+    childNodes   子节点
+    children     子元素
+    previousSibling 上一个兄弟节点
+    previousElementSibling 上一个兄弟元素
+    nextElementSibling 下一个兄弟元素
+    nextSibling 下一个兄弟节点
+    lastChild 最后一个子节点
+    lastElementChild 最后一个子元素
+    firstChild 第0个子节点
+    firstElementChild 第0个子元素
+    parentNode 父节点
+    parentElement 父元素
+    offsetParent 定位父级
+*/
+
+// 属性操作方法
+/*
+    el.getAttribute("attr") 获取属性
+    el.setAttribute("attr","value") 设置属性
+    el.removeAttribute("attr") 删除属性
+    el.hasAttribute("attr") 判断是否有这个属性
+*/
+
+// 获取相关尺寸
+
+/*
+    offsetLeft/offsetTop 距离定位父级左侧(顶部)的坐标
+    offsetWidth/offsetHeight 可视宽(高)
+
+    clientWidth/clientHeight 可视宽(高) - border
+    clientTop/clientLeft 上(左)边框宽度
+
+    scrollLeft/scrollTop 滚动条滚动距离
+    scrollWidth/scrollHeight 内容宽高
+
+    getBoundingClientRect()
+        width,height 可视宽(高)
+        top,bottom  元素的顶部(底部)距离可视区顶部距离
+        left,right  元素的左侧(右侧)距离可视区左侧距离 
+
+    可视区大小
+        window.innerWidth/window.innerHeight
+        document.documentElement.clientWidth/document.documentElement.clientHeight
+
+    页面滚动条
+        document.documentElement.scrollTop/document.documentElement.scrollLeft
+        window.scrollX/window.scrollY
+
+    页面大小  
+        document.body.clientWidth/document.body.clientHeight
+        document.documentElement.scrollWidth/document.documentElement.scrollHeight
+
+    获取元素相对于页面的坐标
+        getBoundingClientRect().left + window.scrollX/getBoundingClientRect().top + window.scrollY
+        逐级查找offsetLeft/offsetTop 相加
+*/
+
+// DOM 的节点操作有哪些
+
+/*
+    createElement() 创建节点
+    removeChild() 删除子节点
+    cloneNode() 克隆节点
+    appendChild() 添加子节点
+    insertBefore(newNode,node) 添加子节点至 node 节点之前
+    replaceChild(newNode,oldNode) 替换节点
+*/
+
+/*
+BOM:
+window
+- 弹窗
+- close 和 open
+- 事件   
+loaction
+    - hash
+    - search
+    - href
+navigator
+    - userAgent
+history
+    - length
+    - go
+    - back
+    - forword
+    - pushState
+    - state
+screen
+    - width
+    - height
+*/
+</script>        
+</body>
+</html>

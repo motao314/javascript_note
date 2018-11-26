@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<a href="http://www.baidu.com">超链接</a>
+<script>
+(function(){
+    let a = document.querySelector("a");
+    a.onclick = function(e){
+        return false;
+        //e.preventDefault();
+    };
+})();
+</script>   
+</body>
+</html>

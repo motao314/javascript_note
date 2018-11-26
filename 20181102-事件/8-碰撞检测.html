@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin: -50px 0 0 -50px;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #div {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div> 
+<div id="div"></div> 
+<script src="miaov.js"></script>  
+<script>
+drag({
+    el: div,
+    down:function(){
+        this.style.boxShadow = "0 0 10px #000";
+    },
+    move: function(){
+        if(isBoon(box,div)){
+            box.style.background = "green"; 
+        } else {
+            box.style.background = "red"; 
+        }
+    },
+    up: function(){
+        this.style.boxShadow = "none";
+    }
+});
+/*
+op:{
+    el: 拖拽的元素,
+    down: function(){
+        // 按下时的回调
+    },
+    move: function(){
+        // 移动时的回调
+    },
+    up: function(){
+        // 抬起时的回调
+    }
+}
+*/
+function drag(op){
+    let {el} = op; 
+    let startMouse = {};
+    let startPosition = {};
+    el.addEventListener("mousedown",function(e){
+        startMouse.x = e.clientX;
+        startMouse.y = e.clientY;
+        startPosition.x = css(el,"left");
+        startPosition.y = css(el,"top");
+        document.addEventListener("mousemove",move);
+        document.addEventListener("mouseup",function(e){
+            document.removeEventListener("mousemove",move);
+            op.up&&op.up.call(el,e);
+        },{
+            once: true
+        });
+        e.preventDefault();
+        op.down&&op.down.call(el,e);
+    });
+    function move(e){
+        let nowMouse = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        let dis = {
+            x: nowMouse.x - startMouse.x,
+            y: nowMouse.y - startMouse.y
+        };
+        let l = dis.x + startPosition.x;
+        let t = dis.y + startPosition.y;
+        css(el,"left",l);
+        css(el,"top",t); 
+        op.move&&op.move.call(el,e);
+    }
+}
+// 检测两个元素是否有碰撞
+// true 为 碰撞 false 为 不碰撞
+function isBoon(el,el2){
+    /*
+        碰撞不到的情况:
+            el.left > el2.right
+            el2.left > el.right
+            el.top > el2.bottom
+            el2.top > el.bottom
+    */
+    let elRect = el.getBoundingClientRect();
+    let el2Rect = el2.getBoundingClientRect();
+    if(elRect.left > el2Rect.right
+    || el2Rect.left > elRect.right
+    || elRect.top > el2Rect.bottom
+    || el2Rect.top > elRect.bottom){
+        return false;
+    } 
+    return true;
+}
+</script>
+</body>
+</html>

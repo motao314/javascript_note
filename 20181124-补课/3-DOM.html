@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="box">
+    <!-- 这是个注释 -->
+    <p>p1</p>
+    <div>div2</div>
+    <h2>h3</h2>
+    <div>div4</div>
+    <h2>h5</h2>
+    <p>p6</p>
+    <div>div7</div>
+    <h2>h8</h2>
+</div>
+<script>
+/*
+节点类型:
+    元素节点 nodeType 1
+    文本节点 nodeType 3
+    注释节点 nodeType 8 
+
+查找节点:
+    节点操作：
+        childNodes 获取子节点
+        parentNode 获取父节点
+        previousSibling 上一个兄弟节点
+        nextSibling 下一个兄弟节点
+        firstChild 第0个子节点
+        lastChild 最后一个子节点
+    
+    元素操作:
+        children 获取子元素
+        parentElement 父元素
+        previousElementSibling 上一个兄弟元素
+        nextElementSibling 下一个兄弟元素
+        firstElementChild 第0个子元素
+        lastElementChild 最后一个子元素
+        offsetParent 定位父级
+        document.getElementById()
+        el.getElementByTagName()
+        el.getElementByClassName()
+        el.querySelector()
+        el.querySelectorAll()
+        document 文档
+        document.documentElement html
+        document.body body
+        document.head head
+*/    
+var box = document.getElementById("box");
+console.log(box.children[3].nextElementSibling);
+</script>    
+</body>
+</html>

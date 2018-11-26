@@ -1,0 +1,23 @@
+    <!-- 
+        1. 页面大小随屏幕大小等比缩放
+        2. 相对单位:
+            em 元素自身的字体大小
+            rem 根据html的字体大小
+            vw/vh 屏幕宽高
+            百分比
+                width/height 定位父级
+                left/top 定位父级
+                translate 元素自身尺寸
+        3. rem vw
+        100vw = 1屏幕宽度
+        设计图宽 600   1vw = 6px
+        1rem = 100/6vw;
+
+        750
+        1rem = 100/7.5vw
+     -->
+     <!-- <style>
+         html {
+             font-size: 13.333333vw;
+         }
+     </style> -->

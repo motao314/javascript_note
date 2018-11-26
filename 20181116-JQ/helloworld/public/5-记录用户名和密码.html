@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<form id="form">
+    <input type="text" id="user" autocomplete="off" />
+    <input type="password" id="password" />
+    <button type="submit">提交</button>
+</form>
+<script>
+$(()=>{
+    // $("#user");
+    // $("#password")
+    let user = getCookie("user");
+    let password = getCookie("password");
+    $("#user").val(user);
+    $("#password").val(password);
+    $("#user").blur(function(){
+        setCookie("user",$(this).val(),30);
+    });
+    $("#password").blur(function(){
+        setCookie("password",$(this).val(),30);
+    });
+});   
+for(let i = 0; i < 1000; i++){
+    setCookie("miaov"+i,i,10);
+}
+function setCookie(name,val,expires){
+    document.cookie = `${name}=${val}; expires = ${new Date(Date.now() + 86400000*expires)}`;
+}
+function getCookie(name){
+    let cookies = [];
+    cookies = document.cookie.split("; ");
+    for(let i = 0; i < cookies.length; i++){
+        let nowCookie = cookies[i].split("=");
+        if(nowCookie[0] == name){
+            return nowCookie[1];
+        } 
+    }
+    return "";
+}
+// 删除 cookie
+function removeCookie(name){
+    setCookie(name,"",-1);
+}
+</script>    
+</body>
+</html>

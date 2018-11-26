@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin: -50px 0 0 -50px;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #div {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div> 
+<div id="div"></div> 
+<script src="miaov.js"></script>  
+<script>
+drag(div);
+function drag(el){
+    let startMouse = {};
+    let startPosition = {};
+    el.addEventListener("mousedown",function(e){
+        startMouse.x = e.clientX;
+        startMouse.y = e.clientY;
+        startPosition.x = css(el,"left");
+        startPosition.y = css(el,"top");
+        document.addEventListener("mousemove",move);
+        document.addEventListener("mouseup",function(){
+            document.removeEventListener("mousemove",move);
+        },{
+            once: true
+        });
+        e.preventDefault();
+    });
+    function move(e){
+        let nowMouse = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        let dis = {
+            x: nowMouse.x - startMouse.x,
+            y: nowMouse.y - startMouse.y
+        };
+        let l = dis.x + startPosition.x;
+        let t = dis.y + startPosition.y;
+        css(el,"left",l);
+        css(el,"top",t); 
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    面向对象编程（Object Oriented Programming，OOP）是一种编程方式和思想。
+
+    抽像: 抽离出相像的代码和功能
+    
+    封装: 即隐藏对象的属性和实现细节，仅对外公开接口，控制在程序中属性的读和修改的访问级别；将抽象得到的数据和行为（或功能）相结合，形成一个整体，也就是将数据与操作数据的源代码进行结合，形成“类”
+
+    类描述了一组有相同特性（属性）和相同行为（方法）的对象
+	    属性：描述对象的特征
+	    方法：对象具备的功能
+
+*/
+let person = {
+    name: "tww",
+    age: 15,
+    sayName(){
+        console.log(this.name);
+    }
+};
+console.log(person.name);
+console.log(person.age);
+person.sayName()
+</script>    
+</body>
+</html>

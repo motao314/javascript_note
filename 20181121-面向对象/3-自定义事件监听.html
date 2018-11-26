@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #box2 {
+            position: absolute;
+            left: 100px;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+class Fn{
+    constructor(el){
+        this.events = {};// 事件队里
+        const THIS = this;
+        el.onclick = function(){
+            THIS.dispatch("点击"); //事件派发
+        };
+    }
+
+    // 监听器
+    addEv(event,fn){
+        if(!this.events[event]){
+            this.events[event] = [];
+        }
+        this.events[event].push(fn);
+    }
+
+    // 触发器
+    dispatch(event){
+        if(this.events[event]){
+            this.events[event].forEach((item)=>{
+                item.call(this);
+            });  
+        }
+    }
+}
+
+/*
+    1. 监听器： 收集执行函数
+    2. 事件队列：存储监听器收集的函数
+    3. 事件派发: 设定事件在什么时间执行
+    4. 触发器: 执行对应的事件函数
+*/
+
+let boxFn = new Fn(box);
+boxFn.addEv("点击",function(){
+    console.log("点击操作",this);
+});
+boxFn.addEv("点击",function(){
+    console.log("点击操作2");
+});
+</script>    
+</body>
+</html>

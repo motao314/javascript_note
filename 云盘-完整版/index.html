@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+<!-- 页面外框 -->
+<main id="page">
+    <!-- 页面头部 -->
+    <header id="header">
+        <h1 id="logo">
+            <img src="img/logo.png" />
+        </h1>
+        <nav class="top-nav">
+            <a class="create-btn iconfont icon-xinjian">新建文件夹</a>
+            <a class="del-btn iconfont icon-lajitong">删除</a>
+            <a class="move-btn iconfont icon-yidong">移动到</a>
+        </nav>
+    </header>
+    <!-- 内容区域 -->
+    <div id="content">
+        <!-- 侧边栏导航 -->
+        <aside id="tree-menu" class="tree-menu">
+         <!--    <ul>
+                <li class="open">
+                    <p class="has-child"><span>一级菜单</span></p>
+                    <ul>
+                        <li class="open">
+                            <p class="has-child active" style="padding-left: 68px;"><span>二级菜单</span></p>
+                            <ul>
+                                <li>
+                                    <p style="padding-left: 96px;"><span>三级菜单</span></p>
+                                </li>
+                                <li>
+                                    <p style="padding-left: 96px;"><span>三级菜单</span></p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p style="padding-left: 68px;"><span>二级菜单</span></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul> -->
+        </aside>
+        <!-- 右侧内容 -->
+        <article id="folder-content">
+            <!-- 路径导航 -->
+            <div id="breadmenu">
+                <label class="checked-all checked">
+                    <input type="checkbox" id="checked-all" />
+                    <span class="iconfont icon-checkbox-checked"></span>
+                </label>
+                <nav class="bread-nav">
+                    <!-- <a>微云</a>
+                    <a>js课程</a>
+                    <span>DOM操作</span> -->
+                </nav>
+            </div>
+            <!-- 文件夹区域 -->
+            <ul id="folders">
+                <!-- <li class="folder-item active">
+                    <img src="img/folder-b.png" alt="">
+                    <span class="folder-name">js程序设计</span>
+                    <input type="text" class="editor" value="js程序设计">
+                    <label class="checked">
+                        <input type="checkbox" />
+                        <span class="iconfont icon-checkbox-checked"></span>
+                    </label>   
+                </li>
+                <li class="folder-item">
+                    <img src="img/folder-b.png" alt="">
+                    <span class="folder-name">js程序设计</span>
+                    <input type="text" class="editor" value="js程序设计">
+                    <label class="checked">
+                        <input type="checkbox" />
+                        <span class="iconfont icon-checkbox-checked"></span>
+                    </label>   
+                </li> -->
+            </ul>
+        </article>
+    </div>
+</main>
+<ul id="contextmenu">
+    <li class="iconfont icon-lajitong">删除</li>
+    <li class="iconfont icon-yidong">移动到</li>
+    <li class="iconfont icon-zhongmingming">重命名</li>
+</ul>   
+<div class="alert alert-success">删除文件成功</div>
+<div class="alert alert-warning">请选择文件</div> 
+<div id="mask"></div>
+<div class="move-alert ">
+    <h2 class="move-alert-title">选择存储位置</h2>
+    <a class="clos iconfont icon-guanbi"></a>
+    <div class="move-alert-menu tree-menu">
+        <ul>
+            <li class="open">
+                <p class="has-child"><span>一级菜单</span></p>
+                <ul>
+                    <li class="open">
+                        <p class="has-child active" style="padding-left: 68px;"><span>二级菜单</span></p>
+                        <ul>
+                            <li>
+                                <p style="padding-left: 96px;"><span>三级菜单</span></p>
+                            </li>
+                            <li>
+                                <p style="padding-left: 96px;"><span>三级菜单</span></p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p style="padding-left: 68px;"><span>二级菜单</span></p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <nav class="confirm-btns">
+        <a>确定</a>
+        <a>取消</a>
+    </nav>
+</div>
+<div class="confirm">
+    <a class="clos iconfont icon-guanbi"></a>
+    <p class="confirm-text iconfont icon-yiwen">确定要删除这个文件夹吗?</p>
+    <nav class="confirm-btns">
+        <a>确定</a>
+        <a>取消</a>
+    </nav>
+</div>
+<script src="js/data.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

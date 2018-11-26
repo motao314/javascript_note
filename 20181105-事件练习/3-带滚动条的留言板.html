@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+h2,
+p {
+    margin: 0;
+}    
+.box {
+    margin: 30px auto;
+    width: 300px;    
+}
+#user,
+#message {
+    box-sizing: border-box;
+    width: 300px;
+    border: 1px solid #000;
+    padding: 10px;
+    height: 100px;
+    resize: none;
+    display: block;
+}
+#user {
+    padding: 0 10px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+#btn {
+    display: block;
+    margin: 10px auto;
+    width: 60%;
+    height: 40px;
+}
+#list {
+    position: relative;
+    border-top: 1px solid #000;
+    padding-right: 10px;
+    height: 200px;
+    overflow: hidden;
+}
+#listInner {
+    padding: 10px 0 0;
+    margin: 0;
+    list-style: none;
+}
+#list li {
+    position: relative;
+    font: 14px/30px "宋体";
+    border-bottom: 1px solid #000;
+    padding: 0 15px;
+    overflow: hidden;
+    height: 0;
+}
+.clos {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
+#scroll-track {
+    display: -none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    background: rgba(0, 0, 0, .3);
+}
+#scroll-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    min-height: 14px;
+    background: #000;
+}
+</style>
+</head>
+<body>
+<div class="box">
+    <input type="text" id="user" value="小明" />
+    <textarea id="message">我就是传说中的无敌小明</textarea>
+    <button id="btn">提交留言</button>
+    <div id="list">
+        <ul id="listInner">
+            <li style="height: auto">
+                <h2 class="user">小王说:</h2>
+                <p>呼叫无敌小明</p>
+                <a href="javascript:;" class="clos">删除</a>
+            </li>
+            <li style="height: auto">
+                <h2 class="user">老师说:</h2>
+                <p>小明滚出去</p>
+                <a href="javascript:;" class="clos">删除</a>
+            </li>
+        </ul>
+        <div id="scroll-track">
+            <div id="scroll-bar"></div>
+        </div>
+    </div>
+</div>
+<script src="miaov.js"></script>
+<script>
+(function(){
+    let user = document.querySelector("#user");
+    let message = document.querySelector("#message");
+    let btn = document.querySelector("#btn");
+    let list = document.querySelector("#listInner");
+    let scrollTrack = document.querySelector("#scroll-track");
+    let scrollBar = document.querySelector("#scroll-bar");
+    let listWrap = document.querySelector("#list");
+
+    /*
+        滚轮 和 拖拽
+
+        1. 拖动滚动条移动
+        2. 滚轮移动滚动条位置
+        3. 根据内容多少，判定滚动条是否需要显示及移动
+        4. 根据内容多少，计算滚动条高度
+        5. 根据内容多少及比例，计算内容移动距离
+
+    */
+    
+    let isScroll = false;
+    let scaleH = 1; //根据内容计算滚动条高度
+    let scale = 1;
+    let scroll = 0;
+    let minScroll = 0;
+    let maxScroll = scrollTrack.clientHeight - scrollBar.offsetHeight;
+
+    css(list,"translateY",0)
+    resizeScroll();
+
+    // 拖拽滚动条移动
+    drag(scrollBar);
+    function drag(el){
+        let startY = 0;
+        let startMouse = 0;
+        el.addEventListener("mousedown",function(e){
+            if(!isScroll)return;
+            startMouse = e.clientY;
+            startY = scroll;
+            e.preventDefault();
+            document.addEventListener("mousemove",move);   
+            document.addEventListener("mouseup",function(){
+                document.removeEventListener("mousemove",move);  
+            },{
+                once:true
+            })
+        });
+        function move(e){
+            let nowMouse = e.clientY;
+            let dis = nowMouse - startMouse;
+            scroll = startY + dis;
+            scroll = scroll < minScroll?minScroll:scroll;
+            scroll = scroll > maxScroll?maxScroll:scroll;
+            css(scrollBar,"translateY",scroll);
+            toScroll();
+        }
+    }
+
+    // 滚动条改变scroll
+    scrollWheel(listWrap,function(){
+        if(!isScroll)return;
+        scroll -= 10;
+        scroll = scroll < minScroll?minScroll:scroll;
+        css(scrollBar,"translateY",scroll);
+        toScroll();
+    },function(){
+        if(!isScroll)return;
+        scroll += 10;
+        scroll = scroll > maxScroll?maxScroll:scroll;
+        css(scrollBar,"translateY",scroll);
+        toScroll();
+    });
+
+
+    // 根据滚动条位置及比例，换算内容应该移动的位置
+
+    function toScroll(){
+        css(list,"translateY",-scroll*scale);
+    }
+
+    // 计算滚动条高度
+    function resizeScroll(){
+        isScroll = listWrap.clientHeight < list.offsetHeight;
+        if(isScroll){ //判断需不需显示滚动条
+            scrollTrack.style.display = "block";
+
+            // 计算滚动条高度
+            scaleH = listWrap.clientHeight/list.offsetHeight;
+            css(scrollBar,"height",scrollTrack.offsetHeight*scaleH);
+            
+            // 计算滚动条移动的最大距离
+            maxScroll = scrollTrack.clientHeight - scrollBar.offsetHeight;
+
+            // 计算滚动条移动 和 内容移动之间的比例
+            scale = (list.offsetHeight - listWrap.clientHeight)/maxScroll;
+
+            // 计算滚动条位置
+            scroll = -css(list,"translateY")/scale;
+            scroll = scroll > maxScroll?maxScroll:scroll;
+            css(scrollBar,"translateY",scroll);
+            
+            // 计算内容的位置
+            toScroll();
+
+        } else {
+            scrollTrack.style.display = "none";
+        }
+    }
+
+
+    // 留言
+    list.addEventListener("click",function(e){
+        if(e.target.className == "clos"){
+            let li = e.target.parentNode;
+            css(li,"translateX",0);
+            css(li,"scaleY",1);
+            mTween({
+                el: li,
+                attr: {
+                    translateX: -li.offsetWidth,
+                    scaleY: 0,
+                    opacity: 0
+                },
+                cb: function(){
+                    mTween({
+                        el: li,
+                        attr: {
+                            height: 0
+                        },
+                        cb: function(){
+                            list.removeChild(li);
+                            resizeScroll();
+                        },
+                        in: function(){
+                            resizeScroll();
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+    btn.addEventListener("click",function(){
+        let newLi = document.createElement("li");
+        newLi.innerHTML = `
+            <h2 class="user">${user.value}说:</h2>
+            <p>${message.value}</p>
+            <a href="javascript:;" class="clos">删除</a>
+        `;
+        list.insertBefore(newLi,list.children[0]);
+        css(newLi,"opacity",0);
+        mTween({
+            el: newLi,
+            attr: {
+                height: newLi.scrollHeight
+            },
+            time: 600,
+            type: "backOut",
+            cb:function(){
+                mTween({
+                    el: newLi,
+                    attr: {
+                        opacity: 1
+                    }
+                });
+                resizeScroll();
+            },
+            in: function(){
+                resizeScroll();
+            }
+        });
+    });
+})();    
+</script>
+</body>
+</html>

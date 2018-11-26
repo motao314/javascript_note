@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+    #box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    #box2 {
+        position: absolute;
+        left: 100px;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background: blue;
+    }
+</style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box2"></div>
+<script> 
+function Drag(el) {
+    this.el = el;
+    this.startMouse = {};
+    this.startPosition = {};
+    const THIS = this;
+    function fn(e){
+        THIS.move(e);
+    }
+    this.el.addEventListener("mousedown",function(e){
+        THIS.start(e);
+        document.addEventListener("mousemove",fn);
+        document.addEventListener("mouseup",function(){
+            document.removeEventListener("mousemove",fn);
+        },{
+            once:true
+        });
+        e.preventDefault();
+    });
+} 
+Drag.prototype = {
+    constructor: Drag,
+    start(e){
+        this.startMouse.x = e.clientX;
+        this.startMouse.y = e.clientY;
+        this.startPosition.x = this.getStyle("left");
+        this.startPosition.y = this.getStyle("top");
+    },
+    move(e){
+        let nowMouse = {
+            x: e.clientX,
+            y: e.clientY
+        };
+        let disMouse = {
+            x: nowMouse.x - this.startMouse.x,
+            y: nowMouse.y - this.startMouse.y
+        };
+        let l = this.startPosition.x + disMouse.x;
+        let t = this.startPosition.y + disMouse.y;
+        this.setStyle("left",l);
+        this.setStyle("top",t);
+    },
+    setStyle(attr,val){
+        this.el.style[attr] = val + "px"
+    },
+    getStyle(attr){
+        return parseFloat(getComputedStyle(this.el)[attr])
+    }
+};
+
+// 构造函数继承
+function CloneDrag(el){
+    Drag.call(this,el);
+}
+
+(function(){
+    let box = document.querySelector("#box");
+    let box2 = document.querySelector("#box2");
+    new Drag(box);
+    console.log(new CloneDrag(box2));
+})();    
+</script>
+</body>
+</html>

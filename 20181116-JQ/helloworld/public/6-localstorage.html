@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul id="list">
+
+</ul>    
+<script>
+// let names = {name:["孔繁磊","魏守丽","王江波","闫慧玲","白姣姣","常杨杨","高军权","杨深","姜润丰","常唱","马华","银宏","胡林","曹秀媛","刘明轩","张明","李钦举","刘一帆","戈磊","李义","张晟","王寒颖","田文文","王红妹","刘慧","孔云云","白雪","卜若琪"]};  
+let names = ["孔繁磊","魏守丽","王江波","闫慧玲","白姣姣","常杨杨","高军权","杨深","姜润丰","常唱","马华","银宏","胡林","曹秀媛","刘明轩","张明","李钦举","刘一帆","戈磊","李义"];   
+
+//localStorage.setItem("names",JSON.stringify(names));
+
+localStorage.setItem("names",JSON.stringify(names));
+localStorage.setItem("oldNames",JSON.stringify(["张晟","王寒颖","田文文","王红妹","刘慧","孔云云","白雪","卜若琪"]));
+
+//localStorage.clear();
+
+//localStorage.removeItem("oldNames");
+
+console.log(localStorage.getItem("names"));
+
+/*
+    clear() 清除所有条目
+    getItem(name) 获取
+    removeItem(name) 删除
+    setItem(name,value)
+*/    
+</script>    
+</body>
+</html>

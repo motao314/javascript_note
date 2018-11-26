@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul id="list"></ul>
+<script>
+(function(){
+    let list = document.querySelector("#list");
+    console.time(1);
+    let fragment = document.createDocumentFragment();
+    for(let i = 0; i < 10000; i++){
+        let newLi = document.createElement("li");
+        newLi.innerHTML = "第"+i+"个li";
+        fragment.appendChild(newLi);
+    }
+    list.appendChild(fragment);
+    console.timeEnd(1);
+})();
+
+</script>    
+</body>
+</html>

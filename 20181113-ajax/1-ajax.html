@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+ <!--
+    Ajax 即“Asynchronous Javascript And XML”（异步 JavaScript 和 XML），是指一种创建交互式网页应用的网页开发技术。
+
+    Ajax 必须在服务器环境下运行
+
+ -->   
+ <form action="https://www.baidu.com/s" method="GET">
+    <input type="text" name="wd" />
+    <input type="text" name="key" />
+    <input type="submit" />
+ </form>
+<script>
+// https://www.baidu.com/s?wd=%E5%A6%99%E5%91%B3%E8%AF%BE%E5%A0%82
+// https://www.baidu.com/s?wd=hehe
+
+//node -v
+   
+// let ajax = new XMLHttpRequest(); //创建 ajax 对象
+// ajax.open("GET","1.txt");// open(method,url,async) async: true 异步 false 同步 初始化请求 
+// ajax.send(); // 发送请求消息
+// ajax.onload = function(){ //接收请求
+//    //console.log(ajax.responseText);
+//    let h1 = document.createElement("h1");
+//    h1.innerHTML = ajax.responseText;
+//    document.body.appendChild(h1);
+  
+// }
+</script> 
+</body>
+</html>

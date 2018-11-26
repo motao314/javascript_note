@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #box {
+            position: relative;
+            margin: 200px;
+        }
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            position: relative;
+            left: 10px;
+            top: 10px;
+            margin: 0;
+            padding: 10px;
+            list-style: none;
+        }
+        #list li{
+            background: red;
+            height: 30px;
+            color: #fff;
+        }
+        #list li:empty {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul id="list">
+        <li>哈1</li>
+        <li>哈2</li>
+        <li>哈3</li>
+    </ul>
+</div>    
+<script>
+/*
+    $(el).on("event",function())
+*/
+$("#box").on("click",fn);
+function fn(){
+    console.log(1);
+}
+setTimeout(()=>{
+    //$("#box").off("click",fn);
+    //$("#box").off("click",fn);
+    //$("#box").off("click");
+    //$("#box").off();
+    // 模拟某种事件
+    $("#box").trigger("click");
+},2000);
+$("#box").on("click",function(){
+    console.log(2);
+});
+$("#box").one("click",function(){
+    console.log(3);
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+// Person.say = function(){
+//     console.log("这是Person的say");
+// };
+// Person.prototype.say = function(){
+//     console.log("这是Person原型的say");
+// }
+// Function.say = function(){
+//     console.log("这是Function的say");
+// }
+
+// Function.prototype.say = function(){
+//     console.log("这是Function原型的say");
+// }
+
+// Object.say = function(){
+//     console.log("这是Object的say");
+// }
+Object.prototype.say = function(){
+    console.log("这是Object原型的say");
+}
+let tww = new Person("tww",15);
+// tww.say = function(){
+//     console.log("这是tww的say");
+// };
+//tww.say();
+
+Person.say();
+
+/*
+    Array.push
+    Array.from
+*/
+
+//[12,234].push()
+//Array.from([1,2,3]);
+console.dir(Array);
+
+/*
+Person.__proto__ -->  Function.protoType
+Function.protoType.__proto__ --> Object.protoType
+*/
+</script>    
+</body>
+</html>

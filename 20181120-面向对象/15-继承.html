@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function Parson(name,age){
+    this.name = name;
+    this.age = age;
+}
+Parson.prototype.say = function(){
+    console.log("我是一个快乐的青年");  
+};
+
+/* 构造函数继承*/
+function WebFE(...arg){
+    Parson.apply(this,arg);
+}
+
+/* 原型浅拷贝 */
+// for(let s in Parson.prototype){
+//     WebFE.prototype[s] = Parson.prototype[s];
+// }
+
+/*原型深拷贝*/
+// WebFE.prototype = clone(Parson.prototype);
+
+// function clone(data){
+//     if(typeof obj == "object"){
+//         return Array.isArray(data)?cloneArray(data):cloneObj(data);
+//     }
+//     return data;
+// }
+// function cloneArray(arr){
+//     let newArr = [];
+//     for(let i = 0; i < arr.length; i++){
+//         newArr.push(clone(arr[i]));
+//     }
+//     return newArr;
+// }
+// function cloneObj(obj){
+//     let newObj = {};
+//     for(let s in obj){
+//         newObj[s] = clone(obj[s]);
+//     }
+//     return newObj;
+// }
+
+// 原型链继承
+WebFE.prototype = extend(Parson);
+function extend(pClass){
+    function Fn(){}
+    Fn.prototype = pClass.prototype;
+    return new Fn;
+}
+
+</script>    
+</body>
+</html>

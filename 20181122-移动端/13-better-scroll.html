@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/bscroll.js"></script>
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 10vw;
+            height: 100%;
+        }
+        body {
+            position: relative;
+            margin: 0;
+            height: 100%;
+        }
+        #wrap {
+            height: 100%;
+            overflow: hidden;
+        }
+        #list {
+            width: 200%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li {
+            font: .5rem/1.2rem "宋体";
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>  
+<div id="wrap">
+    <ul id="list"></ul>
+</div>  
+<script>
+/*
+    http://ustbhuangyi.github.io/better-scroll/doc/zh-hans/#better-scroll%20%E6%98%AF%E4%BB%80%E4%B9%88
+
+
+
+*/    
+    // 元素生成
+(function(){
+    let list = document.querySelector("#list");
+    let inner = "";
+    for(let i = 0; i < 100; i++){
+        inner += '<li>这是第'+i+'个li</li>';
+    }
+    list.innerHTML = inner;
+})();
+
+// 滑屏
+(function(){
+    let wrap = document.querySelector("#wrap");
+    let list = document.querySelector("#list");
+    new BScroll(wrap,{
+        tap: true,
+        bounce: true
+    });
+    list.addEventListener("tap",function(){
+        console.log("点击");
+    })
+})();
+</script>
+</body>
+</html>

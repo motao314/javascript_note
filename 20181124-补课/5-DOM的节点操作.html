@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="box1">
+    <span id="span">box1</span>
+</div>
+<div id="box2"></div>
+<script>
+// var span = document.getElementById("span");
+// var box2 = document.getElementById("box2");
+// box2.appendChild(span);
+
+
+var span = document.getElementById("span");
+var box = document.getElementById("box1");
+var h1 = document.createElement("h1");
+h1.innerHTML = "hello world";
+box.replaceChild(h1,span);
+
+
+
+
+
+/*
+新增DOM节点:
+    document.createElement("tagName") 新建节点
+    node.cloneNode(clonestate) 克隆节点
+        clonestate 
+            true 克隆属性及后代
+            false 只克隆元素本身及属性
+添加节点：
+    parenNode.appendChild(node)
+    parenNode.insertBefore(node1,node2)
+        在 parenNode 下，把 node1 放在 node2 之前
+    如果添加的是一个页面上已有的节点,会先从原位置删除，再添加到新位置
+
+替换节点:
+    parenNode.replaceChild(node1,node2); 在 parenNode 下用node1替换掉node2
+
+删除节点：
+    parenNode.removeChild(node);
+
+*/    
+</script>    
+</body>
+</html>

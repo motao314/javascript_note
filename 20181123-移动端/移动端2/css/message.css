@@ -1,0 +1,14 @@
+.message {
+    display: block;
+    box-sizing: border-box;
+    margin: .5rem auto;
+    padding: .25rem;
+    width: 80vw;
+    height: 3rem;
+    border: 1px solid #ccc;
+    font: .3rem/.5rem "宋体";
+}
+.message-btn {
+    display: block;
+    margin: 0 auto;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<button id="show">运动</button>
+<button id="stop">停止</button>
+<ul id="list">
+    <li>选项1</li>
+    <li>选项2</li>
+    <li>选项3</li>
+</ul>
+<script>
+/*
+index() 索引
+hide() 隐藏
+show() 显示
+
+easing ：  swing linear
+
+slideDown()
+slideUp()
+*/
+$(function(){
+    $("#show").click(function(){
+        // $("#list").animate({
+        //     width: 500,
+        //     opacity: 0
+        // });
+        // $("#list").animate({
+        //     width: 500,
+        //     opacity: 0
+        // },1000);
+        // $("#list").animate({
+        //     width: 500,
+        //     opacity: 0
+        // },1000,"linear");
+
+        $("#list").animate({width:500}).delay(1000).animate({height:500}).delay(2000).animate({marginLeft:200});
+    });
+    $("#stop").click(()=>{
+        console.log(111);
+        //$("#list").stop(true,true);
+        $("#list").finish();
+    });
+    // 关掉页面上所有的动画
+    //jQuery.fx.off=true;
+});
+</script>
+</body>
+</html>

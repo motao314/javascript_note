@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<input type="text" />
+<script>
+function fn(data){
+    console.log(data);
+}
+$(function(){
+    $("input").on("input",function(){
+        let s = '<script src="http://list.mogujie.com/search?callback=fn&_version=8193&ratio=3:4&cKey=15&page=2"><\/script>';
+        $(document.body).append(s);
+    });
+
+    /*$("input").on("input",function(){
+        $.ajax({
+            url: "http://list.mogujie.com/search",
+            dataType: "jsonp",
+            data: {
+                _version: 8193,
+                ratio: '3:4',
+                cKey: 15,
+                page: 1
+            },
+            jsonp: "cb",
+            success:function(data){
+                console.log(data);
+            }
+        });
+    });*/
+});
+ 
+</script>    
+</body>
+</html>

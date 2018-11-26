@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+p {
+    margin: 0;
+}
+#wrap {
+    margin: 30px auto;
+    border: 1px solid #000;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    transform-style: preserve-3d;
+    overflow: hidden;
+}
+#inner {
+    backface-visibility: hidden;
+    font: 14px/36px "宋体";
+    text-indent: 2em;
+}
+#track {
+    position: absolute;
+    right: 0;
+    top: 16px;
+    bottom: 16px;
+    width: 16px;
+    background: rgba(0, 0, 0, .3);
+} 
+#topBar,
+#bottomBar {
+    position: absolute;
+    top: -16px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #000;
+    font: 12px/14px "宋体";
+    text-align: center;
+    cursor: pointer;
+}   
+#bottomBar {
+    top: 100%;
+}
+#bar {
+    width: 16px;
+    min-height: 20px;
+    background: #000;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+    <div id="inner"></div>
+    <div id="track">
+        <a id="topBar">▲</a>   
+        <div id="bar"></div>
+        <a id="bottomBar">▼</a> 
+    </div>
+</div>   
+<script src="miaov.js"></script>     
+<script>
+// 内容
+(function(){
+    let inner = document.querySelector("#inner");
+    let s = "";
+    for(let i = 0; i < 100; i++){
+        s += `<p>这是第${i}个p</p>`;
+    }
+    inner.innerHTML = s;
+})();
+
+// 滚动条
+(function(){
+let wrap = document.querySelector("#wrap");
+let inner = document.querySelector("#inner");    
+let track = document.querySelector("#track");
+let bar = document.querySelector("#bar");
+let topBar = document.querySelector("#topBar");
+let bottomBar = document.querySelector("#bottomBar");
+let scrollY = 0; //滚动条位置
+let scrollMin = 0;
+css(bar,"height",wrap.clientHeight/inner.offsetHeight*track.clientHeight);
+let scrollMax = track.clientHeight - bar.offsetHeight;//滚动条可以移动的总距离
+let innerMax = inner.offsetHeight - wrap.clientHeight;//内容可以移动的总距离
+
+
+// 可视内容高度/内容总高度 = 滚动条高度/轨道高度
+
+// 滚动条高度 = 可视内容高度/内容总高度*轨道高度
+
+
+topBar.addEventListener("click",()=>{
+    scrollY -= 10;
+    scrollTo();
+});
+bottomBar.addEventListener("click",()=>{
+    scrollY += 10;
+    scrollTo();
+});
+
+// 根据 scrollY 把元素移动至相应的内容 
+function scrollTo(){
+  scrollY = (scrollY<scrollMin)?(scrollMin):(scrollY>scrollMax?scrollMax:scrollY);
+  css(bar,"translateY",scrollY); 
+  let innerY =  -scrollY/scrollMax*innerMax;
+  //console.log(innerY);
+  css(inner,"translateY",innerY); 
+}
+
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable = no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80%;
+            height: 200px;
+            background: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+document.addEventListener("touchstart",function(e){
+    e.preventDefault();
+},{
+    passive:false
+});    
+(function(){
+   let box = document.querySelector("#box");
+   box.addEventListener("touchmove",function(e){
+       this.innerHTML = "当前屏幕上的手指个数" + e.touches.length;
+       this.innerHTML += "<br/>当前元素上的手指个数" + e.targetTouches.length;
+       this.innerHTML += "<br/>触发当前事件的手指个数" + e.changedTouches.length;
+   })
+})(); 
+</script>    
+</body>
+</html>

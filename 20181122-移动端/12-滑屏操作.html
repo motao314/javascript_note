@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 10vw;
+            height: 100%;
+        }
+        body {
+            position: relative;
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #list {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li {
+            font: .5rem/1.2rem "宋体";
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>    
+<ul id="list"></ul>
+<script>
+// 元素生成
+(function(){
+    let list = document.querySelector("#list");
+    let inner = "";
+    for(let i = 0; i < 100; i++){
+        inner += '<li>这是第'+i+'个li</li>';
+    }
+    list.innerHTML = inner;
+})();
+document.addEventListener("touchstart",function(e){
+    e.preventDefault();
+},{
+    passive:false
+}); 
+// 滑屏
+(function(){
+    let list = document.querySelector("#list");
+    let startPoint = 0;
+    let startPosition = 0;
+    let lastY = 0;
+    let lastDis = 0;
+    list.addEventListener("touchstart",function(e){
+        startPoint = e.changedTouches[0].pageY;
+        startPosition = this.offsetTop;
+        lastY =  e.changedTouches[0].pageY;
+        lastDis = 0;
+    });
+    list.addEventListener("touchmove",function(e){
+        let nowPoint = e.changedTouches[0].pageY;
+        let dis = nowPoint - startPoint;
+        list.style.top = dis + startPosition + "px";
+        lastDis = nowPoint - lastY;
+        lastY =  e.changedTouches[0].pageY;
+    });
+    list.addEventListener("touchend",function(){
+        console.log(lastDis);
+    });
+})();
+/*
+    1. 方向判断
+    2. 缓冲动画
+    3. 回弹动画
+    4. 自定义滚动条
+*/
+</script>
+</body>
+</html>

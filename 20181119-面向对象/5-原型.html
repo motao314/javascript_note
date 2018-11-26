@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+// Person.prototype.say = function(){
+//     console.log("大家好，我叫"+this.name);
+// }
+// Person.prototype.getJob = function(){
+//     console.log("前端花式编程");
+// }
+
+Person.prototype = {
+    say(){
+        console.log("大家好，我叫"+this.name);
+    },
+    getJob(){
+        console.log("前端花式编程");
+    }
+}
+
+
+
+let Tww = new Person("tww",15);
+let 承龙 = new Person("承龙",50);
+
+console.log(Tww);
+console.log(承龙);
+// Tww.say();
+// 承龙.say();
+
+/*
+每一个函数都有一个prototype属性，对应的值是一个对象，也称之为原型对象。
+所有通过拥有这个原型的构造函数创建出来的对象，都共享原型对象上的方法和属性。(当我调用对象的某个属性或方法对象，没有的时候，就去 __proto__ 中找)
+
+也就是说把一类对象共享的属性和方法放在原型上
+prototype
+	函数的原型
+	可读可写
+	当改写后要将constructor指回构造函数
+
+constructor
+	原型对象上的属性
+	constructor指向拥有这个原型的构造函数
+
+
+*/
+
+</script>    
+</body>
+</html>

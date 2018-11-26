@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/* 滚轮事件 */
+document.addEventListener("mousewheel",function(e){
+    console.log(e.wheelDelta);
+});
+document.addEventListener("DOMMouseScroll",function(e){
+    console.log(e.detail);
+});
+/*
+
+ chrome 和 IE
+
+ mousewheel 滚轮事件
+       e.wheelDelta 监听滚轮方向
+            负值 向下滚动
+            正值 向上滚动
+
+ firefox 
+    DOMMouseScroll 滚轮事件
+        e.detail 监听滚轮方向
+            负值 向上滚动
+            正值 向下滚动
+*/
+</script>    
+</body>
+</html>

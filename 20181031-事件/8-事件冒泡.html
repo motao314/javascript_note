@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: fixed;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #div {
+            position: fixed;
+            left: 100px;
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+        #div2 {
+            position: fixed;
+            left: 200px;
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="div">
+        <div id="div2"></div>
+    </div>
+</div>    
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    let div = document.querySelector("#div");
+    let div2 = document.querySelector("#div2");
+    window.addEventListener("click",function(){
+        console.log("window");
+    })
+    document.addEventListener("click",function(){
+        console.log("document");
+    })
+    document.documentElement.addEventListener("click",function(){
+        console.log("HTML");
+    })
+    document.body.addEventListener("click",function(){
+        console.log("body");
+    });
+    box.addEventListener("click",function(){
+        console.log("box");
+    });
+    div.addEventListener("click",function(){
+        console.log("div");
+    });
+    div2.addEventListener("click",function(){
+        console.log("div2");
+    });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrap {
+            margin: 200px auto;
+            width: 300px;
+            padding: 0;
+            height: 50px;
+            list-style: none;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+        .wrap li {
+            float: left;
+            margin: 0 10px;
+            width: 30px;
+        }
+        .wrap span {
+            display: block;
+            font: 14px/48px "宋体";
+            text-align: center;
+            background: #000;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <ul class="wrap">
+        <li>
+            <span>0</span>
+            <span>1</span>
+        </li>
+        <li>
+            <span>0</span>
+            <span>1</span>
+        </li>
+        <li>
+            <span>0</span>
+            <span>1</span>
+        </li>
+        <li>
+            <span>0</span>
+            <span>1</span>
+        </li>
+        <li>
+            <span>0</span>
+            <span>1</span>
+        </li>
+        <li>
+            <span>0</span>
+            <span>1</span>
+        </li>
+    </ul>
+<script src="miaov.js"></script>    
+<script>
+(function(){
+    let lists = document.querySelectorAll(".wrap li");
+    lists.forEach((item)=>{
+        item.now = 0;
+        item.isMove = false;
+        scrollWheel(item,function(e){
+            next(this);
+            e.preventDefault();
+        },function(){
+            prev(this);
+            e.preventDefault();
+        });
+    });
+    function prev(el){
+        if(el.isMove){
+            return ;
+        }
+        let span = el.children;
+        css(el,"translateY",-50);
+        let prevNub = el.now - 1<0?9:el.now - 1;
+        el.isMove = true;
+        span[0].innerHTML = prevNub;
+        span[1].innerHTML = el.now;
+        mTween({
+            el,
+            attr: {
+                translateY: 0
+            },
+            cb: function(){
+                el.now = prevNub; 
+                el.isMove = false;
+            }
+        });
+    }
+    function next(el){
+        if(el.isMove){
+            return ;
+        }
+        let span = el.children;
+        css(el,"translateY",0);
+        let nextNub = el.now + 1>9?0:el.now + 1;
+        span[0].innerHTML = el.now;
+        span[1].innerHTML = nextNub;
+        el.isMove = true;
+        mTween({
+            el,
+            attr: {
+                translateY: -50
+            },
+            cb: function(){
+                el.now = nextNub; 
+                el.isMove = false;
+            }
+        });
+    }
+})();    
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="file" id="file" multiple />
+<input type="button" value="上传" id="btn" />
+<script>
+(function(){
+    let btn = document.querySelector("#btn");
+    let file = document.querySelector("#file");
+    btn.onclick = function(){
+        // console.dir(file.files[0]);
+        let formData = new FormData;
+        let ajax = new XMLHttpRequest;
+        ajax.open("POST","/upload");
+        for(let i = 0; i < file.files.length; i++){
+            formData.append("file",file.files[i]);
+        }
+        ajax.send(formData);
+        ajax.onload = function(){
+            console.log(ajax.response);
+        };
+    };
+})()
+</script>
+</body>
+</html>

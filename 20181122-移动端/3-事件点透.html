@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable = no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30vw;
+            height: 30vw;
+            background: red;
+            opacity: .5;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">按钮</button>
+<div id="box"></div>
+<script>
+(function(){
+   let box = document.querySelector("#box");
+   /*
+        touchstart --> mousedown
+        touchmove --> mousemove
+        touchend --> mouseup
+
+        touchstart 手指在元素上摁下
+        touchmove 手指在元素上摁下后，在屏幕中移动
+        touchend 手指在元素上摁下后，在屏幕中抬起
+
+        所有的鼠标事件，在移动端都可以执行，但是会有 300ms 左右的延迟
+        
+        事件点透:
+            当我们手指在屏幕中执行操作时，浏览器会记录手指坐标，300ms 之后，在该坐标位置查找元素，查看元素是否有鼠标事件，有就执行
+
+
+   */
+   box.addEventListener("touchend",function(){
+        this.style.display = "none";
+   });
+   btn.addEventListener("click",function(){
+       alert(2);
+   })
+})(); 
+</script>    
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .border{
+            border:1px solid #ccc;
+            height:10px;
+            width:50%;
+        }
+        .line{
+            height: 100%;
+            width:0;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<input type="file" id="file" multiple />
+<input type="button" value="上传" id="btn" />
+<div class="border">
+    <div class="line"></div>
+</div>
+<script>
+(function(){
+    let btn = document.querySelector("#btn");
+    let file = document.querySelector("#file");
+    let border = document.querySelector('.border');
+    let line = document.querySelector('.line');
+    // withCredentials: false 跨域请求时 是否携带cookie
+    btn.onclick = function(){
+        // console.dir(file.files[0]);
+        let formData = new FormData;
+        let ajax = new XMLHttpRequest;
+        /*
+            Access to XMLHttpRequest at 'http://127.0.0.1:8088/upload' from origin 'http://127.0.0.1:8099' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+            
+            同源策略是浏览器的一个安全功能，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源。所以a.com下的js脚本采用ajax读取b.com里面的文件数据是会报错的。
+        */
+
+
+
+        // 27.0.0.1:8099/
+        ajax.open("POST","http://127.0.0.1:8099/upload");
+        for(let i = 0; i < file.files.length; i++){
+            formData.append("file",file.files[i]);
+        }
+        ajax.upload.onloadstart = function(){
+            console.log(0);
+        };
+        ajax.upload.onprogress = function(e){
+            console.log(e.loaded,e.total);
+            // e.loaded 已上传大小 
+            // e.total 总大小
+            line.style.width = `${e.loaded/e.total*border.clientWidth}px`;
+        };
+        ajax.upload.onloadend = function(){
+            console.log(2);
+        };
+        ajax.send(formData);
+        ajax.onload = function(){
+            console.log(ajax.response);
+        };
+    };
+})()
+
+// 所谓同源是指，域名，协议，端口相同。
+
+/*
+    https//:127.0.0.1:80
+    https//:localhost:80
+*/
+</script>
+</body>
+</html>

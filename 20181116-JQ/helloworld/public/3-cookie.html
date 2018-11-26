@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//console.log(document.cookie);   
+// 记录 cookie 
+// sername=John Smith; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/
+document.cookie = `name2=mt; expires = ${new Date(Date.now()-86400000)}`;
+console.log(document.cookie);
+</script>    
+</body>
+</html>

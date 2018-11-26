@@ -1,0 +1,161 @@
+域名地址：https://data.miaov.com/
+
+1)是否登录
+	/user/islogin
+
+POST：	
+返回值：
+	code:0 已经登陆
+	code:1 未登陆
+
+
+
+2)注册：
+	/user/register
+POST：
+	verify:验证码
+	username:用户名
+	password:密码
+	repassword:确认密码
+返回值：
+	code:0 msg:注册成功
+	code:1 msg:验证码错误
+	code:2 msg:密码和重复密码不一致！
+	code:3(注册失败) msg:会提示你不同的注册失败原因
+	code:4 msg:注册已关闭(后台可控制)
+
+3)登陆：
+	/user/login
+POST：
+	verify:验证码
+	username:用户名
+	password:密码
+返回值：
+	code:0 msg:登陆成功
+	code:1 msg:验证码错误
+	code:2(登陆失败) msg:会提示你不同的注册失败原因
+
+
+
+
+//统一
+page：页码
+rows：条数
+
+4)首页内容：
+	/lecturer/lists?page=1&rows=20
+
+参数说明:
+POST：
+	order:desc(降序)/asc(升序) 默认：desc
+	sort:sort(后台可以指定排序)/id(加入的ID)/update_time(修改时间) 默认：按照发布文章的修改时间update_time  desc 降序
+	category_id: 1或2  1表示讲师作品   2表示讲师列表
+	recommend: 推荐位置  如果获取讲师作品 首页展示的 则值为 1 （如果选择全部的则是0）
+
+
+首页获取的数据传递内容是
+	order=desc 
+	sort=id
+	category_id=1
+	recommend=1
+
+[{"id":"22","title":"22\u6587\u7ae0\u54c8\u54c8\u54c8e","category_id":"1","content":"\u7b2c\u4e03\u4f4d\u8f7b\u5fae\u8f7b\u5fae\u8f7b\u5fae\u8bf7\u95ee\u8bf7\u95ee\u8bf7\u95ee\u53bb","recommend":"1","message":"0","good":"122","view":"33","author":"wqw","sort":"1","status":"0","icon":"\/Uploads\/article\/icon\/icon-22.png","create_time":"2018-05-21 20:38:01","update_time":"2018-05-23 20:15:52"},{"id":"18","title":"\u621118\u662f\u7b2c\u4e00\u4e2a\u6587\u7ae0\u6807\u9898","category_id":"1","content":"\u7b2c\u4e03\u4f4d\u8f7b\u5fae\u8f7b\u5fae\u8f7b\u5fae\u8bf7\u95ee\u8bf7\u95ee\u8bf7\u95ee\u53bb","recommend":"1","message":"0","good":"0","view":"0","author":"","sort":"0","status":"0","icon":"","create_time":"2018-05-21 20:38:01","update_time":"2018-05-23 16:03:10"}]
+
+
+
+5)讲师：
+
+讲师列表(返回全部) 他和 1) 接口使用同一个 
+/lecturer/lists?page=1&rows=100
+
+
+POST：
+	order:desc(降序)/asc(升序) 默认：desc
+	sort:sort(后台可以指定排序)/id(加入的ID)/update_time(修改时间) 默认：按照发布文章的修改时间update_time  desc 降序
+	category_id=2  固定值
+	recommend： 0或者不传
+	返回值和 1） 一样
+
+
+6)详情页:
+	/lecturer/info
+POST：
+	article_id : 文章的id 就是列表里的id
+
+返回结果
+{"id":"1","title":"\u6211\u662f\u7b2c\u4e00\u4e2a\u6587\u7ae0\u6807\u98981","category_id":"2","content":"\u7b2c\u4e03\u4f4d\u8f7b\u5fae\u8f7b\u5fae\u8f7b\u5fae\u8bf7\u95ee\u8bf7\u95ee\u8bf7\u95ee\u53bb","recommend":"0","message":"0","good":"0","view":"0","author":"","sort":"0","status":"0","create_time":"2018-05-21 20:38:01","update_time":"2018-05-23 16:03:47","image_path":[{"id":"1","article_id":"22","path":"\/Uploads\/article\/2018\/05\/23\/4a9dab6be201eed8b83817634c4e29fa.png","sort":"1","create_time":"2018-05-23 18:20:27"},{"id":"2","article_id":"22","path":"\/Uploads\/article\/2018\/05\/23\/1d2f45aa6db9c0812e7fb6ca07832979.png"}
+
+
+
+7)详情页留言列表:			
+	/lecturer/getcomment?page=1&rows=20
+POST：
+	article_id : 文章的id 就是列表里的id
+
+返回值:
+	[{"content":"qweqeqweqew","create_time":"2015-10-00 00:00:00","username":"motao"}]
+
+
+
+8)评论接口
+/lecturer/addcomment
+POST参数:
+	article_id:文章id
+	content:评论内容
+返回值
+	{"code":0,"msg":"\u8bc4\u8bba\u6210\u529f"}
+	code:0 msg:评论成功
+	code:1 msg:未登录
+	code:2 msg:文章id不能为空
+	code:3 msg:评论失败
+
+
+
+9)是否点赞接口
+	/lecturer/getgood?
+
+POST参数:
+	article_id:文章id
+
+返回值 
+	{"code":0,"gooid":1}
+	code:0 msg:
+	code:1 msg:未登录
+	code:2 msg: 文章id不能为空
+	code:3 msg:未点赞
+	
+
+
+
+
+10)点赞接口
+	/lecturer/good
+POST参数:
+	article_id:文章id
+
+返回值 
+
+	{"code":0,"msg":"\u8bc4\u8bba\u6210\u529f"}
+	code:0 msg:点赞成功
+	code:1 msg:未登录
+	code:2 msg:收藏文章id不能为空
+	code:3 msg:点赞失败
+
+
+11)取消点赞接口
+	/lecturer/cancelgood?
+POST参数:
+	goodid:在获取是否点赞接口中获取到的id
+	article_id:文章id
+返回值 
+	{"code":0,"msg":"\u8bc4\u8bba\u6210\u529f"}
+	code:0 msg:取消点赞成功
+	code:1 msg:未登录
+	code:2 msg:文章id不能为空
+	code:3 msg:收藏id不能为空
+
+12）/user/logout 退出登录
+
+13) /user/verify 验证码
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+Object.prototype.say = function(){
+    console.log("这是Object原型的say");
+};
+String.prototype.split = function(){
+    return "呵呵";
+};
+
+// console.log(str.split("b"));
+
+// 基于对象，面向过程的开发语言
+
+// str.__proto__ --> String.prototype
+// String.prototype --> Object.prototype
+
+/*
+    构造函数:
+        构造函数 ，是一种特殊的方法。主要用来在创建对象时初始化对象
+
+    构造函数的原型对象: 
+        每一个函数都有一个prototype属性，对应的值是一个对象，也称之为原型对象
+        也就是说把一类对象共享的属性和方法放在原型上
+
+    对象的原型链:  __proto__ 
+         当查找一个属性时，会沿着原型链依次查找 
+         tww. __proto__  --> Person.protoType --> Object.protoType 
+
+
+    构造函数的方法
+        Array.isArray();
+        Date.now();
+
+    原型上的方法     
+        [].push();
+        new Date().getTime();
+*/
+</script>    
+</body>
+</html>

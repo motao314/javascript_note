@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>    
+<script>
+(function(){
+    let box = document.querySelector("#box");
+    // box.onclick = function(){
+    //     console.log(1);
+    // };
+    // box.onclick = function(){
+    //     console.log(2);
+    // };
+
+    /*
+        事件绑定：通过 on 添加事件， 只能添加一个事件处理函数，重复添加，会覆盖
+    */
+   box.addEventListener("click",fn);
+   function fn(){
+       console.log(1);
+       box.removeEventListener("click",fn);
+   }
+})();   
+</script>
+</body>
+</html>

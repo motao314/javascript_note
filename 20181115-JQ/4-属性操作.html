@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+    <style>
+        #list {
+            width: 200px;
+            border: 1px solid #000;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li{
+            background: red;
+            height: 30px;
+        }
+        #list li:empty {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<!--
+    JQuery: http://jquery.com/
+-->
+<ul id="list">
+    <li miaov="哈哈">哈哈0</li>
+    <li>哈哈1</li>
+    <li>哈哈1</li>
+    <li>哈哈1</li>
+    <li class="li">哈哈2</li>
+    <li class="li">哈哈3</li>
+    <li>哈哈4</li>
+    <li>list item 2
+        <ul>
+            <li id="li">list item 2-a</li>
+            <li>list item 2-b</li>
+        </ul>
+    </li>
+</ul>
+<script>
+// 筛选
+/*
+    获取，添加及修改
+    attr(name|pro|key,val|fn)
+
+    // 删除
+    removeAttr(name)
+
+    // addClass
+    // removeClass
+    // toggleClass
+    // hasClass
+*/
+$(function(){
+    console.log($("#list li:eq(0)").attr("miaov"));
+    $("#list li:eq(0)").attr("miaov","呵呵");
+    $("#list li:eq(1)").attr({
+        "miaov": "呵呵",
+        "age" : 18
+    });
+    $("#list li:eq(2)").attr("妙味",function(){return "哈哈"});
+});
+</script>
+</body>
+</html>

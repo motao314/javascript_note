@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            display: none;
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+<a href="#div1">div1</a>
+<a href="#div2">div2</a>
+<a href="#div3">div3</a>
+<div class="div1">div1</div>
+<div class="div2">div2</div>
+<div class="div3">div3</div>
+<script>
+(function(){
+getHash();
+window.addEventListener("hashchange",getHash);
+function getHash(){
+    let hash = location.hash.substr(1);
+    hash = hash==""?"div1":hash;
+    let div = document.querySelectorAll("div");
+    div.forEach(item=>{
+        item.style.display = "none";
+    });
+    let nowDiv =  document.querySelector("."+hash);
+    if(nowDiv){
+        nowDiv.style.display = "block";
+    } else {
+        alert("404");
+    }
+    //nowDiv.style.display = "block";
+}
+})();
+</script>    
+</body>
+</html>

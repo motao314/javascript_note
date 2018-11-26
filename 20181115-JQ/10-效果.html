@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<div id="box">
+    <nav id="navs">
+        <button>按钮1</button>
+        <button>按钮2</button>
+        <button>按钮3</button>
+    </nav>
+    <div id="con">
+        <p>内容1</p>
+        <p>内容2</p>
+        <p>内容3</p>
+    </div>
+</div> 
+<script>
+/*
+index() 索引
+hide() 隐藏
+show() 显示
+*/
+$(function(){
+    $("#con p").hide();//隐藏
+    $("#navs button").on("click",function(){
+        //console.log($(this).index());
+        //$("#con p").hide().eq($(this).index()).show();
+        $("#con p").css("visible","").eq($(this).index()).show();
+    });
+});
+</script>
+</body>
+</html>

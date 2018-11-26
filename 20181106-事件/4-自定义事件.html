@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+// elem.dispatchEvent(event);
+
+let wheelUp = new Event("wheelup");
+let wheeldown = new Event("wheeldown");
+let langTap = new Event("langtap");
+
+/* 定义事件是在什么状态下触发的 */
+document.addEventListener("mousewheel",function(e){
+    if(e.wheelDelta > 0){
+        e.target.dispatchEvent(wheelUp);
+        document.dispatchEvent(wheelUp);
+    } else {
+        e.target.dispatchEvent(wheeldown);
+        document.dispatchEvent(wheeldown);
+    }
+});
+document.addEventListener("DOMMouseScroll",function(e){
+    if(e.detail < 0){
+        e.target.dispatchEvent(wheelUp);
+        document.dispatchEvent(wheelUp);
+    } else {
+        e.target.dispatchEvent(wheeldown);
+        document.dispatchEvent(wheeldown);
+    }
+});
+
+let langTapTimer = 0;
+document.addEventListener("mousedown",function(e){
+    clearTimeout(langTapTimer);
+    langTapTimer = setTimeout(()=>{
+        e.target.dispatchEvent(langTap);
+    },750);
+});
+document.addEventListener("mouseup",function(e){
+    clearTimeout(langTapTimer);
+});
+
+
+box.addEventListener("wheelup",function(){
+    console.log(1);
+});
+box.addEventListener("mousewheel",function(){
+    console.log(2);
+});
+box.addEventListener("langtap",function(){
+    this.style.background = "yellow";
+})
+</script>    
+</body>
+</html>

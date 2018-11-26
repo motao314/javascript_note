@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+class Person {
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    say(){
+        console.log("我是一个快乐的青年");
+    }
+}    
+class WebFE extends Person {
+    constructor(name,age,work){
+        // 在ES6中，如果在子类中需要重新写构造函数，必须先继承父类的构造函数 
+        super(name,age);
+        this.work = work;
+    }
+}
+console.log(new WebFE("tww", 20, 5));
+</script>    
+</body>
+</html>

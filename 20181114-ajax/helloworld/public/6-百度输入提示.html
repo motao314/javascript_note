@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://127.0.0.1:8080/index.js"></script>
+</head>
+<body>
+ <!--
+    https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=web%E5%89%8D%E7%AB%AF&cb=fn
+ --> 
+<input type="text" id="search" />  
+<ul id="dataList"></ul>
+<script>
+function cb(data){
+    let jsonpScript = document.querySelectorAll(".jsonp");
+    jsonpScript.forEach((item)=>{
+        item.remove();
+    });
+    let dataList = document.querySelector("#dataList");
+    let inner = "";
+    data.s.forEach((item)=>{
+        inner += `<li>${item}</li>`;
+    });
+    dataList.innerHTML = inner;
+} 
+search.oninput = function(){
+    let script = document.createElement("script");
+    script.src = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${encodeURI(search.value)}&cb=cb`;
+    script.className = "jsonp"
+    document.body.appendChild(script);
+};
+/*
+    jsonp
+	  	script标签可以处理获取到的数据，
+		会把获取到的数据解析为js来处理
+	  	利用 script 标签可以请求任意域名的js脚本的能力来实现
+	 	ajax 跨域功能
+*/
+</script>
+</body>
+</html>

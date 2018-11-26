@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- <form action="/post" method="POST">
+    <input type="text" name="user" />
+    <input type="submit" />
+</form>   -->
+<input type="text" name="user" id="user" />
+<script>
+/*
+    get 请求的数据 写在 url 中
+
+    post 请求的数据，写在 send 发送
+
+post
+	发送数据
+	放在主体中发送
+	发送的数据放在主体中，理论上没有大小限制
+	相对安全
+	设置请求头：
+		setRequestHeader( 'Content-Type',
+			'application/x-www-form-urlencoded');
+
+get
+	获取/查询数据
+	写在地址栏的查询信息，称之为queryString
+	数据写在地址栏中，浏览器对地址有长度限制
+	在地址栏中，不安全
+
+Ajax({
+    type: GET||POST,
+    url: ，
+    data: ,
+    dataType: text||json ,
+    succ: ,
+    error:
+});
+
+*/    
+(function(){
+    user.onblur = function(){
+        let ajax = new XMLHttpRequest();
+        let timer = 0;
+        ajax.open("POST","/post");
+        ajax.setRequestHeader( 'Content-Type',
+			'application/x-www-form-urlencoded');
+        ajax.send("user=你真胖&age=18");
+        ajax.onload = function(){
+            clearTimeout(timer);
+            console.log(ajax.response);
+            console.log(ajax.getResponseHeader("date"));
+        }
+        timer = setTimeout(function(){
+            ajax.abort();//中断请求
+            alert("对不起网络超时")
+        },3000);
+    };
+})();
+</script>    
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--
+表单控件:
+    form
+    button
+    input
+        type: 
+            text
+            password
+            number
+            checkbox
+            radio
+            submit
+            button
+            hidden
+            reset
+            file
+            email
+            tel
+            url
+            color
+            search
+            range
+            date
+            time
+            month
+            week
+            datetime-local
+    textarea
+    select
+    label
+    datalist
+-->    
+<form id="form" action="#">
+    <input type="text" id="text" name="user" />
+    <input type="submit" />
+    <input type="reset" />
+</form>
+<script>
+(function(){
+    let form = document.querySelector("#form");
+    
+    // form.onsubmit = function(e){
+    //     console.log(e);
+    //     return false;
+    // };
+
+    // form.onreset = function(){
+    //     console.log("重置");
+    // }
+
+    let text = document.querySelector("#text");
+
+    // 在输入框中，失去焦点并且内容改变会触发 onchange   
+    // text.onchange = function(){
+    //     console.log(1);
+    // };
+
+    // 输入框的内容发生改变
+    // text.oninput = function(){
+    //     console.log(1);
+    // }
+
+    // onfocus 当获得焦点    
+    text.onfocus = function(){
+        console.log("获得焦点");
+        //this.blur();
+    }
+
+    // onblur 当失去焦点
+    text.onblur = function(){
+        console.log("失去焦点");
+        if(this.value == ""){
+            console.log("请输入内容");
+            //text.focus();
+        }
+    }
+
+
+
+    /*
+        el.focus() 把焦点加个谁
+        el.blur() 让谁失去焦点
+        el.select() 选中文字
+    */
+
+})();
+</script>
+</body>
+</html>

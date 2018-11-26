@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://127.0.0.1:8080/index.js"></script>
+</head>
+<body>
+ <!--
+    https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=web%E5%89%8D%E7%AB%AF&cb=fn
+ --> 
+<input type="text" id="search" />  
+<script>
+http://127.0.0.1/jsonp?callback=cb
+// console.log(data);
+// 引入外部的js 文件 是不受跨域限制的
+// cb([1,2,3,4,5])
+// search.oninput = function(){
+// };
+function cb(data){
+    console.log(data);
+}
+let js = document.createElement("script");
+js.src = "http://127.0.0.1/jsonp?callback=cb";
+document.body.appendChild(js);
+</script>
+</body>
+</html>

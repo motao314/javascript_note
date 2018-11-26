@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable = no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html {
+            font: 20px/40px "宋体";
+        }
+    </style>
+</head>
+<body>
+<a href="1-移动端事件.html">超链接</a>
+<input type="text" />
+<ul id="text">
+    <li>列表1</li>
+    <li>列表2</li>
+    <li>列表3</li>
+    <li>列表4</li>
+    <li>列表5</li>
+    <li>列表6</li>
+    <li>列表7</li>
+    <li>列表8</li>
+    <li>列表9</li>
+    <li>列表10</li>
+    <li>列表1</li>
+    <li>列表2</li>
+    <li>列表3</li>
+    <li>列表4</li>
+    <li>列表5</li>
+    <li>列表6</li>
+    <li>列表7</li>
+    <li>列表8</li>
+    <li>列表9</li>
+    <li>列表10</li>
+</ul> 
+<script>
+document.addEventListener("touchmove",function(e){
+    e.preventDefault();
+},{
+    passive:false
+});
+// let a = document.querySelectorAll("a");
+// a.forEach((item)=>{
+//     item.addEventListener("touchend",function(){
+//         location.href = this.href;
+//     })
+// });
+
+// let input = document.querySelectorAll("input");
+
+// document.addEventListener("touchstart",function(e){
+//     if(e.target.tagName == "INPUT"){
+//         e.target.focus();
+//     } else {
+//         input.forEach((input)=>{
+//             input.blur();
+//         });
+//     }
+// });
+/*
+    touchstart:
+        1. 页面滚动条
+        2. 橡皮筋效果
+        3. 禁止用户缩放
+        4. 选中文字
+        5. input 的聚焦和失去焦点
+        6. 长按菜单
+        7. 所有鼠标事件都不能用
+
+    touchmove:
+        1. 页面滚动条
+        2. 橡皮筋效果
+        3. 禁止用户缩放
+     
+
+
+*/
+</script>   
+</body>
+</html>

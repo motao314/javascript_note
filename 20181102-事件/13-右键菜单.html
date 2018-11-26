@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #list {
+            display: none;
+            position: fixed;
+            width: 120px;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #000;
+            border-bottom: none;
+        }
+        #list li {
+            list-style: none;
+            font: 14px/30px "宋体";
+            border-bottom: 1px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+    <li><a href="http://miaov.com">自定义</a></li>
+    <li><a href="http://miaov.com">自定义</a></li>
+    <li><a href="http://miaov.com">自定义</a></li>
+</ul>    
+<script>
+// contextmenu 右键菜单
+document.addEventListener("contextmenu",function(e){
+    //console.log(1);
+    let list = document.querySelector("#list");
+    list.style.left = e.clientX + "px";
+    list.style.top = e.clientY + "px";
+    list.style.display = "block";
+    e.preventDefault();
+});
+document.addEventListener("mousedown",function(){
+    let list = document.querySelector("#list");
+    list.style.display = "none";
+});
+</script>    
+</body>
+</html>

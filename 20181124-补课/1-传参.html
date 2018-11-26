@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    函数声明的时候： 声明形参
+        形参 相当于声明了变量，但是没有复制，等待调用时赋值
+
+    函数调用的时候：传入实参
+        实参 给形参赋值
+
+    参数默认值
+
+    不定参: arguments 实参的集合
+
+    rest 参数: 把剩余参数组成一个数组
+*/    
+
+// function fn(arg1,arg2){
+//     console.log(arg1,arg2);
+// }
+// fn(1,2);
+
+/*默认值*/
+// function fn(arg1=1,arg2=2){
+//     console.log(arg1,arg2);
+// }
+
+// fn();
+
+/* arguments */
+// function fn(){
+//     console.log(arguments);
+// }
+// fn(1,2,3,4,5);
+
+/* rest 参数*/
+
+function fn(arg1,arg2,...arg){
+    console.log(arg1,arg2);
+    console.log(arg);
+}
+
+fn(1,2,3,4,5,6)
+
+</script>    
+</body>
+</html>

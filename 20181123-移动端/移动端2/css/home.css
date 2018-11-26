@@ -1,0 +1,211 @@
+.curriculum {
+    overflow: hidden;
+    padding: .1rem;
+}
+.curriculum li {
+    float: left;
+    position: relative;
+    margin: .1rem;
+    width: 3.45rem;
+    height: 5.88rem;
+    padding-top: .50rem;
+    -webkit-box-shadow: .01rem .02rem .1rem rgba(225, 236, 241, .75);
+    box-shadow: .01rem .02rem .1rem rgba(225, 236, 241, .75);
+    background: #fff url(../img/bg1.png) no-repeat;
+    background-size: 100% auto;
+}
+.curriculum li:nth-of-type(2) {
+    background-image: url(../img/bg2.png);
+}
+.curriculum li:nth-of-type(3) {
+    background-image: url(../img/bg3.png);
+}
+.curriculum li:nth-of-type(4) {
+    background-image: url(../img/bg4.png);
+}
+.curriculum .power {
+    margin: -.19rem auto 0;
+    width: 1.66rem;
+    font: .24rem/.36rem "\5B8B\4F53";
+    border: 1px solid rgba(255, 255, 255, .2);
+    color: #fff;
+    text-align: center;
+    border-radius: .18rem;
+}
+.curriculum .title {
+    margin: .11rem auto 0;
+    width: 2.3rem;
+    font: bold .32rem/.48rem "\5B8B\4F53";
+    color:  #fff;
+    text-align: center;
+}
+.curriculum .sub-title {
+    margin: .11rem auto 0;
+    width: 2.3rem;
+    font: .24rem/.28rem "\5B8B\4F53";
+    color:  #fff;
+    text-align: center;
+}
+.curriculum .price {
+    position: absolute;
+    top: 1.74rem;
+    left: .93rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: rgba(255, 255, 255, .9);
+    border-radius: 50%;
+    font: .4rem/1.6rem "\5B8B\4F53";
+    text-align: center;
+}
+.curriculum li:nth-of-type(1) .price {
+    color: #f18cc4;
+}
+.curriculum li:nth-of-type(2) .price {
+    color: #4d9be2;
+}
+.curriculum li:nth-of-type(3) .price {
+    color: #f97f32;
+}
+.curriculum li:nth-of-type(4) .price {
+    color: #6ece51;
+}
+.curriculum .con {
+    position: absolute;
+    left: .24rem;
+    top: 3.92rem;
+    width: 2.98rem;
+    font: .24rem/.36rem "\5B8B\4F53";
+    color: #000;
+}
+.curriculum .con time {
+    display: block;
+    font: .36rem/.62rem "\5B8B\4F53";
+    text-align: center;
+}
+.curriculum .signUp {
+    position: absolute;
+    left: .73rem;
+    top: 5.6rem;
+}
+
+.register-vip {
+    padding: .15rem .2rem .3rem;
+}
+.register-vip .title {
+    text-align: center;
+    font: .4rem/.82rem "\5B8B\4F53";
+    color: #000;
+}
+.vip-info {
+    font: .24rem/.4rem "\5B8B\4F53";
+    text-align: center;
+    color: #666;
+    padding: 0 .2rem;
+}
+.vip-price {
+    font: .36rem/.8rem "\5B8B\4F53";
+    text-align: center;
+    color: #e15671;
+}
+.vip-btn {
+    display: block;
+    margin: 0 auto;
+}
+.miaov {
+    padding: .24rem .2rem .2rem;
+    background: #acd87a;
+    color: #fff;
+}
+.miaov dt {
+    font-size: .4rem;
+    line-height: .7rem;
+    text-align: center;
+}
+.miaov dd {
+    display: flex;
+    position: relative;
+    padding: .2rem 0 .2rem 1.6rem;
+    font-size: .26rem;
+    line-height: .48rem;
+    min-height: 1.4rem;
+}
+.miaov p {
+    margin: auto;
+}
+.miaov dd:before {
+    position: absolute;
+    left: 0;
+    top: .2rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.4rem;
+    font-size: .8rem;
+}
+.miaov dd:nth-of-type(1):before {
+    color: #66cde1;
+}
+.miaov dd:nth-of-type(2):before {
+    color: #ff7868;
+    text-indent: .1rem;
+}
+.miaov dd:nth-of-type(3):before {
+    color: #9f6bcf;
+}
+.workList {
+    margin-top: .15rem;
+    padding: 0 .2rem;
+    background: #fff;
+}
+.workListTitle {
+    font-size: .4rem;
+    line-height: 1.02rem;
+    text-align: center;
+    color: #000;
+}
+.works {
+    overflow: hidden;
+}
+.works li {
+    position: relative;
+    width: 50%;
+    float: left;
+}
+.works img {
+    width: 3.55rem;
+    height: 3.55rem;
+}
+.workMask {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: .36rem;
+    height: .56rem;
+    background: linear-gradient(0deg,rgba(0,0,0,.7),rgba(0,0,0,0));
+    font-size: .26rem;
+    line-height: .56rem;
+    color: #fff;
+}
+.workTitle {
+    float:left;
+    max-width: 1.5rem;
+    margin-left: .15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.workMask span {
+    float: right;
+    margin-right: .15rem;
+    max-width: .9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.workMask span:before {
+    margin-right: .1rem;
+    font-size: .22rem;
+}

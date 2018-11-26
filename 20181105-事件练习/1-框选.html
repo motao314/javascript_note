@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .selectBox {
+            position: fixed;
+            border: 1px solid #000;
+        }
+        #list {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            list-style:  none;
+        }
+        #list li {
+            float: left;
+            margin: 20px;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+(function(){
+    let lists = document.querySelectorAll("#list li");
+    let selectBox = null;
+    let isDown = false;
+    let startX = 0;
+    let startY = 0;
+    document.addEventListener("mousedown",function(e){
+        if(e.button == 0){
+            startX = e.clientX;
+            startY = e.clientY;
+            isDown = true;
+            selectBox = document.createElement("div");
+            selectBox.className = "selectBox";
+            selectBox.style.left = startX + "px";
+            selectBox.style.top = startY + "px";
+            document.body.appendChild(selectBox);
+            e.preventDefault();
+        }
+    });
+    document.addEventListener("mousemove",function(e){
+        // if(!isDown){
+        //     return ;
+        // }
+        if(!isDown)return;
+        /* 宽，高，left，top */
+        let w = Math.abs(e.clientX - startX);
+        let h = Math.abs(e.clientY - startY);
+        let l = Math.min(e.clientX,startX);
+        let t = Math.min(e.clientY,startY);
+        selectBox.style.cssText += `
+            width:${w}px;
+            height:${h}px;
+            left:${l}px;
+            top:${t}px;`; 
+            
+        lists.forEach((item)=>{
+            if(isBoon(item,selectBox)){
+                item.style.background = "blue";
+            } else {
+                item.style.background = "red";
+            }
+        });    
+
+
+    });
+    document.addEventListener("mouseup",function(e){
+        if(!isDown)return;
+        isDown = false;
+        document.body.removeChild(selectBox);
+    });
+})();
+function isBoon(el,el2){
+    //检测哪些情况碰撞不上
+    let rect1 = el.getBoundingClientRect();
+    let rect2 = el2.getBoundingClientRect();
+    if(rect1.left > rect2.right
+    || rect2.left > rect1.right
+    || rect1.top > rect2.bottom
+    || rect2.top > rect1.bottom){
+        return false;//不碰撞
+    }
+    return true; //碰撞
+}
+</script>    
+</body>
+</html>

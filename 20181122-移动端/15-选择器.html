@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/bscroll.js"></script>
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 10vw;
+        }
+        body {
+            margin: 0;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #wrap {
+            position: absolute;
+            top: 20%;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            width: 100%;
+            height: 5rem;
+            overflow: hidden;
+            perspective: 2rem;
+        }
+        .list {
+            margin-top: 2rem;
+            transform-style: preserve-3d;
+        }
+        #list li {
+            font: .4rem/1rem "宋体";
+            text-align: center;
+        }
+    </style>
+</head>
+<body>  
+<div id="wrap">
+    <ul id="list" class="list">
+        
+    </ul>
+</div>  
+<script>
+(function(){
+    let list = document.querySelector("#list");
+    let inner = "";
+    for(let i = 0; i < 20; i++){
+        inner += '<li class="list-item">这是第'+i+'个li</li>';
+    }
+    list.innerHTML = inner;
+})();    
+// 滑屏
+(function(){
+    let wrap = document.querySelector("#wrap");
+    let list = document.querySelector("#list");
+    let navs = document.querySelectorAll(".nav a");
+    let timer = 0;
+    let rem = innerWidth/10;
+    let wheel = new BScroll(wrap,{
+        wheel:{
+            selectedIndex: 0,
+            rotate: -10,
+            wheelWrapperClass: "list",
+            wheelItemClass: "list-item",
+            adjustTime: 100
+        }
+    });
+    wheel.on("scrollEnd",function(){
+        console.log(wheel.getSelectedIndex());
+    });
+})();
+</script>
+</body>
+</html>

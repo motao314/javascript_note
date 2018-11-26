@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 构造函数    
+// function Person(){
+//    this.name = "tww";
+//    this.age = 15;
+// }
+// console.log(new Person);
+
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+
+console.log(new Person("承龙",50));
+console.log(new Person("小乐",20));
+
+/*
+    new 一元运算符(函数运算符)
+
+    使用了 new 去执行函数，默认函数会返回一个对象
+    1) 如果 函数的 return 中，返回的不是一个对象的话，同样会返回 构造函数的实例化对象
+    2) 使用了 new 以后，函数中的 this 指向 这个函数的实例化对象 
+    3) 使用了 new 之后，函数会直接执行，() 只剩下 传参的作用，如果不需要传参 可以不写;
+
+
+new 
+一元运算符
+	调用构造函数创建对象，这个创建过程也称之为对象实例化
+构造函数
+	使用 new 去调用的函数称之为构造函数
+	在new 调用这个函数之后，始终返回的是一个对象
+	构造函数的首字母大写，这是一个约定，用来区分普通函数
+new 调用构造函数经历的步骤
+	1. 创建新对象
+	2. 将this指向创建的新对象
+	3. 执行代码（为新对象添加属性）
+	4. 返回新对象
+
+
+*/
+</script>    
+</body>
+</html>

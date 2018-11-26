@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--
+表单控件:
+    form
+    button
+    input
+        type: 
+            text
+            password
+            number
+            checkbox
+            radio
+            submit
+            button
+            hidden
+            reset
+            file
+            email
+            tel
+            url
+            color
+            search
+            range
+            date
+            time
+            month
+            week
+            datetime-local
+    textarea
+    select
+    label
+    datalist
+-->    
+<form id="form" action="#">
+    <input type="text" id="text" value="请输入用户名" name="user" autocomplete="off" />
+    <input type="submit" />
+    <input type="reset" />
+</form>
+<script>
+(function(){
+    let form = document.querySelector("#form");
+    let text = document.querySelector("#text");
+    text.addEventListener("focus",()=>{
+        if(text.value === "请输入用户名"){
+            text.value = "";
+        } else {
+            text.select();
+        }
+    });
+    text.addEventListener("blur",()=>{
+        if(!text.value.trim()){
+            text.value = "请输入用户名";
+        }
+    });
+})();
+</script>
+</body>
+</html>
