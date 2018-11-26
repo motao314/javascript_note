@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        #wrap {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            perspective: 200px;
+        }
+        #list {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            transform-style: preserve-3d;
+        }
+        #list li {
+            position: absolute;
+            left: -120px;
+            top: -120px;
+            width: 240px;
+            height: 240px;
+            opacity: .5;
+            backface-visibility: hidden;
+        }
+    </style>
+    <script src="miaov.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <ul id="list">
+        <li>
+            <img src="img/15.jpg" />
+        </li>
+        <li>
+            <img src="img/16.jpg" />
+        </li>
+        <li>
+            <img src="img/17.jpg" />
+        </li>
+        <li>
+            <img src="img/18.jpg" />
+        </li>
+        <li>
+            <img src="img/19.jpg" />
+        </li>
+        <li>
+            <img src="img/20.jpg" />
+        </li>
+    </ul>
+</div>
+<script>
+(function(){
+    let lists = document.querySelectorAll("#list li");
+    for(let i = 0; i < 4; i++){
+        css(lists[i],"rotateY",-i*90);
+        css(lists[i],"translateZ",-120);
+    }
+    css(lists[4],"rotateX",-90);
+    css(lists[4],"translateZ",-120);
+    css(lists[5],"rotateX",90);
+    css(lists[5],"translateZ",-120);
+})();
+/* 旋转 */
+(function(){
+    let list = document.querySelector("#list");
+    css(list,"rotateX",0);
+    css(list,"rotateY",0);
+    window.addEventListener("deviceorientation",function(e){
+        let x = Math.round(e.beta); // x 轴旋转 -180 - 180
+        let y = Math.round(e.gamma); // y 轴旋转 -90 - 90
+        let z = Math.round(e.alpha); // z 轴旋转 0 - 360
+        let rotateX = x - 90;
+        let rotateY = (y + z)%360;
+        rotateX = rotateX > 60?60:rotateX;
+        rotateX = rotateX < -60?-60:rotateX;
+        css(list,"rotateX",rotateX);
+        css(list,"rotateY",rotateY);
+    });
+})();
+</script>
+</body>
+</html>

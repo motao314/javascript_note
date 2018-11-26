@@ -1,0 +1,46 @@
+﻿git init 初始化项目
+git status - 查看当前仓库所在目录的文件状态
+    - Untracked 未被追踪
+git add filename 使文件加入追踪 (提交到暂存区)
+git add .   添加所有文件到追踪
+git commit  提交至仓库
+	vim 编辑：
+		i 进入编辑
+		ZZ 退出编辑并保存(或者输入:wq)
+git commit -m "描述信息";
+git commit -m -a "描述信息" 由工作区提交到暂存区并提交仓库 添加描述 
+git log 查看提交日志
+
+git config 配置信息
+git config --global
+git config --global user.name "username" 配置用户名
+git config --global user.email "email@.com" 配置邮箱
+
+
+1. 命令行删除 		
+	- git rm <file> - 删除git区域中记录的文件，并且不保留在工作目录中		
+	- git rm -f(force) <file> - 强制删除	
+2. 手动删除工作目录中的文件	- git rm <file>	
+3. 删除Git仓库中的，保留工作目录中的文件  - git rm --cache <file>
+
+移动重命名:
+git mv 老名字 新名字
+git status -s 打印状态列表
+
+
+
+git diff - 查看当前文件的修改（主要看工作区文件）
+git diff  --<> 查看暂存区和提交区域之间的差异   --staged  
+git log - 查看日志	git log -p 查看详细信息	
+git log -2 查看最近的n条信息	
+git log --stat 列出所有被修改的文件，以及简略的统计信息
+
+git clone 把远程的仓库 clone 到本地
+git push  把本地的仓库中的修改提交到远程
+git pull  把远程的修改同步到本地
+
+先 pull 然后 push
+
+
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        #box {
+            width: 300px;
+            height: 300px;
+            font: 20px/30px "宋体";
+            color: #fff;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+let box = document.querySelector("#box");
+window.addEventListener("devicemotion",function(e){
+    let motion = e.accelerationIncludingGravity; //重力加速度
+    //let motion = e.acceleration;// 加速度
+    let x = motion.x;
+    let y = motion.y;
+    let z = motion.z;
+    box.innerHTML = "x:" + x;
+    box.innerHTML += "<br/>y:" + y;
+    box.innerHTML += "<br/>z:" + z;
+});
+</script>    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <audio id="v" src="5018.mp3" style="display:none"></audio>
+<script>
+shake(function(){
+    try{
+        v.play();
+    } catch(e){
+       console.log(e); 
+    }  
+    // alert("进行了摇一摇"); 
+});
+function shake(cb){
+    const RANGE = 30;
+    let lastX = 0;
+    let lastY = 0;
+    let lastZ = 0;
+    let lastTime = Date.now();
+    let isShake = false;
+    window.addEventListener("devicemotion",function(e){
+        let NowTime = Date.now();
+        if(NowTime - lastTime > 200){
+            let motion = e.accelerationIncludingGravity;
+            let x = motion.x;
+            let y = motion.y;
+            let z = motion.z;
+            let nowRange =  Math.abs(x - lastX) +  Math.abs(y - lastY) + Math.abs(z - lastZ);
+            if(nowRange >= RANGE){
+                isShake = true;
+            }
+            if(nowRange < 10
+            &&isShake){
+                isShake = false;
+                cb&&cb();
+            }
+            lastX = x;
+            lastY = y;
+            lastZ = z;
+            lastTime = NowTime;
+        }
+    });
+}    
+
+</script>       
+</body>
+</html>

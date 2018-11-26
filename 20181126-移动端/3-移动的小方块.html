@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        #box {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -50px 0 0 -50px;
+            width: 100px;
+            height: 100px;
+            font: 20px/30px "宋体";
+            color: #fff;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+let box = document.querySelector("#box");
+let translateX = 0;
+let u = navigator.userAgent;  
+function getIos(){
+    return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+}
+window.addEventListener("devicemotion",function(e){
+    let motion = e.accelerationIncludingGravity;
+    let x = motion.x;
+    if(!getIos()){
+        x = -x;
+    }
+    translateX += x;
+    box.style.transform = "translateX("+translateX+"px)";
+
+});
+</script>    
+</body>
+</html>
