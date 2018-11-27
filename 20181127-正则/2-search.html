@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+    正则表达式: 规则表达式
+-->
+<script>
+/*
+search()
+	作用
+		检索指定字符串或正则表达式匹配到的字符串首次出现的位置
+	语法
+		number string.search(string|regexObj)
+	参数
+		string|regexObj
+		字符串或正则表达式
+
+	返回值
+		匹配到的字符串首次出现的位置
+		没有检索到返回-1
+
+正则修饰符:
+    i 忽略大小写
+    g 全局匹配
+*/    
+(function(){
+    let reg = /abc/i;
+    let str = `10a01ABc\f2Abc3456sd`;
+    console.log(str.search(reg));
+})();
+</script>
+</body>
+</html>

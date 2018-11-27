@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let str = "asd10213a";
+console.log(str.match(/\d+/));
+/*
+限定字符出现的次数
+n,m代表的是数字
+{n}   重复出现n次 {3}
+{n,}  重复出现至少n次，最多不限
+{n,m} 重复出现至少n次，最多重复出现m次
+
+* 重复出现0次或多次
+? 重复出现0次或1次
++ 重复出现至少1次
+
+
+贪婪模式
+	尽可能多的匹配
+懒惰模式
+	尽可能少的匹配
+例子
+	规则：a开头中间是任意字符一个到多个，以c结尾
+知识点
+	加上 ? 开启懒惰模式
+
+*/
+</script>        
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+    正则表达式: 规则表达式
+-->
+<script>
+/*
+test()
+	作用
+		用来检测指定的字符串是否符合正则的规则
+	语法
+		boolean regexObj.test(string)
+	参数
+		字符串
+
+	返回值
+		符合规则返回true，不符合返回false
+
+
+\d 数字 (0 - 9)
+
+*/    
+(function(){
+    //let reg = new RegExp('\d');
+    let reg = /\n/;
+    let str = `abc10a01\f23456sd`;
+    console.log(str);
+    console.log(reg.test(str));
+})();
+/*
+    \f	匹配一个换页符。等价于 \x0c 和 \cL。
+    \n	匹配一个换行符。等价于 \x0a 和 \cJ。
+    \r	匹配一个回车符。等价于 \x0d 和 \cM。
+    \s	匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。注意 Unicode 正则表达式会匹配全角空格符。
+    \S	匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。
+*/
+</script>
+</body>
+</html>

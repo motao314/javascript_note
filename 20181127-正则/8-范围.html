@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body> 
+<script>
+// let reg = /^miaov$/;
+// let str = "miaov";
+// console.log(reg.test(str));
+
+//[a-z] 小写 的 a-z
+//[A-Z]
+//[0-9]
+//[a-zA-Z0-9] 
+
+// 匹配 大于 2 的数字
+//[2-9]|[1-9]\d{1,}
+
+//新建文件夹的规则
+let reg = /^(新建文件夹|新建文件夹\(([2-9]|[1-9]\d{1,})\))$/;
+// [1-9]\d{1,}  第0位是 1-9，第一位是一个 1到多位的数字
+console.log(reg.test("新建文件夹(20)"));
+/*
+    () 子项
+    [] 范围
+    {} 量词
+*/
+</script> 
+</body>
+</html>

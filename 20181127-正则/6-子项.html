@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//子项 ()
+
+//let reg = /妙味课堂|妙味茶馆|妙味餐厅/ig;
+let reg = /妙味(课堂|茶馆|餐厅)/ig;
+let str = `妙味科技下有三个分支机构叫做妙味课堂，妙味茶馆，妙味餐厅`;
+console.log(str.replace(reg,function(a0){
+     // a0: 匹配到的字符串
+     // a1: 子项
+     // a2: 字符串的index
+     // a3: 完整字符串
+    console.log(arguments);
+    return "*".repeat(a0.length);
+}));
+</script>    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+QQ号码规则
+1. 全是数字
+2. 不能以0开头
+3. 数字的个数  5 - 12
+*/    
+let reg = /^[1-9]\d{4,11}$/;
+console.log(reg.test('10000'));
+/*
+    第0位 [1-9]
+    后边 4到11位数字
+*/
+</script>    
+</body>
+</html>

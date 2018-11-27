@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" id="txt" />   
+<script>
+// 0 .0 .0 .0
+
+// 0-255
+
+// 一位\d
+
+// 两位[1-9]\d
+
+// 三位 1\d{2}|(2[0-4]\d|25[0-5])
+
+let strReg = '\\d|[1-9]\\d|(1\\d{2}|(2[0-4]\\d|25[0-5]))';
+let reg = new RegExp(`^(${strReg})(\.(${strReg})){3}$`,'i');
+console.log(reg);
+txt.onblur = function(){
+    console.log(reg.test(this.value));
+};
+</script>    
+</body>
+</html>

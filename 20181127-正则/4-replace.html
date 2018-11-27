@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+    正则表达式: 规则表达式
+-->
+<script>
+/*
+replace()
+	作用
+		用来替换字符串中的某些符合规则的字符
+	语法
+		String string.replace(string|regexObj,string|function)
+	参数
+		第一个参数：字符串或正则表达式
+		第二个参数：字符串或函数
+	返回值
+		替换后新字符串
+注意事项
+	第二个参数为函数，必须要有返回值，否则替换后的内容为undefined
+*/    
+(function(){
+    let reg = /abc/ig;
+    let str = `10a01ABc\f2Abc3456sabcd`;
+    console.log(str.replace(reg,"***"));
+})();
+</script>
+</body>
+</html>

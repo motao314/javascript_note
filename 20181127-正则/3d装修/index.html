@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+body,
+html {
+	margin: 0;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.wrap {
+	position: relative;
+	height: 100%;
+	/* perspective: 500px; */
+}	
+.view,
+.boxZ,
+.box {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.box {
+	-webkit-transform: rotateY(0deg);
+	transform: rotateY(0deg);
+	-webkit-animation: 36s rotate infinite linear;
+	animation: 36s rotate infinite linear;
+}
+.box span {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -512px 0 0 -512px;
+	width: 1024px;
+	height: 1024px;
+	text-align: center;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	/*
+		背面，角度和父级的角度相对的面是背景
+	*/
+}
+.box span:nth-of-type(1) {
+	-webkit-transform: rotateY(0deg) translateZ(-510px);
+	transform: rotateY(0deg) translateZ(-511px);
+	background: url(img/neg-x.png) no-repeat;
+}
+.box span:nth-of-type(2) {
+	-webkit-transform: rotateY(90deg) translateZ(-511px);
+	transform: rotateY(90deg) translateZ(-511px);
+	background: url(img/neg-z.png) no-repeat;
+}
+.box span:nth-of-type(3) {
+	-webkit-transform: rotateY(180deg) translateZ(-511px);
+	transform: rotateY(180deg) translateZ(-511px);
+	background: url(img/pos-x.png) no-repeat;
+}
+.box span:nth-of-type(4) {
+	background: url(img/pos-z.png) no-repeat;
+	-webkit-transform: rotateY(270deg) translateZ(-511px);
+	transform: rotateY(270deg) translateZ(-511px);
+}
+.box span:nth-of-type(5) {
+	background: url(img/pos-y.png);
+	-webkit-transform: rotateX(-90deg) translateZ(-511px);
+	transform: rotateX(-90deg) translateZ(-511px);
+}
+.box span:nth-of-type(6) {
+	background: url(img/neg-y.png);
+	-webkit-transform: rotateX(90deg) translateZ(-511px);
+	transform: rotateX(90deg) translateZ(-511px);
+}
+/*
+	transform-origin z轴的设置，在ios下有兼容问题
+*/
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="view">
+		<div class="boxZ">
+			<div class="box">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/m.touch.js"></script>
+<script type="text/javascript">
+(function(){
+	var wrap = document.querySelector(".wrap");
+	var view = document.querySelector(".view");
+	var boxZ = document.querySelector(".boxZ")
+	var deg = 50;
+	var Rad = deg*Math.PI/180;
+	var h = innerHeight;
+	var R = Math.tan(Rad)*(h/2); 
+	wrap.style.perspective = R + "px";
+	view.style.transform = "translateZ("+R+"px)";
+
+	boxZ.style.transform = "translateZ(-50px)";
+})();
+(function(){
+	var box = document.querySelector('.box');
+	css(box,"rotateX",0);
+	css(box,"rotateY",0);
+	window.addEventListener('deviceorientation', function(e) {
+		var x = e.beta;
+		var y = e.gamma;
+		var z = e.alpha;
+		var rotateX = x - 90;
+		var rotateY = (y + z)%360;
+		if(rotateX > 60){
+			rotateX = 60;
+		} else if(rotateX <-60){
+			rotateX = -60;
+		}
+		css(box,"rotateX",rotateX);
+		css(box,"rotateY",-rotateY);
+	});
+})();
+//http://antario.act.qq.com/
+</script>
+</body>
+</html>

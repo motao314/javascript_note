@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+ <input type="text" id="txt" />   
+<script>
+// 域名: data1.miaov.com
+// 123.
+// v.miaov.com
+let reg = /^(([0-9a-z]+|([0-9a-z]+)\w([0-9a-z]+))\.){0,1}([0-9a-z]+|([0-9a-z]+)\w([0-9a-z]+)((\.[a-z]{2,}){1,3}$/i
+txt.onblur = function(){
+    console.log(reg.test(this.value));
+};
+</script>    
+</body>
+</html>
