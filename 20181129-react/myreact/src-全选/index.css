@@ -1,0 +1,11 @@
+#table {
+    width: 400px;
+    margin: 30px auto;
+}
+#table th {
+    border: 1px solid #000;
+}
+.active {
+    background: #333;
+    color: #fff;
+}
