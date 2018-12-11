@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<script src="js/react.development.js"></script>
+<script src="js/react-dom.development.js"></script>
+<script src="js/babel.min.js"></script>
+<script src="js/data.js"></script>
+<style>
+    .panel {
+        border: 1px solid #000;
+        width: 80%;
+    }
+    .title {
+        margin: 0;
+        padding: 10px;
+        background: #ccc;
+    }
+    p.vip {
+        color: red;
+    }
+    p.message {
+        color: #aaa;
+    }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+class Li extends React.Component {
+    render(){
+        let {data} = this.props;
+        return (
+            <li>
+                <p className={data.vip?"vip":""}>{data.username}</p>
+                <p className="message">{data.message}</p>
+            </li>
+        );
+    }
+}
+
+class ListItem extends React.Component {
+    constructor(arg){
+        super(arg);
+        this.clickHandle = this.clickHandle.bind(this);
+        this.state = {
+            isShow: false,
+            color: "blue"
+        };
+    }
+    clickHandle () {
+       let {isShow,color} = this.state;
+       this.setState({
+            isShow:!isShow
+       });
+       this.setState({
+            color:color == "red"?"blue":"red"
+       });
+    }
+    render(){
+        let {data} = this.props;
+        let {isShow,color} = this.state;
+        return (
+            <div>
+                <h2 
+                    className="title" 
+                    onClick={this.clickHandle}
+                    style = {{
+                        background:color 
+                    }}
+                >{data.name}</h2>
+                {
+                    isShow?(<ul>
+                        {data.list.map((item,index)=>{
+                            return <Li key={index} data={item} />;
+                        })}    
+                    </ul>):""
+                }
+            </div>
+        );
+    }
+}
+class List extends React.Component {
+    render(){
+        let {data} = this.props;
+        return (
+            <div className="panel">
+                {Object.values(data).map((item,index)=>{
+                    return <ListItem data={item} key={index} />
+                })}
+            </div>
+        );
+    }
+}
+ReactDOM.render(
+    <List data={dataList} />
+    ,document.getElementById("root")
+);
+</script>    
+</body>
+</html>

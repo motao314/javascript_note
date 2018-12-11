@@ -1,0 +1,15 @@
+.panel {
+    border: 1px solid #000;
+    width: 500px;
+}
+.title {
+    margin: 0;
+    padding: 10px;
+    background: #ccc;
+}
+p.vip {
+    color: red;
+}
+p.message {
+    color: #aaa;
+}

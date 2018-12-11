@@ -1,0 +1,78 @@
+@import '~antd/dist/antd.css';
+body,
+h1{
+    margin: 0;
+}
+img {
+    vertical-align: top;
+}
+.page-404 {
+    background: #15ab84;
+}
+.img-404 {
+    display: block;
+    margin: 0 auto;
+    max-width: 80%;
+}
+.page-header {
+    position: relative;
+    background:#001529;
+}
+.page-header-con {
+    max-width: 980px;
+    margin: 0 auto;
+}
+#logo {
+    display: -webkit-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    height: 64px;
+}
+#logo img {
+    width: 120px;
+    display: block;
+}
+.menu-xs {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    width: auto;
+}
+.page-footer {
+    text-align: center;
+}
+.page-main {
+    padding: 20px 0;
+    background: #fff;
+}
+.wrap {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.about-friend-links img{
+    width: 250px;
+    height: 60px;
+}
+.static-html h2 {
+    margin: 15px 0 10px;
+    font: bold 24px/1.8 "微软雅黑";
+    border-bottom: 1px solid #eee;
+}
+.static-html h3 {
+    margin: 15px 0 10px;
+    font: bold 20px/1.8 "微软雅黑";
+    border-bottom: 1px solid #eee;
+}
+.markdown-text img {
+    max-width: 90%;
+}
+.message-list .ant-list-item {
+    display: block;
+}
+.message-list .ant-list-item-content{
+    display: block;
+} 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<script src="js/react.development.js"></script>
+<script src="js/react-dom.development.js"></script>
+<script src="js/babel.min.js"></script>
+<script src="js/data.js"></script>
+<style>
+    .panel {
+        border: 1px solid #000;
+        width: 80%;
+    }
+    .title {
+        margin: 0;
+        padding: 10px;
+        background: #ccc;
+    }
+    p.vip {
+        color: red;
+    }
+    p.message {
+        color: #aaa;
+    }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+class List extends React.Component {
+    render(){
+        let {data} = this.props;
+        return (
+            <div className="panel">
+                {Object.values(data).map((item,index)=>{
+                    return (
+                        <div key={index}>
+                            {<h2 className="title">{item.name}</h2>}
+                            <ul>
+                                {item.list.map((item,index)=>{
+                                    return (<li key={index}>
+                                        <p className={item.vip?"vip":""}>{item.username}</p>
+                                        <p className="message">{item.message}</p>
+                                    </li>);
+                                })}    
+                            </ul>
+                        </div>
+                    )
+                })}
+            </div>
+        );
+    }
+}
+ReactDOM.render(
+    <List data={dataList} />
+    ,document.getElementById("root")
+);
+</script>    
+</body>
+</html>

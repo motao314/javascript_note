@@ -6,7 +6,6 @@ export default class ListView extends Component {
         let {match,data,doneData,unDoneData} = this.props;
         let nowData = null;
         let url = match.path;
-        console.log(this.props);
         switch (url) {
             case "/":
                 nowData = data;
@@ -16,13 +15,14 @@ export default class ListView extends Component {
                 break;
             case "/undone":
                 nowData = unDoneData;
-                break;    
+                break;   
+            default:     
         }
         return (<div>
             <Header
                 {...this.props}
             />
-            <List data={data} />
+            <List {...this.props} data={nowData} />
         </div>);
     }
 }
