@@ -1,0 +1,22 @@
+context: 跨层传递信息
+父组件:
+	getChildContext(){
+	
+	}
+
+
+
+
+
+路由:
+1.当组件是被路由调用的时候，我们就称之为路由组件
+2. 在路由组件的 props 中，会被路由添加入路由信息
+	
+路由信息：
+	history
+		go()
+		goBack()
+		goForward()
+		push(url) 跳转页面
+	location
+	match	

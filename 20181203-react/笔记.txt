@@ -1,0 +1,91 @@
+propTypes  属性类型验证
+安装： npm i prop-types
+引入：import PropTypes from "prop-types";
+
+使用方式：
+MyComponent.propTypes = {
+  optionalArray: PropTypes.array, 是否是数组
+  optionalBool: PropTypes.bool, 是否是布尔
+  optionalFunc: PropTypes.func, 是否是函数
+  optionalNumber: PropTypes.number, 是否是数字
+  optionalObject: PropTypes.object,是否是对象
+  optionalString: PropTypes.string, 是否是字符串
+  optionalSymbol: PropTypes.symbol,是否是symbol
+ 
+  // Anything that can be rendered: numbers, strings, elements or an array
+  // (or fragment) containing these types.
+  optionalNode: PropTypes.node, // 可以是 数字，字符串，元素或数组
+ 
+  // A React element.
+  optionalElement: PropTypes.element, // 一个react元素
+ 
+  // You can also declare that a prop is an instance of a class. This uses
+  // JS's instanceof operator.
+  optionalMessage: PropTypes.instanceOf(Message), //是否是哪个类构造的
+ 
+  // You can ensure that your prop is limited to specific values by treating
+  // it as an enum.
+  optionalEnum: PropTypes.oneOf(['News', 'Photos']), // 值 是否是给定值的其中一项
+ 
+  // An object that could be one of many types
+  optionalUnion: PropTypes.oneOfType([   //是否是其中一个类型
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.instanceOf(Message)
+  ]),
+ 
+  // An array of a certain type
+  optionalArrayOf: PropTypes.arrayOf(PropTypes.number), //只能是个数组，并且数组的值只能为哪种类型(如示例: 只接受number类型的数组)
+ 
+  // An object with property values of a certain type
+  optionalObjectOf: PropTypes.objectOf(PropTypes.number), // 只能是个对象，并且对象的值只能为哪种类型 (如示例: 只接受number类型的对象)
+ 
+  // You can chain any of the above with `isRequired` to make sure a warning  //  `isRequired` 必传项
+  // is shown if the prop isn't provided.
+ 
+  // An object taking on a particular shape  //具有特定属性的对象
+  optionalObjectWithShape: PropTypes.shape({
+    optionalProperty: PropTypes.string,
+    requiredProperty: PropTypes.number.isRequired
+  }),
+ 
+  // An object with warnings on extra properties
+  optionalObjectWithStrictShape: PropTypes.exact({  // 不接收规定属性以外的其他属性
+    optionalProperty: PropTypes.string,
+    requiredProperty: PropTypes.number.isRequired
+  }),
+ 
+  requiredFunc: PropTypes.func.isRequired, // 接收一个函数，并且是必须穿
+ 
+  // A value of any data type
+  requiredAny: PropTypes.any.isRequired, //可以接收任意类型，但是必须要传
+ 
+  // You can also specify a custom validator. It should return an Error
+  // object if the validation fails. Don't `console.warn` or throw, as this
+  // won't work inside `oneOfType`.
+
+  // 自定义验证
+  customProp: function(props, propName, componentName) {
+    if (!/matchme/.test(props[propName])) {
+      return new Error(
+        'Invalid prop `' + propName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  },
+ 
+  // You can also supply a custom validator to `arrayOf` and `objectOf`.
+  // It should return an Error object if the validation fails. The validator
+  // will be called for each key in the array or object. The first two
+  // arguments of the validator are the array or object itself, and the
+  // current item's key.
+// 自定义验证数组的每一项
+  customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
+    if (!/matchme/.test(propValue[key])) {
+      return new Error(
+        'Invalid prop `' + propFullName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  })
+};
