@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function getLogin(){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            let isLogin = false;
+            if(isLogin){
+                resolve({
+                    code: 0,
+                    message: "登录"
+                });
+            } else {
+                resolve({
+                    code: 1,
+                    message: "未登录"
+                });
+            }
+            
+        }, 2000);
+    });
+}
+function getVIP(){
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('这是vip');
+        }, 2000);
+    });
+}
+
+async function AsyncFn(){
+    let p1 = await getLogin();
+    if(p1.code == 1){
+        return;
+    }
+    let p2 = await getVIP();
+    console.log(p2);
+}
+AsyncFn();
+</script>    
+</body>
+</html>

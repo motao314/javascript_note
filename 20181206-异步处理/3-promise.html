@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>  
+    //  Promise 链
+    new Promise(function(resolve,reject){
+        setTimeout(function(){
+            reject();
+        },2000);
+    })
+    .then(()=>{
+        console.log(1);
+    },()=>{
+        console.log(2);
+    }) 
+    .then(()=>{
+        console.log(3);
+    },()=>{
+        console.log(4);
+    })
+    .then(()=>{
+        console.log(5);
+    },()=>{
+        console.log(6);
+    });
+    /*
+        注意：then 方法 默认会返回一个 Promise
+    */
+
+</script>    
+</body>
+</html>

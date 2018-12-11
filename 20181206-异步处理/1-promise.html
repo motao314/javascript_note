@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+    promise 改良异步写法
+
+    new Promise() 实例化一个 Promise 对象
+        [[PromiseStatus]] 异步执行状态
+            pending 进行中
+            resolved/fulfill 异步执行成功
+            rejected 异步执行失败     
+
+
+        resolve 成功
+        reject 失败
+
+*/    
+let p = new Promise(function(resolve,reject){
+    /*
+        调用 resolve 会返回成功状态
+        调用 reject 会返回失败状态
+    */
+    // reject();
+    setTimeout(function(){
+        resolve();
+    },2000);
+});
+
+// 异步调用完成，就执行 then 方法
+p.then(()=>{
+    console.log("异步执行成功");
+},()=>{
+    console.log("异步执行失败");
+});
+console.log(p);
+</script>    
+</body>
+</html>
