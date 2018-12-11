@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="redux.js"></script>
+</head>
+<body>
+<script>
+function count(state={num:0},action){
+    //console.log(state,action);
+    switch(action.type){
+        case "ADD":
+            state.num = state.num + 1;
+            break;
+    }
+    return Object.assign({},state);
+}    
+let store = Redux.createStore(count); 
+store.subscribe(function(){
+    console.log(store.getState());
+});
+setInterval(()=>{
+    store.dispatch({type:"ADD"});
+},1000);
+// setInterval(()=>{
+//     store.dispatch({type:"ADD"});
+// },1000);
+
+/*
+    store 仓库: 所有的状态
+    
+    创建仓库：
+        createStore(reducer[,initialState,蹭强器]);
+
+    reducer:
+        1. 纯函数    
+        2. 负责修改管理state
+        3. reducer的返回值是操作后 新的 state
+
+    action: 动作，我们对state的操作指令    
+
+    store：
+        dispatch 发布 action
+        getState 获取现在的状态
+        subscribe 监听器 state 修改之后，要做什么事
+    
+        
+
+        
+*/
+
+</script>    
+</body>
+</html>
