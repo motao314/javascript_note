@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    background: #eeeeee;
+}
+p {
+    margin: 0;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
+#todoApp {
+    width: 480px;
+    margin: 0 auto 40px;
+    background: white;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+}
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 0 30px 0;
+    line-height: 1;
+}
+#new-todo {
+    width: 466px;
+    font-size: 24px;
+    font-family: inherit;
+    line-height: 1.4em;
+    border: 0;
+    outline: none;
+    padding: 6px;
+    border: 1px solid #999999;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+}
+.list {
+    margin-top: 10px;
+}
+.list li {
+    padding: 12px 20px 11px 0;
+    position: relative;
+    font-size: 16px;
+    line-height: 28px;
+    border-bottom: 1px solid #cccccc;
+}
+.list .done p {
+    text-decoration: line-through;
+}
+.list .default input {
+    position: relative;
+    top: 9px;
+    margin: 0 10px 0 7px;
+    float: left;
+}
+.list .close {
+    position: absolute;
+    right: 5px;
+    top: 14px;
+    opacity: 0;
+    transform: rotate(720deg) scale(0);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url("./img/destroy.png") no-repeat 0 0;
+    transition: .5s transform,.3s opacity;
+}
+.list li:hover .close  {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+.list .close:hover {
+    background-position: 0 -20px;
+}
+.list .edit {
+    display: none;
+}
+.list .edit input {
+    width: 444px;
+    font-size: 24px;
+    font-family: inherit;
+    margin: 0;
+    line-height: 1.6em;
+    border: 0;
+    outline: none;
+    padding: 10px 7px 0px 27px;
+    border: 1px solid #999999;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 
+}
